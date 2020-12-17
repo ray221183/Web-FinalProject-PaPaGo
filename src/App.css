@@ -3,13 +3,15 @@
     font-size: 14px;
     line-height: 1.43;
     color: #484848;
-    background-color: #fff;
+	background-color: #fff;
     margin: 0;
     -webkit-font-smoothing: antialiased;
 }
 .APP-topBanner{
 	display: flex;
 	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
 	height: 10vh;
 	width: 100%;
 	background-color: rgb(255, 255, 255);
@@ -20,7 +22,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
+	height: 90vh;
 	/* width: 500px; */
 	margin: auto;
 }

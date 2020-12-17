@@ -7,6 +7,12 @@ function App() {
 	return(
     	<div className = "body">
 			<div className = "APP-topBanner">
+				<span>PaPaGo</span>
+				<span>Logo Icon</span>
+				<div>
+					<span>Sign In</span>
+					<span>Sign Up</span>
+				</div>
 			</div>
       		<div className = "App">
         		<div>
