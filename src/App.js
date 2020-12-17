@@ -5,9 +5,13 @@ import { Button, Input, message, Tag } from 'antd'
 
 function App() {
 	return(
-    	<div className = "App">
-      		<div>
-        		<h1>ss</h1>
+    	<div className = "body">
+			<div className = "APP-topBanner">
+			</div>
+      		<div className = "App">
+        		<div>
+					<h1>ss</h1>
+				</div>
       		</div>
     	</div>
   	)

@@ -1,3 +1,20 @@
+.body{
+	font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, sans-serif;
+    font-size: 14px;
+    line-height: 1.43;
+    color: #484848;
+    background-color: #fff;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+}
+.APP-topBanner{
+	display: flex;
+	flex-direction: row;
+	height: 10vh;
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+}
 .App {
 	display: flex;
 	flex-direction: column;
@@ -6,14 +23,13 @@
 	height: 100vh;
 	/* width: 500px; */
 	margin: auto;
-	background-color: rgb(36, 219, 19);
 }
 
 .App-title {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgb(146, 15, 15);
+	background-color: rgb(255, 255, 255);
 }
 
 .App-title h1 {
