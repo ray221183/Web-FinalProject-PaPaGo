@@ -18,6 +18,12 @@ function App() {
         		<div>
 					<h1>ss</h1>
 				</div>
+				<div>
+					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="100%"></iframe>
+				</div>
+				<div>
+					<h1>PaPaPaPaPaPaPa</h1>
+				</div>
       		</div>
     	</div>
   	)
