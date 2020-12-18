@@ -1,14 +1,21 @@
 import './TopBanner.css'
+import LOGO from '../picture/logo4.png'
 import React, { useEffect, useRef, useState } from 'react'
 
-function TopBanner(){
+function TopBanner(prop){
+	console.log(prop.scrollToTop)
     return(
-        <div className = "TopBanner">
-				<span>PaPaGo</span>
-				<span>Logo圖示</span>
-				<div>
-					<span>登入</span>
-					<span>註冊</span>
+        <div className = {(prop.scrollToTop) ? "TopBanner" : "TopBanner TopBanner-not-top"}>
+				<div className = "TopBanner-logo-part">
+					<img id = "logo"/>
+					<span id = "logo-name-1">Pa</span>
+					<span id = "logo-name-2">Pa</span>
+					<span id = "logo-name-3">Go</span>
+				</div>
+				<span></span>
+				<div className = "TopBanner-log-part">
+					<span id = "TopBanner-log-in">登入</span>
+					<span id = "TopBanner-sign-up">註冊</span>
 				</div>
 		</div>
     )

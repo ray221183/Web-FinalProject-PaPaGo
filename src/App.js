@@ -6,9 +6,18 @@ import { Button, Input, message, Tag } from 'antd'
 import TopBanner from './TopBanner/TopBanner'
 
 function App() {
-	return (
-		<div className="App">
-			<TopBanner />
+	const scrollYTop = useRef()
+	const [scrollToTop, setScrollToTop] = useState(false)
+	const scrolling = () => {
+		console.log(1)
+		const yPosition = scrollYTop.current.scrollTop
+		if( yPosition === 0 ) setScrollToTop(true)
+		else setScrollToTop(false)
+	}
+
+	return(
+    	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
+			<TopBanner scrollToTop={scrollToTop}/>
 			<section>
 				<div>
 					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
