@@ -6,22 +6,28 @@ import { Button, Input, message, Tag } from 'antd'
 import TopBanner from './TopBanner/TopBanner'
 
 function App() {
-	return(
-    	<div className = "body">
+	return (
+		<div className="App">
 			<TopBanner />
-      		<div className = "App">
-        		<div>
-					<h1>ss</h1>
+			<section>
+				<div>
+					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
 				</div>
 				<div>
-					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="100%"></iframe>
+					<h1>papapapapapa</h1>
 				</div>
 				<div>
-					<h1>PaPaPaPaPaPaPa</h1>
+					<button className="button">Taipei</button>
+					<button className="button">Taoyuan</button>
+					<button className="button">Hsinchu</button>
+					<button className="button">Taichung</button>
+					<button className="button">Kaohsiung</button>
+					<button className="button">Tainan</button>
 				</div>
-      		</div>
-    	</div>
-  	)
+			</section>
+
+		</div>
+	);
 }
 
 export default App
