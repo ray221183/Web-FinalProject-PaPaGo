@@ -3,17 +3,19 @@
     font-size: 14px;
     line-height: 1.43;
     color: #484848;
-	background-color: #fff;
+	background-color: rgb(230, 179, 179);
     margin: 0;
-    -webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
+	height: 100vh;
+	overflow: auto;
 }
 .App {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 90vh;
-	/* width: 500px; */
+	height: 200vh;
+	/* background-color: blue; */
 	margin: auto;
 }
 
