@@ -18,7 +18,7 @@ function App() {
 	return(
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
 			<TopBanner scrollToTop={scrollToTop}/>
-			<section>
+			<section className = "App">
 				<div>
 					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
 				</div>
@@ -34,7 +34,6 @@ function App() {
 					<button className="button">Tainan</button>
 				</div>
 			</section>
-
 		</div>
 	);
 }
