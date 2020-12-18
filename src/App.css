@@ -7,16 +7,6 @@
     margin: 0;
     -webkit-font-smoothing: antialiased;
 }
-.APP-topBanner{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-around;
-	height: 10vh;
-	width: 100%;
-	background-color: rgb(255, 255, 255);
-	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
-}
 .App {
 	display: flex;
 	flex-direction: column;
