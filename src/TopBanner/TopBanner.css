@@ -25,6 +25,9 @@
 	font-weight: 500;
 	transition: 0.1s;
 }
+.TopBanner-logo-part:hover{
+	cursor: pointer;
+}
 .TopBanner .TopBanner-logo-part img{
 	content: url('../picture/logo/logo5.png');
 	height: 4.8vh;
@@ -48,6 +51,7 @@
 }
 .TopBanner-log-part #TopBanner-log-in:hover{
 	background-color:  rgba(192, 183, 183, 0.5);
+	cursor: pointer;
 }
 .TopBanner-log-part #TopBanner-sign-up{
 	padding: 1vh 3vh 1vh 3vh;
@@ -56,6 +60,9 @@
 	border-radius: 0.5vh;
 	font-size: 1.2em;
 	color: rgb(255, 255, 255);
+}
+.TopBanner-log-part #TopBanner-sign-up:hover{
+	cursor: pointer;
 }
 
 /* .TopBanner-logo-part #logo-name-1{

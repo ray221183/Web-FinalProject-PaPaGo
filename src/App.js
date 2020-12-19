@@ -5,10 +5,12 @@ import { Button, Input, message, Tag } from 'antd'
 
 import TopBanner from './TopBanner/TopBanner'
 import Footer from './Footer/Footer'
+import LogPage from './LogPage/LogPage'
 
 function App() {
 	const scrollYTop = useRef();
 	const [scrollToTop, setScrollToTop] = useState(true);
+	const [loginLogup, setLoginLogup] = useState(0); //0:normal page | 1: log in | 2: log up
 	const [city, setCity] = useState('');
 
 	const scrolling = () => {
@@ -16,6 +18,21 @@ function App() {
 		const yPosition = scrollYTop.current.scrollTop
 		if( yPosition === 0 ) setScrollToTop(true)
 		else setScrollToTop(false)
+	}
+	const logPageStyle = (loginLogup === 0) ? "LogPage disable" : "LogPage"
+	const TopElement = () => { // we need LogPage and TopBanner on every page
+		return(
+			<div>
+				<LogPage 
+					LogPageStyle={logPageStyle}
+					setLoginLogup={setLoginLogup}
+				/>
+				<TopBanner 
+					scrollToTop={scrollToTop}
+					setLoginLogup={setLoginLogup}
+				/>
+			</div>
+		)
 	}
 
 	const clickCity = (event) => {
@@ -25,9 +42,10 @@ function App() {
 		setCity(name);
 	}
 
+
 	return(
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
-			<TopBanner scrollToTop={scrollToTop}/>
+			<TopElement />
 			<section className = "App">
 				<div className = "App-main-picture">
 				</div>

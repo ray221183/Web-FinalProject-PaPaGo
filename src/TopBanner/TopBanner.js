@@ -13,8 +13,12 @@ function TopBanner(prop){
 				</div>
 				<span></span>
 				<div className = "TopBanner-log-part">
-					<span id = "TopBanner-log-in">登入</span>
-					<span id = "TopBanner-sign-up">註冊</span>
+					<span id = "TopBanner-log-in" onClick={() => prop.setLoginLogup(1)}>
+						登入
+					</span>
+					<span id = "TopBanner-sign-up" onClick={() => prop.setLoginLogup(2)}>
+						註冊
+					</span>
 				</div>
 		</div>
     )
