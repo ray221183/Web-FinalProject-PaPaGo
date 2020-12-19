@@ -4,10 +4,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import { Button, Input, message, Tag } from 'antd'
 
 import TopBanner from './TopBanner/TopBanner'
+import Footer from './Footer/Footer'
 
 function App() {
 	const scrollYTop = useRef();
-	const [scrollToTop, setScrollToTop] = useState(false);
+	const [scrollToTop, setScrollToTop] = useState(true);
 	const [city, setCity] = useState('');
 
 	const scrolling = () => {
@@ -28,11 +29,10 @@ function App() {
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
 			<TopBanner scrollToTop={scrollToTop}/>
 			<section className = "App">
-				<div>
-					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
+				<div className = "App-main-picture">
 				</div>
 				<div>
-					<h1>papapapapapa</h1>
+					<h1>你想去什麼地方</h1>
 				</div>
 				<div>
 					<button className="button" name="taipei" onClick={clickCity}>Taipei</button>
@@ -42,9 +42,11 @@ function App() {
 					<button className="button" name="kaohsiung" onClick={clickCity}>Kaohsiung</button>
 					<button className="button" name="tainan" onClick={clickCity}>Tainan</button>
 				</div>
+				<div>
+					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
+				</div>
 			</section>
-			<footer>
-			</footer>
+			<Footer />
 		</div>
 	);
 }

@@ -1,0 +1,11 @@
+.Footer{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	height: 30vh;
+	width: 100%;
+	background-color: rgba(240, 240, 240, 0.856);
+	/* box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0); */
+	color: rgba(158, 155, 155, 0.932);
+}

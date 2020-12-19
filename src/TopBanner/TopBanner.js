@@ -1,5 +1,4 @@
 import './TopBanner.css'
-import LOGO from '../picture/logo4.png'
 import React, { useEffect, useRef, useState } from 'react'
 
 function TopBanner(prop){

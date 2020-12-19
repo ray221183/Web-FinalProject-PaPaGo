@@ -3,7 +3,7 @@
     font-size: 14px;
     line-height: 1.43;
     color: #484848;
-	background-color: rgb(230, 179, 179);
+	background-color: rgb(255, 255, 255);
     margin: 0;
 	-webkit-font-smoothing: antialiased;
 	height: 100vh;
@@ -12,6 +12,14 @@
 .App {
 	text-align: center;
 	height: 200vh;
+}
+
+.App-main-picture{
+	content: url('./picture/mainPicture/sketch4_resize.jpg');
+	/* background-color: chocolate; */
+	height: 60vh;
+	width: 100%;
+	margin: 0vh 0vh 3vh 0vh;
 }
 
 .App-logo {

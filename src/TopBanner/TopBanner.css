@@ -8,13 +8,14 @@
 	height: 10vh;
 	width: 100%;
 	/* background-color: rgb(255, 255, 255); */
-	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
 	color: rgba(255, 255, 255, 0.932);
 	transition: 0.3s;
 }
 .TopBanner-not-top {
 	color: rgba(0, 0, 0, 0.932);
 	background-color: rgb(255, 255, 255);
+	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
 }
 
 /*-------------------------------*/
@@ -25,12 +26,12 @@
 	transition: 0.1s;
 }
 .TopBanner .TopBanner-logo-part img{
-	content: url('../picture/logo5.png');
+	content: url('../picture/logo/logo5.png');
 	height: 4.8vh;
 	margin: 0vh 2vh 0vh 2vh;
 }
 .TopBanner-not-top .TopBanner-logo-part img{
-	content: url('../picture/logo6.png');
+	content: url('../picture/logo/logo6.png');
 }
 
 /*-------------------------------*/
