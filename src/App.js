@@ -20,20 +20,20 @@ function App() {
 		else setScrollToTop(false)
 	}
 	const logPageStyle = (loginLogup === 0) ? "LogPage disable" : "LogPage"
-	const TopElement = () => { // we need LogPage and TopBanner on every page
-		return(
-			<div>
-				<LogPage 
-					LogPageStyle={logPageStyle}
-					setLoginLogup={setLoginLogup}
-				/>
-				<TopBanner 
-					scrollToTop={scrollToTop}
-					setLoginLogup={setLoginLogup}
-				/>
-			</div>
-		)
-	}
+	// const TopElement = () => { // we need LogPage and TopBanner on every page
+	// 	return(
+	// 		<div>
+	// 			<LogPage 
+	// 				LogPageStyle={logPageStyle}
+	// 				setLoginLogup={setLoginLogup}
+	// 			/>
+	// 			<TopBanner 
+	// 				scrollToTop={scrollToTop}
+	// 				setLoginLogup={setLoginLogup}
+	// 			/>
+	// 		</div>
+	// 	)
+	// }
 
 	const clickCity = (event) => {
 		const name = event.target.name;
@@ -45,7 +45,17 @@ function App() {
 
 	return(
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
-			<TopElement />
+			{/* <TopElement /> */}
+			<div className = "TopElement">
+				<LogPage 
+					LogPageStyle={logPageStyle}
+					setLoginLogup={setLoginLogup}
+				/>
+				<TopBanner 
+					scrollToTop={scrollToTop}
+					setLoginLogup={setLoginLogup}
+				/>
+			</div>
 			<section className = "App">
 				<div className = "App-main-picture">
 				</div>

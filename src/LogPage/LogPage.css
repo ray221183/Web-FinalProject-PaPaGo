@@ -53,6 +53,7 @@
     font-size: 2em;
     font-weight: 500;
     color: rgb(177, 172, 172);
+    transition: 0.3s;
 }
 .LogPage-topbanner #b3:hover{
     cursor: pointer;
@@ -123,6 +124,7 @@
     font-weight: 400;
     color: rgba(10, 119, 170, 0.815);
     outline: none;
+    transition: 0.3s;
 }
 .LogPage-footer button:hover{
     cursor: pointer;

@@ -13,6 +13,7 @@
 	transition: 0.3s;
 }
 .TopBanner-not-top {
+	transition: 0.3s;
 	color: rgba(0, 0, 0, 0.932);
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
