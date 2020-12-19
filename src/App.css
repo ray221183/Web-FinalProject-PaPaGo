@@ -38,3 +38,11 @@
 	margin-left: 10px;
 	margin-right: 10px;
 }
+.button:hover {
+	border-color: transparent !important;
+	background-color: gray;
+}
+.button:focus {
+	background-color: white;
+	color: black;
+}

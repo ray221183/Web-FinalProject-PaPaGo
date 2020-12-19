@@ -6,13 +6,22 @@ import { Button, Input, message, Tag } from 'antd'
 import TopBanner from './TopBanner/TopBanner'
 
 function App() {
-	const scrollYTop = useRef()
-	const [scrollToTop, setScrollToTop] = useState(false)
+	const scrollYTop = useRef();
+	const [scrollToTop, setScrollToTop] = useState(false);
+	const [city, setCity] = useState('');
+
 	const scrolling = () => {
 		console.log(1)
 		const yPosition = scrollYTop.current.scrollTop
 		if( yPosition === 0 ) setScrollToTop(true)
 		else setScrollToTop(false)
+	}
+
+	const clickCity = (event) => {
+		const name = event.target.name;
+		//console.log('name = ' + name);
+		//console.log('typeof(name) = ' + typeof(name))
+		setCity(name);
 	}
 
 	return(
@@ -26,14 +35,16 @@ function App() {
 					<h1>papapapapapa</h1>
 				</div>
 				<div>
-					<button className="button">Taipei</button>
-					<button className="button">Taoyuan</button>
-					<button className="button">Hsinchu</button>
-					<button className="button">Taichung</button>
-					<button className="button">Kaohsiung</button>
-					<button className="button">Tainan</button>
+					<button className="button" name="taipei" onClick={clickCity}>Taipei</button>
+					<button className="button" name="taoyuan" onClick={clickCity}>Taoyuan</button>
+					<button className="button" name="hsinchu" onClick={clickCity}>Hsinchu</button>
+					<button className="button" name="taichung" onClick={clickCity}>Taichung</button>
+					<button className="button" name="kaohsiung" onClick={clickCity}>Kaohsiung</button>
+					<button className="button" name="tainan" onClick={clickCity}>Tainan</button>
 				</div>
 			</section>
+			<footer>
+			</footer>
 		</div>
 	);
 }
