@@ -12,12 +12,45 @@
 	color: rgba(255, 255, 255, 0.932);
 	transition: 0.3s;
 }
-.TopBanner-not-top {
-	transition: 0.3s;
-	color: rgba(0, 0, 0, 0.932);
+.TopBanner-not-top{
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+	color: rgba(0, 0, 0, 0.932);
 }
+
+/* .TopBanner-top{
+	animation: TransTop 0.3s;
+	animation-fill-mode: forwards;
+}
+@keyframes TransTop{
+	0%{
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+		color: rgba(0, 0, 0, 0.932);
+	}
+	100%{
+		background-color: none;
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
+		color: rgba(255, 255, 255, 0.932);
+	}
+}
+
+.TopBanner-not-top{
+	animation: TransNotTop 0.3s;
+	animation-fill-mode: forwards;
+}
+@keyframes TransNotTop{
+	0%{
+		background-color: none;
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
+		color: rgba(255, 255, 255, 0.932);
+	}
+	100%{
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+		color: rgba(0, 0, 0, 0.932);
+	}
+} */
 
 /*-------------------------------*/
 .TopBanner-logo-part{
@@ -30,14 +63,15 @@
 	cursor: pointer;
 }
 .TopBanner .TopBanner-logo-part img{
-	content: url('../picture/logo/logo5.png');
 	height: 4.8vh;
 	margin: 0vh 2vh 0vh 2vh;
 }
-.TopBanner-not-top .TopBanner-logo-part img{
+#logo1{
+	content: url('../picture/logo/logo5.png');
+}
+#logo2{
 	content: url('../picture/logo/logo6.png');
 }
-
 /*-------------------------------*/
 .TopBanner-log-part{
 	margin: 0vh 12vh 0vh 10vh;

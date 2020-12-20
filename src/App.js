@@ -14,26 +14,10 @@ function App() {
 	const [city, setCity] = useState('');
 
 	const scrolling = () => {
-		console.log(1)
 		const yPosition = scrollYTop.current.scrollTop
 		if( yPosition === 0 ) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
-	const logPageStyle = (loginLogup === 0) ? "LogPage disable" : "LogPage"
-	// const TopElement = () => { // we need LogPage and TopBanner on every page
-	// 	return(
-	// 		<div>
-	// 			<LogPage 
-	// 				LogPageStyle={logPageStyle}
-	// 				setLoginLogup={setLoginLogup}
-	// 			/>
-	// 			<TopBanner 
-	// 				scrollToTop={scrollToTop}
-	// 				setLoginLogup={setLoginLogup}
-	// 			/>
-	// 		</div>
-	// 	)
-	// }
 
 	const clickCity = (event) => {
 		const name = event.target.name;
@@ -42,13 +26,13 @@ function App() {
 		setCity(name);
 	}
 
+	console.log(scrollToTop)
 
 	return(
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
-			{/* <TopElement /> */}
 			<div className = "TopElement">
 				<LogPage 
-					LogPageStyle={logPageStyle}
+					loginLogup={loginLogup}
 					setLoginLogup={setLoginLogup}
 				/>
 				<TopBanner 
@@ -56,6 +40,7 @@ function App() {
 					setLoginLogup={setLoginLogup}
 				/>
 			</div>
+
 			<section className = "App">
 				<div className = "App-main-picture">
 				</div>
@@ -74,6 +59,7 @@ function App() {
 					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
 				</div>
 			</section>
+
 			<Footer />
 		</div>
 	);

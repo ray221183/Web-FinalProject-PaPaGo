@@ -4,27 +4,27 @@
     display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(255, 255, 255, 0.705);
+	background-color: rgba(65, 64, 64, 0.705);
 	height: 100vh;
     width: 100%;
 }
-
-.disable{
-	display: none;
-}
-
 .LogInterface{
-    /* display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between; */
-	height: 50vh;
+    height: 50vh;
     width: 40%;
     border-radius: 1.5vh;
 	background-color: rgb(255, 255, 255);
-	box-shadow: 0vh 0vh 3vh -1vh rgb(182, 179, 179);
+    box-shadow: 0vh 0vh 3vh -1vh rgb(182, 179, 179);
+    animation: jumpScale 0.2s;
+    animation-fill-mode: forwards;
 }
-
+@keyframes jumpScale{
+    0%{
+        transform: scale(0.5, 0.5)
+    }
+    100%{
+        transform: scale(1, 1)
+    }
+}
 .LogPage-topbanner{
     display: flex;
 	flex-direction: row;
@@ -36,15 +36,18 @@
     box-shadow: 0vh 0.3vh 0.4vh -0.5vh rgb(0, 0, 0);
 }
 .LogPage-topbanner #b1{
-    margin: 0vh 15vh 0vh 0vh;
+    margin: 0vh 10vh 0vh 0vh;
     width: 4vh;
 }
 .LogPage-topbanner #b2{
+    width: 20vh;
     font-size: 1.6em;
     font-weight: 450;
+    text-align: center;
+    color: rgb(0, 0, 0);
 }
 .LogPage-topbanner #b3{
-    margin: 0vh 0vh 0vh 15vh;
+    margin: 0vh 0vh 0vh 10vh;
     text-align: center;
     line-height: 3.5vh;
     height: 4vh;
@@ -70,44 +73,62 @@
     /* border: 1px solid black; */
 }
 .a1{
-    width: inherit;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin: 0vh 0vh 1vh 0vh;
 }
 .a2{
     width: inherit;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid black; */
+}
+.a3{
+    width: 100%;
+}
+.a4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: inherit;
+    width: 60%;
+    /* border: 1px solid black; */
 }
 .LogPage-normal-login input{
+    padding-left: 10px;
     height: 6vh;
-    width: 60%;
+    width: 100%;
     border: none; /* <-- This thing here */
     border:solid 1px #ccc;
     font-size: 1.2em;
     outline: none;
+    border-radius: 0.7vh 0.7vh 0.7vh 0.7vh;
 }
-.LogPage-normal-login #account{
-    border-radius: 0.7vh 0.7vh 0vh 0vh;
+#first-name{
+    margin-right: 1vh ;
 }
-.LogPage-normal-login #password{
-    border-top: none;
-    border-radius: 0vh 0vh 0.7vh 0.7vh;
-}
-
 .LogPage-normal-login button{
     height: 5vh;
-    width: 60%;
+    width: inherit;
     border: none;
     border-radius: 0.7vh;
-    background-color: rgb(115, 148, 238);
+    /* background-color: rgb(115, 148, 238); */
+    background-image: linear-gradient(90deg, rgb(73, 119, 247), rgb(105, 139, 241), rgb(73, 119, 247));
     color: rgb(255, 255, 255);
     font-size: 1.2em;
     outline: none;
+    transition: 0.1s;
 }
 .LogPage-normal-login button:hover{
-    background-image: linear-gradient(90deg, rgb(115, 148, 238), rgb(98, 133, 230), rgb(98, 133, 230), rgb(98, 133, 230), rgb(115, 148, 238));
+    background-image: linear-gradient(90deg, rgb(73, 119, 247), rgb(73, 119, 247));
     cursor: pointer;
+    transform: scale(1.01, 1.01);
 }
 .LogPage-footer{
     display: flex;
@@ -130,6 +151,10 @@
     cursor: pointer;
     background-color: rgba(248, 245, 245, 0.815);
     font-weight: 500;
+}
+
+.disable{
+	display: none;
 }
 /* .LogPage-email-login{
     height: 30vh;
