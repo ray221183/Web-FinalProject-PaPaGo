@@ -2,6 +2,10 @@ import './LogPage.css'
 import React, {useEffect, useRef, useChat} from 'react'
 
 function LogPage(prop){
+    const logInterfaceSize = {
+        height: (prop.loginLogup === 2) ? "60vh" : "50vh",
+        width: (prop.loginLogup === 2) ? "40%" : "40%",
+    }
     const logPageStyle = (prop.loginLogup === 0) ? "LogPage disable" : "LogPage"
     const TopBanner = () => {
         return(
@@ -15,8 +19,8 @@ function LogPage(prop){
     const MiddleContent = () => {
         return(
             (prop.loginLogup === 2) ?
-            <div>
-                <div className = "LogPage-normal-login">
+            <div className="LogPage-log-part">
+                <div className = "LogPage-normal-logup">
                     <div className="a4">
                         <div className="a3">
                             <div className="a2">
@@ -31,7 +35,10 @@ function LogPage(prop){
                                 <input id="account" name="account" type="text" placeholder="帳號"/>
                             </div>
                             <div className="a1">
-                                <input id="password" name="account" type="text" placeholder="密碼"/>
+                                <input id="password" name="account" type="password" placeholder="密碼"/>
+                            </div>
+                            <div className="a1">
+                                <input id="password" name="account" type="password" placeholder="再輸入一次密碼"/>
                             </div>
                         </div>
                         <div className="a1">
@@ -44,7 +51,7 @@ function LogPage(prop){
                 </div>
             </div>
             :
-            <div>
+            <div className="LogPage-log-part">
                 <div className = "LogPage-normal-login">
                     <div className="a4">
                         <div className="a3">
@@ -52,7 +59,7 @@ function LogPage(prop){
                                 <input id="account" name="account" type="text" placeholder="帳號"/>
                             </div>
                             <div className="a1">
-                                <input id="password" name="account" type="text" placeholder="密碼"/>
+                                <input id="password" name="account" type="password" placeholder="密碼"/>
                             </div>
                         </div>
                         <div className="a1">
@@ -87,7 +94,7 @@ function LogPage(prop){
 
     return(
         <div className = {logPageStyle}>
-            <div className = "LogInterface">
+            <div className = "LogInterface" style={logInterfaceSize}>
                 <TopBanner />
                 <MiddleContent />
                 <Footer />
