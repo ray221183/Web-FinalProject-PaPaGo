@@ -31,7 +31,7 @@ function App() {
 	return(
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
 			<div className = "TopElement">
-				<LogPage 
+				<LogPage
 					loginLogup={loginLogup}
 					setLoginLogup={setLoginLogup}
 				/>

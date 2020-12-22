@@ -31,7 +31,7 @@
     height: 10vh;
     width: 100%;
     /* background-color: chocolate; */
-    box-shadow: 0vh 0.3vh 0.4vh -0.5vh rgb(0, 0, 0);
+    box-shadow: 0vh 0.3vh 0.5vh -0.5vh rgb(0, 0, 0);
 }
 .LogPage-topbanner #b1{
     margin: 0vh 10vh 0vh 0vh;
@@ -97,7 +97,9 @@
     /* border: 1px solid black; */
 }
 .a3{
+    position: relative !important;
     width: 100%;
+    /* border: 1px solid black; */
 }
 .a4{
     display: flex;
@@ -121,20 +123,26 @@
 #first-name{
     margin-right: 1vh ;
 }
+.error-message{
+    position: absolute !important;
+    width: 100%;
+    color: rgb(228, 0, 0);
+    /* border: 1px solid black; */
+}
 .LogPage-log-part button{
     height: 5vh;
     width: inherit;
     border: none;
     border-radius: 0.7vh;
     /* background-color: rgb(115, 148, 238); */
-    background-image: linear-gradient(90deg, rgb(73, 119, 247), rgb(105, 139, 241), rgb(73, 119, 247));
+    background-image: linear-gradient(90deg, rgb(247, 73, 154), rgb(240, 84, 157), rgb(240, 84, 157), rgb(247, 73, 154));
     color: rgb(255, 255, 255);
     font-size: 1.2em;
     outline: none;
     transition: 0.1s;
 }
 .LogPage-log-part button:hover{
-    background-image: linear-gradient(90deg, rgb(73, 119, 247), rgb(73, 119, 247));
+    background-image: linear-gradient(90deg, rgb(247, 73, 154), rgb(247, 73, 154));
     cursor: pointer;
     transform: scale(1.01, 1.01);
 }
@@ -151,7 +159,7 @@
     border: none;
     background-color: transparent;
     font-weight: 400;
-    color: rgba(10, 119, 170, 0.815);
+    color: rgba(240, 97, 168, 0.815);
     outline: none;
     transition: 0.3s;
 }

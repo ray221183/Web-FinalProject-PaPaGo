@@ -1,9 +1,16 @@
 import './LogPage.css'
 import React, {useEffect, useRef, useChat} from 'react'
+import { useState } from 'react/cjs/react.development'
 
 function LogPage(prop){
+    const [errorType, setErrorType] = useState(0); //0: no error | 1: account or password incorrect | 2:incomplete form | 3:password reconfirm failed | 4:the account already exists
+    const errorMessage = (errorType === 4) ? "*此帳號已存在*" :
+                         (errorType === 3) ? "*兩次輸入的密碼不相符*" :
+                         (errorType === 2) ? "*有空格未完成*" :
+                         (errorType === 1) ? "*帳號或密碼輸入錯誤*":
+                         ""
     const logInterfaceSize = {
-        height: (prop.loginLogup === 2) ? "60vh" : "50vh",
+        height: (prop.loginLogup === 2) ? "65vh" : "50vh",
         width: (prop.loginLogup === 2) ? "40%" : "40%",
     }
     const logPageStyle = (prop.loginLogup === 0) ? "LogPage disable" : "LogPage"
@@ -38,7 +45,12 @@ function LogPage(prop){
                                 <input id="password" name="account" type="password" placeholder="密碼"/>
                             </div>
                             <div className="a1">
-                                <input id="password" name="account" type="password" placeholder="再輸入一次密碼"/>
+                                <input id="password" name="account" type="password" placeholder="請再輸入一次密碼"/>
+                            </div>
+                            <div className="error-message">
+                                <span>
+                                    {errorMessage}
+                                </span>
                             </div>
                         </div>
                         <div className="a1">
@@ -60,6 +72,11 @@ function LogPage(prop){
                             </div>
                             <div className="a1">
                                 <input id="password" name="account" type="password" placeholder="密碼"/>
+                            </div>
+                            <div className="error-message">
+                                <span>
+                                    {errorMessage}
+                                </span>
                             </div>
                         </div>
                         <div className="a1">
