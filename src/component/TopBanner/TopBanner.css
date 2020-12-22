@@ -67,10 +67,10 @@
 	margin: 0vh 2vh 0vh 2vh;
 }
 #logo1{
-	content: url('../picture/logo/logo5.png');
+	content: url('../../picture/logo/logo5.png');
 }
 #logo2{
-	content: url('../picture/logo/logo6.png');
+	content: url('../../picture/logo/logo6.png');
 }
 /*-------------------------------*/
 .TopBanner-log-part{
