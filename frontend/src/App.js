@@ -1,25 +1,31 @@
 import './App.css'
 import React, { useEffect, useRef, useState } from 'react'
 import {
-	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link
   } from "react-router-dom";
+// import { createBrowserHistory } from 'history'
 
 import Home from './component/Home/Home'
 import TopBanner from './component/TopBanner/TopBanner'
 import Footer from './component/Footer/Footer'
 import LogPage from './component/LogPage/LogPage'
+import PostsEnum from './component/PostsEnum/PostsEnum'
 
 function App() {
 	const scrollYTop = useRef();
+	const [picHeight, setPicHeight] = useState(0);
+	const [topBannerHeight, setTopBannerHeight] = useState(0);
 	const [scrollToTop, setScrollToTop] = useState(true);
 	const [loginLogup, setLoginLogup] = useState(0); //0:normal page | 1: log in | 2: log up
 
+	const scrollTop = () => {
+		scrollYTop.current.scrollTo(0, 0)
+	}
 	const scrolling = () => {
 		const yPosition = scrollYTop.current.scrollTop
-		if( yPosition === 0 ) setScrollToTop(true)
+		console.log(picHeight, topBannerHeight)
+		if( yPosition <= picHeight - topBannerHeight) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
 
@@ -27,9 +33,12 @@ function App() {
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
 			<div className = "TopElement">
 				<LogPage loginLogup={loginLogup} setLoginLogup={setLoginLogup} />
-				<TopBanner scrollToTop={scrollToTop} setLoginLogup={setLoginLogup} />
+				<TopBanner scrollToTop={scrollToTop} setLoginLogup={setLoginLogup} scrollTop={scrollTop} setTopBannerHeight={setTopBannerHeight}/>
 			</div>
-			<Home />
+			<Switch>
+				<Route exact path="/" render={() => (<Home setPicHeight={setPicHeight}/>)} />
+				<Route path="/postsenum" render={() => (<PostsEnum />)} />
+			</Switch>
 			<Footer />
 		</div>
 	);

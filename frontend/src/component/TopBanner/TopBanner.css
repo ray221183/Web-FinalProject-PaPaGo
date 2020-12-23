@@ -1,3 +1,7 @@
+.White-block{
+	height: 8vh;
+	width: 100%;
+}
 .TopBanner{
 	position: fixed;
 	z-index: 1;
@@ -5,54 +9,26 @@
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
-	height: 10vh;
+	height: 8vh;
 	width: 100%;
 	/* background-color: rgb(255, 255, 255); */
-	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
 	color: rgba(255, 255, 255, 0.932);
+	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
 	transition: 0.3s;
 }
 .TopBanner-not-top{
 	background-color: rgb(255, 255, 255);
+	color: rgba(0, 0, 0, 0.932);
 	box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+}
+/*-------------------------------*/
+.TopBanner #logo-name{
+	transition: 0.3s;
+	color: rgba(255, 255, 255, 0.932);
+}
+.TopBanner-not-top #logo-name{
 	color: rgba(0, 0, 0, 0.932);
 }
-
-/* .TopBanner-top{
-	animation: TransTop 0.3s;
-	animation-fill-mode: forwards;
-}
-@keyframes TransTop{
-	0%{
-		background-color: rgb(255, 255, 255);
-		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
-		color: rgba(0, 0, 0, 0.932);
-	}
-	100%{
-		background-color: none;
-		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
-		color: rgba(255, 255, 255, 0.932);
-	}
-}
-
-.TopBanner-not-top{
-	animation: TransNotTop 0.3s;
-	animation-fill-mode: forwards;
-}
-@keyframes TransNotTop{
-	0%{
-		background-color: none;
-		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
-		color: rgba(255, 255, 255, 0.932);
-	}
-	100%{
-		background-color: rgb(255, 255, 255);
-		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
-		color: rgba(0, 0, 0, 0.932);
-	}
-} */
-
-/*-------------------------------*/
 .TopBanner-logo-part{
 	margin: 0vh 10vh 0vh 12vh;
 	font-size: 2.5em;
@@ -63,8 +39,8 @@
 	cursor: pointer;
 }
 .TopBanner .TopBanner-logo-part img{
-	height: 4.8vh;
-	margin: 0vh 2vh 0vh 2vh;
+	height: 5vh;
+	margin: 0vh 2vh 0.5vh 1.5vh;
 }
 #logo1{
 	content: url('../../picture/logo/logo5.png');
@@ -99,7 +75,7 @@
 .TopBanner-log-part #TopBanner-sign-up:hover{
 	cursor: pointer;
 }
-
+/*-------------------------------*/
 /* .TopBanner-logo-part #logo-name-1{
 	color: rgba(61, 81, 197, 0.932);
 }
@@ -108,4 +84,38 @@
 }
 .TopBanner-logo-part #logo-name-3{
 	color: rgba(238, 107, 84, 0.932);
+}
+
+.TopBanner-top{
+	animation: TransTop 0.3s;
+	animation-fill-mode: forwards;
+}
+@keyframes TransTop{
+	0%{
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+		color: rgba(0, 0, 0, 0.932);
+	}
+	100%{
+		background-color: none;
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
+		color: rgba(255, 255, 255, 0.932);
+	}
+}
+
+.TopBanner-not-top{
+	animation: TransNotTop 0.3s;
+	animation-fill-mode: forwards;
+}
+@keyframes TransNotTop{
+	0%{
+		background-color: none;
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0);
+		color: rgba(255, 255, 255, 0.932);
+	}
+	100%{
+		background-color: rgb(255, 255, 255);
+		box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(156, 150, 150);
+		color: rgba(0, 0, 0, 0.932);
+	}
 } */

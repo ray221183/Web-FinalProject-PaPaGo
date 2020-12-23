@@ -1,6 +1,7 @@
 .Home {
 	text-align: center;
 	height: 200vh;
+	box-shadow: 0vh 0vh 0.3vh 0vh rgb(0, 0, 0);
 }
 .Home-main-picture{
 	content: url('../../picture/mainPicture/sketch4_resize.jpg');
@@ -31,4 +32,9 @@
 .button:focus {
 	background-color: white;
 	color: black;
+}
+.google-map{
+	margin: 10vh 0vw 0vw 25vw;
+	width: 50%;
+	/* border: 1px solid black; */
 }
