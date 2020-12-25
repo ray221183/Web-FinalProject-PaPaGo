@@ -6,7 +6,6 @@ import {
 
 function Home(prop){
     const pic = useRef();
-
     const [city, setCity] = useState('');
     const clickCity = (event) => {
 		const name = event.target.name;
@@ -22,6 +21,12 @@ function Home(prop){
 
     return(
         <section className = "Home">
+            <div className = "Introduction">
+                <div title="introduction content">
+                    <span id="content-part">PaPaPaPaPa</span>
+                    <button id="get-start-part" onClick={() => prop.setLoginLogup(2)}>Start Your Trip</button>
+                </div>
+            </div>
             <div className = "Home-main-picture" ref={pic}>
             </div>
             <div>

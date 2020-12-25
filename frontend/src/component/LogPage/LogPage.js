@@ -23,6 +23,10 @@ function LogPage(prop){
             </div>
         )
     }
+    const handleLoginLogup = () => {
+        prop.setLoginState(true)
+        prop.setLoginLogup(0)
+    }
     const MiddleContent = () => {
         return(
             (prop.loginLogup === 2) ?
@@ -54,7 +58,7 @@ function LogPage(prop){
                             </div>
                         </div>
                         <div className="a1">
-                            <button>立即註冊</button>
+                            <button onClick={() => {handleLoginLogup()}}>立即註冊</button>
                         </div>
                     </div>
                 </div>
@@ -80,7 +84,7 @@ function LogPage(prop){
                             </div>
                         </div>
                         <div className="a1">
-                            <button>立即登入</button>
+                            <button onClick={() => {handleLoginLogup()}}>立即登入</button>
                         </div>
                     </div>
                 </div>
