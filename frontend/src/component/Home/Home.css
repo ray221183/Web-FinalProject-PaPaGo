@@ -1,15 +1,49 @@
 .Home {
+	position: relative;
 	text-align: center;
 	height: 200vh;
 	box-shadow: 0vh 0vh 0.3vh 0vh rgb(0, 0, 0);
 }
+.Introduction{
+	position: absolute;
+	height: 60vh;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.1);
+	color: rgba(255, 255, 255, 1);
+}
+.Introduction div{
+	margin: 45vh 0vw 0vh 60vw;
+	width: 30vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid black;
+}
+#content-part{
+	text-align: center;
+	font-size: 3em;
+	font-weight: 500;
+}
+#get-start-part{
+	padding: 2px 5px 2px 5px;
+	font-size: 1.5em;;
+	background-color: rgba(158, 62, 126, 0.445);
+	border: 0.5px solid rgb(255, 255, 255);
+	border-radius: 0.8vh;
+	box-shadow: 0vh 0vh 0vh 0vh rgb(0, 0, 0);
+	outline: none;
+}
+#get-start-part:hover{
+	cursor: pointer;
+}
 .Home-main-picture{
 	content: url('../../picture/mainPicture/sketch4_resize.jpg');
-	/* background-color: chocolate; */
 	height: 60vh;
 	width: 100%;
 	margin: 0vh 0vh 3vh 0vh;
 	box-shadow: 0vh -0.3vh 1vh 0vh rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.13);
 }
 .button {
 	background-color: black;
