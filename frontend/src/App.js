@@ -20,7 +20,7 @@ function App() {
 	const [scrollToTop, setScrollToTop] = useState(true);
 
 	const [loginLogup, setLoginLogup] = useState(0); //0:normal page | 1: log in | 2: log up
-	const [loginState, setLoginState] = useState(true)
+	const [loginState, setLoginState] = useState(false)
 	
 
 	const scrollTop = () => {
