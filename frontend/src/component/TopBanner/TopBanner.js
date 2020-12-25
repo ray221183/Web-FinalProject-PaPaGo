@@ -60,7 +60,7 @@ function TopBanner(prop){
 					<div className = "Settings" aria-expanded={Menu}>
 						<div className = "Settings-icon" onClick={() => {expandMenu()}}>
 							<span>
-								承叡
+								名字
 							</span>
 						</div>
 						<div className = "Menu" ref={menuRef}>
