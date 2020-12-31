@@ -9,8 +9,6 @@ function Home(prop){
     const [city, setCity] = useState('');
     const clickCity = (event) => {
 		const name = event.target.name;
-		//console.log('name = ' + name);
-		//console.log('typeof(name) = ' + typeof(name))
 		setCity(name);
     }
     useEffect(
