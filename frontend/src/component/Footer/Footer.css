@@ -2,11 +2,60 @@
 	z-index: 0;
 	display: flex;
 	flex-direction: row;
+	justify-content: space-around;
 	align-items: center;
-	justify-content: space-between;
-	height: 30vh;
+	height: 160px;
 	width: 100%;
-	background-color: rgba(240, 240, 240, 0.699);
+	background-color: #656769;
 	/* box-shadow: 0vh -0.1vh 0.5vh 0vh rgb(0, 0, 0); */
-	color: rgba(158, 155, 155, 0.932);
+	color: white;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.FooterMid {
+	width: 300px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.FooterDiv {
+	width: 300px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.FooterH2 {
+	margin: 0px;
+	color: white;
+}
+.FooterItem {
+	margin: 2px;
+	color: black;
+}
+#FooterLogo {
+	content: url('../../picture/logo/logo5.png');
+	width: 70px;
+	height: 70px;
+	margin: 5px;
+}
+#papago2021 {
+	color: white;
+	margin: 3px;
+	font-size: 15px;
+}
+#ARR {
+	color: white;
+	margin: 3px;
+	font-size: 15px;
 }
