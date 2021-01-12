@@ -1,8 +1,11 @@
 .Editor {
-	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
 	height: 200vh;
+	font-size: 15px;
 	box-shadow: 0vh 0vh 0.3vh 0vh rgb(0, 0, 0);
-	background-color: rgb(138, 138, 138);
 }
 .aa{
 	outline: none;
@@ -10,9 +13,28 @@
 .ab{
 	border: none;
 }
-.ba{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-around;
+.editor-part{
+	width: 60%;
+	/* border: 1px solid blue; */
+}
+.top-part{
+	height: 15vh;
+	border-bottom: 1.5px solid rgb(214, 214, 214);
+	
+}
+.eidtor-title-part{
+	height: 10vh;
+	padding: 2vh 1vh 2vh 1vh;
+	outline: none;
+	font-size: 3em;
+	border: 1px solid rgb(177, 108, 108);
+}
+.eidtor-title-part:hover{
+	cursor: text;
+}
+.editor-content-part{
+	height: 10vh;
+	/* border: 1px solid rgb(0, 0, 0); */
+}
+.title-name{
 }

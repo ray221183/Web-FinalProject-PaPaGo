@@ -2,7 +2,7 @@ import './Footer.css'
 import React, { useEffect, useRef, useState } from 'react'
 
 function Footer(){
-    return(
+    return( 
         <footer className = "Footer">
         	<div className="FooterDiv">
 				<h2 className="FooterH2">Authors</h2>

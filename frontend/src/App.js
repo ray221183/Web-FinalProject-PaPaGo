@@ -22,6 +22,7 @@ function App() {
 	const [loginLogup, setLoginLogup] = useState(0); //0:normal page | 1: log in | 2: log up
 	const [loginState, setLoginState] = useState(false)
 	
+	console.log(window.innerHeight, window.innerWidth)
 
 	const scrollTop = () => {
 		scrollYTop.current.scrollTo(0, 0)
