@@ -1,0 +1,52 @@
+type Query {
+	user(data: UserInput!): UserOutput!
+}
+
+type Mutation {
+	addUser(data: registerInput!): String!
+}
+
+
+input registerInput{
+	first_name: String!
+	last_name: String!
+	account: String!
+	password: String!
+}
+input UserInput {
+	account: String!
+	password: String!
+}
+input CommentInput {
+	name: String!
+	body: String!
+	room_id: String!
+}
+
+input RoomInput {
+	room_id: String!
+	user_1: String!
+	user_2: String!
+}
+
+
+
+
+
+
+type UserOutput {
+	first_name: String!
+	last_name: String!
+	account: String!
+	password: String!
+	valid: Boolean!
+}
+
+
+enum MutationType {
+	CREATED
+	UPDATED
+	DELETED
+	ADD
+}
+

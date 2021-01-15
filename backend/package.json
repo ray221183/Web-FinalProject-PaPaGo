@@ -9,13 +9,13 @@
     "antd": "^4.8.4",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "react-scroll": "^1.8.1",
     "rebass": "^4.0.7",
     "socket.io-client": "^3.0.3",
     "web-vitals": "^0.2.4",
-    "websocket": "^1.0.32"
+    "websocket": "^1.0.32",
+    "graphql-yoga": "^1.17.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -53,6 +53,10 @@
     "mongoose": "^5.10.15",
     "nodemon": "^2.0.6",
     "socket.io": "^3.0.3",
-    "ws": "^7.4.0"
+    "ws": "^7.4.0",
+
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
+    "@babel/plugin-transform-arrow-functions": "^7.8.3"
   }
 }
