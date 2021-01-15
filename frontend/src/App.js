@@ -11,7 +11,7 @@ import TopBanner from './component/TopBanner/TopBanner'
 import Footer from './component/Footer/Footer'
 import LogPage from './component/LogPage/LogPage'
 import PostsEnum from './component/PostsEnum/PostsEnum'
-import Editor from './component/Editor/Editor'
+import { PublishCheck, Editor} from './component/Editor/Editor'
 
 function App() {
 	const scrollYTop = useRef();
@@ -20,7 +20,9 @@ function App() {
 	const [scrollToTop, setScrollToTop] = useState(true);
 
 	const [loginLogup, setLoginLogup] = useState(0); //0:normal page | 1: log in | 2: log up
-	const [loginState, setLoginState] = useState(false)
+	const [loginState, setLoginState] = useState(false);
+
+	const [prePublishScale, setPrePublishScale] = useState(0);
 	
 	console.log(window.innerHeight, window.innerWidth)
 
@@ -41,6 +43,10 @@ function App() {
 					setLoginState={setLoginState}
 					loginLogup={loginLogup} 
 					setLoginLogup={setLoginLogup} />
+				<PublishCheck 
+					prePublishScale={prePublishScale}
+					setPrePublishScale={setPrePublishScale}
+				/>
 				<TopBanner 
 					setLoginState={setLoginState} 
 					loginState={loginState} 
@@ -59,7 +65,9 @@ function App() {
 					<PostsEnum />)} 
 				/>
 				<Route path="/editor" render={() => (
-					<Editor />)} 
+					<Editor 
+						setPrePublishScale={setPrePublishScale}
+					/>)} 
 				/>
 			</Switch>
 			<Footer />
