@@ -6,6 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 function LogPage(prop){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [nickName, setNickName] = useState('');
     const [account, setAccount] = useState('');
     const [password, setPassWord] = useState('');
     const [pwCheck, setPWCheck] = useState('');
@@ -18,7 +19,7 @@ function LogPage(prop){
                          (errorType === 1) ? "*帳號或密碼輸入錯誤*":
                          "";
     const logInterfaceSize = {
-        height: (prop.loginLogup === 2) ? "65vh" : "50vh",
+        height: (prop.loginLogup === 2) ? "60vh" : "50vh",
         width: (prop.loginLogup === 2) ? "40%" : "40%",
     }
     const logPageStyle = (prop.loginLogup === 0) ? "LogPage disable" : "LogPage";
@@ -33,6 +34,7 @@ function LogPage(prop){
     }
     const changeFirstName = (e) =>  setFirstName(e.target.value)
     const changeLastName = (e) => setLastName(e.target.value)
+    const changeNickName = (e) => setNickName(e.target.value)
     const changeAccount = (e) => setAccount(e.target.value)
     const changePassword = (e) => setPassWord(e.target.value)
     const changePWCheck = (e) => setPWCheck(e.target.value) 
@@ -143,6 +145,9 @@ function LogPage(prop){
                                         </div>
                                     </div>
                                     <div className="a1">
+                                        <input value={nickName} placeholder="暱稱" onChange={changeNickName}/>
+                                    </div>
+                                    <div className="a1">
                                         <input value={account} placeholder="帳號" onChange={changeAccount}/>
                                     </div>
                                     <div className="a1">
@@ -162,9 +167,9 @@ function LogPage(prop){
                                 </div>
                             </div>
                         </div>
-                        <div className = "LogPage-email-login">
+                        {/* <div className = "LogPage-email-login">
                             
-                        </div>
+                        </div> */}
                     </div>
                     :
                     <div className="LogPage-log-part">
@@ -188,9 +193,9 @@ function LogPage(prop){
                                 </div>
                             </div>
                         </div>
-                        <div className = "LogPage-email-login">
+                        {/* <div className = "LogPage-email-login">
                             
-                        </div>
+                        </div> */}
                     </div>
                 }
                 <Footer />
