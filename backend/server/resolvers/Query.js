@@ -11,6 +11,8 @@ const Query = {
 		if(result.length === 0) {
 			return {
 				name: "none",
+				first_name:"none",
+				last_name: "none",
 				account: "none",
 				password: "none",
 				valid:false
@@ -18,6 +20,8 @@ const Query = {
 		}
 		else{
 			return {
+				first_name:result[0].first_name,
+				last_name:result[0].last_name,
 				name:result[0].name,
 				account:result[0].account,
 				password:result[0].password,

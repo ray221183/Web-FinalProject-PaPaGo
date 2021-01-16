@@ -8,6 +8,8 @@ const USER_QUERY = gql`
     user(
       data: {account: $account, password: $password}
     ) {
+      first_name
+      last_name
       name
       account
       password

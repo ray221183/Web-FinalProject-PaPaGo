@@ -2,12 +2,16 @@ import { gql } from 'apollo-boost'
 
 const ADD_USER = gql`
   mutation addUser(
+	$first_name: String!
+	$last_name: String!
 	$name: String!
 	$account: String!
 	$password: String!
   ) {
 	addUser(
 	  data: {
+		first_name:$first_name
+		last_name:$last_name
 		name:$name
 		account: $account
 		password: $password
