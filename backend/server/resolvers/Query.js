@@ -10,8 +10,7 @@ const Query = {
 		let result = await User.find({"account":args.data.account, "password":args.data.password})
 		if(result.length === 0) {
 			return {
-				first_name:"none",
-				last_name:"none",
+				name: "none",
 				account: "none",
 				password: "none",
 				valid:false
@@ -19,8 +18,7 @@ const Query = {
 		}
 		else{
 			return {
-				first_name:result[0].first_name,
-				last_name:result[0].last_name,
+				name:result[0].name,
 				account:result[0].account,
 				password:result[0].password,
 				valid: true
@@ -32,46 +30,53 @@ const Query = {
 		let have_sketch = args.data.get_sketch
 		let have_non_sketch = args.data.get_non_sketch
 		let result = []
-		if(args.data.writer===""){
-			if(have_sketch && have_non_sketch){
-				result = await Post.find({
-											$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword}}} ]
-										})
-			}
-			else if(have_sketch && !have_non_sketch){
-				result = await Post.find({"is_sketch":true,
-											$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword}}}]
-										})
-			}
-			else if(!have_sketch && have_non_sketch){
-				result = await Post.find({"is_sketch":false,
-											$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword}}}]
-										})
-			}
-			else{
-				result = []
-			}
+		if(args.data.uuid !== "" && args.data.uuid){
+			console.log("qqqq")
+			result = await Post.find({"uuid":args.data.uuid})
 		}
 		else{
-			if(have_sketch && have_non_sketch){
-				result = await Post.find({"writer":args.data.writer, 
-											$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword}}} ]
-										})
-			}
-			else if(have_sketch && !have_non_sketch){
-				result = await Post.find({"writer":args.data.writer, "is_sketch":true,
-											$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword}}}]
-										})
-			}
-			else if(!have_sketch && have_non_sketch){
-				result = await Post.find({"writer":args.data.writer, "is_sketch":false,
-											$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword}}}]
-										})
+			if(args.data.writer===""){
+				if(have_sketch && have_non_sketch){
+					result = await Post.find({
+												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+											})
+				}
+				else if(have_sketch && !have_non_sketch){
+					result = await Post.find({"is_sketch":true,
+												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+											})
+				}
+				else if(!have_sketch && have_non_sketch){
+					result = await Post.find({"is_sketch":false,
+												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+											})
+				}
+				else{
+					result = []
+				}
 			}
 			else{
-				result = []
+				if(have_sketch && have_non_sketch){
+					result = await Post.find({"writer":args.data.writer, 
+												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+											})
+				}
+				else if(have_sketch && !have_non_sketch){
+					result = await Post.find({"writer":args.data.writer, "is_sketch":true,
+												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+											})
+				}
+				else if(!have_sketch && have_non_sketch){
+					result = await Post.find({"writer":args.data.writer, "is_sketch":false,
+												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+											})
+				}
+				else{
+					result = []
+				}
 			}
 		}
+
 		if(result.length === 0){
 			return {
 				posts: []
@@ -83,6 +88,7 @@ const Query = {
 				record.push({
 					content: result[i].content,
 					writer:  result[i].writer,
+					name: result[i].name,
 					date:    result[i].date,
 					tags:    result[i].tags,
 					is_sketch: result[i].is_sketch,

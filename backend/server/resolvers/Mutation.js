@@ -17,6 +17,13 @@ const Mutation = {
 	async addPost(parent, args, {db}, info){
 		var temp_data = args.data
 		temp_data['uuid'] = uuidv4()
+		let writers = await User.find({"account":args.data.writer})
+		if(writers.length === 0){
+			console.log("wrong!!!!!!!")
+			return "0"
+		}
+		let name = writers[0].name
+		temp_data['name'] = name
 		let temp = new Post(temp_data)
 		await temp.save()
 		return temp.uuid
@@ -32,6 +39,7 @@ const Mutation = {
 			tags: args.data.tags,
 			date: args.data.date,
 			writer: temp.writer,
+			name: temp.name,
 			is_sketch: args.data.is_sketch,
 			uuid: temp.uuid
 		}
