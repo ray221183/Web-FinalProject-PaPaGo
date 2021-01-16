@@ -1,8 +1,13 @@
 import { gql } from 'apollo-boost'
 
 const USER_QUERY = gql`
-  query {
-    user {
+  query user(
+    $account: String!
+    $password: String!
+  ) {
+    user(
+      data: {account: $account, password: $password}
+    ) {
       first_name
       last_name
       account
@@ -12,4 +17,32 @@ const USER_QUERY = gql`
   }
 `
 
-export {USER_QUERY}
+const POST_QUERY = gql`
+query post(
+	$writer: String!
+	$reader: String!
+	$get_sketch: Boolean!
+	$get_non_sketch: Boolean!
+	$keyword:    String! 
+) {
+  post(
+    data: {
+      writer:$writer,
+      reader:$reader,
+      get_sketch:$get_sketch,
+      get_non_sketch:$get_non_sketch,
+      keyword:$keyword
+    }
+  ) {
+    posts{
+      content,
+      tags,
+      date,
+      writer,
+      is_sketch,
+      uuid
+    }
+  }
+}
+`
+export {USER_QUERY, POST_QUERY}
