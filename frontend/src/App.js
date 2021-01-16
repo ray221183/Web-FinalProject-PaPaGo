@@ -12,6 +12,7 @@ import TopBanner from './component/TopBanner/TopBanner'
 import Footer from './component/Footer/Footer'
 import LogPage from './component/LogPage/LogPage'
 import PostsEnum from './component/PostsEnum/PostsEnum'
+import PersonalPage from './component/PersonalPage/PersonalPage'
 import { PublishCheck, Editor} from './component/Editor/Editor'
 
 function App() {
@@ -89,6 +90,9 @@ function App() {
 						setPrePublishScale={setPrePublishScale}
 						savefile={savefile}
 					/>)} 
+				/>
+				<Route path="/personalpage" render={() => (
+					<PersonalPage />)} 
 				/>
 			</Switch>
 			<Footer />
