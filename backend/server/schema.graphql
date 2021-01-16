@@ -39,9 +39,9 @@ input findPostInput {
 
 input postInput{
 	content:    String!
+	writer:     String!
 	tags:       [String]!
 	date:       String!
-	writer:     String!
 	is_sketch:  Boolean!   
 }
 

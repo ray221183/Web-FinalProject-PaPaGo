@@ -28,7 +28,7 @@ function LogPage(prop){
             <div className = "LogPage-topbanner">
                 <span id = "b1"></span>
                 <span id = "b2">{(prop.loginLogup === 2) ? "建立您的帳戶" : "歡迎回來"}</span>
-                <span id = "b3" onClick={() => {setErrorType(0); prop.setLoginLogup(0)}}>×</span>
+                <span id = "b3" onClick={() => {reset(); prop.setLoginLogup(0)}}>×</span>
             </div>
         )
     }
@@ -38,13 +38,17 @@ function LogPage(prop){
     const changeAccount = (e) => setAccount(e.target.value)
     const changePassword = (e) => setPassWord(e.target.value)
     const changePWCheck = (e) => setPWCheck(e.target.value) 
-    const changePage = (state) => {
+    const reset = () => {
         setFirstName('')
         setLastName('')
+        setNickName('')
         setAccount('')
         setPassWord('')
         setPWCheck('') 
         setErrorType(0)
+    }
+    const changePage = (state) => {
+        reset()
         prop.setLoginLogup(state)
     }
     const handleLogin = async () => {
@@ -52,14 +56,9 @@ function LogPage(prop){
         else{
             if(user.user.valid){
                 console.log("in")
-                setErrorType(0)
                 prop.setUsername([user.user.first_name, user.user.last_name])
                 prop.setAccount(user.user.account)
-                setFirstName('')
-                setLastName('')
-                setAccount('')
-                setPassWord('')
-                setPWCheck('') 
+                reset()
                 prop.setLoginState(true)
                 prop.setLoginLogup(0)
             }
@@ -87,14 +86,9 @@ function LogPage(prop){
                 }
             })
             if(res.data.addUser === "register success."){
-                setErrorType(0)
                 prop.setUsername([firstName, lastName])
                 prop.setAccount(account)
-                setFirstName('')
-                setLastName('')
-                setAccount('')
-                setPassWord('')
-                setPWCheck('') 
+                reset()
                 prop.setLoginState(true)
                 prop.setLoginLogup(0)
             }

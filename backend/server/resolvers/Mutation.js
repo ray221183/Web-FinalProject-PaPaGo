@@ -33,7 +33,9 @@ const Mutation = {
 		return "delete complete"
 	},
 	async updatePost(parent, args, {db}, info){
+		console.log(args)
 		let temp = await Post.findOneAndUpdate({"uuid":args.data.uuid},{"content":args.data.content, "tags":args.data.tags, "date":args.data.date, "is_sketch":args.data.is_sketch})
+		console.log(temp)
 		return {
 			content: args.data.content,
 			tags: args.data.tags,
