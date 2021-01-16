@@ -5,6 +5,7 @@ const User = require('../models/user')
 
 const Query = {
 	async user(parent, args, { db }, info) {
+		console.log("user")
 		let result = await User.find({"account":args.data.account, "password":args.data.password})
 		console.log("found length:",result.length)
 		if(result.length === 0) {

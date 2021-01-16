@@ -15,18 +15,18 @@ import PostsEnum from './component/PostsEnum/PostsEnum'
 import { PublishCheck, Editor} from './component/Editor/Editor'
 
 function App() {
+	const [loginLogup, setLoginLogup] = useState(0); // 0: normal page | 1: log in | 2: log up
+	const [loginState, setLoginState] = useState(false);
+	const [username, setUsername] = useState(['', '']); // [first name, last name]
+	const [account, setAccount] = useState('');
+
 	const scrollYTop = useRef();
 	const [picHeight, setPicHeight] = useState(0);
 	const [topBannerHeight, setTopBannerHeight] = useState(0);
 	const [scrollToTop, setScrollToTop] = useState(true);
 
-	const [loginLogup, setLoginLogup] = useState(0); //0:normal page | 1: log in | 2: log up
-	const [loginState, setLoginState] = useState(false);
-
 	const [editorState, setEditorState] = useState( ()=>EditorState.createEmpty() );
 	const [prePublishScale, setPrePublishScale] = useState(0);
-	
-	console.log(window.innerHeight, window.innerWidth)
 
 	const scrollTop = () => {
 		scrollYTop.current.scrollTo(0, 0)
@@ -58,7 +58,10 @@ function App() {
 				<LogPage 
 					setLoginState={setLoginState}
 					loginLogup={loginLogup} 
-					setLoginLogup={setLoginLogup} />
+					setLoginLogup={setLoginLogup}
+					setUsername={setUsername}
+					setAccount={setAccount}	
+				/>
 				<PublishCheck 
 					editorState={editorState}
 					prePublishScale={prePublishScale}
@@ -71,7 +74,10 @@ function App() {
 					scrollToTop={scrollToTop} 
 					setLoginLogup={setLoginLogup} 
 					scrollTop={scrollTop} 
-					setTopBannerHeight={setTopBannerHeight}/>
+					setTopBannerHeight={setTopBannerHeight}
+					username={username}
+					account={account}
+				/>
 			</div>
 			<Switch>
 				<Route exact path="/" render={() => (
