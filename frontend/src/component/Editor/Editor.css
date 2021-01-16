@@ -22,37 +22,3 @@
 	margin-top: 5vh;
 	border-bottom: 1.5px solid rgb(214, 214, 214);
 }
-.publish{
-	margin-right: 10px;
-	padding: 3px 15px 3px 15px;
-	width: fit-content;
-	border-radius: 3px;
-	background-color: rgb(141, 65, 65);
-	color: rgb(255, 255, 255);
-	border: 1px solid rgb(214, 214, 214);
-}
-.publish:hover{
-	cursor: pointer;
-	background-color: rgb(148, 44, 44);
-}
-.prepublish-part{
-	z-index: 2;
-	position: fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 100vh;
-	width: 100vw;
-	background-color: rgba(39, 39, 39, 0.445);
-	/* transform: scale(0); */
-	transition: 0.2s;
-}
-.interface-part{
-	outline: none;
-	z-index: 3;
-	height: 50vh;
-	width: 70vh;
-	border-radius: 1.5vh;
-	background-color: rgb(255, 255, 255);
-	box-shadow: 0vh 0vh 3vh -1vh rgb(182, 179, 179);
-}
