@@ -58,6 +58,7 @@
 	width: 170px;
 	margin-left: 10px;
 	margin-right: 10px;
+	margin-bottom: 10px;
 }
 .button:hover {
 	border-color: transparent !important;
@@ -71,4 +72,103 @@
 	margin: 10vh 0vw 0vw 25vw;
 	width: 50%;
 	/* border: 1px solid black; */
+}
+
+.Topic {
+	color: #696969;
+	width: 1000px;
+	height: 50px;
+	position: relative;
+	left: -300px;
+	font-size: 30px;
+	text-align: left;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: red;
+}
+.Stories {
+	border: 2px solid red;
+	width: 800px;
+	height: 160px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.StoryTitle {
+	background-color: white;
+	text-align: left;
+	font-size: 30px;
+	color: black;
+	border: 2px solid blue;
+	align-self: flex-start;
+	margin: 0px;
+}
+.StoryTitle:hover {
+	background-color: white;
+}
+.StoryIntro {
+	text-align: left;
+	font-size: 15px;
+	border: 2px solid black;
+	margin: 0px;
+	height: 70px;
+}
+.StoryDate {
+	text-align: right;
+	border: 2px solid red;
+	align-self: flex-end;
+	margin: 0px;
+}
+.DateAndTag {
+	border: 2px solid green;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.Tag {
+	background-color: black;
+	border: 2px solid brown;
+	color: white;
+	font-size: 15px;
+	padding: 5px;
+	border-radius: 10%;
+	margin-right: 10px;
+	margin-bottom: 0px;
+}
+.Date {
+	background-color: black;
+	border: 2px solid brown;
+	color: white;
+	font-size: 15px;
+	padding: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+.Readmore {
+	background-color: white;
+	font-size: 15px;
+	color: #A9A9A9;
+	padding: 5px;
+	border: 2px solid blue;
+	position: relative;
+	right: -400px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.Readmore:hover {
+	color: black;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
