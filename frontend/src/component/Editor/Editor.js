@@ -16,7 +16,7 @@ function Editor(prop){
         const timer = setTimeout(() => {
             setSaved(true)
             prop.savefile(prop.editorState, [], false)
-        }, 2000)
+        }, 1500)
         return () => clearTimeout(timer)
     }, [prop.editorState.getCurrentContent()])
 
@@ -79,7 +79,7 @@ function PublishCheck(prop){
                         return(
                             <div key={item[1]} className="tag">
                                 <span>{item[0]}</span>
-                                <span onClick={() => removeTag(item[1])}>X</span>
+                                <span className="delete-tag" onClick={() => removeTag(item[1])}>X</span>
                             </div>
                         )
                     }
@@ -100,7 +100,9 @@ function PublishCheck(prop){
         <div className="prepublish-part" style={scale} ref={elementParent}>
             <div className="interface-part" ref={elementChild}>
                 <div className="top-banner">
-
+                    <div className="choose-bar" id="tag">
+                        關鍵字
+                    </div>
                 </div>
                 <div className="content-part">
                     <div className="tag-fill">
@@ -111,6 +113,9 @@ function PublishCheck(prop){
                     </div>
                 </div>
                 <div className="footer">
+                    <span className="explain">
+                        輸入關鍵字，幫助讀者搜尋到你的文章
+                    </span>
                     <span className="publish-button" onClick={() => prop.savefile(prop.editorState, tags, true)}>
                         Publish
                     </span>
