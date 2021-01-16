@@ -17,21 +17,29 @@ const Mutation = {
 	async addPost(parent, args, {db}, info){
 		var temp_data = args.data
 		temp_data['uuid'] = uuidv4()
+		let writers = await User.find({"account":args.data.writer})
+		if(writers.length === 0){
+			console.log("wrong!!!!!!!")
+			return "0"
+		}
+		let name = writers[0].name
+		temp_data['name'] = name
 		let temp = new Post(temp_data)
 		await temp.save()
-		return "restoring post complete."
+		return temp.uuid
 	},
 	async deletePost(parent, args, {db}, info){
 		await Post.deleteMany({"uuid": args.data.uuid})
 		return "delete complete"
 	},
 	async updatePost(parent, args, {db}, info){
-		let temp = await Post.findOneAndUpdate({"uuid":args.data.uuid},{"content":args.data.content, "tags":args.data.tags, "date":args.data.data, "is_sketch":args.data.is_sketch})
+		let temp = await Post.findOneAndUpdate({"uuid":args.data.uuid},{"content":args.data.content, "tags":args.data.tags, "date":args.data.date, "is_sketch":args.data.is_sketch})
 		return {
 			content: args.data.content,
 			tags: args.data.tags,
 			date: args.data.date,
 			writer: temp.writer,
+			name: temp.name,
 			is_sketch: args.data.is_sketch,
 			uuid: temp.uuid
 		}

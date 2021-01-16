@@ -11,6 +11,10 @@ const PostSchema = new Schema({
         type: [String],
         required: [true, 'Tags field is required.']
     },
+    name: {
+        type: String,
+        required: [true, 'Name field is required.']        
+    },
     date: {
         type: String,
         required: [true, 'Date field is required.']

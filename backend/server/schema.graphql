@@ -13,8 +13,7 @@ type Mutation {
 
 
 input registerInput{
-	first_name: String!
-	last_name: String!
+	name: String!
 	account: String!
 	password: String!
 }
@@ -32,7 +31,8 @@ input findPostInput {
 	reader: String!
 	get_sketch: Boolean!
 	get_non_sketch: Boolean!
-	keyword:    String!    
+	keyword:    String!
+	uuid:       String
 }
 
 input postInput{
@@ -54,6 +54,7 @@ input updatePostInput{
 type post{
 	content:    String!
 	tags:       [String]!
+	name:       String!
 	date:       String!
 	writer:     String!
 	is_sketch:  Boolean!
@@ -67,8 +68,7 @@ type postOutput{
 
 
 type UserOutput {
-	first_name: String!
-	last_name: String!
+	name: String!
 	account: String!
 	password: String!
 	valid: Boolean!

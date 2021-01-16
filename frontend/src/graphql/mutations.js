@@ -2,15 +2,13 @@ import { gql } from 'apollo-boost'
 
 const ADD_USER = gql`
   mutation addUser(
-	$first_name: String!
-	$last_name: String!
+	$name: String!
 	$account: String!
 	$password: String!
   ) {
 	addUser(
 	  data: {
-		first_name: $first_name
-		last_name: $last_name
+		name:$name
 		account: $account
 		password: $password
 	  }
@@ -25,7 +23,7 @@ mutation addPost(
 	$date: String!
 	$is_sketch: Boolean!
   ) {
-	addUser(
+	addPost(
 	  data: {
 		content: $content
 		writer: $writer
@@ -56,7 +54,7 @@ mutation updatePost(
 	$date:String!
 	$is_sketch:String!
   ) {
-	deletePost(
+	updatePost(
 	  data: {
 		  uuid:$uuid
 		  content:$content
@@ -66,6 +64,7 @@ mutation updatePost(
 	  }
 	) {
 		content
+		name
 		tags
 		date
 		writer
@@ -77,4 +76,4 @@ mutation updatePost(
 
 
 
-export {ADD_USER, ADD_POST,DELETE_POST}
+export {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST}

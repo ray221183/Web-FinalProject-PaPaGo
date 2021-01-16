@@ -8,8 +8,7 @@ const USER_QUERY = gql`
     user(
       data: {account: $account, password: $password}
     ) {
-      first_name
-      last_name
+      name
       account
       password
       valid
@@ -23,7 +22,8 @@ query post(
 	$reader: String!
 	$get_sketch: Boolean!
 	$get_non_sketch: Boolean!
-	$keyword:    String! 
+  $keyword:    String! 
+  $uuid:     String
 ) {
   post(
     data: {
@@ -32,10 +32,12 @@ query post(
       get_sketch:$get_sketch
       get_non_sketch:$get_non_sketch
       keyword:$keyword
+      uuid:$uuid
     }
   ) {
     posts{
       content
+      name
       tags
       date
       writer
