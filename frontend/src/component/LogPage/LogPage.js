@@ -27,7 +27,7 @@ function LogPage(prop){
             <div className = "LogPage-topbanner">
                 <span id = "b1"></span>
                 <span id = "b2">{(prop.loginLogup === 2) ? "建立您的帳戶" : "歡迎回來"}</span>
-                <span id = "b3" onClick={() => prop.setLoginLogup(0)}>×</span>
+                <span id = "b3" onClick={() => {setErrorType(0); prop.setLoginLogup(0)}}>×</span>
             </div>
         )
     }

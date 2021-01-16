@@ -31,7 +31,7 @@ function App() {
 	const [editorState, setEditorState] = useState( ()=>EditorState.createEmpty() );
 	const [prePublishScale, setPrePublishScale] = useState(0);
 	const [newPost, setNewPost] = useState(true);
-	const [postInfo, setPostInfo] = useState([]); //[tags, date, write, is_sketch, uuid]
+	const [postInfo, setPostInfo] = useState([]); //[tags, date, writer, is_sketch, uuid]
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
 
@@ -55,7 +55,7 @@ function App() {
 		//console.log(jsonRawData, '    data type: ', typeof jsonRawData)
 		//console.log(tagList)
 		//console.log(dateTime)
-		//console.log(published)
+		//console.log(!published)
 		console.log(newPost)
 		if(newPost){
 			console.log("add post")
@@ -65,7 +65,7 @@ function App() {
 			// 		writer: account,
 			// 		tags: [''],
 			// 		date: dateTime,
-			// 		is_sketch: true
+			// 		is_sketch: !published
 			// 	}
 			// })
 			// console.log(postId)
@@ -78,7 +78,7 @@ function App() {
 			// 		content: jsonRawData,
 			// 		tags: tagList,
 			// 		date: dateTime,
-			// 		is_sketch: ,
+			// 		is_sketch: !published,
 			// 	}
 			// })
 		}

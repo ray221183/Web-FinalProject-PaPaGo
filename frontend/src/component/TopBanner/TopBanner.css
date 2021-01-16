@@ -101,10 +101,7 @@
 .Settings-icon:hover{
 	cursor: pointer;
 }
-[aria-expanded="false"] .Menu{
-	display: none;
-}
-[aria-expanded="true"] .Menu{
+.Menu{
 	position: absolute;
 	padding: 0.5vh 0vh 0.5vh 0vh;
 	top: 6vh;
