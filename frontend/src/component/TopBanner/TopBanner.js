@@ -11,10 +11,7 @@ function TopBanner(prop){
 	const [Menu, setMenu] = useState(false);
 	const menuRef = useRef();
 	const menuStyle = {
-		transition: (Menu) ? "0.2s" : "0s",
-		transform: (Menu) ? "translateY(0)" : "translateY(10%)",
-		visibility: (Menu) ? "visible" : "hidden",
-		opacity: (Menu) ? "1" : "0",
+		visibility: (Menu) ? "visible" : "hidden"
 	}
 	
 	useEffect(

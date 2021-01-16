@@ -65,8 +65,7 @@
     display: flex;
     flex-direction: column;
 	align-items: center;
-	justify-content: space-around;
-    height: 25vh;
+	justify-content: flex-start;
     width: 100%;
     /* border: 1px solid black; */
 }
@@ -75,8 +74,7 @@
     display: flex;
     flex-direction: column;
 	align-items: center;
-    justify-content: space-around;
-    height: 45vh;
+    justify-content: flex-start;
     width: 100%;
     /* border: 1px solid black; */
 }
@@ -130,6 +128,7 @@
     /* border: 1px solid black; */
 }
 .LogPage-log-part button{
+    margin-top: 25px;
     height: 5vh;
     width: inherit;
     border: none;

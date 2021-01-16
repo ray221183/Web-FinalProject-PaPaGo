@@ -50,9 +50,6 @@ function LogPage(prop){
     const handleLogin = async () => {
         if(account==='' || password === '') setErrorType(2)
         else{
-            console.log(account, password)
-            await reUser()
-            console.log(user)
             if(user.user.valid){
                 console.log("in")
                 setErrorType(0)
@@ -84,12 +81,11 @@ function LogPage(prop){
                 variables: {
                     first_name: firstName,
                     last_name: lastName,
+                    name: nickName,
                     account: account,
                     password: password
                 }
             })
-            console.log(res.data)
-            console.log(res.data.addUser)
             if(res.data.addUser === "register success."){
                 setErrorType(0)
                 prop.setUsername([firstName, lastName])
@@ -125,6 +121,10 @@ function LogPage(prop){
             </div>
         )
     }
+
+    useEffect(() => {
+        reUser()
+    }, [account, password])
 
     return(
         <div className = {logPageStyle}>
