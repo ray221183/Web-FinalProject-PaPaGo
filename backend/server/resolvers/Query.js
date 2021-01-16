@@ -6,6 +6,7 @@ const Post = require('../models/post')
 
 const Query = {
 	async user(parent, args, { db }, info) {
+		console.log("user")
 		let result = await User.find({"account":args.data.account, "password":args.data.password})
 		if(result.length === 0) {
 			return {
