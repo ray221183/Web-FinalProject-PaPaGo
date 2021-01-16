@@ -27,19 +27,19 @@ query post(
 ) {
   post(
     data: {
-      writer:$writer,
-      reader:$reader,
-      get_sketch:$get_sketch,
-      get_non_sketch:$get_non_sketch,
+      writer:$writer
+      reader:$reader
+      get_sketch:$get_sketch
+      get_non_sketch:$get_non_sketch
       keyword:$keyword
     }
   ) {
     posts{
-      content,
-      tags,
-      date,
-      writer,
-      is_sketch,
+      content
+      tags
+      date
+      writer
+      is_sketch
       uuid
     }
   }

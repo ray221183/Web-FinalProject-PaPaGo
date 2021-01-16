@@ -24,6 +24,18 @@ const Mutation = {
 	async deletePost(parent, args, {db}, info){
 		await Post.deleteMany({"uuid": args.data.uuid})
 		return "delete complete"
+	},
+	async updatePost(parent, args, {db}, info){
+		let temp = await Post.findOneAndUpdate({"uuid":args.data.uuid},{"content":args.data.content, "tags":args.data.tags, "date":args.data.data, "is_sketch":args.data.is_sketch})
+		return {
+			content: args.data.content,
+			tags: args.data.tags,
+			date: args.data.date,
+			writer: temp.writer,
+			is_sketch: args.data.is_sketch,
+			uuid: temp.uuid
+		}
+		
 	}
 
 }

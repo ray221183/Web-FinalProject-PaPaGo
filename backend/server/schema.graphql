@@ -7,6 +7,7 @@ type Mutation {
 	addUser(data: registerInput!): String!
 	addPost(data: postInput!):String!
 	deletePost(data: uuidInput!):String!
+	updatePost(data: updatePostInput!): post!
 }
 
 
@@ -40,6 +41,14 @@ input postInput{
 	date:       String!
 	writer:     String!
 	is_sketch:  Boolean!   
+}
+
+input updatePostInput{
+	uuid:    String!
+	content: String!
+	tags:    [String]!
+	date:    String!
+	is_sketch: Boolean!
 }
 
 type post{
