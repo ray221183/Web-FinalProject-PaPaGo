@@ -19,7 +19,7 @@ function LogPage(prop){
                          (errorType === 1) ? "*帳號或密碼輸入錯誤*":
                          "";
     const logInterfaceSize = {
-        height: (prop.loginLogup === 2) ? "60vh" : "50vh",
+        height: (prop.loginLogup === 2) ? "65vh" : "50vh",
         width: (prop.loginLogup === 2) ? "40%" : "40%",
     }
     const logPageStyle = (prop.loginLogup === 0) ? "LogPage disable" : "LogPage";
