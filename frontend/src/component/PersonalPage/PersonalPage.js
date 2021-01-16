@@ -4,7 +4,7 @@ import {
 	Link
   } from "react-router-dom";
 
-function Home(prop){
+function PersonalPage(prop){
 	return(
 		<section className = "PersonalPage">
 			<div className="Topic">
@@ -59,4 +59,4 @@ function Home(prop){
 	)
 }
 
-export default Home;
+export default PersonalPage;
