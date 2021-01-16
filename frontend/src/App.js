@@ -4,7 +4,9 @@ import {
 	Switch,
 	Route,
   } from "react-router-dom";
-  import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
+import { POST_QUERY, ADD_POST, UPDATE_POST } from './graphql'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 
 
 import Home from './component/Home/Home'
@@ -28,6 +30,10 @@ function App() {
 
 	const [editorState, setEditorState] = useState( ()=>EditorState.createEmpty() );
 	const [prePublishScale, setPrePublishScale] = useState(0);
+	const [newPost, setNewPost] = useState(true);
+	const [postInfo, setPostInfo] = useState([]); //[tags, date, write, is_sketch, uuid]
+	const [addPost] = useMutation(ADD_POST);
+	const [updatePost] = useMutation(UPDATE_POST)
 
 	const scrollTop = () => {
 		scrollYTop.current.scrollTo(0, 0)
@@ -38,19 +44,45 @@ function App() {
 		if( yPosition <= picHeight - topBannerHeight) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
-	const savefile = (editorState, tags, published) => {
+	const savefile = async (editorState, tags, published) => {
         const contentState = editorState.getCurrentContent()
 		const jsonRawData = JSON.stringify(convertToRaw(contentState))
 		let tagList = ( tags.length>0 ) ? tags.map((item)=>{ return item[0] }) : ['']
 		let time = new Date()
 		let saveDate = time.getFullYear() + '/' + (time.getMonth() + 1) + '/' + time.getDate()
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
-		let dateTime = saveDate+' '+saveTime
+		let dateTime = saveDate + ' ' + saveTime
 		//console.log(jsonRawData, '    data type: ', typeof jsonRawData)
 		//console.log(tagList)
 		//console.log(dateTime)
 		//console.log(published)
-		
+		console.log(newPost)
+		if(newPost){
+			console.log("add post")
+			// let postId = await addPost({
+			// 	variables: {
+			// 		content: jsonRawData,
+			// 		writer: account,
+			// 		tags: [''],
+			// 		date: dateTime,
+			// 		is_sketch: true
+			// 	}
+			// })
+			// console.log(postId)
+		}
+		else{
+			console.log("update post")
+			// updatePost({
+			// 	variables: {
+			// 		uuid: ,
+			// 		content: jsonRawData,
+			// 		tags: tagList,
+			// 		date: dateTime,
+			// 		is_sketch: ,
+			// 	}
+			// })
+		}
+		setNewPost(false)
 	}
 	
 	
@@ -79,6 +111,7 @@ function App() {
 					setTopBannerHeight={setTopBannerHeight}
 					username={username}
 					account={account}
+					setNewPost={setNewPost}
 				/>
 			</div>
 			<Switch>
