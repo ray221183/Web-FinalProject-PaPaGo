@@ -34,7 +34,7 @@ function App() {
 	}
 	const scrolling = () => {
 		const yPosition = scrollYTop.current.scrollTop
-		console.log(picHeight, topBannerHeight)
+		//console.log(picHeight, topBannerHeight)
 		if( yPosition <= picHeight - topBannerHeight) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
@@ -46,10 +46,10 @@ function App() {
 		let saveDate = time.getFullYear() + '/' + (time.getMonth() + 1) + '/' + time.getDate()
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate+' '+saveTime
-		console.log(jsonRawData, '    data type: ', typeof jsonRawData)
-		console.log(tagList)
-		console.log(dateTime)
-		console.log(published)
+		//console.log(jsonRawData, '    data type: ', typeof jsonRawData)
+		//console.log(tagList)
+		//console.log(dateTime)
+		//console.log(published)
 	}
 	
 	
