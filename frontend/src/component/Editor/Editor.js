@@ -6,9 +6,21 @@ import './Publish.css'
 
 function Editor(prop){
     const [saved, setSaved] = useState(true);
+    const [background, setBackground] = useState(true) // true: white background | false: dark background
     const changeScale = () => {
         console.log("prepare to publish")
         prop.setPrePublishScale(1)
+    }
+    const changeBackground = () => setBackground(!background)
+    const editorColor = (background) ? 'Editor-light' : 'Editor-dark'
+    const editorBackgroundStyle = {
+        backgroundColor:  (background) ? 'rgb(255, 255, 255)' : 'rgb(49, 49, 49)'
+    }
+    const borderBottomStyle = {
+        borderColor: (background) ? 'rgb(214, 214, 214)' : 'rgb(255, 255, 255)'
+    }
+    const saveColorStyle = {
+        color: (background) ? 'rgb(172, 172, 172)' : 'rgb(255, 255, 255)'
     }
 
     useEffect(() => {
@@ -21,11 +33,16 @@ function Editor(prop){
     }, [prop.editorState.getCurrentContent()])
 
     return(
-        <section className = "Editor">
+        <section className = {`Editor ${editorColor}`} style={editorBackgroundStyle}>
             <div className="editor-part" name = "editor-part">
-                <div className="top-part">
+                <div className="top-part" style={borderBottomStyle}>
+                    <div className="editor-tools">
+                        <div id="light" onClick={changeBackground}>
+                            
+                        </div>
+                    </div>
                     <div className="publish" onClick={changeScale}>
-                        <span id="save-state">
+                        <span id="save-state" style={saveColorStyle}>
                             { (saved) ? 'saved' : 'saving...' }
                         </span>
                         <span id="publish-button">
@@ -34,7 +51,7 @@ function Editor(prop){
                     </div>
                 </div>
                 <React.Fragment>
-                    <EditorCore editorState={prop.editorState} setEditorState={prop.setEditorState}/>
+                    <EditorCore editorState={prop.editorState} setEditorState={prop.setEditorState} background={background}/>
                 </React.Fragment>
             </div>
         </section>

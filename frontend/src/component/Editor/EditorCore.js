@@ -28,14 +28,20 @@ import {
 } from '@draft-js-plugins/buttons';
 import { themeSideBlockAdd, themeSideBlockStyle, themeInlineTextStyle } from './ThemeStyle';
 
+const sideToolbarPluginAddLight = createSideToolbarPlugin({ theme: themeSideBlockAdd(true) });
+const { SideToolbar: SideToolbarAddLight } = sideToolbarPluginAddLight;
+const sideToolbarPluginAddDark = createSideToolbarPlugin({ theme: themeSideBlockAdd(false) });
+const { SideToolbar: SideToolbarAddDark } = sideToolbarPluginAddDark;
 
-const sideToolbarPluginAdd = createSideToolbarPlugin({ theme: themeSideBlockAdd });
-const sideToolbarPluginStyle = createSideToolbarPlugin({ theme: themeSideBlockStyle });
+const sideToolbarPluginStyleLight = createSideToolbarPlugin({ theme: themeSideBlockStyle(true) });
+const { SideToolbar: SideToolbarStyleLight } = sideToolbarPluginStyleLight;
+const sideToolbarPluginStyleDark = createSideToolbarPlugin({ theme: themeSideBlockStyle(false) });
+const { SideToolbar: SideToolbarStyleDark } = sideToolbarPluginStyleDark;
+
 const inlineBarTextStyle = createInlineToolbarPlugin({ theme: themeInlineTextStyle });
-const { SideToolbar: SideToolbarAdd } = sideToolbarPluginAdd;
-const { SideToolbar: SideToolbarStyle } = sideToolbarPluginStyle;
 const { InlineToolbar: InlineBarTextStyle } = inlineBarTextStyle;
-const plugins = [sideToolbarPluginAdd, sideToolbarPluginStyle, inlineBarTextStyle];
+
+const plugins = [sideToolbarPluginAddLight, sideToolbarPluginStyleLight, sideToolbarPluginAddDark, sideToolbarPluginStyleDark, inlineBarTextStyle];
 
 function EditorCore(prop){
     //draft-js editor
@@ -45,17 +51,21 @@ function EditorCore(prop){
     const [placeholder, setPlaceholder] = useState( "Tell your story" )
     var selection = editorState.getSelection();
 
+    useEffect(() => {
+
+    }, [])
+
     //side tool bar -- add
     const [curSelectBlock, setCurSelectBlock] = useState(null);
     const [sidePositionAdd, setSidePositionAdd] = useState([0, 0, 0]); // [offsetTop, offsetLeft,height]
     const sideAddStyle = {
         position: "absolute",
-        top: `${sidePositionAdd[0] }px`,
+        top: `${sidePositionAdd[0] - 3.5}px`,
         left: `${sidePositionAdd[1] - 95}px`
     }
     const sideStyleStyle = {
         position: "absolute",
-        top: `${sidePositionAdd[0]}px`,
+        top: `${sidePositionAdd[0] - 3.5}px`,
         left: `${sidePositionAdd[1] - 55}px`
     }
     const focus = () => {
@@ -96,23 +106,44 @@ function EditorCore(prop){
               ref={element}
             />
             <div className="side-tool-bar-add" style={sideAddStyle}>
-                <SideToolbarAdd>
-                </SideToolbarAdd>
+                {
+                    (prop.background) ? 
+                        <SideToolbarAddLight>
+                        </SideToolbarAddLight> :
+                        <SideToolbarAddDark>
+                        </SideToolbarAddDark>
+                }
             </div>
             <div className="side-tool-bar-style" style={sideStyleStyle}>
-                <SideToolbarStyle>
-                    {
-                        (externalProps) => (
-                            <div>
-                                <HeadlineOneButton {...externalProps} />
-                                <HeadlineTwoButton {...externalProps} />
-                                <HeadlineThreeButton {...externalProps} />
-                                <UnorderedListButton {...externalProps} />
-                                <OrderedListButton {...externalProps} />
-                                <BlockquoteButton {...externalProps} />
-                            </div>)
-                    }
-                </SideToolbarStyle>
+                {
+                    (prop.background) ? 
+                    <SideToolbarStyleLight>
+                        {
+                            (externalProps) => (
+                                <div>
+                                    <HeadlineOneButton {...externalProps} />
+                                    <HeadlineTwoButton {...externalProps} />
+                                    <HeadlineThreeButton {...externalProps} />
+                                    <UnorderedListButton {...externalProps} />
+                                    <OrderedListButton {...externalProps} />
+                                    <BlockquoteButton {...externalProps} />
+                                </div>)
+                        }
+                    </SideToolbarStyleLight> :
+                    <SideToolbarStyleDark>
+                        {
+                            (externalProps) => (
+                                <div>
+                                    <HeadlineOneButton {...externalProps} />
+                                    <HeadlineTwoButton {...externalProps} />
+                                    <HeadlineThreeButton {...externalProps} />
+                                    <UnorderedListButton {...externalProps} />
+                                    <OrderedListButton {...externalProps} />
+                                    <BlockquoteButton {...externalProps} />
+                                </div>)
+                        }
+                    </SideToolbarStyleDark>
+                }
             </div>
             <InlineBarTextStyle>
                 {
