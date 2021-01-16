@@ -1,82 +1,17 @@
-.Home {
-	position: relative;
+.PersonalPage {
 	text-align: center;
-	height: 200vh;
-	box-shadow: 0vh 0vh 0.3vh 0vh rgb(0, 0, 0);
-}
-.Introduction{
-	position: absolute;
-	height: 60vh;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.1);
-	color: rgba(255, 255, 255, 1);
-}
-.Introduction div{
-	margin: 45vh 0vw 0vh 60vw;
-	width: 30vw;
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
 	align-items: center;
-	justify-content: space-between;
-	border: 1px solid black;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 5px solid yellow;
 }
-#content-part{
-	text-align: center;
-	font-size: 3em;
-	font-weight: 500;
-}
-#get-start-part{
-	padding: 2px 5px 2px 5px;
-	font-size: 1.5em;;
-	background-color: rgba(158, 62, 126, 0.445);
-	border: 0.5px solid rgb(255, 255, 255);
-	border-radius: 0.8vh;
-	box-shadow: 0vh 0vh 0vh 0vh rgb(0, 0, 0);
-	outline: none;
-}
-#get-start-part:hover{
-	cursor: pointer;
-}
-.Home-main-picture{
-	content: url('../../picture/mainPicture/sketch4_resize.jpg');
-	height: 60vh;
-	width: 100%;
-	margin: 0vh 0vh 3vh 0vh;
-	box-shadow: 0vh -0.3vh 1vh 0vh rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.13);
-}
-.button {
-	background-color: black;
-	color:white;
-	font-size: 17px;
-	align-items: center;
-	justify-content: center;
-	padding:10px;
-	border-color: gray;
-	border-width: 2px;
-	border-radius: 20%;
-	width: 170px;
-	margin-left: 10px;
-	margin-right: 10px;
-	margin-bottom: 10px;
-}
-.button:hover {
-	border-color: transparent !important;
-	background-color: gray;
-}
-.button:focus {
-	background-color: white;
-	color: black;
-}
-.google-map{
-	margin: 10vh 0vw 0vw 25vw;
-	width: 50%;
-	/* border: 1px solid black; */
-}
-
 .Topic {
 	color: #696969;
-	width: 1000px;
+	width: 300px;
 	height: 50px;
 	position: relative;
 	left: -300px;
@@ -85,7 +20,6 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	background-color: red;
 }
 .Stories {
 	border: 2px solid red;

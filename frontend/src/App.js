@@ -12,28 +12,29 @@ import TopBanner from './component/TopBanner/TopBanner'
 import Footer from './component/Footer/Footer'
 import LogPage from './component/LogPage/LogPage'
 import PostsEnum from './component/PostsEnum/PostsEnum'
+import PersonalPage from './component/PersonalPage/PersonalPage'
 import { PublishCheck, Editor} from './component/Editor/Editor'
 
 function App() {
+	const [loginLogup, setLoginLogup] = useState(0); // 0: normal page | 1: log in | 2: log up
+	const [loginState, setLoginState] = useState(false);
+	const [username, setUsername] = useState(['', '']); // [first name, last name]
+	const [account, setAccount] = useState('');
+
 	const scrollYTop = useRef();
 	const [picHeight, setPicHeight] = useState(0);
 	const [topBannerHeight, setTopBannerHeight] = useState(0);
 	const [scrollToTop, setScrollToTop] = useState(true);
 
-	const [loginLogup, setLoginLogup] = useState(0); //0:normal page | 1: log in | 2: log up
-	const [loginState, setLoginState] = useState(false);
-
 	const [editorState, setEditorState] = useState( ()=>EditorState.createEmpty() );
 	const [prePublishScale, setPrePublishScale] = useState(0);
-	
-	console.log(window.innerHeight, window.innerWidth)
 
 	const scrollTop = () => {
 		scrollYTop.current.scrollTo(0, 0)
 	}
 	const scrolling = () => {
 		const yPosition = scrollYTop.current.scrollTop
-		console.log(picHeight, topBannerHeight)
+		//console.log(picHeight, topBannerHeight)
 		if( yPosition <= picHeight - topBannerHeight) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
@@ -45,10 +46,10 @@ function App() {
 		let saveDate = time.getFullYear() + '/' + (time.getMonth() + 1) + '/' + time.getDate()
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate+' '+saveTime
-		console.log(jsonRawData, '    data type: ', typeof jsonRawData)
-		console.log(tagList)
-		console.log(dateTime)
-		console.log(published)
+		//console.log(jsonRawData, '    data type: ', typeof jsonRawData)
+		//console.log(tagList)
+		//console.log(dateTime)
+		//console.log(published)
 	}
 	
 	
@@ -58,7 +59,10 @@ function App() {
 				<LogPage 
 					setLoginState={setLoginState}
 					loginLogup={loginLogup} 
-					setLoginLogup={setLoginLogup} />
+					setLoginLogup={setLoginLogup}
+					setUsername={setUsername}
+					setAccount={setAccount}	
+				/>
 				<PublishCheck 
 					editorState={editorState}
 					prePublishScale={prePublishScale}
@@ -71,7 +75,10 @@ function App() {
 					scrollToTop={scrollToTop} 
 					setLoginLogup={setLoginLogup} 
 					scrollTop={scrollTop} 
-					setTopBannerHeight={setTopBannerHeight}/>
+					setTopBannerHeight={setTopBannerHeight}
+					username={username}
+					account={account}
+				/>
 			</div>
 			<Switch>
 				<Route exact path="/" render={() => (
@@ -89,6 +96,9 @@ function App() {
 						setPrePublishScale={setPrePublishScale}
 						savefile={savefile}
 					/>)} 
+				/>
+				<Route path="/personalpage" render={() => (
+					<PersonalPage />)} 
 				/>
 			</Switch>
 			<Footer />

@@ -60,13 +60,22 @@ function TopBanner(prop){
 					<div className = "Settings" aria-expanded={Menu}>
 						<div className = "Settings-icon" onClick={() => {expandMenu()}}>
 							<span>
-								名字
+								{prop.username[0]}
 							</span>
 						</div>
 						<div className = "Menu" ref={menuRef}>
-							<div className="a button-box-shadow">
-								<span>username</span>
-								<span>account</span>
+							<div className="d button-box-shadow">
+								<div className = "e" onClick={() => {expandMenu()}}>
+									<span>
+										{prop.username[0]}
+									</span>
+								</div>
+								<Link id="account-link" to="/personalpage" style={{ textDecoration: 'none' }} onClick={() => {expandMenu()}}>
+									<div className="a">
+										<span id="username">{prop.username[1]} {prop.username[0]}</span>
+										<span id="account">{prop.account}</span>
+									</div>
+								</Link>
 							</div>
 							<div className="b button-box-shadow">
 								<Link to="/editor" style={{width: "100%"}}>
@@ -104,7 +113,7 @@ function TopBanner(prop){
     return(
 		<div>
 			<div className = { (prop.scrollToTop && curLocation.pathname === "/") ? "TopBanner" : "TopBanner TopBanner-not-top"} ref={banner}>
-					<Link to="/">
+					<Link to="/" style={{ textDecoration: 'none' }}>
 						<div className = "TopBanner-logo-part" onClick={() => {prop.scrollTop()}}>
 							<img id = {LogoId}/>
 							<span id = "logo-name">PaPaGo</span>
