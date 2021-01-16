@@ -1,10 +1,14 @@
 type Query {
 	user(data: UserInput!): UserOutput!
+	post(data: findPostInput!): postOutput!
 }
 
 type Mutation {
 	addUser(data: registerInput!): String!
+	addPost(data: postInput!):String!
+	deletePost(data: uuidInput!):String!
 }
+
 
 
 input registerInput{
@@ -17,20 +21,39 @@ input UserInput {
 	account: String!
 	password: String!
 }
-input CommentInput {
-	name: String!
-	body: String!
-	room_id: String!
-}
-
-input RoomInput {
-	room_id: String!
-	user_1: String!
-	user_2: String!
+input uuidInput {
+	uuid: String!
 }
 
 
+input findPostInput {
+	writer: String!
+	reader: String!
+	get_sketch: Boolean!
+	get_non_sketch: Boolean!
+	keyword:    String!    
+}
 
+input postInput{
+	content:    String!
+	tags:       [String]!
+	date:       String!
+	writer:     String!
+	is_sketch:  Boolean!   
+}
+
+type post{
+	content:    String!
+	tags:       [String]!
+	date:       String!
+	writer:     String!
+	is_sketch:  Boolean!
+	uuid:       String!
+}
+
+type postOutput{
+	posts: [post]!
+}
 
 
 
