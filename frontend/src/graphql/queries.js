@@ -23,7 +23,7 @@ query post(
 	$reader: String!
 	$get_sketch: Boolean!
 	$get_non_sketch: Boolean!
-	$keyword:    String! 
+  $keyword:    String!
 ) {
   post(
     data: {

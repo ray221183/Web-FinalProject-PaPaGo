@@ -79,7 +79,7 @@ function TopBanner(prop){
 							</div>
 							<div className="b button-box-shadow">
 								<Link to="/editor" style={{width: "100%"}}>
-									<button onClick={() => {expandMenu()}}>分享故事</button>
+									<button onClick={() => {expandMenu(); prop.setNewPost(true)}}>分享故事</button>
 								</Link>
 								<button onClick={() => {expandMenu()}}>文章管理</button>
 								<button onClick={() => {expandMenu()}}>出版文章</button>

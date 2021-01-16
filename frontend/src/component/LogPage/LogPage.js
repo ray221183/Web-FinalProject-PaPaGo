@@ -9,8 +9,8 @@ function LogPage(prop){
     const [account, setAccount] = useState('');
     const [password, setPassWord] = useState('');
     const [pwCheck, setPWCheck] = useState('');
+    const {data: user, refetch: reUser} = useQuery(USER_QUERY, {variables: {account: account, password: password}});
     const [addUser] = useMutation(ADD_USER);
-    const {data: user, refetch: reUser} = useQuery(USER_QUERY, {variables: {account: account, password: password}})
     const [errorType, setErrorType] = useState(0); //0: no error | 1: account or password incorrect | 2:incomplete form | 3:password reconfirm failed | 4:the account already exists
     const errorMessage = (errorType === 4) ? "*此帳號已存在*" :
                          (errorType === 3) ? "*兩次輸入的密碼不相符*" :

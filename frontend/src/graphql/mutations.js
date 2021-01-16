@@ -25,7 +25,7 @@ mutation addPost(
 	$date: String!
 	$is_sketch: Boolean!
   ) {
-	addUser(
+	addPost(
 	  data: {
 		content: $content
 		writer: $writer
@@ -56,7 +56,7 @@ mutation updatePost(
 	$date:String!
 	$is_sketch:String!
   ) {
-	deletePost(
+	updatePost(
 	  data: {
 		  uuid:$uuid
 		  content:$content
@@ -77,4 +77,4 @@ mutation updatePost(
 
 
 
-export {ADD_USER, ADD_POST,DELETE_POST}
+export {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST}
