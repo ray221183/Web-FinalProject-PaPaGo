@@ -64,9 +64,11 @@ function TopBanner(prop){
 							</span>
 						</div>
 						<div className = "Menu" ref={menuRef}>
-							<div className="a button-box-shadow">
-								<span>username</span>
-								<span>account</span>
+							<div className="b button-box-shadow">
+								<Link to="/personalpage" style={{width: "100%"}}>
+									<button onClick={() => {expandMenu()}}>username</button>
+									<button onClick={() => {expandMenu()}}>account</button>
+								</Link>
 							</div>
 							<div className="b button-box-shadow">
 								<Link to="/editor" style={{width: "100%"}}>
