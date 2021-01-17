@@ -79,6 +79,22 @@ mutation updatePost(
   }
 `
 
+const UPDATE_GREAT = gql`
+mutation updateGreat(
+	$uuid:String!
+	$account:String!
+	$is_push:Boolean!
+  ) {
+	updateGreat(
+	  data: {
+		uuid:$uuid
+		account:$account
+		is_push:$is_push
+	  }
+	) 
+  }
+`
 
 
-export {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST}
+
+export {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST, UPDATE_GREAT}

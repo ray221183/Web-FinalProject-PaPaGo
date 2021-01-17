@@ -6,7 +6,7 @@ const GreatSchema = new Schema({
         type: String,
         required: [true, "uuid field is required."]
     },
-    user: {
+    account: {
         type: String,
         required: [true, "user field is required."]
     }

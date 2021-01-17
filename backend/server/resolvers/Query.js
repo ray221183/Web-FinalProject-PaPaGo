@@ -100,6 +100,14 @@ const Query = {
 					uuid:    result[i].uuid
 				})
 			}
+			for(var i=0; i<record.length;++i){
+				let list = await Great.find({"uuid":record[i].uuid})
+				console.log(list[0])
+				let num = list.length
+				console.log(num)
+				record[i]['great_num'] = num
+			} 
+			console.log(record)
 			return {
 				posts: record
 			}
@@ -109,15 +117,40 @@ const Query = {
 		let result = await Great.find({"uuid":args.data.uuid})
 		let record = []
 		for(var i=0; i<result.length; ++i){
-			let result_name = await User.find({"account":result[i].account})[0].name
+			let _user = await User.find({"account":result[i].account})
+			let result_name = _user[0].name
 			record.push({
 				account:result[i].account,
 				name:result_name
 			})
 		}
-		return record
+		console.log(record)
+		return {
+			users:record
+		}
+	},
+	async greatOfuser(parent, args, { db }, info) {
+		let result = await Great.find({"account":args.data.account})
+		let record = []
+		for(var i=0; i<result.length;++i){
+			let temp_post = (await Post.find({"uuid":result[i].uuid}))[0]
+			let list       = await Great.find({"uuid":temp_post.uuid})
+			let num = list.length
+			record.push({
+				content:   temp_post.content,
+				tags:      temp_post.tags,
+				writer:    temp_post.writer,
+				name:      temp_post.name,
+				date:      temp_post.date,
+				is_sketch: temp_post.is_sketch,
+				uuid:      temp_post.uuid,
+				great_num: num
+			})
+		}
+		return {
+			posts:record
+		}
 	}
-
 }
 
 
