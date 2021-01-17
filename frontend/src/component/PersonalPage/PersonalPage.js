@@ -1,5 +1,7 @@
 import './PersonalPage.css'
 import React, { useEffect, useRef, useState } from 'react'
+import {FaThumbsUp} from 'react-icons/fa';
+import {IconContext} from 'react-icons';
 import {
 	Link
   } from "react-router-dom";
@@ -7,54 +9,80 @@ import {
 function PersonalPage(prop){
 	return(
 		<section className = "PersonalPage">
-			<div className="Topic">
+			<div className="Published">
 				Posted
 			</div>
-			<div className="Stories">
-				<button className="StoryTitle">Hakuna Matata</button>
-				<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-				<div className="DateAndTag">
-					<div className="Tag">#台中</div>
-					<div className="Tag">#新社花海</div>
-					<div className="Tag">#一日遊一日遊一日遊一日遊一日遊</div>
-					<div className="Date">2021/2/3</div>
+			<hr id='PPhr' />
+			<div className="PPStories">
+				<button className="PPStoryTitle">Hakuna Matata</button>
+				<p className="PPStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+				<div className="PPDateAndTag">
+					<div className="PPTag">#台中</div>
+					<div className="PPTag">#新社花海</div>
+					<div className="PPTag">#一日遊一日遊一日遊一日遊一日遊</div>
+					<div className="PPDate">2021/2/3</div>
+					<div>
+						<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+							<FaThumbsUp />
+							<span id="PPLike">17400 Like</span>
+						</IconContext.Provider>
+					</div>
 				</div>
 			</div>
-			<div className="Stories">
-				<button className="StoryTitle">Enter 2021</button>
-				<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-				<div className="DateAndTag">
-					<div className="Tag">#台南</div>
-					<div className="Tag">#安平古堡</div>
-					<div className="Tag">#一日遊一日遊一日遊一日遊一日遊</div>
-					<div className="Date">2021/1/1</div>
+			<div className="PPStories">
+				<button className="PPStoryTitle">Enter 2021</button>
+				<p className="PPStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+				<div className="PPDateAndTag">
+					<div className="PPTag">#台南</div>
+					<div className="PPTag">#安平古堡</div>
+					<div className="PPTag">#一日遊一日遊一日遊一日遊一日遊</div>
+					<div className="PPDate">2021/1/1</div>
+					<div>
+						<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+							<FaThumbsUp />
+							<span id="PPLike">17400 Like</span>
+						</IconContext.Provider>
+					</div>
 				</div>
 			</div>
-			<button className="Readmore">Read more...</button>
-			<div className="Topic">
+			<button className="PPReadmore">Read more...</button>
+			<div className="Published">
 				Draft
 			</div>
-			<div className="Stories">
-				<button className="StoryTitle">Yeeeeeeeee</button>
-				<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-				<div className="DateAndTag">
-					<div className="Tag">#宜蘭</div>
-					<div className="Tag">#礁溪</div>
-					<div className="Tag">#二日遊二日遊二日遊二日遊二日遊</div>
-					<div className="Date">2020/12/31</div>
+			<hr id='PPhr' />
+			<div className="PPStories">
+				<button className="PPStoryTitle">Yeeeeeeeee</button>
+				<p className="PPStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+				<div className="PPDateAndTag">
+					<div className="PPTag">#宜蘭</div>
+					<div className="PPTag">#礁溪</div>
+					<div className="PPTag">#二日遊二日遊二日遊二日遊二日遊</div>
+					<div className="PPDate">2020/12/31</div>
+					<div>
+						<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+							<FaThumbsUp />
+							<span id="PPLike">17400 Like</span>
+						</IconContext.Provider>
+					</div>
 				</div>
 			</div>
-			<div className="Stories">
-				<button className="StoryTitle">You are short</button>
-				<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-				<div className="DateAndTag">
-					<div className="Tag">#澎湖</div>
-					<div className="Tag">#吉貝嶼</div>
-					<div className="Tag">#二日遊二日遊二日遊二日遊二日遊</div>
-					<div className="Date">2020/12/31</div>
+			<div className="PPStories">
+				<button className="PPStoryTitle">You are short</button>
+				<p className="PPStoryIntro">A brief introduction to the story.</p>
+				<div className="PPDateAndTag">
+					<div className="PPTag">#澎湖</div>
+					<div className="PPTag">#吉貝嶼</div>
+					<div className="PPTag">#二日遊</div>
+					<div className="PPDate">2020/12/31</div>
+					<div>
+						<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+							<FaThumbsUp />
+							<span id="PPLike">17400 Like</span>
+						</IconContext.Provider>
+					</div>
 				</div>
 			</div>
-			<button className="Readmore">Read more...</button>
+			<button className="PPReadmore">Read more...</button>
 		</section>
 	)
 }

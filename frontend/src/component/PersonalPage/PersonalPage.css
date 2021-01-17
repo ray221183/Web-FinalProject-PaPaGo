@@ -1,77 +1,88 @@
 .PersonalPage {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	margin-top: 12px;
+}
+.Published {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	border: 5px solid yellow;
-}
-.Topic {
-	color: #696969;
 	width: 400px;
 	height: 50px;
-	position: relative;
-	left: -300px;
+	color: #696969;
 	font-size: 30px;
 	text-align: left;
+	position: relative;
+	left: -300px;
+	/*border: 2px solid red;*/
+}
+#PPhr {
+	color: gray;
+	background-color: gray;
+	height: 2px;
+	width: 1000px;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+.PPStories {
+	/*border: 2px solid red;*/
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-}
-.Stories {
-	border: 2px solid red;
 	width: 800px;
 	height: 160px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	margin-bottom: 15px;
 }
-.StoryTitle {
+.PPStoryTitle {
 	background-color: white;
 	text-align: left;
 	font-size: 30px;
 	color: black;
-	border: 2px solid blue;
+	border: 0px solid blue;
 	align-self: flex-start;
 	margin: 0px;
 }
-.StoryTitle:hover {
+.PPStoryTitle:hover {
 	background-color: white;
 }
-.StoryIntro {
+.PPStoryIntro {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	text-align: left;
 	font-size: 15px;
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 	margin: 0px;
+	width: 100%;
 	height: 70px;
 }
-.StoryDate {
-	text-align: right;
-	border: 2px solid red;
-	align-self: flex-end;
-	margin: 0px;
-}
-.DateAndTag {
-	border: 2px solid green;
+.PPDateAndTag {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	/*border: 2px solid green;*/
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
+}
+.PPTag {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-}
-.Tag {
 	background-color: black;
-	border: 2px solid brown;
+	/*border: 2px solid brown;*/
 	color: white;
 	font-size: 15px;
 	padding: 5px;
@@ -79,30 +90,62 @@
 	margin-right: 10px;
 	margin-bottom: 0px;
 }
-.Date {
-	background-color: black;
-	border: 2px solid brown;
-	color: white;
+.PPDate {
+	background-color: white;
+	/*border: 2px solid brown;*/
+	color: black;
 	font-size: 15px;
 	padding: 5px;
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-.Readmore {
-	background-color: white;
+#PPLike {
+	margin-left: 5px;
 	font-size: 15px;
+}
+.PPReadmore {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: white;
 	color: #A9A9A9;
+	font-size: 15px;
 	padding: 5px;
-	border: 2px solid blue;
 	position: relative;
 	right: -400px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	border: 0px solid blue;
+	margin-bottom: 15px;
+	outline: none;
 }
-.Readmore:hover {
-	color: black;
+.PPReadmore:hover {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
+}
+.PPReadmore:active {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
+}
+.PPReadmore:visited {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
+}
+.PPReadmore:focus {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
 }
