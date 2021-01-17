@@ -21,19 +21,25 @@ const ADD_USER = gql`
 `
 const ADD_POST = gql`
 mutation addPost(
+	$title: String!
+	$introduction: String!
 	$content: String!
 	$writer: String!
 	$tags: [String]!
 	$date: String!
 	$is_sketch: Boolean!
+	$related_uuid: $String!
   ) {
 	addPost(
 	  data: {
+		title: $title
+		introduction:$introduction
 		content: $content
 		writer: $writer
 		tags: $tags
 		date: $date
 		is_sketch: $is_sketch
+		related_uuid:$related_uuid
 	  }
 	) 
   }
@@ -53,6 +59,8 @@ mutation deletePost(
 
 const UPDATE_POST = gql`
 mutation updatePost(
+	$title: String!
+	$introduction: String!
 	$uuid:String!
 	$content:String!
 	$tags:[String]!
@@ -61,6 +69,8 @@ mutation updatePost(
   ) {
 	updatePost(
 	  data: {
+		  title: $title
+		  introduction:$introduction
 		  uuid:$uuid
 		  content:$content
 		  tags:$tags
@@ -68,6 +78,8 @@ mutation updatePost(
 		  is_sketch:$is_sketch
 	  }
 	) {
+		title
+		introduction
 		content
 		name
 		tags
@@ -75,6 +87,7 @@ mutation updatePost(
 		writer
 		is_sketch
 		uuid
+		related_uuid
 	}
   }
 `

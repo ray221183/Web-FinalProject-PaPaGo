@@ -2,10 +2,21 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 // Creating a schema, sort of like working with an ORM
+function isMyFieldRequired () {
+    return typeof this.myField === 'string'? true : false
+}
 const PostSchema = new Schema({
 	content: {
 		type: String,
-		required: [true, 'Content field is required.']
+		required: [isMyFieldRequired, 'Content field is required.']
+    },
+	title: {
+		type: String,
+		required: [isMyFieldRequired, 'title field is required.']
+    },
+	introduction: {
+		type: String,
+		required: [isMyFieldRequired, 'introduction field is required.']
     },
     tags: {
         type: [String],
@@ -30,6 +41,10 @@ const PostSchema = new Schema({
     uuid: {
         type: String,
         required: [true, "uuid is required."]
+    },
+    related_uuid: {
+        type: String,
+        required: [isMyFieldRequired, "related uuid is required"]
     }
 })
 

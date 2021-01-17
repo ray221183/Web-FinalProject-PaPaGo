@@ -20,12 +20,19 @@ const Mutation = {
 		temp_data['uuid'] = uuidv4()
 		let writers = await User.find({"account":args.data.writer})
 		if(writers.length === 0){
-			console.log("wrong!!!!!!!")
 			return "0"
+		}
+		if(!args.data.related_uuid){
+			temp_data['related_uuid'] = ""
+		}
+		else{
+			console.log(args.data.related_uuid,temp_data.uuid)
+			await Post.findOneAndUpdate({"uuid":args.data.related_uuid},{"related_uuid":temp_data.uuid})
 		}
 		let name = writers[0].name
 		temp_data['name'] = name
 		let temp = new Post(temp_data)
+		console.log(temp)
 		await temp.save()
 		return temp.uuid
 	},
@@ -34,18 +41,60 @@ const Mutation = {
 		return "delete complete"
 	},
 	async updatePost(parent, args, {db}, info){
-		console.log(args)
-		let temp = await Post.findOneAndUpdate({"uuid":args.data.uuid},{"content":args.data.content, "tags":args.data.tags, "date":args.data.date, "is_sketch":args.data.is_sketch})
-		console.log(temp)
+		if(!args.data.is_sketch){
+			let temp_post = await Post.find({"uuid":args.data.uuid})
+			temp_post = temp_post[0]
+			console.log(temp_post)
+			let parent_uuid = temp_post.related_uuid
+			console.log(parent_uuid)
+			if(parent_uuid !== ""){
+				await Post.deleteMany({"uuid":parent_uuid})
+				console.log(args.data.uuid)
+				await Post.updateOne({"uuid":args.data.uuid},
+				{   $set:{
+						"title": args.data.title,
+						"introduction": args.data.introduction,
+						"content": args.data.content,
+						"tags": args.data.tags,
+						"name": temp_post.name,
+						"date": args.data.date,
+						"writer": temp_post.writer,
+						"is_sketch": args.data.is_sketch,
+						"uuid": parent_uuid,
+						"related_uuid": ""
+					}
+				})
+				return  {title: args.data.title,
+							introduction: args.data.introduction,
+							content: args.data.content,
+							tags: args.data.tags,
+							name: temp_post.name,
+							date: args.data.date,
+							writer: temp_post.writer,
+							is_sketch: args.data.is_sketch,
+							uuid: parent_uuid,
+							related_uuid: ""
+					    }
+			}
+		}
+		let temp = await Post.find({"uuid":args.data.uuid})
+		temp = temp[0]
+		await Post.findOneAndUpdate({"uuid":args.data.uuid},
+										{"content":args.data.content, "tags":args.data.tags, "date":args.data.date, 
+										"is_sketch":args.data.is_sketch, "title":args.data.title,"introduction":args.data.introduction})
 		return {
+			title: args.data.title,
+			introduction: args.data.introduction,
 			content: args.data.content,
 			tags: args.data.tags,
 			date: args.data.date,
 			writer: temp.writer,
 			name: temp.name,
 			is_sketch: args.data.is_sketch,
-			uuid: temp.uuid
+			uuid: temp.uuid,
+			related_uuid:temp.related_uuid
 		}
+
 	},
 	async updateGreat(parent, args, {db}, info) {
 		if(args.data.is_push){
