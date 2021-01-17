@@ -1,6 +1,7 @@
 import uuidv4 from 'uuid/v4'
 const User= require('../models/user')
 const Post= require('../models/post')
+const Great= require('../models/great')
 const Mutation = {
 	async addUser(parent, args, {db}, info){
 		let result = await User.find({"account":args.data.account})
@@ -43,9 +44,22 @@ const Mutation = {
 			is_sketch: args.data.is_sketch,
 			uuid: temp.uuid
 		}
-		
+	},
+	async updateGreat(parent, args, {db}, info) {
+		if(args.data.is_push){
+			let record = {
+				uuid:args.data.uuid,
+				account:args.data.account
+			}
+			let temp = new Great(record)
+			await temp.save()
+			return "add complete"
+		}
+		else{
+			Great.deleteMany({"uuid":args.data.uuid,"account":args.data.account})
+			return "delete complete"
+		}
 	}
-
 }
 
 export { Mutation as default }

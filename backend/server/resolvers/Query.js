@@ -2,6 +2,7 @@ import { string } from 'yargs'
 
 const User = require('../models/user')
 const Post = require('../models/post')
+const Great = require('../models/great')
 
 
 const Query = {
@@ -103,6 +104,18 @@ const Query = {
 				posts: record
 			}
 		}
+	},
+	async greatOfpost(parent, args, { db }, info) {
+		let result = await Great.find({"uuid":args.data.uuid})
+		let record = []
+		for(var i=0; i<result.length; ++i){
+			let result_name = await User.find({"account":result[i].account})[0].name
+			record.push({
+				account:result[i].account,
+				name:result_name
+			})
+		}
+		return record
 	}
 
 }
