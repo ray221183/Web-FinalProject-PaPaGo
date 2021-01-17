@@ -20,8 +20,6 @@ const USER_QUERY = gql`
 
 const POST_QUERY = gql`
 query post(
-	$title: String!
-	$introduction: String!
 	$writer: String!
 	$reader: String!
 	$get_sketch: Boolean!
@@ -40,8 +38,8 @@ query post(
     }
   ) {
     posts{
-      title: $title
-      introduction:$introduction
+      title
+      introduction
       content
       name
       tags
@@ -89,6 +87,44 @@ query greatOfpost(
       date
       uuid
       great_num
+    }
+  }
+}
+`
+
+const MULTIPOST_QUERY = gql`
+query multi_post(
+	$writer: String!
+	$search_type: String!
+	$get_sketch: Boolean!
+	$get_non_sketch: Boolean!
+	$keyword:    [String]!
+	$uuid:       String
+) {
+  multi_post(
+    data: {
+      writer: $writer
+      search_type: $search_type
+      get_sketch: $get_sketch
+      get_non_sketch: $get_non_sketch
+      keyword: $keyword
+      uuid:  $uuid
+    }
+  ) {
+    multiposts{
+      posts{
+        title
+        introduction
+        content
+        name
+        writer
+        tags
+        date
+        uuid
+        great_num
+        is_sketch
+        related_uuid 
+      }
     }
   }
 }
