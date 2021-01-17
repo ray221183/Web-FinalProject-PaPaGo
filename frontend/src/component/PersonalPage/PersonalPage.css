@@ -55,6 +55,28 @@
 .PPStoryTitle:hover {
 	background-color: white;
 }
+#PPIconButton {
+	background-color: white;
+	border: 0px solid blue;
+	margin: 0px;
+	outline: none;
+}
+#PPIconButton:hover {
+	background-color: white;
+	outline: none;
+}
+#PPIconButton:active {
+	background-color: white;
+	outline: none;
+}
+#PPIconButton:visited {
+	background-color: white;
+	outline: none;
+}
+#PPIconButton:focus {
+	background-color: white;
+	outline: none;
+}
 .PPStoryIntro {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
