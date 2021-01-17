@@ -1,5 +1,8 @@
 import './Home.css'
 import React, { useEffect, useRef, useState } from 'react'
+import {FaThumbsUp} from 'react-icons/fa';
+import {AiFillFire} from 'react-icons/ai';
+import {IconContext} from 'react-icons';
 import {
 	Link
   } from "react-router-dom";
@@ -52,54 +55,167 @@ function Home(prop){
 				<div className = "google-map">
 					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
 				</div>
-				<div className="Topic">
+				<div className="Trending">
+					<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
+						<AiFillFire />
+					</IconContext.Provider>
 					Trending on PaPaGo
 				</div>
-				<div className="Stories">
-					<button className="StoryTitle">Hakuna Matata</button>
-					<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-					<div className="DateAndTag">
-						<div className="Tag">#台中</div>
-						<div className="Tag">#新社花海</div>
-						<div className="Tag">#一日遊一日遊一日遊一日遊一日遊</div>
-						<div className="Date">2021/2/3</div>
+				<hr id='homehr' />
+				<div className='TrendingStories'>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">Hakuna Matata</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>A author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2021/2/3</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">87000 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
+					</div>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">Enter 2021</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>B author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2021/1/1</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">17400 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div className="Stories">
-					<button className="StoryTitle">Enter 2021</button>
-					<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-					<div className="DateAndTag">
-						<div className="Tag">#台南</div>
-						<div className="Tag">#安平古堡</div>
-						<div className="Tag">#一日遊一日遊一日遊一日遊一日遊</div>
-						<div className="Date">2021/1/1</div>
+				<div className='TrendingStories'>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">Yeeeeeeeee</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>C author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2020/12/31</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">8787 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
+					</div>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">You are short</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>D author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2020/12/31</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">1987 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
 					</div>
 				</div>
-				<button className="Readmore">Read more...</button>
-				<div className="Topic">
-					Draft
+				<button className="HomeReadmore">Find more...</button>
+
+				<div className="Trending">
+					<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
+						<AiFillFire />
+					</IconContext.Provider>
+					Recommended
 				</div>
-				<div className="Stories">
-					<button className="StoryTitle">Yeeeeeeeee</button>
-					<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-					<div className="DateAndTag">
-						<div className="Tag">#宜蘭</div>
-						<div className="Tag">#礁溪</div>
-						<div className="Tag">#二日遊二日遊二日遊二日遊二日遊</div>
-						<div className="Date">2020/12/31</div>
+				<hr id='homehr' />
+				<div className='TrendingStories'>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">Bald is short</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>A author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2021/1/1</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">174 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
+					</div>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">Goodbye 2020</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>B author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2020/12/31</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">69 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div className="Stories">
-					<button className="StoryTitle">You are short</button>
-					<p className="StoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
-					<div className="DateAndTag">
-						<div className="Tag">#澎湖</div>
-						<div className="Tag">#吉貝嶼</div>
-						<div className="Tag">#二日遊二日遊二日遊二日遊二日遊</div>
-						<div className="Date">2020/12/31</div>
+				<div className='TrendingStories'>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">Fuck your girl friend</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>C author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2021/2/14</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">187 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
+					</div>
+					<div className="HomeStories">
+						<div className="HomeAuthor">
+							<button className="HomeStoryTitle">Bzhe is ugly</button>
+							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>D author</h3>
+						</div>
+						<p className="HomeStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
+						<div className="HomeDateAndTag">
+							<div className="HomeDate">2020/1/17</div>
+							<div className="HomeLike">
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+									<FaThumbsUp />
+									<span id="homeLike">1987 Like</span>
+								</IconContext.Provider>
+							</div>
+						</div>
 					</div>
 				</div>
-				<button className="Readmore">Read more...</button>
+				<button className="HomeReadmore">Find more...</button>
 			</div>
 		</section>
 	)

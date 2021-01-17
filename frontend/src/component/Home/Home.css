@@ -49,7 +49,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	border: 1px solid black;
 }
 .button {
 	background-color: black;
@@ -79,70 +78,114 @@
 	/* border: 1px solid black; */
 }
 
-.Topic {
+.Trending {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	color: #696969;
-	width: 2000px;
-	height: 100px;
-	position: relative;
-
+	color: black;
+	width: 1400px;
+	height: 50px;
 	font-size: 30px;
 	text-align: left;
-	border: 2px solid green;
+	margin-top: 20px;
+	/*border: 2px solid green;*/
 }
-.Stories {
+#homehr {
+	color: black;
+	background-color: black;
+	height: 1px;
+	width: 1400px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+.TrendingStories {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	border: 2px solid red;
-	width: 800px;
-	height: 160px;
+	width: 1400px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.HomeStories {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	/*border: 2px solid red;*/
+	width: 680px;
+	height: 160px;
 }
-.StoryTitle {
-	background-color: white;
-	text-align: left;
-	font-size: 30px;
-	color: black;
-	border: 2px solid blue;
-	align-self: flex-start;
-	margin: 0px;
-}
-.StoryTitle:hover {
-	background-color: white;
-}
-.StoryIntro {
-	text-align: left;
-	font-size: 15px;
-	border: 2px solid black;
-	margin: 0px;
-	height: 70px;
-}
-.StoryDate {
-	text-align: right;
-	border: 2px solid red;
-	align-self: flex-end;
-	margin: 0px;
-}
-.DateAndTag {
+.HomeAuthor {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	border: 2px solid green;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	/*border: 2px solid blue;*/
+	width: 680px;
+}
+.HomeStoryTitle {
+	background-color: white;
+	text-align: left;
+	font-size: 27px;
+	color: black;
+	border: 0px solid green;
+	align-self: flex-start;
+	margin: 0px;
+}
+.HomeStoryTitle:hover {
+	background-color: white;
+	outline: none;
+	border: 0px solid green;
+}
+.HomeStoryTitle:focus {
+	background-color: white;
+	outline: none;
+	border: 0px solid green;
+}
+.HomeStoryTitle:active {
+	background-color: white;
+	outline: none;
+	border: 0px solid green;
+}
+.HomeStoryTitle:visited {
+	background-color: white;
+	outline: none;
+	border: 0px solid green;
+}
+.HomeStoryIntro {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: left;
+	font-size: 15px;
+	/*border: 2px solid black;*/
+	margin: 0px;
+	width: 680px;
+	height: 70px;
+}
+.HomeDateAndTag {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	/*border: 2px solid green;*/
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
 }
-.Tag {
+.HomeTag {
 	background-color: black;
-	border: 2px solid brown;
+	/*border: 2px solid brown;*/
 	color: white;
 	font-size: 15px;
 	padding: 5px;
@@ -150,16 +193,20 @@
 	margin-right: 10px;
 	margin-bottom: 0px;
 }
-.Date {
-	background-color: black;
-	border: 2px solid brown;
-	color: white;
+.HomeDate {
+	background-color: white;
+	/*border: 2px solid brown;*/
+	color: black;
 	font-size: 15px;
-	padding: 5px;
+	padding: 2px;
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-.Readmore {
+#homeLike {
+	margin-left: 5px;
+	font-size: 15px;
+}
+.HomeReadmore {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -167,13 +214,15 @@
 	font-size: 15px;
 	color: #A9A9A9;
 	padding: 5px;
-	border: 2px solid blue;
+	border: 0px solid blue;
 	position: relative;
-	right: -400px;
+	right: -650px;
+	margin-bottom: 20px;
 }
-.Readmore:hover {
+.HomeReadmore:hover {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	color: black;
+	background-color: white;
 }
