@@ -1,7 +1,6 @@
 .Home {
 	position: relative;
 	text-align: center;
-	height: 200vh;
 	box-shadow: 0vh 0vh 0.3vh 0vh rgb(0, 0, 0);
 }
 .Introduction{
@@ -45,6 +44,13 @@
 	box-shadow: 0vh -0.3vh 1vh 0vh rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.13);
 }
+.MainContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid black;
+}
 .button {
 	background-color: black;
 	color:white;
@@ -69,25 +75,27 @@
 	color: black;
 }
 .google-map{
-	margin: 10vh 0vw 0vw 25vw;
 	width: 50%;
 	/* border: 1px solid black; */
 }
 
 .Topic {
-	color: #696969;
-	width: 1000px;
-	height: 50px;
-	position: relative;
-	left: -300px;
-	font-size: 30px;
-	text-align: left;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	background-color: red;
+	color: #696969;
+	width: 2000px;
+	height: 100px;
+	position: relative;
+
+	font-size: 30px;
+	text-align: left;
+	border: 2px solid green;
 }
 .Stories {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	border: 2px solid red;
 	width: 800px;
 	height: 160px;
@@ -95,9 +103,6 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 }
 .StoryTitle {
 	background-color: white;
@@ -125,15 +130,15 @@
 	margin: 0px;
 }
 .DateAndTag {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	border: 2px solid green;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 }
 .Tag {
 	background-color: black;
@@ -155,6 +160,9 @@
 	margin-bottom: 0px;
 }
 .Readmore {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	background-color: white;
 	font-size: 15px;
 	color: #A9A9A9;
@@ -162,13 +170,10 @@
 	border: 2px solid blue;
 	position: relative;
 	right: -400px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 }
 .Readmore:hover {
-	color: black;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	color: black;
 }

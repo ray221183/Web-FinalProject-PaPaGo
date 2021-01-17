@@ -45,6 +45,7 @@ function LogPage(prop){
     const handleLogin = async () => {
         if(account==='' || password === '') setErrorType(2)
         else{
+            console.log('user = ' + user);
             if(user.user.valid){
                 console.log("in")
                 prop.setUsername([user.user.first_name, user.user.last_name])
