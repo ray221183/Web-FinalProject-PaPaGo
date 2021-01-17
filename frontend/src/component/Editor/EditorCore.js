@@ -35,15 +35,11 @@ const { SideToolbar: SideToolbarAddLight } = sideToolbarPluginAddLight;
 const sideToolbarPluginAddDark = createSideToolbarPlugin({ theme: themeSideBlockAdd(false) });
 const { SideToolbar: SideToolbarAddDark } = sideToolbarPluginAddDark;
 
-const sideToolbarPluginStyleLight = createSideToolbarPlugin({ theme: themeSideBlockStyle(true) });
-const { SideToolbar: SideToolbarStyleLight } = sideToolbarPluginStyleLight;
-const sideToolbarPluginStyleDark = createSideToolbarPlugin({ theme: themeSideBlockStyle(false) });
-const { SideToolbar: SideToolbarStyleDark } = sideToolbarPluginStyleDark;
 
 const inlineBarTextStyle = createInlineToolbarPlugin({ theme: themeInlineTextStyle });
 const { InlineToolbar: InlineBarTextStyle } = inlineBarTextStyle;
 
-const plugins = [sideToolbarPluginAddLight, sideToolbarPluginStyleLight, sideToolbarPluginAddDark, sideToolbarPluginStyleDark, inlineBarTextStyle];
+const plugins = [sideToolbarPluginAddLight, sideToolbarPluginAddDark, inlineBarTextStyle];
 
 function EditorCore(prop){
     //draft-js editor
@@ -52,6 +48,17 @@ function EditorCore(prop){
     const element = useRef();
     const [placeholder, setPlaceholder] = useState( "Tell your story" )
     var selection = editorState.getSelection();
+
+    //tool bar style
+    const [sideBlockOver, setSideBlockOver] = useState(false);
+    const sideBlock = (prop.background) ? "blocktype-icon-light" : "blocktype-icon-dark"
+    const focusStyle = {
+        opacity:  (selection.getHasFocus()) ? "1" : "0"
+    }
+    const sideBlockMovement = {
+        transform: (sideBlockOver) ? "translateY(0)" : "translateY(-100%)",
+        opacity: (sideBlockOver) ? "1" : "0",
+    }
 
     //side tool bar -- add
     const [curSelectBlock, setCurSelectBlock] = useState(null);
@@ -67,7 +74,7 @@ function EditorCore(prop){
         left: `${sidePositionAdd[1] - 55}px`
     }
     const focus = () => {
-        console.log(1)
+        console.log('focus')
         element.current.focus();
     }
 
@@ -95,19 +102,13 @@ function EditorCore(prop){
         return () => {clearInterval(interval)}
     }, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
-    const click = () => {
-        console.log("in")
-        // let a = RichUtils.toggleBlockType(editorState, 'header-one')
-        // console.log("a: ", convertToRaw(a.getCurrentContent()))
-        // onChange1(a)
+    const toggleBlockType = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onChange(RichUtils.toggleBlockType(editorState, e.target.title))
     }
 
-    const onChange1 = (editorState) => {
-        console.log("test1: ", convertToRaw(editorState.getCurrentContent()))
-        // setEditorState(editorState)
-    }
     const onChange = (editorState) => {
-        console.log("test: ", convertToRaw(editorState.getCurrentContent()))
         setEditorState(editorState)
     }
     
@@ -115,7 +116,6 @@ function EditorCore(prop){
     return(
         <div>
         <div className="eidtor-content-part" onClick={() => {focus()}}>
-            {/* <div id="sd" onClick={click}>sjdijsijdi</div> */}
             <Editor
               editorState={editorState}
               onChange={onChange}
@@ -132,36 +132,18 @@ function EditorCore(prop){
                         </SideToolbarAddDark>
                 }
             </div>
-            <div className="side-tool-bar-style" style={sideStyleStyle}>
-                {
-                    (prop.background) ? 
-                    <SideToolbarStyleLight>
-                        {
-                            (externalProps) => (
-                                <div>
-                                    <HeadlineOneButton {...externalProps} />
-                                    <HeadlineTwoButton {...externalProps} />
-                                    <HeadlineThreeButton {...externalProps} />
-                                    <UnorderedListButton {...externalProps} />
-                                    <OrderedListButton {...externalProps} />
-                                    <BlockquoteButton {...externalProps} />
-                                </div>)
-                        }
-                    </SideToolbarStyleLight> :
-                    <SideToolbarStyleDark>
-                        {
-                            (externalProps) => (
-                                <div>
-                                    <HeadlineOneButton {...externalProps} />
-                                    <HeadlineTwoButton {...externalProps} />
-                                    <HeadlineThreeButton {...externalProps} />
-                                    <UnorderedListButton {...externalProps} />
-                                    <OrderedListButton {...externalProps} />
-                                    <BlockquoteButton {...externalProps} />
-                                </div>)
-                        }
-                    </SideToolbarStyleDark>
-                }
+            <div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
+                <div className={sideBlock}></div>
+                <div className="roll-down-region">
+                    <div className="side-bar-blocktype" style={sideBlockMovement}>
+                        <div className="blocktype-button" id="header-one-dark" title="header-one" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="header-two" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="header-three" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="unordered-list-item" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="ordered-list-item" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="blockquote" onMouseDown={toggleBlockType}>i</div>
+                    </div>
+                </div>
             </div>
             <InlineBarTextStyle>
                 {

@@ -34,21 +34,23 @@ function App() {
 	const [postInfo, setPostInfo] = useState([]);
 
 	const [writer, setWriter] = useState('');
-	const [reader, setReader] = useState(''); // client | host
+	const [specialSearch, setSpecialSearch] = useState('');
 	const [searchType, setSearchType] = useState([true, true]); // [get_sketch, get_non_sketch]
 	const [tags, setTags] = useState('');
 	const [curUuid, setCurUuid] = useState('');
 
-	const {data: posts, refetch: rePost} = useQuery(
+	const {data: posts, refetch: rePost, loading, error} = useQuery(
 		POST_QUERY, 
-		{variables: { 
-			writer: writer,
-			reader: reader,
-			get_sketch: searchType[0],
-			get_non_sketch: searchType[1],
-			keyword: tags,
-			uuid: curUuid
-		}});
+		{
+			variables: {
+				writer: '1',
+				search_type: '1',
+				get_sketch: true,
+				get_non_sketch: true,
+				keyword: '1',
+				uuid: '1'
+			}
+		});
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
 
@@ -61,16 +63,16 @@ function App() {
 		if( yPosition <= picHeight - topBannerHeight) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
-	const searchPost = (keyword, get_sketch, get_non_sketch, uuid, writer, reader) => {
-		console.log(keyword, get_sketch, get_non_sketch, uuid, writer, reader)
+	const searchPost = (keyword, get_sketch, get_non_sketch, uuid, writer, specialSearch) => {
+		console.log(keyword, get_sketch, get_non_sketch, uuid, writer, specialSearch)
 		setWriter(writer)
-		setReader(reader)
+		setSpecialSearch(specialSearch)
 		setSearchType([get_sketch, get_non_sketch])
 		setTags(keyword)
 		setCurUuid(uuid)
 		console.log("search")
 	}
-	console.log(posts)
+
 	const savefile = async (editorState, tags, published) => {
         const contentState = editorState.getCurrentContent()
 		const jsonRawData = JSON.stringify(convertToRaw(contentState))
@@ -80,47 +82,52 @@ function App() {
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate + ' ' + saveTime
 		let a = [1,2]
-		console.log(jsonRawData, '    data type: ', typeof jsonRawData)
-		console.log(account, '    data type: ', typeof account)
-		console.log(tagList, '    data type: ', typeof tagList)
-		console.log(dateTime, '    data type: ', typeof dateTime)
-		console.log(!published, '    data type: ', typeof !published)
-		console.log(newPost)
-		if(newPost){
-			console.log("add post")
-			let postId = await addPost({
-				variables: {
-					content: jsonRawData,
-					writer: account,
-					tags: [''],
-					date: dateTime,
-					is_sketch: !published
-				}
-			})
-			console.log(postId.data.addPost)
-			setCurUuid(postId.data.addPost)
-		}
-		else{
-			console.log("update post")
-			console.log(posts)
-			updatePost({
-				variables: {
-					uuid: curUuid,
-					content: jsonRawData,
-					tags: tagList,
-					date: dateTime,
-					is_sketch: !published,
-				}
-			})
-		}
-		setNewPost(false)
+		// console.log(jsonRawData, '    data type: ', typeof jsonRawData)
+		// console.log(account, '    data type: ', typeof account)
+		// console.log(tagList, '    data type: ', typeof tagList)
+		// console.log(dateTime, '    data type: ', typeof dateTime)
+		// console.log(!published, '    data type: ', typeof !published)
+		// console.log(newPost)
+		// if(newPost){
+		// 	console.log("add post")
+		// 	let postId = await addPost({
+		// 		variables: {
+		// 			title: 'title',
+		// 			introduction: 'introduction',
+		// 			related_uuid: '',
+		// 			content: jsonRawData,
+		// 			writer: account,
+		// 			tags: [''],
+		// 			date: dateTime,
+		// 			is_sketch: true
+		// 		}
+		// 	})
+		// 	console.log(postId.data.addPost)
+		// 	setCurUuid(postId.data.addPost)
+		// }
+		// else{
+		// 	console.log("update post")
+		// 	console.log(posts)
+		// 	updatePost({
+		// 		variables: {
+		// 			title: 'title',
+		// 			introduction: 'introduciton',
+		// 			uuid: curUuid,
+		// 			content: jsonRawData,
+		// 			tags: tagList,
+		// 			date: dateTime,
+		// 			is_sketch: true,
+		// 		}
+		// 	})
+		// }
+		// setNewPost(false)
 	}
 
 	useEffect(
 		() => {
 			rePost()
 		}
-	, [writer, reader, searchType, tags, curUuid])
+	, [writer, specialSearch, searchType, tags, curUuid])
 	
 	
 	return(

@@ -28,18 +28,18 @@ mutation addPost(
 	$tags: [String]!
 	$date: String!
 	$is_sketch: Boolean!
-	$related_uuid: $String!
+	$related_uuid: String!
   ) {
 	addPost(
 	  data: {
 		title: $title
-		introduction:$introduction
+		introduction: $introduction
 		content: $content
 		writer: $writer
 		tags: $tags
 		date: $date
 		is_sketch: $is_sketch
-		related_uuid:$related_uuid
+		related_uuid: $related_uuid
 	  }
 	) 
   }
