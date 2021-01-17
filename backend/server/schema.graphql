@@ -2,13 +2,14 @@ type Query {
 	user(data: UserInput!): UserOutput!
 	post(data: findPostInput!): postOutput!
 	greatOfpost(data: findGreatInput!): findGreatOutput!
+	greatOfuser(data: greatOfuserInput!): GreatOfuserOutput!
 }
 
 type Mutation {
 	addUser(data: registerInput!): String!
 	addPost(data: postInput!):String!
 	deletePost(data: uuidInput!):String!
-	updatePost(data: updatePostInput!): post!
+	updatePost(data: updatePostInput!): updatePostOutput!
 	updateGreat(data: updateGreatInput!): String!
 }
 
@@ -51,6 +52,10 @@ input postInput{
 	is_sketch:  Boolean!   
 }
 
+input greatOfuserInput{
+	account: String!
+}
+
 input updatePostInput{
 	uuid:    String!
 	content: String!
@@ -66,6 +71,22 @@ input updateGreatInput{
 }
 
 type post{
+	content:    String!
+	tags:       [String]!
+	name:       String!
+	date:       String!
+	writer:     String!
+	is_sketch:  Boolean!
+	uuid:       String!
+	great_num:  Int!
+}
+
+
+type GreatOfuserOutput {
+	posts: [post]!
+}
+
+type updatePostOutput{
 	content:    String!
 	tags:       [String]!
 	name:       String!

@@ -58,7 +58,7 @@ const Mutation = {
 			return "add complete"
 		}
 		else{
-			Great.deleteMany({"uuid":args.data.uuid,"account":args.data.account})
+			await Great.deleteMany({"uuid":args.data.uuid,"account":args.data.account})
 			return "delete complete"
 		}
 	}

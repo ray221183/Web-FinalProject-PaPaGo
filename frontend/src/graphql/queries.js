@@ -45,8 +45,47 @@ query post(
       writer
       is_sketch
       uuid
+      great_num
     }
   }
 }
 `
-export {USER_QUERY, POST_QUERY}
+
+const GREATOFPOST_QUERY = gql`
+query greatOfpost(
+  $uuid: String!
+) {
+  greatOfpost(
+    data: {
+      uuid:$uuid
+    }
+  ) {
+    users{
+      account
+      name
+    }
+  }
+}
+`
+const GREATOFUSER_QUERY = gql`
+query greatOfpost(
+  $account: String!
+) {
+  greatOfuser(
+    data: {
+      account:$account
+    }
+  ) {
+    posts{
+      content
+      name
+      writer
+      tags
+      date
+      uuid
+      great_num
+    }
+  }
+}
+`
+export {USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY}

@@ -1,7 +1,6 @@
 .Home {
 	position: relative;
 	text-align: center;
-	height: 200vh;
 	box-shadow: 0vh 0vh 0.3vh 0vh rgb(0, 0, 0);
 }
 .Introduction{
@@ -45,6 +44,12 @@
 	box-shadow: 0vh -0.3vh 1vh 0vh rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.13);
 }
+.MainContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
 .button {
 	background-color: black;
 	color:white;
@@ -69,75 +74,118 @@
 	color: black;
 }
 .google-map{
-	margin: 10vh 0vw 0vw 25vw;
 	width: 50%;
 	/* border: 1px solid black; */
 }
 
-.Topic {
-	color: #696969;
-	width: 1000px;
-	height: 50px;
-	position: relative;
-	left: -300px;
-	font-size: 30px;
-	text-align: left;
+.Trending {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	background-color: red;
+	color: black;
+	width: 1400px;
+	height: 50px;
+	font-size: 30px;
+	text-align: left;
+	margin-top: 20px;
+	/*border: 2px solid green;*/
 }
-.Stories {
-	border: 2px solid red;
-	width: 800px;
-	height: 160px;
+#homehr {
+	color: black;
+	background-color: black;
+	height: 1px;
+	width: 1400px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+.TrendingStories {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 1400px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+}
+.HomeStories {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
+	/*border: 2px solid red;*/
+	width: 680px;
+	height: 160px;
+}
+.HomeAuthor {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	/*border: 2px solid blue;*/
+	width: 680px;
 }
-.StoryTitle {
+.HomeStoryTitle {
 	background-color: white;
 	text-align: left;
-	font-size: 30px;
+	font-size: 27px;
 	color: black;
-	border: 2px solid blue;
+	border: 0px solid green;
 	align-self: flex-start;
 	margin: 0px;
 }
-.StoryTitle:hover {
+.HomeStoryTitle:hover {
 	background-color: white;
+	outline: none;
+	border: 0px solid green;
 }
-.StoryIntro {
+.HomeStoryTitle:focus {
+	background-color: white;
+	outline: none;
+	border: 0px solid green;
+}
+.HomeStoryTitle:active {
+	background-color: white;
+	outline: none;
+	border: 0px solid green;
+}
+.HomeStoryTitle:visited {
+	background-color: white;
+	outline: none;
+	border: 0px solid green;
+}
+.HomeStoryIntro {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	text-align: left;
 	font-size: 15px;
-	border: 2px solid black;
+	/*border: 2px solid black;*/
 	margin: 0px;
+	width: 680px;
 	height: 70px;
 }
-.StoryDate {
-	text-align: right;
-	border: 2px solid red;
-	align-self: flex-end;
-	margin: 0px;
-}
-.DateAndTag {
-	border: 2px solid green;
+.HomeDateAndTag {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	/*border: 2px solid green;*/
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
 	width: 100%;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 }
-.Tag {
+.HomeTag {
 	background-color: black;
-	border: 2px solid brown;
+	/*border: 2px solid brown;*/
 	color: white;
 	font-size: 15px;
 	padding: 5px;
@@ -145,30 +193,36 @@
 	margin-right: 10px;
 	margin-bottom: 0px;
 }
-.Date {
-	background-color: black;
-	border: 2px solid brown;
-	color: white;
+.HomeDate {
+	background-color: white;
+	/*border: 2px solid brown;*/
+	color: black;
 	font-size: 15px;
-	padding: 5px;
+	padding: 2px;
 	margin-right: 0px;
 	margin-bottom: 0px;
 }
-.Readmore {
+#homeLike {
+	margin-left: 5px;
+	font-size: 15px;
+}
+.HomeReadmore {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 	background-color: white;
 	font-size: 15px;
 	color: #A9A9A9;
 	padding: 5px;
-	border: 2px solid blue;
+	border: 0px solid blue;
 	position: relative;
-	right: -400px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
+	right: -650px;
+	margin-bottom: 20px;
 }
-.Readmore:hover {
-	color: black;
+.HomeReadmore:hover {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
+	color: black;
+	background-color: white;
 }
