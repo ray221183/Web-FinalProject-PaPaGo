@@ -116,14 +116,18 @@ function TopBanner(prop){
     return(
 		<div>
 			<div className = { (prop.scrollToTop && curLocation.pathname === "/") ? "TopBanner" : "TopBanner TopBanner-not-top"} ref={banner}>
-					<Link to="/" style={{ textDecoration: 'none' }}>
-						<div className = "TopBanner-logo-part" onClick={() => {prop.scrollTop()}}>
-							<img id = {LogoId}/>
-							<span id = "logo-name">PaPaGo</span>
-						</div>
-					</Link>
-					<span></span>
-					{ (prop.loginState) ? <Login /> : <Logout /> }
+					<div id="b1">
+						<Link to="/" style={{ textDecoration: 'none' }}>
+							<div className = "TopBanner-logo-part" onClick={() => {prop.scrollTop()}}>
+								<img id = {LogoId}/>
+								<span id = "logo-name">PaPaGo</span>
+							</div>
+						</Link>
+					</div>
+					<div id="b2"></div>
+					<div id="b3">
+						{ (prop.loginState) ? <Login /> : <Logout /> }
+					</div>
 			</div>
 			<div className = { (curLocation.pathname === "/") ? "" : "White-block" }>
 			</div>

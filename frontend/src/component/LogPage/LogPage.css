@@ -4,7 +4,8 @@
     display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(65, 64, 64, 0.705);
+    background-color: rgba(65, 64, 64, 0.705);
+    font-size: 14px;
 	height: 100vh;
     width: 100%;
 }
@@ -24,67 +25,76 @@
     }
 }
 .LogPage-topbanner{
-    display: flex;
-	flex-direction: row;
-	align-items: center;
-    justify-content: space-around;
-    height: 8vh;
+    height: 70px;
     width: 100%;
     /* background-color: chocolate; */
-    box-shadow: 0vh 0.3vh 0.5vh -0.5vh rgb(0, 0, 0);
+    box-shadow: 0px 3px 4px -4px rgb(0, 0, 0);
 }
-.LogPage-topbanner #b1{
-    margin: 0vh 10vh 0vh 0vh;
-    width: 4vh;
-}
-.LogPage-topbanner #b2{
-    width: 20vh;
-    font-size: 1.6em;
+.LogPage-topbanner #topic-text{
+    margin-bottom: 20px;
+    width: fit-content;
+    font-size: 23px;
     font-weight: 450;
     text-align: center;
     color: rgb(0, 0, 0);
+    /* border: 1px solid black; */
 }
-.LogPage-topbanner #b3{
-    margin: 0vh 0vh 0vh 10vh;
+.LogPage-topbanner #cross-button{
+    margin-top: 15px;
+    margin-right: 30px;
     text-align: center;
-    line-height: 3.5vh;
-    height: 4vh;
-    width: 4vh;
-    border-radius: 2vh;
-    font-size: 2em;
+    line-height: 23px;
+    height: 28px;
+    width: 28px;
+    border-radius: 14px;
+    font-size: 25px;
     font-weight: 500;
     color: rgb(177, 172, 172);
     transition: 0.3s;
+    /* border: 1px solid black; */
 }
-.LogPage-topbanner #b3:hover{
+.LogPage-topbanner #cross-button:hover{
     cursor: pointer;
     background-color: rgba(248, 245, 245, 0.815);
 }
+#cross{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 25px;
+    width: 100%;
+    /* border: 1px solid rgb(173, 30, 30); */
+}
+#topic{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    width: 100%;
+    /* border: 1px solid rgb(202, 116, 116); */
+}
 .LogPage-normal-login{
-    margin: 5vh 0vh 0vh 0vh;
     display: flex;
     flex-direction: column;
 	align-items: center;
-	justify-content: flex-start;
+    height: 225px;
     width: 100%;
     /* border: 1px solid black; */
 }
 .LogPage-normal-logup{
-    margin: 3vh 0vh 0vh 0vh;
     display: flex;
     flex-direction: column;
 	align-items: center;
-    justify-content: flex-start;
+    height: 400px;
     width: 100%;
     /* border: 1px solid black; */
 }
 .a1{
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 0vh 0vh 1vh 0vh;
+    margin: 5px 0px 5px 0px;
+    /* border: 1px solid rgb(230, 84, 84); */
 }
 .a2{
     width: inherit;
@@ -92,31 +102,28 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    /* border: 1px solid black; */
+    /* border: 1px solid rgb(12, 187, 56); */
 }
 .a3{
     position: relative !important;
     width: 100%;
-    /* border: 1px solid black; */
+    /* border: 1px solid rgb(139, 165, 21); */
 }
 .a4{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: inherit;
+    padding-top: 30px;
+    max-height: 400px;
     width: 60%;
-    /* border: 1px solid black; */
+    /* border: 1px solid rgb(207, 110, 19); */
 }
 .LogPage-log-part input{
     padding-left: 10px;
-    height: 6vh;
+    height: 48px;
     width: 100%;
     border: none; /* <-- This thing here */
     border:solid 1px #ccc;
-    font-size: 1.2em;
+    font-size: 18px;
     outline: none;
-    border-radius: 0.7vh 0.7vh 0.7vh 0.7vh;
+    border-radius: 5px;
 }
 #first-name{
     margin-right: 1vh ;
@@ -129,10 +136,10 @@
 }
 .LogPage-log-part button{
     margin-top: 25px;
-    height: 5vh;
+    height: 45px;
     width: inherit;
     border: none;
-    border-radius: 0.7vh;
+    border-radius: 6px;
     /* background-color: rgb(115, 148, 238); */
     background-image: linear-gradient(90deg, rgb(247, 73, 154), rgb(240, 84, 157), rgb(240, 84, 157), rgb(247, 73, 154));
     color: rgb(255, 255, 255);
@@ -150,7 +157,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 10%;
+    height: 50px;
     width: 100%;
     /* border: 1px solid black; */
 } 
