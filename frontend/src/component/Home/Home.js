@@ -39,6 +39,8 @@ function Home(prop){
 					<button className="button" name="kaohsiung" onClick={clickCity}>Kaohsiung</button>
 					<button className="button" name="tainan" onClick={clickCity}>Tainan</button>
 				</Link>
+			</div>
+			<div>
 				<Link to="/postsenum">
 					<button className="button" name="yilang" onClick={clickCity}>Yilang</button>
 					<button className="button" name="taitung" onClick={clickCity}>Taitung</button>
