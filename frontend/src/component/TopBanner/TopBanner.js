@@ -10,6 +10,9 @@ function TopBanner(prop){
 	const curLocation = useLocation();
 	const [Menu, setMenu] = useState(false);
 	const menuRef = useRef();
+	const menuStyle = {
+		visibility: (Menu) ? "visible" : "hidden"
+	}
 	
 	useEffect(
 		() => {
@@ -57,13 +60,13 @@ function TopBanner(prop){
 		return(
 			<div className = "TopBanner-log-part">
 				<div className = "login-state">
-					<div className = "Settings" aria-expanded={Menu}>
+					<div className = "Settings">
 						<div className = "Settings-icon" onClick={() => {expandMenu()}}>
 							<span>
 								{prop.username[0]}
 							</span>
 						</div>
-						<div className = "Menu" ref={menuRef}>
+						<div className = "Menu" ref={menuRef} style={menuStyle}>
 							<div className="d button-box-shadow">
 								<div className = "e" onClick={() => {expandMenu()}}>
 									<span>
@@ -94,7 +97,7 @@ function TopBanner(prop){
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>	
 		)
 	}
 	const Logout = () => {
@@ -120,7 +123,7 @@ function TopBanner(prop){
 						</div>
 					</Link>
 					<span></span>
-					{ (prop.loginState) ?  <Login /> : <Logout /> }
+					{ (prop.loginState) ? <Login /> : <Logout /> }
 			</div>
 			<div className = { (curLocation.pathname === "/") ? "" : "White-block" }>
 			</div>

@@ -28,7 +28,7 @@
 	flex-direction: row;
 	align-items: center;
     justify-content: space-around;
-    height: 10vh;
+    height: 8vh;
     width: 100%;
     /* background-color: chocolate; */
     box-shadow: 0vh 0.3vh 0.5vh -0.5vh rgb(0, 0, 0);
@@ -65,18 +65,16 @@
     display: flex;
     flex-direction: column;
 	align-items: center;
-	justify-content: space-around;
-    height: 25vh;
+	justify-content: flex-start;
     width: 100%;
     /* border: 1px solid black; */
 }
 .LogPage-normal-logup{
-    margin: 5vh 0vh 0vh 0vh;
+    margin: 3vh 0vh 0vh 0vh;
     display: flex;
     flex-direction: column;
 	align-items: center;
-	justify-content: space-around;
-    height: 40vh;
+    justify-content: flex-start;
     width: 100%;
     /* border: 1px solid black; */
 }
@@ -130,6 +128,7 @@
     /* border: 1px solid black; */
 }
 .LogPage-log-part button{
+    margin-top: 25px;
     height: 5vh;
     width: inherit;
     border: none;
@@ -151,7 +150,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    height: 5vh;
+    height: 10%;
     width: 100%;
     /* border: 1px solid black; */
 } 

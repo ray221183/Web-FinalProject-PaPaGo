@@ -32,6 +32,7 @@ mutation addPost(
 		content: $content
 		writer: $writer
 		tags: $tags
+		date: $date
 		is_sketch: $is_sketch
 	  }
 	) 
@@ -56,7 +57,7 @@ mutation updatePost(
 	$content:String!
 	$tags:[String]!
 	$date:String!
-	$is_sketch:String!
+	$is_sketch:Boolean! 
   ) {
 	updatePost(
 	  data: {

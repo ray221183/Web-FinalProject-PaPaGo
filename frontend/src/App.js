@@ -31,7 +31,19 @@ function App() {
 	const [editorState, setEditorState] = useState( ()=>EditorState.createEmpty() );
 	const [prePublishScale, setPrePublishScale] = useState(0);
 	const [newPost, setNewPost] = useState(true);
-	const [postInfo, setPostInfo] = useState([]); //[tags, date, write, is_sketch, uuid]
+	const [postInfo, setPostInfo] = useState([]);
+	const [tags, setTags] = useState('');
+	const [curUuid, setCurUuid] = useState('');
+	const [searchType, setSearchType] = useState([true, true]); // [get_sketch, get_non_sketch]
+
+	const {data: posts, refetch: rePost} = useQuery(POST_QUERY, {variables: { 
+																				writer: account,
+																				reader: '',
+																				get_sketch: searchType[0],
+																				get_non_sketch: searchType[1],
+																				keyword: tags,
+																				uuid: curUuid
+																			}});
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
 
@@ -52,38 +64,48 @@ function App() {
 		let saveDate = time.getFullYear() + '/' + (time.getMonth() + 1) + '/' + time.getDate()
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate + ' ' + saveTime
-		//console.log(jsonRawData, '    data type: ', typeof jsonRawData)
-		//console.log(tagList)
-		//console.log(dateTime)
-		//console.log(published)
+		let a = [1,2]
+		console.log(jsonRawData, '    data type: ', typeof jsonRawData)
+		console.log(account, '    data type: ', typeof account)
+		console.log(tagList, '    data type: ', typeof tagList)
+		console.log(dateTime, '    data type: ', typeof dateTime)
+		console.log(!published, '    data type: ', typeof !published)
 		console.log(newPost)
 		if(newPost){
 			console.log("add post")
-			// let postId = await addPost({
-			// 	variables: {
-			// 		content: jsonRawData,
-			// 		writer: account,
-			// 		tags: [''],
-			// 		date: dateTime,
-			// 		is_sketch: true
-			// 	}
-			// })
-			// console.log(postId)
+			let postId = await addPost({
+				variables: {
+					content: jsonRawData,
+					writer: account,
+					tags: [''],
+					date: dateTime,
+					is_sketch: !published
+				}
+			})
+			console.log(postId.data.addPost)
+			setCurUuid(postId.data.addPost)
 		}
 		else{
 			console.log("update post")
-			// updatePost({
-			// 	variables: {
-			// 		uuid: ,
-			// 		content: jsonRawData,
-			// 		tags: tagList,
-			// 		date: dateTime,
-			// 		is_sketch: ,
-			// 	}
-			// })
+			console.log(posts)
+			updatePost({
+				variables: {
+					uuid: curUuid,
+					content: jsonRawData,
+					tags: tagList,
+					date: dateTime,
+					is_sketch: !published,
+				}
+			})
 		}
 		setNewPost(false)
 	}
+
+	useEffect(
+		() => {
+			rePost()
+		}
+	, [account, searchType, tags, curUuid])
 	
 	
 	return(

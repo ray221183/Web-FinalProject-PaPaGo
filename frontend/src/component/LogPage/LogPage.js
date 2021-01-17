@@ -6,6 +6,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 function LogPage(prop){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
+    const [nickName, setNickName] = useState('');
     const [account, setAccount] = useState('');
     const [password, setPassWord] = useState('');
     const [pwCheck, setPWCheck] = useState('');
@@ -27,40 +28,37 @@ function LogPage(prop){
             <div className = "LogPage-topbanner">
                 <span id = "b1"></span>
                 <span id = "b2">{(prop.loginLogup === 2) ? "建立您的帳戶" : "歡迎回來"}</span>
-                <span id = "b3" onClick={() => prop.setLoginLogup(0)}>×</span>
+                <span id = "b3" onClick={() => {reset(); prop.setLoginLogup(0)}}>×</span>
             </div>
         )
     }
     const changeFirstName = (e) =>  setFirstName(e.target.value)
     const changeLastName = (e) => setLastName(e.target.value)
+    const changeNickName = (e) => setNickName(e.target.value)
     const changeAccount = (e) => setAccount(e.target.value)
     const changePassword = (e) => setPassWord(e.target.value)
     const changePWCheck = (e) => setPWCheck(e.target.value) 
-    const changePage = (state) => {
+    const reset = () => {
         setFirstName('')
         setLastName('')
+        setNickName('')
         setAccount('')
         setPassWord('')
         setPWCheck('') 
         setErrorType(0)
+    }
+    const changePage = (state) => {
+        reset()
         prop.setLoginLogup(state)
     }
     const handleLogin = async () => {
         if(account==='' || password === '') setErrorType(2)
         else{
-            console.log(account, password)
-            await reUser()
-            console.log(user)
             if(user.user.valid){
                 console.log("in")
-                setErrorType(0)
                 prop.setUsername([user.user.first_name, user.user.last_name])
                 prop.setAccount(user.user.account)
-                setFirstName('')
-                setLastName('')
-                setAccount('')
-                setPassWord('')
-                setPWCheck('') 
+                reset()
                 prop.setLoginState(true)
                 prop.setLoginLogup(0)
             }
@@ -82,21 +80,15 @@ function LogPage(prop){
                 variables: {
                     first_name: firstName,
                     last_name: lastName,
+                    name: nickName,
                     account: account,
                     password: password
                 }
             })
-            console.log(res.data)
-            console.log(res.data.addUser)
             if(res.data.addUser === "register success."){
-                setErrorType(0)
                 prop.setUsername([firstName, lastName])
                 prop.setAccount(account)
-                setFirstName('')
-                setLastName('')
-                setAccount('')
-                setPassWord('')
-                setPWCheck('') 
+                reset()
                 prop.setLoginState(true)
                 prop.setLoginLogup(0)
             }
@@ -124,6 +116,10 @@ function LogPage(prop){
         )
     }
 
+    useEffect(() => {
+        reUser()
+    }, [account, password])
+
     return(
         <div className = {logPageStyle}>
             <div className = "LogInterface" style={logInterfaceSize}>
@@ -141,6 +137,9 @@ function LogPage(prop){
                                         <div className="a1">
                                             <input value={lastName} placeholder="姓氏" onChange={changeLastName} />
                                         </div>
+                                    </div>
+                                    <div className="a1">
+                                        <input value={nickName} placeholder="暱稱" onChange={changeNickName}/>
                                     </div>
                                     <div className="a1">
                                         <input value={account} placeholder="帳號" onChange={changeAccount}/>
@@ -162,9 +161,9 @@ function LogPage(prop){
                                 </div>
                             </div>
                         </div>
-                        <div className = "LogPage-email-login">
+                        {/* <div className = "LogPage-email-login">
                             
-                        </div>
+                        </div> */}
                     </div>
                     :
                     <div className="LogPage-log-part">
@@ -188,9 +187,9 @@ function LogPage(prop){
                                 </div>
                             </div>
                         </div>
-                        <div className = "LogPage-email-login">
+                        {/* <div className = "LogPage-email-login">
                             
-                        </div>
+                        </div> */}
                     </div>
                 }
                 <Footer />

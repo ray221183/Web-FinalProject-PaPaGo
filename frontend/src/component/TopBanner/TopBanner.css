@@ -101,10 +101,7 @@
 .Settings-icon:hover{
 	cursor: pointer;
 }
-[aria-expanded="false"] .Menu{
-	display: none;
-}
-[aria-expanded="true"] .Menu{
+.Menu{
 	position: absolute;
 	padding: 0.5vh 0vh 0.5vh 0vh;
 	top: 6vh;
@@ -120,6 +117,17 @@
 	border-radius: 1.5vh;
 	background-color: rgb(255, 255, 255);
 	box-shadow: 0vh 0vh 1vh -0.4vh rgba(90, 90, 90, 0.795);
+	animation: slide-in 0.2s ease-out forwards;
+}
+@keyframes slide-in{
+	0%{
+		transform: translateY(20%);
+		opacity: 0;
+	}
+	100%{
+		transform: translateY(0);
+		opacity: 1;
+	}
 }
 .d{
 	display: flex;
