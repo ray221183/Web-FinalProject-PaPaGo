@@ -50,6 +50,7 @@ query post(
       is_sketch
       uuid
       great_num
+      related_uuid
     }
   }
 }
