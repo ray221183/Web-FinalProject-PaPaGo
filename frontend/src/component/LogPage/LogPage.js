@@ -19,19 +19,10 @@ function LogPage(prop){
                          (errorType === 1) ? "*帳號或密碼輸入錯誤*":
                          "";
     const logInterfaceSize = {
-        height: (prop.loginLogup === 2) ? "65vh" : "50vh",
-        width: (prop.loginLogup === 2) ? "40%" : "40%",
+        height: (prop.loginLogup === 2) ? "545px" : "380px",
+        width: (prop.loginLogup === 2) ? "570px" : "570px",
     }
     const logPageStyle = (prop.loginLogup === 0) ? "LogPage disable" : "LogPage";
-    const TopBanner = () => {
-        return(
-            <div className = "LogPage-topbanner">
-                <span id = "b1"></span>
-                <span id = "b2">{(prop.loginLogup === 2) ? "建立您的帳戶" : "歡迎回來"}</span>
-                <span id = "b3" onClick={() => {reset(); prop.setLoginLogup(0)}}>×</span>
-            </div>
-        )
-    }
     const changeFirstName = (e) =>  setFirstName(e.target.value)
     const changeLastName = (e) => setLastName(e.target.value)
     const changeNickName = (e) => setNickName(e.target.value)
@@ -54,6 +45,7 @@ function LogPage(prop){
     const handleLogin = async () => {
         if(account==='' || password === '') setErrorType(2)
         else{
+            console.log('user = ' + user);
             if(user.user.valid){
                 console.log("in")
                 prop.setUsername([user.user.first_name, user.user.last_name])
@@ -96,6 +88,18 @@ function LogPage(prop){
         }
         setPassWord('')
         setPWCheck('')
+    }
+    const TopBanner = () => {
+        return(
+            <div className = "LogPage-topbanner">
+                <div id="cross">
+                    <span id = "cross-button" onClick={() => {reset(); prop.setLoginLogup(0)}}>×</span>
+                </div>
+                <div id="topic">
+                    <span id = "topic-text">{(prop.loginLogup === 2) ? "建立您的帳戶" : "歡迎回來"}</span>
+                </div>
+            </div>
+        )
     }
     const Footer = () => {
         return(
