@@ -7,8 +7,8 @@ function LogPage(prop){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [nickName, setNickName] = useState('');
-    const [account, setAccount] = useState('');
-    const [password, setPassWord] = useState('');
+    const [account, setAccount] = useState('1');
+    const [password, setPassWord] = useState('1');
     const [pwCheck, setPWCheck] = useState('');
     const {data: user, refetch: reUser} = useQuery(USER_QUERY, {variables: {account: account, password: password}});
     const [addUser] = useMutation(ADD_USER);

@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { RichUtils } from 'draft-js';
+import { convertToRaw, convertFromRaw } from 'draft-js'
 import Editor from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
 import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
@@ -51,10 +53,6 @@ function EditorCore(prop){
     const [placeholder, setPlaceholder] = useState( "Tell your story" )
     var selection = editorState.getSelection();
 
-    useEffect(() => {
-
-    }, [])
-
     //side tool bar -- add
     const [curSelectBlock, setCurSelectBlock] = useState(null);
     const [sidePositionAdd, setSidePositionAdd] = useState([0, 0, 0]); // [offsetTop, offsetLeft,height]
@@ -69,6 +67,7 @@ function EditorCore(prop){
         left: `${sidePositionAdd[1] - 55}px`
     }
     const focus = () => {
+        console.log(1)
         element.current.focus();
     }
 
@@ -96,11 +95,30 @@ function EditorCore(prop){
         return () => {clearInterval(interval)}
     }, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
+    const click = () => {
+        console.log("in")
+        // let a = RichUtils.toggleBlockType(editorState, 'header-one')
+        // console.log("a: ", convertToRaw(a.getCurrentContent()))
+        // onChange1(a)
+    }
+
+    const onChange1 = (editorState) => {
+        console.log("test1: ", convertToRaw(editorState.getCurrentContent()))
+        // setEditorState(editorState)
+    }
+    const onChange = (editorState) => {
+        console.log("test: ", convertToRaw(editorState.getCurrentContent()))
+        setEditorState(editorState)
+    }
+    
+    // console.log(editorState.getCurrentContent())
     return(
+        <div>
         <div className="eidtor-content-part" onClick={() => {focus()}}>
+            {/* <div id="sd" onClick={click}>sjdijsijdi</div> */}
             <Editor
               editorState={editorState}
-              onChange={setEditorState}
+              onChange={onChange}
               placeholder={placeholder}
               plugins={plugins}
               ref={element}
@@ -156,6 +174,7 @@ function EditorCore(prop){
                     )
                 }
             </InlineBarTextStyle>
+        </div>
         </div>
     );
 }
