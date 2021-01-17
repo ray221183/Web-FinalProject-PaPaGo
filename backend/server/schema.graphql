@@ -33,7 +33,7 @@ input uuidInput {
 
 input findPostInput {
 	writer: String!
-	reader: String!
+	search_type: String!
 	get_sketch: Boolean!
 	get_non_sketch: Boolean!
 	keyword:    String!
@@ -45,11 +45,14 @@ input findGreatInput {
 }
 
 input postInput{
-	content:    String!
-	writer:     String!
-	tags:       [String]!
-	date:       String!
-	is_sketch:  Boolean!   
+	title:        String!
+	introduction: String!
+	content:      String!
+	writer:       String!
+	tags:         [String]!
+	date:         String!
+	is_sketch:    Boolean!
+	related_uuid: String   
 }
 
 input greatOfuserInput{
@@ -58,6 +61,8 @@ input greatOfuserInput{
 
 input updatePostInput{
 	uuid:    String!
+	title:   String!
+	introduction: String!
 	content: String!
 	tags:    [String]!
 	date:    String!
@@ -71,6 +76,8 @@ input updateGreatInput{
 }
 
 type post{
+	title:      String!
+	introduction: String!
 	content:    String!
 	tags:       [String]!
 	name:       String!
@@ -79,6 +86,7 @@ type post{
 	is_sketch:  Boolean!
 	uuid:       String!
 	great_num:  Int!
+	related_uuid: String!
 }
 
 
@@ -87,6 +95,8 @@ type GreatOfuserOutput {
 }
 
 type updatePostOutput{
+	title:      String!
+	introduction: String!
 	content:    String!
 	tags:       [String]!
 	name:       String!
@@ -94,6 +104,7 @@ type updatePostOutput{
 	writer:     String!
 	is_sketch:  Boolean!
 	uuid:       String!
+	related_uuid: String!
 }
 
 type user_name {

@@ -20,6 +20,8 @@ const USER_QUERY = gql`
 
 const POST_QUERY = gql`
 query post(
+	$title: String!
+	$introduction: String!
 	$writer: String!
 	$reader: String!
 	$get_sketch: Boolean!
@@ -38,6 +40,8 @@ query post(
     }
   ) {
     posts{
+      title: $title
+      introduction:$introduction
       content
       name
       tags

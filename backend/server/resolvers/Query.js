@@ -91,13 +91,16 @@ const Query = {
 			let record = []
 			for(var i=0; i<result.length; ++i){
 				record.push({
+					introduction: result[i].introduction,
+					title:result[i].title,
 					content: result[i].content,
 					writer:  result[i].writer,
 					name: result[i].name,
 					date:    result[i].date,
 					tags:    result[i].tags,
 					is_sketch: result[i].is_sketch,
-					uuid:    result[i].uuid
+					uuid:    result[i].uuid,
+					related_uuid:result[i].related_uuid
 				})
 			}
 			for(var i=0; i<record.length;++i){
