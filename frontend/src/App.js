@@ -32,18 +32,23 @@ function App() {
 	const [prePublishScale, setPrePublishScale] = useState(0);
 	const [newPost, setNewPost] = useState(true);
 	const [postInfo, setPostInfo] = useState([]);
+
+	const [writer, setWriter] = useState('');
+	const [reader, setReader] = useState(''); // client | host
+	const [searchType, setSearchType] = useState([true, true]); // [get_sketch, get_non_sketch]
 	const [tags, setTags] = useState('');
 	const [curUuid, setCurUuid] = useState('');
-	const [searchType, setSearchType] = useState([true, true]); // [get_sketch, get_non_sketch]
 
-	const {data: posts, refetch: rePost} = useQuery(POST_QUERY, {variables: { 
-																				writer: account,
-																				reader: '',
-																				get_sketch: searchType[0],
-																				get_non_sketch: searchType[1],
-																				keyword: tags,
-																				uuid: curUuid
-																			}});
+	const {data: posts, refetch: rePost} = useQuery(
+		POST_QUERY, 
+		{variables: { 
+			writer: writer,
+			reader: reader,
+			get_sketch: searchType[0],
+			get_non_sketch: searchType[1],
+			keyword: tags,
+			uuid: curUuid
+		}});
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
 
@@ -56,6 +61,16 @@ function App() {
 		if( yPosition <= picHeight - topBannerHeight) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
+	const searchPost = (keyword, get_sketch, get_non_sketch, uuid, writer, reader) => {
+		console.log(keyword, get_sketch, get_non_sketch, uuid, writer, reader)
+		setWriter(writer)
+		setReader(reader)
+		setSearchType([get_sketch, get_non_sketch])
+		setTags(keyword)
+		setCurUuid(uuid)
+		console.log("search")
+	}
+	console.log(posts)
 	const savefile = async (editorState, tags, published) => {
         const contentState = editorState.getCurrentContent()
 		const jsonRawData = JSON.stringify(convertToRaw(contentState))
@@ -105,7 +120,7 @@ function App() {
 		() => {
 			rePost()
 		}
-	, [account, searchType, tags, curUuid])
+	, [writer, reader, searchType, tags, curUuid])
 	
 	
 	return(
@@ -134,6 +149,7 @@ function App() {
 					username={username}
 					account={account}
 					setNewPost={setNewPost}
+					searchPost={searchPost}
 				/>
 			</div>
 			<Switch>

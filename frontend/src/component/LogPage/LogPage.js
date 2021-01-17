@@ -88,6 +88,12 @@ function LogPage(prop){
         setPassWord('')
         setPWCheck('')
     }
+    const handleKeyDownLogUp = (e) => {
+        if(e.keyCode === 13) handleLogup()
+    }
+    const handleKeyDownLogIn = (e) => {
+        if(e.keyCode === 13) handleLogin()
+    }
     const TopBanner = () => {
         return(
             <div className = "LogPage-topbanner">
@@ -135,23 +141,23 @@ function LogPage(prop){
                                 <div className="a3">
                                     <div className="a2">
                                         <div className="a1">
-                                            <input id="first-name" value={firstName} placeholder="名字" onChange={changeFirstName} />
+                                            <input id="first-name" value={firstName} placeholder="名字" onChange={changeFirstName} onKeyDown={handleKeyDownLogUp}/>
                                         </div>
                                         <div className="a1">
-                                            <input value={lastName} placeholder="姓氏" onChange={changeLastName} />
+                                            <input value={lastName} placeholder="姓氏" onChange={changeLastName} onKeyDown={handleKeyDownLogUp}/>
                                         </div>
                                     </div>
                                     <div className="a1">
-                                        <input value={nickName} placeholder="暱稱" onChange={changeNickName}/>
+                                        <input value={nickName} placeholder="暱稱" onChange={changeNickName} onKeyDown={handleKeyDownLogUp}/>
                                     </div>
                                     <div className="a1">
-                                        <input value={account} placeholder="帳號" onChange={changeAccount}/>
+                                        <input value={account} placeholder="帳號" onChange={changeAccount} onKeyDown={handleKeyDownLogUp}/>
                                     </div>
                                     <div className="a1">
-                                        <input value={password} placeholder="密碼" onChange={changePassword}/>
+                                        <input value={password} placeholder="密碼" onChange={changePassword} onKeyDown={handleKeyDownLogUp}/>
                                     </div>
                                     <div className="a1">
-                                        <input value={pwCheck} placeholder="請再輸入一次密碼" onChange={changePWCheck}/>
+                                        <input value={pwCheck} placeholder="請再輸入一次密碼" onChange={changePWCheck} onKeyDown={handleKeyDownLogUp}/>
                                     </div>
                                     <div className="error-message">
                                         <span>
@@ -174,10 +180,10 @@ function LogPage(prop){
                             <div className="a4">
                                 <div className="a3">
                                     <div className="a1">
-                                        <input value={account} placeholder="帳號" onChange={changeAccount} />
+                                        <input value={account} placeholder="帳號" onChange={changeAccount} onKeyDown={handleKeyDownLogIn}/>
                                     </div>
                                     <div className="a1">
-                                        <input value={password} placeholder="密碼" onChange={changePassword} />
+                                        <input value={password} placeholder="密碼" onChange={changePassword} onKeyDown={handleKeyDownLogIn}/>
                                     </div>
                                     <div className="error-message">
                                         <span>

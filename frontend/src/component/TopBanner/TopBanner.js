@@ -9,22 +9,19 @@ function TopBanner(prop){
 	const banner = useRef();
 	const curLocation = useLocation();
 	const [Menu, setMenu] = useState(false);
+	const [Search, setSearch] = useState(false);
+	const [keyWord, setKeyWord] =useState('');
 	const menuRef = useRef();
 	const menuStyle = {
 		visibility: (Menu) ? "visible" : "hidden"
 	}
-	
-	useEffect(
-		() => {
-			prop.scrollTop()
-		}, [curLocation.pathname]
-	)
-	useEffect(
-		() => {
-
-			prop.setTopBannerHeight(banner.current.offsetHeight)
-		}, []
-	)
+	const searchStyle = {
+		marginRight: (Search) ? "0px" : "-300px",
+		opacity: (Search) ? "1" : "0"
+	}
+	const changeKeyWord = (e) => {
+		setKeyWord(e.target.value)
+	}
 	const useOnClickOutside =  (ref, handler) => {
 		useEffect(
 		  () => {
@@ -48,13 +45,22 @@ function TopBanner(prop){
 		  [ref, handler]
 		);
 	}
-	useOnClickOutside(menuRef, () => {
-		setMenu(false)
-	})
-
 	const LogoId = (prop.scrollToTop && curLocation.pathname === "/") ? "logo1" : "logo2"
+	const SearchImg = (prop.scrollToTop && curLocation.pathname === "/") ? "search-icon-1" : "search-icon-2"
 	const expandMenu = () => {
 		setMenu(!Menu)
+	}
+	const handleKeyDown = (e) => {
+        if(e.keyCode === 13){
+			prop.searchPost(keyWord, false, true, '', '', 'client')
+        }
+    }
+	const expandSearch = () => {
+		if(keyWord !== ''){
+			setSearch(true)
+			prop.searchPost(keyWord, false, true, '', '', 'client')
+		}
+		else setSearch(!Search)
 	}
 	const Login = () => {
 		return(
@@ -113,6 +119,21 @@ function TopBanner(prop){
 		)
 	}
 
+	useEffect(
+		() => {
+			prop.scrollTop()
+		}, [curLocation.pathname]
+	)
+	useEffect(
+		() => {
+
+			prop.setTopBannerHeight(banner.current.offsetHeight)
+		}, []
+	)
+	useOnClickOutside(menuRef, () => {
+		setMenu(false)
+	})
+
     return(
 		<div>
 			<div className = { (prop.scrollToTop && curLocation.pathname === "/") ? "TopBanner" : "TopBanner TopBanner-not-top"} ref={banner}>
@@ -126,6 +147,10 @@ function TopBanner(prop){
 					</div>
 					<div id="b2"></div>
 					<div id="b3">
+						<div id="search">
+							<div id={SearchImg} onClick={expandSearch}></div>
+							<input id="search-input" value={keyWord} placeholder="Search PaPaGo" onChange={changeKeyWord} style={searchStyle} onKeyDown={handleKeyDown}/>
+						</div>
 						{ (prop.loginState) ? <Login /> : <Logout /> }
 					</div>
 			</div>
