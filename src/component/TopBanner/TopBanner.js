@@ -52,13 +52,13 @@ function TopBanner(prop){
 	}
 	const handleKeyDown = (e) => {
         if(e.keyCode === 13){
-			prop.searchPost(keyWord, false, true, '', '', 'client')
+			prop.searchPost([keyWord], false, true, '', '', '')
         }
     }
 	const expandSearch = () => {
 		if(keyWord !== ''){
 			setSearch(true)
-			prop.searchPost(keyWord, false, true, '', '', 'client')
+			prop.searchPost([keyWord], false, true, '', '', '')
 		}
 		else setSearch(!Search)
 	}

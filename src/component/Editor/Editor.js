@@ -1,16 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { convertFromRaw } from 'draft-js'
+import { EditorState } from 'draft-js'
 import EditorCore from './EditorCore'
 import './Editor.css'
 import './Publish.css'
 
 
 function Editor(prop){
+    const editorState = prop.editorState
+    const setEditorState = prop.setEditorState
+    const [title, setTitle] = useState('');
+    
     const [saved, setSaved] = useState(true);
     const [background, setBackground] = useState(true) // true: white background | false: dark background
     const changeScale = () => {
         console.log("prepare to publish")
         prop.setPrePublishScale(1)
     }
+    console.log("editor post", prop.curPostInfo)
     const changeBackground = () => setBackground(!background)
     const editorColor = (background) ? 'Editor-light' : 'Editor-dark'
     const editorBackgroundStyle = {
@@ -22,22 +29,45 @@ function Editor(prop){
     const saveColorStyle = {
         color: (background) ? 'rgb(172, 172, 172)' : 'rgb(255, 255, 255)'
     }
-
+    // autosave
     useEffect(() => {
         setSaved(false)
         const timer = setTimeout(() => {
             setSaved(true)
-            prop.savefile(prop.editorState, [], false)
+            if(prop.newPost) {
+                let blank_essay = EditorState.createEmpty()
+                prop.savefile('', '', blank_essay, [''], false) ///////////////////////
+            }
+            else prop.savefile(prop.curPostInfo.title, prop.curPostInfo.introduction, editorState, prop.curPostInfo.tags, !prop.curPostInfo.is_sketch) ///////////////////////
         }, 1500)
         return () => clearTimeout(timer)
-    }, [prop.editorState.getCurrentContent()])
+    }, [editorState.getCurrentContent()])
+
+    // initialize editor information
+    useEffect(() => {
+        console.log("initialize editor information", prop.curPostInfo)
+        if( typeof prop.curPostInfo !== "undefined" ){
+            console.log("set post : ", prop.curPostInfo)
+            if(prop.newPost){
+                console.log("new")
+                setEditorState(()=>EditorState.createEmpty())
+                setTitle('')
+            }
+            else{
+                console.log("existed")
+                setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(prop.curPostInfo.content))))
+                setTitle(prop.curPostInfo.title)
+            }
+        }
+    }, [prop.curPostInfo])
 
     // editor reset
     useEffect(() => {
         return () => {
-            prop.resetEditorState()
+            console.log("reset")
+            prop.setCurPostInfo([])
         }
-    }, []) 
+    }, [])
 
     return(
         <section className = {`Editor ${editorColor}`} style={editorBackgroundStyle}>
@@ -48,17 +78,17 @@ function Editor(prop){
                             
                         </div>
                     </div>
-                    <div className="publish" onClick={changeScale}>
+                    <div className="publish">
                         <span id="save-state" style={saveColorStyle}>
                             { (saved) ? 'saved' : 'saving...' }
                         </span>
-                        <span id="publish-button">
+                        <span id="publish-button" onClick={changeScale}>
                             Publish
                         </span>
                     </div>
                 </div>
                 <React.Fragment>
-                    <EditorCore editorState={prop.editorState} setEditorState={prop.setEditorState} background={background}/>
+                    <EditorCore editorState={editorState} setEditorState={setEditorState} background={background}/>
                 </React.Fragment>
             </div>
         </section>
@@ -66,11 +96,15 @@ function Editor(prop){
 }
 
 function PublishCheck(prop){
-    const elementParent = useRef();
-    const elementChild = useRef();
+    const editorState = prop.editorState
+    const [title, setTitle] = useState('');
+    const [introduction, setIntroduction] = useState('');
     const [curTag, setCurTag] = useState('');
     const [tags, setTags] = useState([]);
     const [tagId, setTagId] = useState(0);
+
+    const elementParent = useRef();
+    const elementChild = useRef();
     const scale = {
         transform: `scale(${prop.prePublishScale})`
     }
@@ -103,6 +137,7 @@ function PublishCheck(prop){
                         return(
                             <div key={item[1]} className="tag">
                                 <span>{item[0]}</span>
+
                                 <span className="delete-tag" onClick={() => removeTag(item[1])}>X</span>
                             </div>
                         )
@@ -111,6 +146,24 @@ function PublishCheck(prop){
             </div>
         )
     }
+    // initialize editor information
+    useEffect(() => {
+        if( prop.curPostInfo.length !== 0 ){
+            if( typeof prop.curPostInfo[0] !== "undefined" ){
+                console.log("set post : ", prop.curPostInfo)
+                if(prop.newPost){
+                    setTitle('')
+                    setIntroduction('')
+                    setTags([''])
+                }
+                else{
+                    setTitle(prop.curPostInfo.title)
+                    setIntroduction(prop.curPostInfo.introduction)
+                    setTags(prop.curPostInfo.tags)
+                }
+            }
+        }
+    }, [prop.curPostInfo])
     
     useEffect(() => {
         elementParent.current.addEventListener('click', (e) => {
@@ -140,7 +193,7 @@ function PublishCheck(prop){
                     <span className="explain">
                         輸入關鍵字，幫助讀者搜尋到你的文章
                     </span>
-                    <span className="publish-button" onClick={() => prop.savefile(prop.editorState, tags, true)}>
+                    <span className="publish-button" onClick={() => prop.savefile(title, introduction, editorState, tags, true)}>
                         Publish
                     </span>
                 </div>
