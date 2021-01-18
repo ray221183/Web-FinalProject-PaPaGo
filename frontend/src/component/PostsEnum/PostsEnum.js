@@ -22,7 +22,11 @@ function PostsEnum(props) {
 	}});*/
 	/*const lists = data.map((article) => (
         <div className="PEStories">
-			<button className="PEStoryTitle">article.title</button>
+        	<div className="PEAuthor">
+				<button className="PEStoryTitle">article.title</button>
+				<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+				<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>H author</h3>
+			</div>
 			<p className="PEStoryIntro">article.introduction</p>
 			<div className="PEDateAndTag">
 				<div className="PETag">#台中</div>
@@ -45,7 +49,11 @@ function PostsEnum(props) {
 			</div>
 			<hr id='PEhr' />
 			<div className="PEStories">
-				<button className="PEStoryTitle">Hakuna Matata</button>
+				<div className="PEAuthor">
+					<button className="PEStoryTitle">Hakuna Matata</button>
+					<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+					<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>A author</h3>
+				</div>
 				<p className="PEStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
 				<div className="PEDateAndTag">
 					<div className="PETag">#台中</div>
@@ -61,7 +69,11 @@ function PostsEnum(props) {
 				</div>
 			</div>
 			<div className="PEStories">
-				<button className="PEStoryTitle">Enter 2021</button>
+				<div className="PEAuthor">
+					<button className="PEStoryTitle">Enter 2021</button>
+					<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+					<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>H author</h3>
+				</div>
 				<p className="PEStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
 				<div className="PEDateAndTag">
 					<div className="PETag">#台南</div>
@@ -82,7 +94,11 @@ function PostsEnum(props) {
 			</div>
 			<hr id='PEhr' />
 			<div className="PEStories">
-				<button className="PEStoryTitle">Yeeeeeeeee</button>
+				<div className="PEAuthor">
+					<button className="PEStoryTitle">Yeeeeeeeeeeeeeeeeeeeeeeeee</button>
+					<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+					<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>Y author</h3>
+				</div>
 				<p className="PEStoryIntro">A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.A brief introduction to the story.</p>
 				<div className="PEDateAndTag">
 					<div className="PETag">#宜蘭</div>
@@ -98,7 +114,11 @@ function PostsEnum(props) {
 				</div>
 			</div>
 			<div className="PEStories">
-				<button className="PEStoryTitle">You are short</button>
+				<div className="PEAuthor">
+					<button className="PEStoryTitle">You are short!</button>
+					<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+					<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>T author</h3>
+				</div>
 				<p className="PEStoryIntro">A brief introduction to the story.</p>
 				<div className="PEDateAndTag">
 					<div className="PETag">#澎湖</div>
