@@ -84,6 +84,14 @@ function EditorCore(prop){
         console.log('focus')
         element.current.focus();
     }
+    const toggleBlockType = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onChange(RichUtils.toggleBlockType(editorState, e.target.title))
+    }
+    const onChange = (editorState) => {
+        setEditorState(editorState)
+    }
 
     // editor placeholder
     useEffect(() => {
@@ -109,16 +117,6 @@ function EditorCore(prop){
         return () => {clearInterval(interval)}
     }, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
-    const toggleBlockType = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onChange(RichUtils.toggleBlockType(editorState, e.target.title))
-    }
-
-    const onChange = (editorState) => {
-        setEditorState(editorState)
-    }
-    
     // console.log(editorState.getCurrentContent())
     return(
         <div>

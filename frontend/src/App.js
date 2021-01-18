@@ -74,6 +74,10 @@ function App() {
 		console.log("search")
 	}
 
+	const resetEditorState = () => {
+		setEditorState(()=>EditorState.createEmpty())
+	}
+
 	const savefile = async (editorState, tags, published) => {
         const contentState = editorState.getCurrentContent()
 		const jsonRawData = JSON.stringify(convertToRaw(contentState))
@@ -174,6 +178,7 @@ function App() {
 						setEditorState={setEditorState}
 						setPrePublishScale={setPrePublishScale}
 						savefile={savefile}
+						resetEditorState={resetEditorState}
 					/>)} 
 				/>
 				<Route path="/personalpage" render={() => (
