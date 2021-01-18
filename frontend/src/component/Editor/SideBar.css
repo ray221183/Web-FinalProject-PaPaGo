@@ -188,9 +188,11 @@
 	border: 1px solid rgb(133, 133, 133);
 }
 #header-one-dark{
-	height: 30px;
-	width: 30px;
 	background-position: center;
 	background-repeat:no-repeat;
 	background-image: url('../../picture/others/H1_dark.png');
+	border: 1px solid blue;
+}
+#header-two-dark{
+
 }

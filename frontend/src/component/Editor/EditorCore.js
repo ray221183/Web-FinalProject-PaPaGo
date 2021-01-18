@@ -136,12 +136,12 @@ function EditorCore(prop){
                 <div className={sideBlock}></div>
                 <div className="roll-down-region">
                     <div className="side-bar-blocktype" style={sideBlockMovement}>
-                        <div className="blocktype-button" id="header-one-dark" title="header-one" onMouseDown={toggleBlockType}>i</div>
-                        <div className="blocktype-button" id="" title="header-two" onMouseDown={toggleBlockType}>i</div>
-                        <div className="blocktype-button" id="" title="header-three" onMouseDown={toggleBlockType}>i</div>
-                        <div className="blocktype-button" id="" title="unordered-list-item" onMouseDown={toggleBlockType}>i</div>
-                        <div className="blocktype-button" id="" title="ordered-list-item" onMouseDown={toggleBlockType}>i</div>
-                        <div className="blocktype-button" id="" title="blockquote" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="header-one-dark" title="header-one" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id="" title="header-two" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id="" title="header-three" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id="" title="unordered-list-item" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id="" title="ordered-list-item" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id="" title="blockquote" onMouseDown={toggleBlockType}></div>
                     </div>
                 </div>
             </div>

@@ -9,16 +9,16 @@ import {IconContext} from 'react-icons';
 function PostsEnum(props) {
 	let { type } = props.match.params;
 	console.log('type = ' + type);
-	const {data: posts, refetch: rePost} = useQuery(
-		POST_QUERY, 
-		{variables: { 
-			writer: writer,
-			reader: reader,
-			get_sketch: searchType[0],
-			get_non_sketch: searchType[1],
-			keyword: tags,
-			uuid: curUuid
-	}});
+	// const {data: posts, refetch: rePost} = useQuery(
+	// 	POST_QUERY, 
+	// 	{variables: { 
+	// 		writer: writer,
+	// 		reader: reader,
+	// 		get_sketch: searchType[0],
+	// 		get_non_sketch: searchType[1],
+	// 		keyword: tags,
+	// 		uuid: curUuid
+	// }});
 	return (
 		<div className="PostsEnum">
 			<div className="Topic">
