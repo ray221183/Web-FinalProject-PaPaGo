@@ -66,7 +66,7 @@ function PostsEnum(props) {
 											}
 										)
 									}
-									<button className="PEReadmore">Read more...</button>
+									<Link to="/postsenum/" + {type} + {topics.idx}><button className="PEReadmore">Read more...</button></Link>
 								</div>
 							)
 						}
