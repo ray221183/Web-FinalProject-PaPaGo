@@ -37,6 +37,15 @@ const Mutation = {
 		return temp.uuid
 	},
 	async deletePost(parent, args, {db}, info){
+		let temp_post = await Post.find({"uuid":args.data.uuid})
+		temp_post = temp_post[0]
+		if((temp_post.related_uuid !== "") && (!temp_post.is_sketch)){
+			await Post.updateOne({"uuid":temp_post.related_uuid}, {
+				$set:{
+					"related_uuid":""
+				}
+			})
+		}
 		await Post.deleteMany({"uuid": args.data.uuid})
 		return "delete complete"
 	},
