@@ -100,16 +100,6 @@ function EditorCore(prop){
     const onChange = (editorState) => {
         setEditorState(editorState)
     }
-    const readURL = (input) => {
-        console.log(input)
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.readAsDataURL(input.files[0]); // convert to base64 string
-          reader.onload = function(e) {
-            console.log(reader.result);
-          }
-        }
-    }
 
     // editor placeholder
     useEffect(() => {
@@ -137,10 +127,23 @@ function EditorCore(prop){
         return () => {clearInterval(interval)}
     }, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
+
+    const readURL = (e) => {
+        console.log(e.target)
+        if (e.target.files && e.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0]); // convert to base64 string
+            console.log('to onload')
+            reader.onload = function(e) {
+                console.log('onload')
+                console.log(reader.result);
+            }
+        }
+    }
     // console.log(editorState.getCurrentContent())
     return(
         <div>
-            <input type="file" onChange={() => readURL(this)}/>
+            <input type="file" onChange={(e) => readURL(e)}/>
             <div className="import-img"></div>
             <div className="eidtor-content-part" onClick={() => {focus()}}>
                 <Editor
