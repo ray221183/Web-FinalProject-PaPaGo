@@ -177,12 +177,34 @@ const Query = {
 			else{
 				trending_detect.push(false)
 			}
-			let content_filter_function = []
+			/*let content_filter_function = []
 			let tag_filter_function = []
 			let name_filter_function = []
 			let title_filter_function = []
-			let introduction_filter_function = []
+			let introduction_filter_function = []*/
+			let filter_list = []
 			for(var i=0; i<key_words.length;++i){
+				let sub_filter = []
+				sub_filter.push({
+					"content":{"$regex":key_words[i]}
+				})
+				sub_filter.push({
+					"name":{"$regex":key_words[i]}
+				})
+				sub_filter.push({
+					"title":{"$regex":key_words[i]}
+				})
+				sub_filter.push({
+					"introduction":{"$regex":key_words[i]}
+				})
+				sub_filter.push({
+					"tags":{"$elemMatch":  { "$eq":key_words[i] } }
+				})
+				sub_filter = {$or:sub_filter}
+				filter_list.push(sub_filter)
+			}
+			key_record.push(filter_list)
+			/*for(var i=0; i<key_words.length;++i){
 				content_filter_function.push({
 					"content":{"$regex":key_words[i]}
 				})
@@ -212,9 +234,9 @@ const Query = {
 				})
 			}
 			tag_filter_function = {$and:tag_filter_function}
-			key_record.push([title_filter_function,introduction_filter_function,content_filter_function,tag_filter_function,name_filter_function])			
+			key_record.push([title_filter_function,introduction_filter_function,content_filter_function,tag_filter_function,name_filter_function])*/			
 		}
-		console.log(key_record.length)
+		console.log(key_record)
 		for(var i=0; i<key_record.length;++i){
 			let result = []
 			if(args.data.uuid !== "" && args.data.uuid){
@@ -225,20 +247,21 @@ const Query = {
 				if(args.data.writer===""){
 					if(have_sketch && have_non_sketch){
 						let temp = await Post.find({
-													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+													$and: key_record[i]
 												})
 						result = temp
 					}
 					else if(have_sketch && !have_non_sketch){
-						result = await Post.find({"is_sketch":true,
-													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+						let temp = await Post.find({"is_sketch":true,
+													$and: key_record[i]
 												})
 						result = temp
 					}
 					else if(!have_sketch && have_non_sketch){
 						let temp = await Post.find({"is_sketch":false,
-													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+													$and: key_record[i]
 												})
+						console.log("result",temp)
 						result = temp
 					}
 					else{
@@ -249,19 +272,19 @@ const Query = {
 				else{
 					if(have_sketch && have_non_sketch){
 						let temp = await Post.find({"writer":args.data.writer, 
-													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+													$and: key_record[i]
 												})
 						result = temp
 					}
 					else if(have_sketch && !have_non_sketch){
 						let temp = await Post.find({"writer":args.data.writer, "is_sketch":true,
-													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+													$and: key_record[i]
 												})
 						result = temp
 					}
 					else if(!have_sketch && have_non_sketch){
 						let temp = await Post.find({"writer":args.data.writer, "is_sketch":false,
-													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+													$and: key_record[i]
 												})
 						result = temp
 					}
