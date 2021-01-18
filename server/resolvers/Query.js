@@ -160,6 +160,7 @@ const Query = {
 		let trending_detect = []
 		console.log(key_word_list.length)
 		if((args.data.search_type === 'get pair') && (args.data.writer !== "")){
+			console.log("search type")
 			let sketch_temp = await Post.find({
 				"writer":args.data.writer,"is_sketch":true
 			})
@@ -253,8 +254,13 @@ const Query = {
 		console.log(key_record)
 		for(var i=0; i<key_record.length;++i){
 			let result = []
-			if(args.data.uuid !== "" && args.data.uuid){
-				let temp = await Post.find({"uuid":args.data.uuid})
+			if(args.data.uuid !== ""){
+				console.log("uuid!!!!!!!",args.data.uuid)
+				let temp = await Post.find({"uuid":args.data.uuid}, (err, res) => {
+					if(err) console.log(err)
+					console.log("res", res)
+				})
+				console.log("result!!!!!!!!!",temp)
 				result = temp
 			}
 			else{
@@ -275,7 +281,6 @@ const Query = {
 						let temp = await Post.find({"is_sketch":false,
 													$and: key_record[i]
 												})
-						console.log("result",temp)
 						result = temp
 					}
 					else{
