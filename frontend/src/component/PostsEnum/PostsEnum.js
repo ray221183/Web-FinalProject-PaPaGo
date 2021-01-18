@@ -9,8 +9,9 @@ import {IconContext} from 'react-icons';
 function PostsEnum(props) {
 	let { type } = props.match.params;
 	console.log('type = ' + type);
+	const cities = ["台北", "桃園", "新竹", "台中", "高雄", "台南", "宜蘭", "台東", "花蓮", "澎湖", "綠島", "嘉義"];
+	console.log(cities.includes(type));
 
-	//const [loginLogup, setLoginLogup] = useState(0);
 	/*const { loading, error, data } = useQuery(POST_QUERY, 
 		{variables: { 
 			writer: '',
@@ -20,27 +21,30 @@ function PostsEnum(props) {
 			keyword: type,
 			uuid: ''
 	}});*/
+	/*const tags = data.tags.map((tag) => (
+		return <div className="PETag">{tag}</div>;
+	))*/
 	/*const lists = data.map((article) => (
-        <div className="PEStories">
-        	<div className="PEAuthor">
-				<button className="PEStoryTitle">article.title</button>
-				<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-				<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>H author</h3>
-			</div>
-			<p className="PEStoryIntro">article.introduction</p>
-			<div className="PEDateAndTag">
-				<div className="PETag">#台中</div>
-				<div className="PETag">#新社花海</div>
-				<div className="PETag">#一日遊一日遊一日遊一日遊一日遊</div>
-				<div className="PEDate">article.date</div>
-				<div>
-					<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-						<FaThumbsUp />
-						<span id="PELike">17400 Like</span>
-					</IconContext.Provider>
+		return(
+	        <div className="PEStories" key={article.uuid}>
+	        	<div className="PEAuthor">
+					<button className="PEStoryTitle">{article.title}</button>
+					<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
+					<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{article.name}</h3>
+				</div>
+				<p className="PEStoryIntro">article.introduction</p>
+				<div className="PEDateAndTag">
+					{tags}
+					<div className="PEDate">{article.date}</div>
+					<div>
+						<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
+							<FaThumbsUp />
+							<span id="PELike">{article.great_num} Like</span>
+						</IconContext.Provider>
+					</div>
 				</div>
 			</div>
-		</div>
+		)
     ));*/
 	return (
 		<div className="PostsEnum">
