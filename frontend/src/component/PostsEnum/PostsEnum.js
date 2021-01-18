@@ -37,7 +37,7 @@ function PostsEnum(props) {
 	useEffect(() => {
 		//console.log('data = ', data)
 		if(typeof(data) !== 'undefined'){
-			console.log('data = ', data)
+			console.log('data = ', data.multi_post.multiposts[1].posts)
 			setMultiposts(data.multi_post.multiposts);
 		}
 	}, [data])
@@ -66,7 +66,7 @@ function PostsEnum(props) {
 											}
 										)
 									}
-									<Link to="/postsenum/" + {type} + {topics.idx}><button className="PEReadmore">Read more...</button></Link>
+									<Link to={"/postsenum/" + `${type}` + "/" + `${topics[idx]}`}><button className="PEReadmore">Read more...</button></Link>
 								</div>
 							)
 						}

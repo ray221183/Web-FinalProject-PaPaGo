@@ -14,6 +14,7 @@ import TopBanner from './component/TopBanner/TopBanner'
 import Footer from './component/Footer/Footer'
 import LogPage from './component/LogPage/LogPage'
 import PostsEnum from './component/PostsEnum/PostsEnum'
+import TopicPostsEnum from './component/TopicPostsEnum/TopicPostsEnum'
 import PersonalPage from './component/PersonalPage/PersonalPage'
 import { PublishCheck, Editor} from './component/Editor/Editor'
 
@@ -175,6 +176,8 @@ function App() {
 					<Home 
 						setLoginLogup={setLoginLogup} 
 						setPicHeight={setPicHeight}/>)} 
+				/>
+				<Route path="/postsenum/:type/:topic" component={TopicPostsEnum} 
 				/>
 				<Route path="/postsenum/:type" component={PostsEnum} 
 				/>
