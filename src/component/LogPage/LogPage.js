@@ -142,10 +142,8 @@ function LogPage(prop){
                                 <div className="a3">
                                     <div className="a2">
                                         <div className="a1">
+                                            <input value={lastName} id="last-name" placeholder="姓氏" onChange={changeLastName} onKeyDown={handleKeyDownLogUp}/>
                                             <input id="first-name" value={firstName} placeholder="名字" onChange={changeFirstName} onKeyDown={handleKeyDownLogUp}/>
-                                        </div>
-                                        <div className="a1">
-                                            <input value={lastName} placeholder="姓氏" onChange={changeLastName} onKeyDown={handleKeyDownLogUp}/>
                                         </div>
                                     </div>
                                     <div className="a1">

@@ -92,6 +92,9 @@
     /* border: 1px solid black; */
 }
 .a1{
+    display: flex;
+    flex-direction: row;
+	align-items: center;
     width: 100%;
     margin: 5px 0px 5px 0px;
     /* border: 1px solid rgb(230, 84, 84); */
@@ -126,7 +129,11 @@
     border-radius: 5px;
 }
 #first-name{
-    margin-right: 1vh ;
+    width: 49%;
+    margin-left: 2%;
+}
+#last-name{
+    width: 49%;
 }
 .error-message{
     position: absolute !important;

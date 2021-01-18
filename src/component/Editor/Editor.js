@@ -4,6 +4,7 @@ import { EditorState } from 'draft-js'
 import EditorCore from './EditorCore'
 import './Editor.css'
 import './Publish.css'
+import { setServers } from 'dns'
 
 
 function Editor(prop){
@@ -109,6 +110,8 @@ function PublishCheck(prop){
         transform: `scale(${prop.prePublishScale})`
     }
 
+    const [step, setStep] = useState(0); // 0: 簡介 | 1: 關鍵字
+
     const changeScale = (e) => {
         prop.setPrePublishScale(0)
     }
@@ -119,6 +122,12 @@ function PublishCheck(prop){
             setTags(tagsTemp)
             setCurTag('')
         }
+    }
+    const changeTitle = (e) => {
+        setTitle(e.target.value)
+    }
+    const changeIntroduction = (e) => {
+        setIntroduction(e.target.value)
     }
     const changeInputTag = (e) => {
         setCurTag(e.target.value)
@@ -171,27 +180,49 @@ function PublishCheck(prop){
                 changeScale()
             }
         })
-    }, []);
+    }, [])
+
+    const aboutClass = (step == 0) ? "click choose-bar" : "choose-bar"
+    const tagClass = (step == 1) ? "click choose-bar" : "choose-bar"
+    const changeStep = (step) => {
+        setStep(step)
+    }
 
     return(
         <div className="prepublish-part" style={scale} ref={elementParent}>
             <div className="interface-part" ref={elementChild}>
                 <div className="top-banner">
-                    <div className="choose-bar" id="tag">
+                    <div className={aboutClass} id="about" onClick={() => changeStep(0)}>
+                        關於
+                    </div>
+                    <div className={tagClass} id="tag" onClick={() => changeStep(1)}>
                         關鍵字
                     </div>
                 </div>
-                <div className="content-part">
-                    <div className="tag-fill">
-                        <input placeholder="請輸入關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
-                    </div>
-                    <div className="tag-list">
-                        <DisplayTags />
-                    </div>
-                </div>
+                <React.Fragment>
+                    {
+                        (step == 0) ? 
+                        <div className="content-part">
+                            <div className="topic-fill">
+                                <input placeholder="請輸入標題" value={title} onChange={changeTitle}/>
+                            </div>
+                            <div className="introduction-fill">
+                                <textarea placeholder="請輸入最多100字的簡介" value={introduction} onChange={changeIntroduction} maxLength="100"></textarea>
+                            </div>
+                        </div> :
+                        <div className="content-part">
+                            <div className="tag-fill">
+                                <input placeholder="請輸入關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
+                            </div>
+                            <div className="tag-list">
+                                <DisplayTags />
+                            </div>
+                        </div>
+                    }
+                </React.Fragment>
                 <div className="footer">
                     <span className="explain">
-                        輸入關鍵字，幫助讀者搜尋到你的文章
+                        {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : "輸入關鍵字，幫助讀者搜尋到你的文章"}
                     </span>
                     <span className="publish-button" onClick={() => prop.savefile(title, introduction, editorState, tags, true)}>
                         Publish

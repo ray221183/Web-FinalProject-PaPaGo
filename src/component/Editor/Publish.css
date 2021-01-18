@@ -72,9 +72,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     height: 75%;
     width: 95%;
+    margin-top: 10px;
     border-bottom: 1px solid rgb(151, 151, 151);
 }
 .footer{
@@ -99,9 +100,50 @@
     cursor: pointer;
     color: rgb(32, 32, 32) !important;
 }
-#tag{
+.click{
     color: rgb(92, 161, 168);
     border-bottom: 2.5px solid  rgb(114, 216, 230);
+}
+.topic-fill{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    width: 100%;
+    /* border: 1px solid rgb(153, 25, 25); */
+}
+.topic-fill input{
+    padding-left: 10px;
+    height: 80%;
+    width: 90%;
+    border: none; /* <-- This thing here */
+    border:solid 1px #ccc;
+    font-size: 1.2em;
+    outline: none;
+    color: rgb(116, 116, 116);
+    border-radius: 0.7vh 0.7vh 0.7vh 0.7vh;
+}
+.introduction-fill{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    width: 100%;
+    /* border: 1px solid rgb(53, 25, 153); */
+}
+.introduction-fill textarea{
+    margin-top: -6px;
+    padding-left: 10px;
+    height: 90%;
+    width: 90%;
+    border: none; /* <-- This thing here */
+    border:solid 1px #ccc;
+    font-size: 1.2em;
+    outline: none;
+    color: rgb(116, 116, 116);
+    border-radius: 0.7vh 0.7vh 0.7vh 0.7vh;
 }
 .tag-fill{
     display: flex;
@@ -110,6 +152,7 @@
     justify-content: center;
     height: 20%;
     width: 100%;
+    
     /* border: 1px solid rgb(153, 25, 25); */
 }
 .tag-fill input{
@@ -120,6 +163,7 @@
     border:solid 1px #ccc;
     font-size: 1.2em;
     outline: none;
+    color: rgb(116, 116, 116);
     border-radius: 0.7vh 0.7vh 0.7vh 0.7vh;
 }
 .tag-list{
