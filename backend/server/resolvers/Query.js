@@ -35,25 +35,60 @@ const Query = {
 		let have_sketch = args.data.get_sketch
 		let have_non_sketch = args.data.get_non_sketch
 		let result = []
+		let key_words = args.data.keyword.split(" ")
+		let content_filter_function = []
+		let tag_filter_function = []
+		let name_filter_function = []
+		let title_filter_function = []
+		let introduction_filter_function = []
+		for(var i=0; i<key_words.length;++i){
+			content_filter_function.push({
+				"content":{"$regex":key_words[i]}
+			})
+		}
+		content_filter_function = {$and:content_filter_function}
+		for(var i=0; i<key_words.length;++i){
+			title_filter_function.push({
+				"title":{"$regex":key_words[i]}
+			})
+		}
+		title_filter_function = {$and:title_filter_function}
+		for(var i=0; i<key_words.length;++i){
+			introduction_filter_function.push({
+				"introduction":{"$regex":key_words[i]}
+			})
+		}
+		introduction_filter_function = {$and:introduction_filter_function}
+		for(var i=0; i<key_words.length;++i){
+			name_filter_function.push({
+				"name":{"$regex":key_words[i]}
+			})
+		}
+		name_filter_function = {$and:name_filter_function}
+		for(var i=0; i<key_words.length;++i){
+			tag_filter_function.push({
+				"tags":{"$elemMatch":  { "$eq":key_words[i] } }
+			})
+		}
+		tag_filter_function = {$and:tag_filter_function}
 		if(args.data.uuid !== "" && args.data.uuid){
-			console.log("qqqq")
 			result = await Post.find({"uuid":args.data.uuid})
 		}
 		else{
 			if(args.data.writer===""){
 				if(have_sketch && have_non_sketch){
 					result = await Post.find({
-												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+												$or: [ title_filter_function,introduction_filter_function,content_filter_function, tag_filter_function, name_filter_function ]
 											})
 				}
 				else if(have_sketch && !have_non_sketch){
 					result = await Post.find({"is_sketch":true,
-												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+												$or: [ title_filter_function,introduction_filter_function,content_filter_function, tag_filter_function, name_filter_function ]
 											})
 				}
 				else if(!have_sketch && have_non_sketch){
 					result = await Post.find({"is_sketch":false,
-												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+												$or: [ title_filter_function,introduction_filter_function,content_filter_function, tag_filter_function, name_filter_function ]
 											})
 				}
 				else{
@@ -63,17 +98,17 @@ const Query = {
 			else{
 				if(have_sketch && have_non_sketch){
 					result = await Post.find({"writer":args.data.writer, 
-												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+												$or: [ title_filter_function,introduction_filter_function,content_filter_function, tag_filter_function, name_filter_function ]
 											})
 				}
 				else if(have_sketch && !have_non_sketch){
 					result = await Post.find({"writer":args.data.writer, "is_sketch":true,
-												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+												$or: [ title_filter_function,introduction_filter_function,content_filter_function, tag_filter_function, name_filter_function ]
 											})
 				}
 				else if(!have_sketch && have_non_sketch){
 					result = await Post.find({"writer":args.data.writer, "is_sketch":false,
-												$or: [ { "content": {$regex:args.data.keyword} }, { "tags": {$elemMatch:{$regex:args.data.keyword},}}, {"name":{$regex:args.data.keyword}} ]
+												$or: [ title_filter_function,introduction_filter_function,content_filter_function, tag_filter_function, name_filter_function ]
 											})
 				}
 				else{
@@ -115,6 +150,139 @@ const Query = {
 				posts: record
 			}
 		}
+	},
+	async multi_post(parent, args, { db }, info){
+		let final_result = []
+		let have_sketch = args.data.get_sketch
+		let have_non_sketch = args.data.get_non_sketch
+		let key_word_list = args.data.keyword
+		let key_record = []
+		console.log(key_word_list.length)
+		for(var j=0;j<key_word_list.length;++j){
+			console.log(key_record.length)
+			let key_words = key_word_list[j].split(" ")
+			let content_filter_function = []
+			let tag_filter_function = []
+			let name_filter_function = []
+			let title_filter_function = []
+			let introduction_filter_function = []
+			for(var i=0; i<key_words.length;++i){
+				content_filter_function.push({
+					"content":{"$regex":key_words[i]}
+				})
+			}
+			content_filter_function = {$and:content_filter_function}
+			for(var i=0; i<key_words.length;++i){
+				name_filter_function.push({
+					"name":{"$regex":key_words[i]}
+				})
+			}
+			name_filter_function = {$and:name_filter_function}
+			for(var i=0; i<key_words.length;++i){
+				title_filter_function.push({
+					"title":{"$regex":key_words[i]}
+				})
+			}
+			title_filter_function = {$and:title_filter_function}
+			for(var i=0; i<key_words.length;++i){
+				introduction_filter_function.push({
+					"introduction":{"$regex":key_words[i]}
+				})
+			}
+			introduction_filter_function = {$and:introduction_filter_function}
+			for(var i=0; i<key_words.length;++i){
+				tag_filter_function.push({
+					"tags":{"$elemMatch":  { "$eq":key_words[i] } }
+				})
+			}
+			tag_filter_function = {$and:tag_filter_function}
+			key_record.push([title_filter_function,introduction_filter_function,content_filter_function,tag_filter_function,name_filter_function])			
+		}
+		console.log(key_record.length)
+		for(var i=0; i<key_record.length;++i){
+			let result = []
+			if(args.data.uuid !== "" && args.data.uuid){
+				let temp = await Post.find({"uuid":args.data.uuid})
+				result = temp
+			}
+			else{
+				if(args.data.writer===""){
+					if(have_sketch && have_non_sketch){
+						let temp = await Post.find({
+													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+												})
+						result = temp
+					}
+					else if(have_sketch && !have_non_sketch){
+						result = await Post.find({"is_sketch":true,
+													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+												})
+						result = temp
+					}
+					else if(!have_sketch && have_non_sketch){
+						let temp = await Post.find({"is_sketch":false,
+													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+												})
+						result = temp
+					}
+					else{
+						let temp = []
+						result = temp
+					}
+				}
+				else{
+					if(have_sketch && have_non_sketch){
+						let temp = await Post.find({"writer":args.data.writer, 
+													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+												})
+						result = temp
+					}
+					else if(have_sketch && !have_non_sketch){
+						let temp = await Post.find({"writer":args.data.writer, "is_sketch":true,
+													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+												})
+						result = temp
+					}
+					else if(!have_sketch && have_non_sketch){
+						let temp = await Post.find({"writer":args.data.writer, "is_sketch":false,
+													$or: [ key_record[i][0], key_record[i][1], key_record[i][2], key_record[i][3], key_record[i][4]]
+												})
+						result = temp
+					}
+					else{
+						let temp = []
+						result = temp
+					}
+				}
+			}
+			console.log(result)
+			let last_record = []
+			for(var j=0; j<result.length; ++j){
+				last_record.push({
+					introduction: result[j].introduction,
+					title:result[j].title,
+					content: result[j].content,
+					writer:  result[j].writer,
+					name: result[j].name,
+					date:    result[j].date,
+					tags:    result[j].tags,
+					is_sketch: result[j].is_sketch,
+					uuid:    result[j].uuid,
+					related_uuid:result[j].related_uuid
+				})
+			}
+			for(var j=0; j<last_record.length;++j){
+				let list = await Great.find({"uuid":last_record[j].uuid})
+				let num = list.length
+				last_record[j]['great_num'] = num
+			} 
+			console.log(last_record)
+			final_result.push({posts:last_record})
+		}
+		return {
+			multiposts:final_result
+		}
+
 	},
 	async greatOfpost(parent, args, { db }, info) {
 		let result = await Great.find({"uuid":args.data.uuid})

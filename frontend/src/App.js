@@ -82,45 +82,43 @@ function App() {
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate + ' ' + saveTime
 		let a = [1,2]
-		// console.log(jsonRawData, '    data type: ', typeof jsonRawData)
-		// console.log(account, '    data type: ', typeof account)
-		// console.log(tagList, '    data type: ', typeof tagList)
-		// console.log(dateTime, '    data type: ', typeof dateTime)
-		// console.log(!published, '    data type: ', typeof !published)
-		// console.log(newPost)
-		// if(newPost){
-		// 	console.log("add post")
-		// 	let postId = await addPost({
-		// 		variables: {
-		// 			title: 'title',
-		// 			introduction: 'introduction',
-		// 			related_uuid: '',
-		// 			content: jsonRawData,
-		// 			writer: account,
-		// 			tags: [''],
-		// 			date: dateTime,
-		// 			is_sketch: true
-		// 		}
-		// 	})
-		// 	console.log(postId.data.addPost)
-		// 	setCurUuid(postId.data.addPost)
-		// }
-		// else{
-		// 	console.log("update post")
-		// 	console.log(posts)
-		// 	updatePost({
-		// 		variables: {
-		// 			title: 'title',
-		// 			introduction: 'introduciton',
-		// 			uuid: curUuid,
-		// 			content: jsonRawData,
-		// 			tags: tagList,
-		// 			date: dateTime,
-		// 			is_sketch: true,
-		// 		}
-		// 	})
-		// }
-		// setNewPost(false)
+		console.log(jsonRawData, '    data type: ', typeof jsonRawData)
+		console.log(account, '    data type: ', typeof account)
+		console.log(tagList, '    data type: ', typeof tagList)
+		console.log(dateTime, '    data type: ', typeof dateTime)
+		console.log(!published, '    data type: ', typeof !published)
+		console.log(newPost)
+		if(newPost){
+			console.log("add post")
+			let postId = await addPost({
+				variables: {
+					title: '',
+					introduction: '',
+					content: jsonRawData,
+					writer: account,
+					tags: [''],
+					date: dateTime,
+					is_sketch: !published,
+					related_uuid: ''
+				}
+			})
+			console.log(postId.data.addPost)
+			setCurUuid(postId.data.addPost)
+		}
+		else{
+			console.log("update post")
+			console.log(posts)
+			updatePost({
+				variables: {
+					uuid: curUuid,
+					content: jsonRawData,
+					tags: tagList,
+					date: dateTime,
+					is_sketch: !published,
+				}
+			})
+		}
+		setNewPost(false)
 	}
 
 	useEffect(
@@ -165,8 +163,7 @@ function App() {
 						setLoginLogup={setLoginLogup} 
 						setPicHeight={setPicHeight}/>)} 
 				/>
-				<Route path="/postsenum" render={() => (
-					<PostsEnum />)} 
+				<Route path="/postsenum/:type" component={PostsEnum} 
 				/>
 				<Route path="/editor" render={() => (
 					<Editor 

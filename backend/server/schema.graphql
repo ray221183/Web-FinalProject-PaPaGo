@@ -1,6 +1,7 @@
 type Query {
 	user(data: UserInput!): UserOutput!
 	post(data: findPostInput!): postOutput!
+	multi_post(data: findMultiPostInput!): MultiPostOutput!
 	greatOfpost(data: findGreatInput!): findGreatOutput!
 	greatOfuser(data: greatOfuserInput!): GreatOfuserOutput!
 }
@@ -30,7 +31,14 @@ input uuidInput {
 	uuid: String!
 }
 
-
+input findMultiPostInput {
+	writer: String!
+	search_type: String!
+	get_sketch: Boolean!
+	get_non_sketch: Boolean!
+	keyword:    [String]!
+	uuid:       String
+}
 input findPostInput {
 	writer: String!
 	search_type: String!
@@ -117,6 +125,10 @@ type postOutput{
 
 type findGreatOutput {
 	users: [user_name]!
+}
+
+type MultiPostOutput {
+	multiposts: [postOutput]!
 }
 
 type UserOutput {

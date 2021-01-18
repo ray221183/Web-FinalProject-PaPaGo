@@ -1,9 +1,24 @@
 import './PostsEnum.css'
 import React, { useEffect, useRef, useState } from 'react'
+import { POST_QUERY, ADD_POST, UPDATE_POST } from '../../graphql'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
 
-function PostsEnum(){
+function PostsEnum(props) {
+	let { type } = props.match.params;
+	console.log('type = ' + type);
+	const {data: posts, refetch: rePost} = useQuery(
+		POST_QUERY, 
+		{variables: { 
+			writer: writer,
+			reader: reader,
+			get_sketch: searchType[0],
+			get_non_sketch: searchType[1],
+			keyword: tags,
+			uuid: curUuid
+	}});
 	return (
 		<div className="PostsEnum">
 			<div className="Topic">

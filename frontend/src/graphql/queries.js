@@ -91,4 +91,42 @@ query greatOfpost(
   }
 }
 `
-export {USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY}
+
+const MULTIPOST_QUERY = gql`
+query multi_post(
+	$writer: String!
+	$search_type: String!
+	$get_sketch: Boolean!
+	$get_non_sketch: Boolean!
+	$keyword:    [String]!
+	$uuid:       String
+) {
+  multi_post(
+    data: {
+      writer: $writer
+      search_type: $search_type
+      get_sketch: $get_sketch
+      get_non_sketch: $get_non_sketch
+      keyword: $keyword
+      uuid:  $uuid
+    }
+  ) {
+    multiposts{
+      posts{
+        title
+        introduction
+        content
+        name
+        writer
+        tags
+        date
+        uuid
+        great_num
+        is_sketch
+        related_uuid 
+      }
+    }
+  }
+}
+`
+export {USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY}
