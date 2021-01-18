@@ -157,10 +157,26 @@ const Query = {
 		let have_non_sketch = args.data.get_non_sketch
 		let key_word_list = args.data.keyword
 		let key_record = []
+		let trending_detect = []
 		console.log(key_word_list.length)
 		for(var j=0;j<key_word_list.length;++j){
 			console.log(key_record.length)
 			let key_words = key_word_list[j].split(" ")
+			if(key_words.includes('trending')){
+				let index = key_words.indexOf('trending')
+				console.log(key_words)
+				console.log("index",index)
+				key_words = key_words.slice(0,index).concat(key_words.slice(index+1))
+				console.log(key_words)
+				trending_detect.push(true)
+				if(key_words.length === 0){
+					key_words.push("")
+				}
+				console.log(key_words)
+			}
+			else{
+				trending_detect.push(false)
+			}
 			let content_filter_function = []
 			let tag_filter_function = []
 			let name_filter_function = []
@@ -277,6 +293,14 @@ const Query = {
 				last_record[j]['great_num'] = num
 			} 
 			console.log(last_record)
+			if(trending_detect[i]){
+				last_record.sort(function(a,b){
+					return b.great_num - a.great_num
+				})
+			}
+			if(last_record.length >= 20){
+				last_record = last_record.slice(0,20)
+			}
 			final_result.push({posts:last_record})
 		}
 		return {
