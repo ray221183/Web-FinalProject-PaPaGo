@@ -42,7 +42,16 @@ function Home(prop){
 	}
 	const [{ loading: loading_t, data: data_t }, { loading: loading_r, data: data_r }] = queryMultiple()*/
 	
-	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
+	const { loading: loading_t, error: error_t, data: data_t, refetch: refetch_t } = useQuery(MULTIPOST_QUERY, 
+		{variables: { 
+			writer: '',
+			search_type: '',
+			get_sketch: false,
+			get_non_sketch: true,
+			keyword: ['trending'],
+			uuid: ''
+	}});
+	const { loading: loading_r, error: error_r, data: data_r, refetch: refetch_r } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			search_type: '',
@@ -51,30 +60,32 @@ function Home(prop){
 			keyword: [''],
 			uuid: ''
 	}});
-	/*const { loading: loading_r, error: error_r, data: data_r } = useQuery(MULTIPOST_QUERY, 
-		{variables: { 
-			writer: '',
-			reader: '',
-			get_sketch: false,
-			get_non_sketch: true,
-			keyword: 'recommended',
-			uuid: ''
-	}});*/
 
 	useEffect(
 		()=>{
 			prop.setPicHeight(pic.current.offsetHeight)
-			refetch()
+			refetch_t()
+			refetch_r()
 		}, []
 	)
 
+	let only_date0, only_date1, only_date2, only_date3, only_date4, only_date5, only_date6, only_date7;
 	useEffect(() => {
-		if(typeof data !== 'undefined'){
-			console.log('data = ', data.multi_post.multiposts)
+		if(typeof data_t !== 'undefined'){
+			console.log('data_t = ', data_t.multi_post.multiposts[0].posts)
+			//only_date0 = data_t.multi_post.multiposts[0].posts[0].date.split(' ');
+			//only_date1 = data_t.multi_post.multiposts[0].posts[1].date.split(' ');
+			//only_date2 = data_t.multi_post.multiposts[0].posts[2].date.split(' ');
+			//only_date3 = data_t.multi_post.multiposts[0].posts[3].date.split(' ');
 		}
-	}, [data])
-	// console.log('data.multi_post = ' + JSON.stringify(data));
-	// console.log('refetch = ' + refetch);
+		if(typeof data_r !== 'undefined'){
+			console.log('data_r = ', data_r.multi_post.multiposts[0].posts[0].date.split(' '));
+			only_date4 = data_r.multi_post.multiposts[0].posts[0].date.split(' ');
+			only_date5 = data_r.multi_post.multiposts[0].posts[1].date.split(' ');
+			only_date6 = data_r.multi_post.multiposts[0].posts[2].date.split(' ');
+			only_date7 = data_r.multi_post.multiposts[0].posts[3].date.split(' ');
+		}
+	}, [data_t, data_r])
 
 	/*return(
 		<section className = "Home">
@@ -117,34 +128,34 @@ function Home(prop){
 				<div className='TrendingStories'>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_t.posts[0].title}</button>
+							<button className="HomeStoryTitle">{data_t.multi_post.multiposts[0].posts[0].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.posts[0].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.multi_post.multiposts[0].posts[0].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_t.posts[0].introduction}</p>
+						<p className="HomeStoryIntro">{data_t.multi_post.multiposts[0].posts[0].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_t.posts[0].date}</div>
+							<div className="HomeDate">{only_date0[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_t.posts[0].great_num} Like</span>
+									<span id="homeLike">{data_t.multi_post.multiposts[0].posts[0].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
 					</div>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_t.posts[1].title}</button>
+							<button className="HomeStoryTitle">{data_t.multi_post.multiposts[0].posts[1].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.posts[1].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.multi_post.multiposts[0].posts[1].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_t.posts[1].introduction}</p>
+						<p className="HomeStoryIntro">{data_t.multi_post.multiposts[0].posts[1].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_t.posts[1].date}</div>
+							<div className="HomeDate">{only_date1[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_t.posts[1].great_num} Like</span>
+									<span id="homeLike">{data_t.multi_post.multiposts[0].posts[1].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
@@ -153,34 +164,34 @@ function Home(prop){
 				<div className='TrendingStories'>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_t.posts[2].title}</button>
+							<button className="HomeStoryTitle">{data_t.multi_post.multiposts[0].posts[2].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.posts[2].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.multi_post.multiposts[0].posts[2].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_t.posts[2].introduction}</p>
+						<p className="HomeStoryIntro">{data_t.multi_post.multiposts[0].posts[2].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_t.posts[2].date}</div>
+							<div className="HomeDate">{only_date2[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_t.posts[2].great_num} Like</span>
+									<span id="homeLike">{data_t.multi_post.multiposts[0].posts[2].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
 					</div>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_t.posts[3].title}</button>
+							<button className="HomeStoryTitle">{data_t.multi_post.multiposts[0].posts[3].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.posts[3].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_t.multi_post.multiposts[0].posts[3].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_t.posts[3].introduction}</p>
+						<p className="HomeStoryIntro">{data_t.multi_post.multiposts[0].posts[3].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_t.posts[3].date}</div>
+							<div className="HomeDate">{only_date3[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_t.posts[3].great_num} Like</span>
+									<span id="homeLike">{data_t.multi_post.multiposts[0].posts[3].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
@@ -198,34 +209,34 @@ function Home(prop){
 				<div className='TrendingStories'>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_r.posts[0].title}</button>
+							<button className="HomeStoryTitle">{data_r.multi_post.multiposts[0].posts[0].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.posts[0].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.multi_post.multiposts[0].posts[0].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_r.posts[0].introduction}</p>
+						<p className="HomeStoryIntro">{data_r.multi_post.multiposts[0].posts[0].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_r.posts[0].date}</div>
+							<div className="HomeDate">{only_date4[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_r.posts[0].great_num} Like</span>
+									<span id="homeLike">{data_r.multi_post.multiposts[0].posts[0].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
 					</div>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_r.posts[1].title}</button>
+							<button className="HomeStoryTitle">{data_r.multi_post.multiposts[0].posts[1].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.posts[1].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.multi_post.multiposts[0].posts[1].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_r.posts[1].introduction}</p>
+						<p className="HomeStoryIntro">{data_r.multi_post.multiposts[0].posts[1].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_r.posts[1].date}</div>
+							<div className="HomeDate">{only_date5[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_r.posts[1].great_num} Like</span>
+									<span id="homeLike">{data_r.multi_post.multiposts[0].posts[1].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
@@ -234,34 +245,34 @@ function Home(prop){
 				<div className='TrendingStories'>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_r.posts[2].title}</button>
+							<button className="HomeStoryTitle">{data_r.multi_post.multiposts[0].posts[2].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.posts[2].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.multi_post.multiposts[0].posts[2].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_r.posts[2].introduction}</p>
+						<p className="HomeStoryIntro">{data_r.multi_post.multiposts[0].posts[2].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_r.posts[2].date}</div>
+							<div className="HomeDate">{only_date6[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_r.posts[2].great_num} Like</span>
+									<span id="homeLike">{data_r.multi_post.multiposts[0].posts[2].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
 					</div>
 					<div className="HomeStories">
 						<div className="HomeAuthor">
-							<button className="HomeStoryTitle">{data_r.posts[3].title}</button>
+							<button className="HomeStoryTitle">{data_r.multi_post.multiposts[0].posts[3].title}</button>
 							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.posts[3].name}</h3>
+							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{data_r.multi_post.multiposts[0].posts[3].name}</h3>
 						</div>
-						<p className="HomeStoryIntro">{data_r.posts[3].introduction}</p>
+						<p className="HomeStoryIntro">{data_r.multi_post.multiposts[0].posts[3].introduction}</p>
 						<div className="HomeDateAndTag">
-							<div className="HomeDate">{data_r.posts[3].date}</div>
+							<div className="HomeDate">{only_date7[0]}</div>
 							<div className="HomeLike">
 								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 									<FaThumbsUp />
-									<span id="homeLike">{data_r.posts[3].great_num} Like</span>
+									<span id="homeLike">{data_r.multi_post.multiposts[0].posts[3].great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
