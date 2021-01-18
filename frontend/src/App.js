@@ -161,8 +161,7 @@ function App() {
 						setLoginLogup={setLoginLogup} 
 						setPicHeight={setPicHeight}/>)} 
 				/>
-				<Route path="/postsenum" render={() => (
-					<PostsEnum />)} 
+				<Route path="/postsenum/:type" component={PostsEnum} 
 				/>
 				<Route path="/editor" render={() => (
 					<Editor 
