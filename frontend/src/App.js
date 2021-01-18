@@ -145,12 +145,17 @@ function App() {
 					setUsername={setUsername}
 					setAccount={setAccount}	
 				/>
-				<PublishCheck 
-					editorState={editorState}
-					prePublishScale={prePublishScale}
-					setPrePublishScale={setPrePublishScale}
-					savefile={savefile}
-				/>
+				<Switch>
+					<Route path="/editor" render={() => (
+							<PublishCheck 
+								editorState={editorState}
+								prePublishScale={prePublishScale}
+								setPrePublishScale={setPrePublishScale}
+								savefile={savefile}
+							/>
+						)}
+					/>
+				</Switch>
 				<TopBanner 
 					setLoginState={setLoginState} 
 					loginState={loginState} 
@@ -173,13 +178,14 @@ function App() {
 				<Route path="/postsenum/:type" component={PostsEnum} 
 				/>
 				<Route path="/editor" render={() => (
-					<Editor 
-						editorState={editorState}
-						setEditorState={setEditorState}
-						setPrePublishScale={setPrePublishScale}
-						savefile={savefile}
-						resetEditorState={resetEditorState}
-					/>)} 
+						<Editor 
+							editorState={editorState}
+							setEditorState={setEditorState}
+							setPrePublishScale={setPrePublishScale}
+							savefile={savefile}
+							resetEditorState={resetEditorState}
+						/>
+					)}
 				/>
 				<Route path="/personalpage" render={() => (
 					<PersonalPage />)} 
