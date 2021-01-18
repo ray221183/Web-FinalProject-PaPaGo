@@ -42,16 +42,16 @@ function Home(prop){
 	}
 	const [{ loading: loading_t, data: data_t }, { loading: loading_r, data: data_r }] = queryMultiple()*/
 	
-	const { loading: loading_t, error: error_t, data: data_t } = useQuery(MULTIPOST_QUERY, 
+	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
-			reader: '',
+			search_type: '',
 			get_sketch: false,
 			get_non_sketch: true,
 			keyword: 'trending',
 			uuid: ''
 	}});
-	const { loading: loading_r, error: error_r, data: data_r } = useQuery(MULTIPOST_QUERY, 
+	/*const { loading: loading_r, error: error_r, data: data_r } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			reader: '',
@@ -59,15 +59,17 @@ function Home(prop){
 			get_non_sketch: true,
 			keyword: 'recommended',
 			uuid: ''
-	}});
+	}});*/
 
 	useEffect(
 		()=>{
 			prop.setPicHeight(pic.current.offsetHeight)
+			refetch()
 		}, []
 	)
 
-	//console.log('data_t.posts[0] = ' + data_t.posts);
+	console.log('data.multi_post = ' + JSON.stringify(data));
+	console.log('refetch = ' + refetch);
 
 	/*return(
 		<section className = "Home">
@@ -264,6 +266,7 @@ function Home(prop){
 			</div>
 		</section>
 	)*/
+	
 	return(
 		<section className = "Home">
 			<div className = "Introduction">
