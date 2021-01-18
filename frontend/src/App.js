@@ -90,11 +90,14 @@ function App() {
 			console.log("add post")
 			let postId = await addPost({
 				variables: {
+					title: '',
+					introduction: '',
 					content: jsonRawData,
 					writer: account,
 					tags: [''],
 					date: dateTime,
-					is_sketch: !published
+					is_sketch: !published,
+					related_uuid: ''
 				}
 			})
 			console.log(postId.data.addPost)

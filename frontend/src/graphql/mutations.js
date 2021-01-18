@@ -28,7 +28,7 @@ mutation addPost(
 	$tags: [String]!
 	$date: String!
 	$is_sketch: Boolean!
-	$related_uuid: $String!
+	$related_uuid: String
   ) {
 	addPost(
 	  data: {
