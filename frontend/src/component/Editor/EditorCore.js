@@ -51,7 +51,14 @@ function EditorCore(prop){
 
     //tool bar style
     const [sideBlockOver, setSideBlockOver] = useState(false);
-    const sideBlock = (prop.background) ? "blocktype-icon-light" : "blocktype-icon-dark"
+    const sidrBlockBar = (prop.background) ? "side-bar-blocktype-light" : "side-bar-blocktype-dark"
+    const sideBlockIcon = (prop.background) ? "blocktype-icon-light" : "blocktype-icon-dark"
+    const headerOne = (prop.background) ? "header-one-light" : "header-one-dark"
+    const headerTwo = (prop.background) ? "header-two-light" : "header-two-dark"
+    const headerThree = (prop.background) ? "header-three-light" : "header-three-dark"
+    const unorderedList = (prop.background) ? "unordered-list--light" : "unordered-list-dark"
+    const orderedList = (prop.background) ? "ordered-list-light" : "ordered-list-dark"
+    const blockQuote = (prop.background) ? "blockquote-light" : "blockquote-dark"
     const focusStyle = {
         opacity:  (selection.getHasFocus()) ? "1" : "0"
     }
@@ -133,15 +140,15 @@ function EditorCore(prop){
                 }
             </div>
             <div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
-                <div className={sideBlock}></div>
+                <div className="side-bar-icon" id={sideBlockIcon}></div>
                 <div className="roll-down-region">
-                    <div className="side-bar-blocktype" style={sideBlockMovement}>
-                        <div className="blocktype-button" id="header-one-dark" title="header-one" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id="" title="header-two" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id="" title="header-three" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id="" title="unordered-list-item" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id="" title="ordered-list-item" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id="" title="blockquote" onMouseDown={toggleBlockType}></div>
+                    <div className="side-bar-blocktype" id={sidrBlockBar} style={sideBlockMovement}>
+                        <div className="blocktype-button" id={headerOne} title="header-one" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id={headerTwo} title="header-two" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id={headerThree} title="header-three" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id={unorderedList} title="unordered-list-item" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id={orderedList} title="ordered-list-item" onMouseDown={toggleBlockType}></div>
+                        <div className="blocktype-button" id={blockQuote} title="blockquote" onMouseDown={toggleBlockType}></div>
                     </div>
                 </div>
             </div>

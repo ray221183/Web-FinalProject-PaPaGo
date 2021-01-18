@@ -51,6 +51,7 @@ function App() {
 				uuid: '1'
 			}
 		});
+	console.log("error", error)
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
 
@@ -110,6 +111,8 @@ function App() {
 			console.log(posts)
 			updatePost({
 				variables: {
+					title: 'title',
+					introduction: 'introduction',
 					uuid: curUuid,
 					content: jsonRawData,
 					tags: tagList,
