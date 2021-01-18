@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import { graphqlExpress } from 'apollo-server-express';
-const myGraphQLSchema = await loadSchema('server/schema.graphql',{  // load from a single schema file
+const myGraphQLSchema = loadSchema('server/schema.graphql',{  // load from a single schema file
     loaders: [
         new GraphQLFileLoader()
     ]
