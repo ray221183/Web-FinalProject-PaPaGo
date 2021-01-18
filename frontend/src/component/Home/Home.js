@@ -94,7 +94,7 @@ function Home(prop){
 
 	useEffect(() => {
 		if(typeof data_t !== 'undefined'){
-			//console.log('data_t = ', data_t.multi_post.multiposts[0].posts)
+			console.log('data_t = ', data_t.multi_post.multiposts[0].posts)
 			setTrend_0_title(data_t.multi_post.multiposts[0].posts[0].title);
 			setTrend_0_author(data_t.multi_post.multiposts[0].posts[0].name);
 			setTrend_0_intro(data_t.multi_post.multiposts[0].posts[0].introduction);

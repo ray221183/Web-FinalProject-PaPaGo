@@ -29,8 +29,8 @@
 	margin-top: 0px;
 	margin-bottom: 5px;
 }
-.PEStories {
-	/*border: 2px solid red;*/
+/*.PEStories {
+	border: 2px solid red;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -50,7 +50,7 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	/*border: 2px solid blue;*/
+	border: 2px solid blue;
 	width: 800px;
 }
 .PEStoryTitle {
@@ -71,7 +71,7 @@
 	box-sizing: border-box;
 	text-align: left;
 	font-size: 15px;
-	/*border: 2px solid black;*/
+	border: 2px solid black;
 	margin: 0px;
 	width: 100%;
 	height: 70px;
@@ -80,7 +80,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	/*border: 2px solid green;*/
+	border: 2px solid green;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -92,7 +92,7 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	background-color: black;
-	/*border: 2px solid brown;*/
+	border: 2px solid brown;
 	color: white;
 	font-size: 15px;
 	padding: 5px;
@@ -102,7 +102,7 @@
 }
 .PEDate {
 	background-color: white;
-	/*border: 2px solid brown;*/
+	border: 2px solid brown;
 	color: black;
 	font-size: 15px;
 	padding: 5px;
@@ -112,7 +112,7 @@
 #PELike {
 	margin-left: 5px;
 	font-size: 15px;
-}
+}*/
 .PEReadmore {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
