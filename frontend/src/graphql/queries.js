@@ -19,39 +19,39 @@ const USER_QUERY = gql`
 `
 
 const POST_QUERY = gql`
-query post(
-	$writer: String!
-	$reader: String!
-	$get_sketch: Boolean!
-	$get_non_sketch: Boolean!
-  $keyword:    String! 
-  $uuid:     String
-) {
-  post(
-    data: {
-      writer:$writer
-      reader:$reader
-      get_sketch:$get_sketch
-      get_non_sketch:$get_non_sketch
-      keyword:$keyword
-      uuid:$uuid
-    }
+  query post(
+    $writer: String!
+    $search_type: String!
+    $get_sketch: Boolean!
+    $get_non_sketch: Boolean!
+    $keyword:    String! 
+    $uuid:     String
   ) {
-    posts{
-      title
-      introduction
-      content
-      name
-      tags
-      date
-      writer
-      is_sketch
-      uuid
-      great_num
-      related_uuid
+    post(
+      data: {
+        writer:$writer
+        search_type:$search_type
+        get_sketch:$get_sketch
+        get_non_sketch:$get_non_sketch
+        keyword:$keyword
+        uuid:$uuid
+      }
+    ) {
+      posts{
+        title
+        introduction
+        content
+        name
+        tags
+        date
+        writer
+        is_sketch
+        uuid
+        great_num
+        related_uuid
+      }
     }
   }
-}
 `
 
 const GREATOFPOST_QUERY = gql`

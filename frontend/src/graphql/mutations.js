@@ -33,13 +33,13 @@ mutation addPost(
 	addPost(
 	  data: {
 		title: $title
-		introduction:$introduction
+		introduction: $introduction
 		content: $content
 		writer: $writer
 		tags: $tags
 		date: $date
 		is_sketch: $is_sketch
-		related_uuid:$related_uuid
+		related_uuid: $related_uuid
 	  }
 	) 
   }

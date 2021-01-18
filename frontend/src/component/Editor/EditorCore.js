@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { RichUtils } from 'draft-js';
+import { convertToRaw, convertFromRaw } from 'draft-js'
 import Editor from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
 import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
@@ -33,15 +35,11 @@ const { SideToolbar: SideToolbarAddLight } = sideToolbarPluginAddLight;
 const sideToolbarPluginAddDark = createSideToolbarPlugin({ theme: themeSideBlockAdd(false) });
 const { SideToolbar: SideToolbarAddDark } = sideToolbarPluginAddDark;
 
-const sideToolbarPluginStyleLight = createSideToolbarPlugin({ theme: themeSideBlockStyle(true) });
-const { SideToolbar: SideToolbarStyleLight } = sideToolbarPluginStyleLight;
-const sideToolbarPluginStyleDark = createSideToolbarPlugin({ theme: themeSideBlockStyle(false) });
-const { SideToolbar: SideToolbarStyleDark } = sideToolbarPluginStyleDark;
 
 const inlineBarTextStyle = createInlineToolbarPlugin({ theme: themeInlineTextStyle });
 const { InlineToolbar: InlineBarTextStyle } = inlineBarTextStyle;
 
-const plugins = [sideToolbarPluginAddLight, sideToolbarPluginStyleLight, sideToolbarPluginAddDark, sideToolbarPluginStyleDark, inlineBarTextStyle];
+const plugins = [sideToolbarPluginAddLight, sideToolbarPluginAddDark, inlineBarTextStyle];
 
 function EditorCore(prop){
     //draft-js editor
@@ -51,9 +49,16 @@ function EditorCore(prop){
     const [placeholder, setPlaceholder] = useState( "Tell your story" )
     var selection = editorState.getSelection();
 
-    useEffect(() => {
-
-    }, [])
+    //tool bar style
+    const [sideBlockOver, setSideBlockOver] = useState(false);
+    const sideBlock = (prop.background) ? "blocktype-icon-light" : "blocktype-icon-dark"
+    const focusStyle = {
+        opacity:  (selection.getHasFocus()) ? "1" : "0"
+    }
+    const sideBlockMovement = {
+        transform: (sideBlockOver) ? "translateY(0)" : "translateY(-100%)",
+        opacity: (sideBlockOver) ? "1" : "0",
+    }
 
     //side tool bar -- add
     const [curSelectBlock, setCurSelectBlock] = useState(null);
@@ -69,6 +74,7 @@ function EditorCore(prop){
         left: `${sidePositionAdd[1] - 55}px`
     }
     const focus = () => {
+        console.log('focus')
         element.current.focus();
     }
 
@@ -96,11 +102,23 @@ function EditorCore(prop){
         return () => {clearInterval(interval)}
     }, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
+    const toggleBlockType = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onChange(RichUtils.toggleBlockType(editorState, e.target.title))
+    }
+
+    const onChange = (editorState) => {
+        setEditorState(editorState)
+    }
+    
+    // console.log(editorState.getCurrentContent())
     return(
+        <div>
         <div className="eidtor-content-part" onClick={() => {focus()}}>
             <Editor
               editorState={editorState}
-              onChange={setEditorState}
+              onChange={onChange}
               placeholder={placeholder}
               plugins={plugins}
               ref={element}
@@ -114,36 +132,18 @@ function EditorCore(prop){
                         </SideToolbarAddDark>
                 }
             </div>
-            <div className="side-tool-bar-style" style={sideStyleStyle}>
-                {
-                    (prop.background) ? 
-                    <SideToolbarStyleLight>
-                        {
-                            (externalProps) => (
-                                <div>
-                                    <HeadlineOneButton {...externalProps} />
-                                    <HeadlineTwoButton {...externalProps} />
-                                    <HeadlineThreeButton {...externalProps} />
-                                    <UnorderedListButton {...externalProps} />
-                                    <OrderedListButton {...externalProps} />
-                                    <BlockquoteButton {...externalProps} />
-                                </div>)
-                        }
-                    </SideToolbarStyleLight> :
-                    <SideToolbarStyleDark>
-                        {
-                            (externalProps) => (
-                                <div>
-                                    <HeadlineOneButton {...externalProps} />
-                                    <HeadlineTwoButton {...externalProps} />
-                                    <HeadlineThreeButton {...externalProps} />
-                                    <UnorderedListButton {...externalProps} />
-                                    <OrderedListButton {...externalProps} />
-                                    <BlockquoteButton {...externalProps} />
-                                </div>)
-                        }
-                    </SideToolbarStyleDark>
-                }
+            <div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
+                <div className={sideBlock}></div>
+                <div className="roll-down-region">
+                    <div className="side-bar-blocktype" style={sideBlockMovement}>
+                        <div className="blocktype-button" id="header-one-dark" title="header-one" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="header-two" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="header-three" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="unordered-list-item" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="ordered-list-item" onMouseDown={toggleBlockType}>i</div>
+                        <div className="blocktype-button" id="" title="blockquote" onMouseDown={toggleBlockType}>i</div>
+                    </div>
+                </div>
             </div>
             <InlineBarTextStyle>
                 {
@@ -156,6 +156,7 @@ function EditorCore(prop){
                     )
                 }
             </InlineBarTextStyle>
+        </div>
         </div>
     );
 }
