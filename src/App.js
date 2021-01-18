@@ -171,30 +171,32 @@ function App() {
 					searchPost={searchPost}
 				/>
 			</div>
-			<Switch>
-				<Route exact path="/" render={() => (
-					<Home 
-						setLoginLogup={setLoginLogup} 
-						setPicHeight={setPicHeight}/>)} 
-				/>
-				<Route path="/postsenum/:type/:topic" component={TopicPostsEnum} 
-				/>
-				<Route path="/postsenum/:type" component={PostsEnum} 
-				/>
-				<Route path="/editor" render={() => (
-						<Editor 
-							editorState={editorState}
-							setEditorState={setEditorState}
-							setPrePublishScale={setPrePublishScale}
-							savefile={savefile}
-							resetEditorState={resetEditorState}
-						/>
-					)}
-				/>
-				<Route path="/personalpage" render={() => (
-					<PersonalPage />)} 
-				/>
-			</Switch>
+			<div className="section">
+				<Switch>
+					<Route exact path="/" render={() => (
+						<Home 
+							setLoginLogup={setLoginLogup} 
+							setPicHeight={setPicHeight}/>)} 
+					/>
+					<Route path="/postsenum/:type/:topic" component={TopicPostsEnum} 
+					/>
+					<Route path="/postsenum/:type" component={PostsEnum} 
+					/>
+					<Route path="/editor" render={() => (
+							<Editor 
+								editorState={editorState}
+								setEditorState={setEditorState}
+								setPrePublishScale={setPrePublishScale}
+								savefile={savefile}
+								resetEditorState={resetEditorState}
+							/>
+						)}
+					/>
+					<Route path="/personalpage" render={() => (
+						<PersonalPage />)} 
+					/>
+				</Switch>
+			</div>
 			<Footer />
 		</div>
 	);
