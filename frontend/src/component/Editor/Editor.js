@@ -32,6 +32,13 @@ function Editor(prop){
         return () => clearTimeout(timer)
     }, [prop.editorState.getCurrentContent()])
 
+    // editor reset
+    useEffect(() => {
+        return () => {
+            prop.resetEditorState()
+        }
+    }, []) 
+
     return(
         <section className = {`Editor ${editorColor}`} style={editorBackgroundStyle}>
             <div className="editor-part" name = "editor-part">
