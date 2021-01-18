@@ -13,7 +13,7 @@ function PostsEnum(props) {
 	const cities = ["台北", "桃園", "新竹", "台中", "高雄", "台南", "宜蘭", "台東", "花蓮", "澎湖", "綠島", "嘉義"];
 	console.log(cities.includes(type));
 
-	/*const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
+	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			search_type: '',
@@ -21,7 +21,7 @@ function PostsEnum(props) {
 			get_non_sketch: true,
 			keyword: [type + ' #一日遊', type + ' #二日遊', type + ' 熱門景點', type + ' 美食', 'trending', 'recommended'],
 			uuid: ''
-	}});*/
+	}});
 	/*const { loading, error, data } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
@@ -82,11 +82,10 @@ function PostsEnum(props) {
 
 	useEffect(
 		()=>{
-			//refetch()
+			refetch()
 		}, []
 	)
 
-	/*let only_date0, only_date1, only_date2, only_date3, only_date4, only_date5, only_date6, only_date7;
 	useEffect(() => {
 		if(typeof data !== 'undefined'){
 			console.log('data = ', data.multi_post.multiposts[0].posts)
@@ -95,7 +94,7 @@ function PostsEnum(props) {
 			//only_date2 = data.multi_post.multiposts[0].posts[2].date.split(' ');
 			//only_date3 = data.multi_post.multiposts[0].posts[3].date.split(' ');
 		}
-	}, [data])*/
+	}, [data])
 
 	/*const tags = data.tags.map((tag) => (
 		return <div className="PETag">{tag}</div>;
