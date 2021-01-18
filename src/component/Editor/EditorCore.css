@@ -1,0 +1,22 @@
+H1{
+	font-size: 2.5em;
+}
+H2{
+	font-size: 2.0em;
+}
+H3{
+	font-size: 1.5em;
+}
+.eidtor-content-part{
+	/* height: 10vh; */
+	margin-top: 20px;
+	padding: 0px 10px 0px 10px;
+	outline: none;
+	font-family: 'Times New Roman';
+	font-size: 20px;
+	position: relative;
+	/* border: 1px solid rgb(177, 108, 108); */
+}
+.eidtor-content-part:hover{
+	cursor: text;
+}
