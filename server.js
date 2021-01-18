@@ -1,21 +1,16 @@
-const express = require('express');
-const path = require('path');
-const port = process.env.PORT || 80;
+import express from 'express';
+import bodyParser from 'body-parser';
+import { graphqlExpress } from 'apollo-server-express';
+const myGraphQLSchema = await loadSchema('server/schema.graphql',{  // load from a single schema file
+    loaders: [
+        new GraphQLFileLoader()
+    ]
+})// ... define or import your schema here!
+const PORT = 80;
+
 const app = express();
-app.use(express.static(path.join(__dirname, 'build')));
 
-const bodyParser = require('body-parser')
-const apiRoute = require('./src/route/api');
-app.use('/api', apiRoute);
-app.use(bodyParser.json());
-
-app.get('/ping', function (req, res) {
-  return res.send('pong');
-});
-
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-app.listen(port);
-console.log("Server Ready!")
+// bodyParser is needed just for POST.
+app.use('src/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema }));
+console.log("apollo start")
+app.listen(PORT);
