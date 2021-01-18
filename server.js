@@ -11,6 +11,6 @@ const PORT = 80;
 const app = express();
 
 // bodyParser is needed just for POST.
-app.use('src/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema }));
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema }));
 console.log("apollo start")
 app.listen(PORT);
