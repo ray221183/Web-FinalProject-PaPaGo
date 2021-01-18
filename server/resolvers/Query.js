@@ -159,6 +159,20 @@ const Query = {
 		let key_record = []
 		let trending_detect = []
 		console.log(key_word_list.length)
+		if((args.data.search_type === 'get pair') && (args.data.writer !== "")){
+			let sketch_temp = await Post.find({
+				"writer":args.data.writer,"is_sketch":true
+			})
+			let non_sketch_temp = await Post.find({
+				"writer":args.data.writer,"is_sketch":false
+			})
+			let sketch_obj = {posts:sketch_temp}
+			let non_sketch_obj = {posts:non_sketch_temp}
+			let multi_obj = [sketch_obj,non_sketch_obj]
+			return {
+				multiposts:multi_obj
+			}
+		}
 		for(var j=0;j<key_word_list.length;++j){
 			console.log(key_record.length)
 			let key_words = key_word_list[j].split(" ")
