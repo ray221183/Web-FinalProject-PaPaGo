@@ -52,6 +52,7 @@ function App() {
 			}
 		});
 	console.log("error", error)
+	console.log(posts)
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
 

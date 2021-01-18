@@ -48,7 +48,7 @@ function Home(prop){
 			search_type: '',
 			get_sketch: false,
 			get_non_sketch: true,
-			keyword: 'trending',
+			keyword: [''],
 			uuid: ''
 	}});
 	/*const { loading: loading_r, error: error_r, data: data_r } = useQuery(MULTIPOST_QUERY, 
@@ -68,8 +68,13 @@ function Home(prop){
 		}, []
 	)
 
-	console.log('data.multi_post = ' + JSON.stringify(data));
-	console.log('refetch = ' + refetch);
+	useEffect(() => {
+		if(typeof data !== 'undefined'){
+			console.log('data = ', data.multi_post.multiposts)
+		}
+	}, [data])
+	// console.log('data.multi_post = ' + JSON.stringify(data));
+	// console.log('refetch = ' + refetch);
 
 	/*return(
 		<section className = "Home">
