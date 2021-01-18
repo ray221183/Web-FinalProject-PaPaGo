@@ -34,21 +34,23 @@ function App() {
 	const [postInfo, setPostInfo] = useState([]);
 
 	const [writer, setWriter] = useState('');
-	const [reader, setReader] = useState(''); // client | host
+	const [specialSearch, setSpecialSearch] = useState('');
 	const [searchType, setSearchType] = useState([true, true]); // [get_sketch, get_non_sketch]
 	const [tags, setTags] = useState('');
 	const [curUuid, setCurUuid] = useState('');
 
-	const {data: posts, refetch: rePost} = useQuery(
+	const {data: posts, refetch: rePost, loading, error} = useQuery(
 		POST_QUERY, 
-		{variables: { 
-			writer: writer,
-			reader: reader,
-			get_sketch: searchType[0],
-			get_non_sketch: searchType[1],
-			keyword: tags,
-			uuid: curUuid
-		}});
+		{
+			variables: {
+				writer: '1',
+				search_type: '1',
+				get_sketch: true,
+				get_non_sketch: true,
+				keyword: '1',
+				uuid: '1'
+			}
+		});
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
 
@@ -61,16 +63,16 @@ function App() {
 		if( yPosition <= picHeight - topBannerHeight) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
-	const searchPost = (keyword, get_sketch, get_non_sketch, uuid, writer, reader) => {
-		console.log(keyword, get_sketch, get_non_sketch, uuid, writer, reader)
+	const searchPost = (keyword, get_sketch, get_non_sketch, uuid, writer, specialSearch) => {
+		console.log(keyword, get_sketch, get_non_sketch, uuid, writer, specialSearch)
 		setWriter(writer)
-		setReader(reader)
+		setSpecialSearch(specialSearch)
 		setSearchType([get_sketch, get_non_sketch])
 		setTags(keyword)
 		setCurUuid(uuid)
 		console.log("search")
 	}
-	console.log(posts)
+
 	const savefile = async (editorState, tags, published) => {
         const contentState = editorState.getCurrentContent()
 		const jsonRawData = JSON.stringify(convertToRaw(contentState))
@@ -123,7 +125,7 @@ function App() {
 		() => {
 			rePost()
 		}
-	, [writer, reader, searchType, tags, curUuid])
+	, [writer, specialSearch, searchType, tags, curUuid])
 	
 	
 	return(
