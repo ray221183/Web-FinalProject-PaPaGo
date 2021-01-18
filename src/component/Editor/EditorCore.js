@@ -50,17 +50,25 @@ function EditorCore(prop){
     var selection = editorState.getSelection();
 
     //tool bar style
+    const [sideAddOver, setSideAddOver] = useState(false);
     const [sideBlockOver, setSideBlockOver] = useState(false);
-    const sidrBlockBar = (prop.background) ? "side-bar-blocktype-light" : "side-bar-blocktype-dark"
+    const sideHover = (prop.background) ? "side-light" : "side-dark"
+    const sideAddBar = (prop.background) ? "side-bar-addtype-light" : "side-bar-addtype-dark"
+    const sideBlockBar = (prop.background) ? "side-bar-blocktype-light" : "side-bar-blocktype-dark"
+    const sideAddIcon = (prop.background) ? "addtype-icon-light" : "addtype-icon-dark"
     const sideBlockIcon = (prop.background) ? "blocktype-icon-light" : "blocktype-icon-dark"
     const headerOne = (prop.background) ? "header-one-light" : "header-one-dark"
     const headerTwo = (prop.background) ? "header-two-light" : "header-two-dark"
     const headerThree = (prop.background) ? "header-three-light" : "header-three-dark"
-    const unorderedList = (prop.background) ? "unordered-list--light" : "unordered-list-dark"
+    const unorderedList = (prop.background) ? "unordered-list-light" : "unordered-list-dark"
     const orderedList = (prop.background) ? "ordered-list-light" : "ordered-list-dark"
     const blockQuote = (prop.background) ? "blockquote-light" : "blockquote-dark"
     const focusStyle = {
         opacity:  (selection.getHasFocus()) ? "1" : "0"
+    }
+    const sideAddMovement = {
+        transform: (sideAddOver) ? "translateY(0)" : "translateY(-100%)",
+        opacity: (sideAddOver) ? "1" : "0",
     }
     const sideBlockMovement = {
         transform: (sideBlockOver) ? "translateY(0)" : "translateY(-100%)",
@@ -73,7 +81,7 @@ function EditorCore(prop){
     const sideAddStyle = {
         position: "absolute",
         top: `${sidePositionAdd[0] - 3.5}px`,
-        left: `${sidePositionAdd[1] - 95}px`
+        left: `${sidePositionAdd[1] - 100}px`
     }
     const sideStyleStyle = {
         position: "absolute",
@@ -92,6 +100,16 @@ function EditorCore(prop){
     const onChange = (editorState) => {
         setEditorState(editorState)
     }
+    const readURL = (input) => {
+        console.log(input)
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.readAsDataURL(input.files[0]); // convert to base64 string
+          reader.onload = function(e) {
+            console.log(reader.result);
+          }
+        }
+    }
 
     // editor placeholder
     useEffect(() => {
@@ -103,6 +121,8 @@ function EditorCore(prop){
             setPlaceholder("")
         }
     }, [editorState, selection])
+
+
 
     // side tool bar movement
     useEffect(() => {
@@ -120,51 +140,93 @@ function EditorCore(prop){
     // console.log(editorState.getCurrentContent())
     return(
         <div>
-        <div className="eidtor-content-part" onClick={() => {focus()}}>
-            <Editor
-              editorState={editorState}
-              onChange={onChange}
-              placeholder={placeholder}
-              plugins={plugins}
-              ref={element}
-            />
-            <div className="side-tool-bar-add" style={sideAddStyle}>
-                {
-                    (prop.background) ? 
-                        <SideToolbarAddLight>
-                        </SideToolbarAddLight> :
-                        <SideToolbarAddDark>
-                        </SideToolbarAddDark>
-                }
-            </div>
-            <div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
-                <div className="side-bar-icon" id={sideBlockIcon}></div>
-                <div className="roll-down-region">
-                    <div className="side-bar-blocktype" id={sidrBlockBar} style={sideBlockMovement}>
-                        <div className="blocktype-button" id={headerOne} title="header-one" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id={headerTwo} title="header-two" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id={headerThree} title="header-three" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id={unorderedList} title="unordered-list-item" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id={orderedList} title="ordered-list-item" onMouseDown={toggleBlockType}></div>
-                        <div className="blocktype-button" id={blockQuote} title="blockquote" onMouseDown={toggleBlockType}></div>
+            <input type="file" onChange={() => readURL(this)}/>
+            <div className="import-img"></div>
+            <div className="eidtor-content-part" onClick={() => {focus()}}>
+                <Editor
+                editorState={editorState}
+                onChange={onChange}
+                placeholder={placeholder}
+                plugins={plugins}
+                ref={element}
+                />
+                <div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
+                    <div className="side-bar-icon" id={sideAddIcon}></div>
+                    <div className="roll-down-region">
+                        <div className="side-bar" id={sideAddBar} style={sideAddMovement}>
+                            <div className={`blocktype-button ${sideHover}`} id={headerOne} title="header-one" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={headerTwo} title="header-two" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={headerThree} title="header-three" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={unorderedList} title="unordered-list-item" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={orderedList} title="ordered-list-item" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={blockQuote} title="blockquote" onMouseDown={toggleBlockType}></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <InlineBarTextStyle>
-                {
-                    (externalProps) => (
-                        <div>
-                            <BoldButton {...externalProps} /> 
-                            <ItalicButton {...externalProps} />
-                            <UnderlineButton {...externalProps} />
+                <div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
+                    <div className="side-bar-icon" id={sideBlockIcon}></div>
+                    <div className="roll-down-region">
+                        <div className="side-bar" id={sideBlockBar} style={sideBlockMovement}>
+                            <div className={`blocktype-button ${sideHover}`} id={headerOne} title="header-one" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={headerTwo} title="header-two" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={headerThree} title="header-three" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={unorderedList} title="unordered-list-item" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={orderedList} title="ordered-list-item" onMouseDown={toggleBlockType}></div>
+                            <div className={`blocktype-button ${sideHover}`} id={blockQuote} title="blockquote" onMouseDown={toggleBlockType}></div>
                         </div>
-                    )
-                }
-            </InlineBarTextStyle>
-        </div>
+                    </div>
+                </div>
+                <InlineBarTextStyle>
+                    {
+                        (externalProps) => (
+                            <div>
+                                <BoldButton {...externalProps} /> 
+                                <ItalicButton {...externalProps} />
+                                <UnderlineButton {...externalProps} />
+                            </div>
+                        )
+                    }
+                </InlineBarTextStyle>
+            </div>
         </div>
     );
 }
 
 
 export default EditorCore;
+
+
+// const [posts, setPosts] = useState([]);
+// const topics = ['一日遊', '二日遊']
+
+
+// useEffect(()=>{
+//     if( data.multi_post.multiposts.length !== 0 ){
+//         setPosts(data.multi_post.multiposts)
+//     }
+// }, [data])
+
+// const map_function = () => {
+//     return(
+//         <React.Fragment>
+//             {
+//                 posts.map( ( post, idx )=>{
+//                         return(
+//                             <React.Fragment>
+//                                 <div> {topics[idx]} </div>
+//                                 {
+//                                     post.map( ( items ) => {
+//                                             return(
+//                                                 <div> content </div>
+//                                             )
+//                                         }
+//                                     )
+//                                 }
+//                             </React.Fragment>
+//                         )
+//                     }
+//                 )
+//             }
+//         </React.Fragment>
+//     )
+// }
