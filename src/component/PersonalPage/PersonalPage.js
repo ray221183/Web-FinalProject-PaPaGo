@@ -80,7 +80,7 @@ function PersonalPage(props){
 					<React.Fragment>
 						<PersonalPageStory post={public_0} editEssay={editEssay} deleteP={deleteP}/>
 						<PersonalPageStory post={public_1} editEssay={editEssay} deleteP={deleteP}/>
-					</React.Fragment>
+					</React.Fragment> 
 				)
 			}
 			else {
