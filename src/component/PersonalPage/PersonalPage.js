@@ -58,7 +58,7 @@ function PersonalPage(props){
 	)
 	useEffect(() => {
 		if(typeof data !== 'undefined'){
-			console.log('In personal page, data = ', data.multi_post.multiposts[0].posts)
+			console.log('In personal page, data = ', data.multi_post.multiposts[1].posts)
 			setPublic_0_id(data.multi_post.multiposts[0].posts[0].uuid);
 			setPublic_0_title(data.multi_post.multiposts[0].posts[0].title);
 			setPublic_0_author(data.multi_post.multiposts[0].posts[0].name);
