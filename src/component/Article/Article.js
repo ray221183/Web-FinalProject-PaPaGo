@@ -44,7 +44,7 @@ function Article(props) {
 		}
 	}, [data])
 
-	return (
+	/*return (
 		<div className="Article">
 			<h1 id="title">{trend_0_title}</h1>
 			<div className="ArticleImage">
@@ -80,6 +80,59 @@ function Article(props) {
 				<div id='author'>
 					An image about the author
 					<button id="AuthorButton">{trend_0_author}</button>
+				</div>
+			</div>
+			<h3 id="MoreStories">More Interesting Stories</h3>
+			<hr id='hr' />
+			<div className="RelatedStories">
+				<div className="Story">
+					<h3>A related story</h3>
+				</div>
+				<div className="Story">
+					<h3>A related story</h3>
+				</div>
+				<div className="Story">
+					<h3>A related story</h3>
+				</div>
+			</div>
+		</div>
+	);*/
+	return (
+		<div className="Article">
+			<h1 id="title">Hard Written</h1>
+			<div className="ArticleImage">
+				A image about this story.
+			</div>
+			<p className="Paragraph">
+				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
+				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
+				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
+			</p>
+			<p className="Paragraph">
+				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
+				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
+				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
+			</p>
+			<p className="Paragraph">
+				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
+				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
+				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
+			</p>
+			<div className="ArticleBottom">
+				<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
+					<button id='LikePost'>
+						<FaThumbsUp />
+						<span id="likeNum">Hard Written Like</span>
+					</button>
+				</IconContext.Provider>
+			</div>
+			<div className="Author">
+				<div id='WrittenBy'>
+					Written By
+				</div>
+				<div id='author'>
+					An image about the author
+					<button id="AuthorButton">Hard Written</button>
 				</div>
 			</div>
 			<h3 id="MoreStories">More Interesting Stories</h3>
