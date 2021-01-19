@@ -2,7 +2,7 @@ import './Article.css';
 import React, { useEffect, useRef, useState } from 'react'
 import { MULTIPOST_QUERY } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { EditorState , convertFromRaw } from 'draft-js'
 import Editor from '@draft-js-plugins/editor';
 

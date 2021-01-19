@@ -213,7 +213,12 @@ function App() {
 					/>
 					<Route path="/personalpage/:type/:topic" component={TopicPostsEnum} 
 					/>
-					<Route path="/personalpage/:who" component={PersonalPage} 
+					<Route path="/personalpage/:who" render={(props) => (
+							<PersonalPage 
+								who={props.match.params.who} 
+								setCurPostInfo={setCurPostInfo}
+							/>
+						)}
 					/>
 					<Route path="/about" component={About} 
 					/>
