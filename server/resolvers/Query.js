@@ -164,9 +164,23 @@ const Query = {
 			let sketch_temp = await Post.find({
 				"writer":args.data.writer,"is_sketch":true
 			})
+			for(var i=0; i<sketch_temp.length;++i){
+				let great_num = await Great.find({
+					"uuid":sketch_temp[i].uuid
+				})
+				great_num = great_num.length
+				sketch_temp[i]['great_num'] = great_num
+			}
 			let non_sketch_temp = await Post.find({
 				"writer":args.data.writer,"is_sketch":false
 			})
+			for(var i=0; i<non_sketch_temp.length;++i){
+				let great_num = await Great.find({
+					"uuid":non_sketch_temp[i].uuid
+				})
+				great_num = great_num.length
+				non_sketch_temp[i]['great_num'] = great_num
+			}
 			let sketch_obj = {posts:sketch_temp}
 			let non_sketch_obj = {posts:non_sketch_temp}
 			let multi_obj = [sketch_obj,non_sketch_obj]
