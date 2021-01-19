@@ -1,6 +1,6 @@
 import './TopicPostsEnum.css'
 import React, { useEffect, useRef, useState } from 'react'
-import { MULTIPOST_QUERY } from '../../graphql'
+import { MULTIPOST_QUERY, DELETE_POST } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from "react-router-dom";
 
@@ -8,6 +8,7 @@ import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
 
 import PEStory from "../PostsEnum/PEStory";
+import TPEStory from "./TPEStory";
 
 // PostsEnum & PersonalPage both lead to here
 function TopicPostsEnum(props) {
@@ -40,6 +41,7 @@ function TopicPostsEnum(props) {
 			keyword: [''],
 			uuid: ''
 	}});
+	const [deletePost] = useMutation(DELETE_POST);
 
 	useEffect(
 		()=>{
@@ -59,6 +61,14 @@ function TopicPostsEnum(props) {
 			setMultiposts_p(data_p.multi_post.multiposts);
 		}
 	}, [data_c, data_p])
+
+	const deleteP = (id) => {
+		deletePost({
+			variables: {
+				uuid: id
+		}})
+	}
+
 
 	const OneDay_map = () => {
 		let front_0 = [];
@@ -193,7 +203,7 @@ function TopicPostsEnum(props) {
 	const Posted_map = () => {
 		let posted = [];
 		if (multiposts_p.length !== 0) {
-			posted = [multiposts_p[0]];
+			posted = [multiposts_p[1]];
 		}
 		//let recommend = [multiposts[5]];
 		return (
@@ -210,7 +220,7 @@ function TopicPostsEnum(props) {
 									{
 										posts.posts.map( (post) => {
 												return(
-													<PEStory post={post} />
+													<TPEStory post={post} deleteP={deleteP} />
 												)
 											}
 										)
@@ -226,7 +236,7 @@ function TopicPostsEnum(props) {
 	const Draft_map = () => {
 		let draft = [];
 		if (multiposts_p.length !== 0) {
-			draft = [multiposts_p[1]];
+			draft = [multiposts_p[0]];
 		}
 		//let recommend = [multiposts[5]];
 		return (
@@ -243,7 +253,7 @@ function TopicPostsEnum(props) {
 									{
 										posts.posts.map( (post) => {
 												return(
-													<PEStory post={post} />
+													<TPEStory post={post} deleteP={deleteP} />
 												)
 											}
 										)

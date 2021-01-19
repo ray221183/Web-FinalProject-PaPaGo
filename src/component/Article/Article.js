@@ -36,7 +36,7 @@ function Article(props) {
 
 	useEffect(() => {
 		if(typeof data !== 'undefined'){
-			console.log('data = ', data.multi_post.multiposts[0].posts)
+			console.log('data = ', data.multi_post.multiposts[0].posts[0].content)
 			setTrend_0_title(data.multi_post.multiposts[0].posts[0].title);
 			setTrend_0_author(data.multi_post.multiposts[0].posts[0].name);
 			setTrend_0_intro(data.multi_post.multiposts[0].posts[0].introduction);
