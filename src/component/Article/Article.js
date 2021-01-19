@@ -20,9 +20,11 @@ function Article(props) {
 	const [trend_0_like, setTrend_0_like] = useState(0);
 
 	const [related_0, setRelated_0] = useState(null);
-	console.log('related_0 = ', related_0);
-	console.log('related_0 type = ', typeof(related_0));
-	console.log('related_0 === null -> ', related_0===null)
+	//console.log('related_0 = ', related_0);
+	//console.log('related_0 type = ', typeof(related_0));
+	//console.log('related_0 === null -> ', related_0===null);
+	const [related_1, setRelated_1] = useState(null);
+	const [related_2, setRelated_2] = useState(null);
 
 	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
@@ -49,11 +51,13 @@ function Article(props) {
 			setTrend_0_date(data.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
 			setTrend_0_like(data.multi_post.multiposts[0].posts[0].great_num);
 
-			setRelated_0(data.multi_post.multiposts[1].posts[0]);
+			setRelated_0(data.multi_post.multiposts[1].posts[1]);
+			setRelated_1(data.multi_post.multiposts[1].posts[2]);
+			setRelated_2(data.multi_post.multiposts[1].posts[3]);
 		}
 	}, [data])
 
-	if(typeof data !== 'undefined') {
+	if(typeof data !== 'undefined' && related_0 !== null && related_1 !== null && related_2 !== null) {
 		return(
 			<div className="Article">
 				{/* <h1 id="title">{trend_0_title}</h1> */}
@@ -93,16 +97,16 @@ function Article(props) {
 						<div className="RelatedStoryImage">An image</div>
 						<div className="RelatedStoryAuthor">
 							<Link to={"/post/"}>
-								<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'2px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'2px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
+								<button className="RelatedStoryTitle">{related_0.title}<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>{related_0.name}</span>
 								</button>
 							</Link>
 						</div>
 						<div className="RelatedStoryDateAndTag">
-							<div className="RelatedStoryDate">2021/12/21</div>
+							<div className="RelatedStoryDate">{related_0.date.split(' ')[0]}</div>
 							<div>
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '2px solid green' } }}>
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
 									<FaThumbsUp />
-									<span id="RelatedStoryLike">2189982 Like</span>
+									<span id="RelatedStoryLike">{related_0.great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
@@ -111,16 +115,16 @@ function Article(props) {
 						<div className="RelatedStoryImage">An image</div>
 						<div className="RelatedStoryAuthor">
 							<Link to={"/post/"}>
-								<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'2px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'2px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
+								<button className="RelatedStoryTitle">{related_1.title}<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>{related_1.name}</span>
 								</button>
 							</Link>
 						</div>
 						<div className="RelatedStoryDateAndTag">
-							<div className="RelatedStoryDate">2021/12/21</div>
+							<div className="RelatedStoryDate">{related_1.date.split(' ')[0]}</div>
 							<div>
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '2px solid green' } }}>
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
 									<FaThumbsUp />
-									<span id="RelatedStoryLike">2189982 Like</span>
+									<span id="RelatedStoryLike">{related_1.great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
@@ -129,16 +133,16 @@ function Article(props) {
 						<div className="RelatedStoryImage">An image</div>
 						<div className="RelatedStoryAuthor">
 							<Link to={"/post/"}>
-								<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'2px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'2px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
+								<button className="RelatedStoryTitle">{related_2.title}<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>{related_2.name}</span>
 								</button>
 							</Link>
 						</div>
 						<div className="RelatedStoryDateAndTag">
-							<div className="RelatedStoryDate">2021/12/21</div>
+							<div className="RelatedStoryDate">{related_2.date.split(' ')[0]}</div>
 							<div>
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '2px solid green' } }}>
+								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
 									<FaThumbsUp />
-									<span id="RelatedStoryLike">2189982 Like</span>
+									<span id="RelatedStoryLike">{related_2.great_num} Like</span>
 								</IconContext.Provider>
 							</div>
 						</div>
@@ -233,14 +237,14 @@ function Article(props) {
 					<div className="RelatedStoryImage">An image</div>
 					<div className="RelatedStoryAuthor">
 						<Link to={"/post/"}>
-							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'2px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'2px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
+							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
 							</button>
 						</Link>
 					</div>
 					<div className="RelatedStoryDateAndTag">
 						<div className="RelatedStoryDate">2021/12/21</div>
 						<div>
-							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '2px solid green' } }}>
+							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
 								<FaThumbsUp />
 								<span id="RelatedStoryLike">2189982 Like</span>
 							</IconContext.Provider>
@@ -251,14 +255,14 @@ function Article(props) {
 					<div className="RelatedStoryImage">An image</div>
 					<div className="RelatedStoryAuthor">
 						<Link to={"/post/"}>
-							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'2px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'2px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
+							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
 							</button>
 						</Link>
 					</div>
 					<div className="RelatedStoryDateAndTag">
 						<div className="RelatedStoryDate">2021/12/21</div>
 						<div>
-							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '2px solid green' } }}>
+							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
 								<FaThumbsUp />
 								<span id="RelatedStoryLike">2189982 Like</span>
 							</IconContext.Provider>
@@ -269,14 +273,14 @@ function Article(props) {
 					<div className="RelatedStoryImage">An image</div>
 					<div className="RelatedStoryAuthor">
 						<Link to={"/post/"}>
-							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'2px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'2px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
+							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
 							</button>
 						</Link>
 					</div>
 					<div className="RelatedStoryDateAndTag">
 						<div className="RelatedStoryDate">2021/12/21</div>
 						<div>
-							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '2px solid green' } }}>
+							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
 								<FaThumbsUp />
 								<span id="RelatedStoryLike">2189982 Like</span>
 							</IconContext.Provider>
