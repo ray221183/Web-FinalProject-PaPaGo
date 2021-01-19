@@ -5,7 +5,7 @@ const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const { makeExecutableSchema } = require('graphql-tools');
 const {importSchema} = require('graphql-import')
 const schema = importSchema('./server/schema.graphql')// ... define or import your schema here!
-
+const app = express();
 port = 80
 
 // bodyParser is needed just for POST.
