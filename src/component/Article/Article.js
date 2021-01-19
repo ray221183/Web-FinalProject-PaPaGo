@@ -48,7 +48,7 @@ function Article(props) {
 
 	return (
 		<div className="Article">
-			<h1 id="title">{trend_0_title}</h1>
+			{/* <h1 id="title">{trend_0_title}</h1> */}
 			{/* <div className="ArticleImage">
 				A image about this story.
 			</div> */}

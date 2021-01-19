@@ -21,6 +21,7 @@ function TopBanner(prop){
 		marginRight: (Search) ? "0px" : "-300px",
 		opacity: (Search) ? "1" : "0"
 	}
+	const searchClass = ( curLocation.pathname == "/editor") ? "disable" : ""
 	const changeKeyWord = (e) => {
 		setKeyWord(e.target.value)
 	}
@@ -54,17 +55,18 @@ function TopBanner(prop){
 	}
 	const handleKeyDown = (e) => {
         if(e.keyCode === 13){
-			/////////
+			setKeyWord('')
+			setSearch(false)
 			prop.searchPost([keyWord], false, true, '', '', '')
-			history.push(`/postsenum/${keyWord}/all`)
+			// history.push(`/postsenum/${keyWord}/all`)
         }
     }
 	const expandSearch = () => {
 		if(keyWord !== ''){
-			setSearch(true)
-			//////////
+			setSearch(false)
+			setKeyWord('')
 			prop.searchPost([keyWord], false, true, '', '', '')
-			history.push(`/postsenum/${keyWord}/all`)
+			// history.push(`/postsenum/${keyWord}/all`)
 		}
 		else{
 			setSearch(!Search)
@@ -155,7 +157,7 @@ function TopBanner(prop){
 					</div>
 					<div id="b2"></div>
 					<div id="b3">
-						<div id="search">
+						<div className={searchClass} id="search">
 							<div id={SearchImg} onClick={expandSearch}></div>
 							<input id="search-input" value={keyWord} placeholder="Search PaPaGo" onChange={changeKeyWord} style={searchStyle} onKeyDown={handleKeyDown}/>
 						</div>

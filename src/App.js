@@ -94,45 +94,45 @@ function App() {
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate + ' ' + saveTime
 		let a = [1,2]
-		// console.log('title: ', title)
-		// console.log('introduction: ', introduction)
-		// console.log('content: ', jsonRawData)
-		// console.log('writer: ', account)
-		// console.log('tagList: ', tagList)
-		// console.log('date: ', dateTime)
-		// console.log('is sketch: ', !published)
-		// console.log('new post: ', newPost)
-		// if(newPost){
-		// 	console.log("add post")
-		// 	let postId = await addPost({
-		// 		variables: {
-		// 			title: title,
-		// 			introduction: '',
-		// 			content: jsonRawData,
-		// 			writer: account,
-		// 			tags: [''],
-		// 			date: dateTime,
-		// 			is_sketch: true,
-		// 			related_uuid: ''
-		// 		}
-		// 	})
-		// 	searchPost([''], true, true, postId.data.addPost, '', '')
-		// }
-		// else{
-		// 	console.log("update post")
-		// 	updatePost({
-		// 		variables: {
-		// 			title: title,
-		// 			introduction: introduction,
-		// 			uuid: curUuid,
-		// 			content: jsonRawData,
-		// 			tags: tagList,
-		// 			date: dateTime,
-		// 			is_sketch: !published,
-		// 		}
-		// 	})
-		// }
-		// setNewPost(false)
+		console.log('title: ', title)
+		console.log('introduction: ', introduction)
+		console.log('content: ', jsonRawData)
+		console.log('writer: ', account)
+		console.log('tagList: ', tagList)
+		console.log('date: ', dateTime)
+		console.log('is sketch: ', !published)
+		console.log('new post: ', newPost)
+		if(newPost){
+			console.log("add post")
+			let postId = await addPost({
+				variables: {
+					title: title,
+					introduction: '',
+					content: jsonRawData,
+					writer: account,
+					tags: [''],
+					date: dateTime,
+					is_sketch: true,
+					related_uuid: ''
+				}
+			})
+			searchPost([''], true, true, postId.data.addPost, '', '')
+		}
+		else{
+			console.log("update post")
+			updatePost({
+				variables: {
+					title: title,
+					introduction: introduction,
+					uuid: curUuid,
+					content: jsonRawData,
+					tags: tagList,
+					date: dateTime,
+					is_sketch: !published,
+				}
+			})
+		}
+		setNewPost(false)
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	useEffect(() => {
