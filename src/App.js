@@ -208,6 +208,8 @@ function App() {
 							/>
 						)}
 					/>
+					<Route path="/personalpage/:type/:topic" component={TopicPostsEnum} 
+					/>
 					<Route path="/personalpage/:who" component={PersonalPage} 
 					/>
 				</Switch>

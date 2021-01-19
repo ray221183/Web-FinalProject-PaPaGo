@@ -35,14 +35,14 @@ function Article(props) {
 	useEffect(() => {
 		if(typeof data !== 'undefined'){
 			console.log('data = ', data.multi_post.multiposts[0].posts)
-			setTrend_0_title(data_t.multi_post.multiposts[0].posts[0].title);
-			setTrend_0_author(data_t.multi_post.multiposts[0].posts[0].name);
-			setTrend_0_intro(data_t.multi_post.multiposts[0].posts[0].introduction);
-			setTrend_0_content(data_t.multi_post.multiposts[0].posts[0].content);
-			setTrend_0_date(data_t.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
-			setTrend_0_like(data_t.multi_post.multiposts[0].posts[0].great_num);
+			setTrend_0_title(data.multi_post.multiposts[0].posts[0].title);
+			setTrend_0_author(data.multi_post.multiposts[0].posts[0].name);
+			setTrend_0_intro(data.multi_post.multiposts[0].posts[0].introduction);
+			setTrend_0_content(data.multi_post.multiposts[0].posts[0].content);
+			setTrend_0_date(data.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
+			setTrend_0_like(data.multi_post.multiposts[0].posts[0].great_num);
 		}
-	}, [data_t, data_r])
+	}, [data])
 
 	return (
 		<div className="Article">
