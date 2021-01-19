@@ -34,7 +34,7 @@ function TopicPostsEnum(props) {
 	const { loading: loading_p, error: error_p, data: data_p, refetch: refetch_p } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: type,
-			search_type: '',
+			search_type: 'get pair',
 			get_sketch: false,
 			get_non_sketch: true,
 			keyword: [''],

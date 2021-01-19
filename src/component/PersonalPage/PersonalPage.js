@@ -13,24 +13,28 @@ function PersonalPage(props){
 	let { who } = props.match.params;		// who is the account of someone
 	console.log('who = ' + who);
 
+	const [public_0_id, setPublic_0_id] = useState('');
 	const [public_0_title, setPublic_0_title] = useState('');
 	const [public_0_author, setPublic_0_author] = useState('');
 	const [public_0_intro, setPublic_0_intro] = useState('');
 	const [public_0_date, setPublic_0_date] = useState('');
 	const [public_0_like, setPublic_0_like] = useState(0);
 
+	const [public_1_id, setPublic_1_id] = useState('');
 	const [public_1_title, setPublic_1_title] = useState('');
 	const [public_1_author, setPublic_1_author] = useState('');
 	const [public_1_intro, setPublic_1_intro] = useState('');
 	const [public_1_date, setPublic_1_date] = useState('');
 	const [public_1_like, setPublic_1_like] = useState(0);
 
+	const [draft_0_id, setDraft_0_id] = useState('');
 	const [draft_0_title, setDraft_0_title] = useState('');
 	const [draft_0_author, setDraft_0_author] = useState('');
 	const [draft_0_intro, setDraft_0_intro] = useState('');
 	const [draft_0_date, setDraft_0_date] = useState('');
 	const [draft_0_like, setDraft_0_like] = useState(0);
 
+	const [draft_1_id, setDraft_1_id] = useState('');
 	const [draft_1_title, setDraft_1_title] = useState('');
 	const [draft_1_author, setDraft_1_author] = useState('');
 	const [draft_1_intro, setDraft_1_intro] = useState('');
@@ -40,7 +44,7 @@ function PersonalPage(props){
 	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: who,
-			search_type: '',
+			search_type: 'get pair',
 			get_sketch: false,
 			get_non_sketch: true,
 			keyword: [''],
@@ -52,31 +56,35 @@ function PersonalPage(props){
 			refetch()
 		}, []
 	)
-	/*useEffect(() => {
+	useEffect(() => {
 		if(typeof data !== 'undefined'){
 			console.log('In personal page, data = ', data.multi_post.multiposts[0].posts)
+			setPublic_0_id(data.multi_post.multiposts[0].posts[0].uuid);
 			setPublic_0_title(data.multi_post.multiposts[0].posts[0].title);
 			setPublic_0_author(data.multi_post.multiposts[0].posts[0].name);
 			setPublic_0_intro(data.multi_post.multiposts[0].posts[0].introduction);
 			setPublic_0_date(data.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
 			setPublic_0_like(data.multi_post.multiposts[0].posts[0].great_num);
+			setPublic_1_id(data.multi_post.multiposts[0].posts[1].uuid);
 			setPublic_1_title(data.multi_post.multiposts[0].posts[1].title);
 			setPublic_1_author(data.multi_post.multiposts[0].posts[1].name);
 			setPublic_1_intro(data.multi_post.multiposts[0].posts[1].introduction);
 			setPublic_1_date(data.multi_post.multiposts[0].posts[1].date.split(' ')[0]);
 			setPublic_1_like(data.multi_post.multiposts[0].posts[1].great_num);
+			setDraft_0_id(data.multi_post.multiposts[1].posts[0].uuid);
 			setDraft_0_title(data.multi_post.multiposts[1].posts[0].title);
 			setDraft_0_author(data.multi_post.multiposts[1].posts[0].name);
 			setDraft_0_intro(data.multi_post.multiposts[1].posts[0].introduction);
 			setDraft_0_date(data.multi_post.multiposts[1].posts[0].date.split(' ')[0]);
 			setDraft_0_like(data.multi_post.multiposts[1].posts[0].great_num);
+			setDraft_1_id(data.multi_post.multiposts[1].posts[1].uuid);
 			setDraft_1_title(data.multi_post.multiposts[1].posts[1].title);
 			setDraft_1_author(data.multi_post.multiposts[1].posts[1].name);
 			setDraft_1_intro(data.multi_post.multiposts[1].posts[1].introduction);
 			setDraft_1_date(data.multi_post.multiposts[1].posts[1].date.split(' ')[0]);
 			setDraft_1_like(data.multi_post.multiposts[1].posts[1].great_num);
 		}
-	}, [data])*/
+	}, [data])
 
 	return(
 		<section className = "PersonalPage">
@@ -86,7 +94,7 @@ function PersonalPage(props){
 			<hr id='PPhr' />
 			<div className="PPStories">
 				<div className="PPStoryTitle">
-					<button className="PPStoryTitle">{public_0_title}</button>
+					<Link to={"/post/" + `${public_0_id}`}><button className="PPStoryTitle">{public_0_title}</button></Link>
 					<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 						<button id="PPIconButton">
 							<AiFillEdit />
@@ -112,7 +120,7 @@ function PersonalPage(props){
 			</div>
 			<div className="PPStories">
 				<div className="PPStoryTitle">
-					<button className="PPStoryTitle">{public_1_title}</button>
+					<Link to={"/post/" + `${public_1_id}`}><button className="PPStoryTitle">{public_1_title}</button></Link>
 					<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 						<button id="PPIconButton">
 							<AiFillEdit />
@@ -143,7 +151,7 @@ function PersonalPage(props){
 			<hr id='PPhr' />
 			<div className="PPStories">
 				<div className="PPStoryTitle">
-					<button className="PPStoryTitle">{draft_0_title}</button>
+					<Link to={"/post/" + `${draft_0_id}`}><button className="PPStoryTitle">{draft_0_title}</button></Link>
 					<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 						<button id="PPIconButton">
 							<AiFillEdit />
@@ -169,7 +177,7 @@ function PersonalPage(props){
 			</div>
 			<div className="PPStories">
 				<div className="PPStoryTitle">
-					<button className="PPStoryTitle">{draft_1_title}</button>
+					<Link to={"/post/" + `${draft_1_id}`}><button className="PPStoryTitle">{draft_1_title}</button></Link>
 					<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 						<button id="PPIconButton">
 							<AiFillEdit />
