@@ -1,10 +1,15 @@
 import './Footer.css'
 import React, { useEffect, useRef, useState } from 'react'
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
 
 function Footer(){
+	// footer style
+	const curLocation = useLocation();
+	const footerDisabled = ( curLocation.pathname === '/editor' ) ? "disable" : ""
+
     return( 
-        <footer className = "Footer">
+        <footer className = {`Footer ${footerDisabled}`}>
         	<div className="FooterDiv">
 				<h2 className="FooterH2">Authors</h2>
 				<h3 className="FooterItem">賴永玄</h3>

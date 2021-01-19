@@ -3,6 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { MULTIPOST_QUERY } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from "react-router-dom";
+import { EditorState , convertFromRaw } from 'draft-js'
+import Editor from '@draft-js-plugins/editor';
 
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
@@ -10,10 +12,10 @@ import {IconContext} from 'react-icons';
 function Article(props) {
 	let { id } = props.match.params;
 	console.log('id = ' + id);
+	const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
 	const [trend_0_title, setTrend_0_title] = useState('');
 	const [trend_0_author, setTrend_0_author] = useState('');
 	const [trend_0_intro, setTrend_0_intro] = useState('');
-	const [trend_0_content, setTrend_0_content] = useState('');
 	const [trend_0_date, setTrend_0_date] = useState('');
 	const [trend_0_like, setTrend_0_like] = useState(0);
 
@@ -38,7 +40,7 @@ function Article(props) {
 			setTrend_0_title(data.multi_post.multiposts[0].posts[0].title);
 			setTrend_0_author(data.multi_post.multiposts[0].posts[0].name);
 			setTrend_0_intro(data.multi_post.multiposts[0].posts[0].introduction);
-			setTrend_0_content(data.multi_post.multiposts[0].posts[0].content);
+			setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(data.multi_post.multiposts[0].posts[0].content))));
 			setTrend_0_date(data.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
 			setTrend_0_like(data.multi_post.multiposts[0].posts[0].great_num);
 		}
@@ -47,24 +49,18 @@ function Article(props) {
 	return (
 		<div className="Article">
 			<h1 id="title">{trend_0_title}</h1>
-			<div className="ArticleImage">
+			{/* <div className="ArticleImage">
 				A image about this story.
+			</div> */}
+			<div className="editor-part" name = "editor-part">
+				<div className="article-content">
+					<Editor
+						editorState={editorState}
+						// plugins={plugins}
+						readOnly={true}
+					/>
+				</div>
 			</div>
-			<p className="Paragraph">
-				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
-				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
-				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
-			</p>
-			<p className="Paragraph">
-				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
-				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
-				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
-			</p>
-			<p className="Paragraph">
-				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
-				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
-				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
-			</p>
 			<div className="ArticleBottom">
 				<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
 					<button id='LikePost'>

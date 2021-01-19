@@ -3,11 +3,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import {
 	Link,
 	useLocation,
+	useHistory
   } from "react-router-dom";
 
 function TopBanner(prop){
 	const banner = useRef();
 	const curLocation = useLocation();
+	const history = useHistory();
 	const [Menu, setMenu] = useState(false);
 	const [Search, setSearch] = useState(false);
 	const [keyWord, setKeyWord] =useState('');
@@ -52,15 +54,21 @@ function TopBanner(prop){
 	}
 	const handleKeyDown = (e) => {
         if(e.keyCode === 13){
+			/////////
 			prop.searchPost([keyWord], false, true, '', '', '')
+			history.push(`/postsenum/${keyWord}/all`)
         }
     }
 	const expandSearch = () => {
 		if(keyWord !== ''){
 			setSearch(true)
+			//////////
 			prop.searchPost([keyWord], false, true, '', '', '')
+			history.push(`/postsenum/${keyWord}/all`)
 		}
-		else setSearch(!Search)
+		else{
+			setSearch(!Search)
+		}
 	}
 	const Login = () => {
 		return(

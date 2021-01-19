@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { convertFromRaw } from 'draft-js'
-import { EditorState } from 'draft-js'
+import { EditorState , convertFromRaw } from 'draft-js'
 import EditorCore from './EditorCore'
 import './Editor.css'
 import './Publish.css'
