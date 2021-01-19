@@ -1,15 +1,12 @@
 //import { graphqlExpress } from 'apollo-server-express';
-const graphqlExpress = require('apollo-server-express')
+const {graphqlExpress} = require('apollo-server-express')
+const { loadSchemaSync } = require('@graphql-tools/load');
 const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 80;
 const app = express();
 const bodyParser = require('body-parser')
-const myGraphQLSchema = loadSchema('server/schema.graphql',{  // load from a single schema file
-    loaders: [
-        new GraphQLFileLoader()
-    ]
-})// ... define or import your schema here!
+const myGraphQLSchema = loadSchemaSync('server/schema.graphql')// ... define or import your schema here!
 
 
 
