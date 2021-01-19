@@ -1,7 +1,10 @@
 import './PersonalPageStory.css'
 import React from "react";
 import { Link } from "react-router-dom";
+
 import {FaThumbsUp} from 'react-icons/fa';
+import {AiFillEdit} from 'react-icons/ai';
+import {AiFillDelete} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
 
 export default ({ post, editEssay, deleteP }) => {
