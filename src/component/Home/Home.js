@@ -4,6 +4,7 @@ import { MULTIPOST_QUERY } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from "react-router-dom";
 
+import { Button } from '@material-ui/core';
 import {FaThumbsUp} from 'react-icons/fa';
 import {AiFillFire} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
@@ -70,6 +71,7 @@ function Home(prop){
 
 	const clickCity = (event) => {
 		const name = event.target.name;
+		console.log('name = ', name);
 		setCity(name);
 	}
 	
@@ -169,21 +171,19 @@ function Home(prop){
 			</div>
 			<div className="MainContent">
 				<h1>你想去什麼地方</h1>
-				<div>
-					<Link to="/postsenum/台北"><button className="button" name="taipei" onClick={clickCity}>台北</button></Link>
-					<Link to="/postsenum/桃園"><button className="button" name="taoyuan" onClick={clickCity}>桃園</button></Link>
-					<Link to="/postsenum/新竹"><button className="button" name="hsinchu" onClick={clickCity}>新竹</button></Link>
-					<Link to="/postsenum/台中"><button className="button" name="taichung" onClick={clickCity}>台中</button></Link>
-					<Link to="/postsenum/高雄"><button className="button" name="kaohsiung" onClick={clickCity}>高雄</button></Link>
-					<Link to="/postsenum/台南"><button className="button" name="tainan" onClick={clickCity}>台南</button></Link>
-				</div>
-				<div>
-					<Link to="/postsenum/宜蘭"><button className="button" name="yilang" onClick={clickCity}>宜蘭</button></Link>
-					<Link to="/postsenum/台東"><button className="button" name="taitung" onClick={clickCity}>台東</button></Link>
-					<Link to="/postsenum/花蓮"><button className="button" name="hualien" onClick={clickCity}>花蓮</button></Link>
-					<Link to="/postsenum/澎湖"><button className="button" name="penghu" onClick={clickCity}>澎湖</button></Link>
-					<Link to="/postsenum/綠島"><button className="button" name="green island" onClick={clickCity}>綠島</button></Link>
-					<Link to="/postsenum/嘉義"><button className="button" name="chiayi" onClick={clickCity}>嘉義</button></Link>
+				<div className="CitiesList">
+					<Link to="/postsenum/台北"><Button variant="outlined" size="large" name="taipei" onClick={clickCity}>台北</Button></Link>
+					<Link to="/postsenum/桃園"><Button variant="outlined" size="large" name="taoyuang" onClick={clickCity}>桃園</Button></Link>
+					<Link to="/postsenum/新竹"><Button variant="outlined" size="large" name="hsinchu" onClick={clickCity}>新竹</Button></Link>
+					<Link to="/postsenum/台中"><Button variant="outlined" size="large" name="taichung" onClick={clickCity}>台中</Button></Link>
+					<Link to="/postsenum/高雄"><Button variant="outlined" size="large" name="kaohsiung" onClick={clickCity}>高雄</Button></Link>
+					<Link to="/postsenum/台南"><Button variant="outlined" size="large" name="tainan" onClick={clickCity}>台南</Button></Link>
+					<Link to="/postsenum/宜蘭"><Button variant="outlined" size="large" name="yilang" onClick={clickCity}>宜蘭</Button></Link>
+					<Link to="/postsenum/台東"><Button variant="outlined" size="large" name="taitung" onClick={clickCity}>台東</Button></Link>
+					<Link to="/postsenum/花蓮"><Button variant="outlined" size="large" name="hualien" onClick={clickCity}>花蓮</Button></Link>
+					<Link to="/postsenum/澎湖"><Button variant="outlined" size="large" name="penghu" onClick={clickCity}>澎湖</Button></Link>
+					<Link to="/postsenum/綠島"><Button variant="outlined" size="large" name="green island" onClick={clickCity}>綠島</Button></Link>
+					<Link to="/postsenum/嘉義"><Button variant="outlined" size="large" name="chiayi" onClick={clickCity}>嘉義</Button></Link>
 				</div>
 				<div className = "google-map">
 					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
