@@ -348,11 +348,9 @@ const Query = {
 				last_record[j]['great_num'] = num
 			} 
 			console.log(last_record)
-			if(trending_detect[i]){
-				last_record.sort(function(a,b){
-					return b.great_num - a.great_num
-				})
-			}
+			last_record.sort(function(a,b){
+				return b.great_num - a.great_num
+			})
 			if(last_record.length >= 20){
 				last_record = last_record.slice(0,20)
 			}
