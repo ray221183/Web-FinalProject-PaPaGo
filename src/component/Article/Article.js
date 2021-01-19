@@ -44,7 +44,7 @@ function Article(props) {
 		}
 	}, [data])
 
-	/*return (
+	return (
 		<div className="Article">
 			<h1 id="title">{trend_0_title}</h1>
 			<div className="ArticleImage">
@@ -96,7 +96,8 @@ function Article(props) {
 				</div>
 			</div>
 		</div>
-	);*/
+	);
+	/*
 	return (
 		<div className="Article">
 			<h1 id="title">Hard Written</h1>
@@ -149,7 +150,7 @@ function Article(props) {
 				</div>
 			</div>
 		</div>
-	);
+	);*/
 }
 
 export default Article;
