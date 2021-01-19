@@ -83,7 +83,7 @@ function PersonalPage(props){
 				setDraft_0_intro(data.multi_post.multiposts[0].posts[0].introduction);
 				setDraft_0_date(data.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
 				setDraft_0_like(data.multi_post.multiposts[0].posts[0].great_num);
-				if(data.multi_post.multiposts[1].posts.length >= 2) {
+				if(data.multi_post.multiposts[0].posts.length >= 2) {
 					setDraft_1_id(data.multi_post.multiposts[0].posts[1].uuid);
 					setDraft_1_title(data.multi_post.multiposts[0].posts[1].title);
 					setDraft_1_author(data.multi_post.multiposts[0].posts[1].name);

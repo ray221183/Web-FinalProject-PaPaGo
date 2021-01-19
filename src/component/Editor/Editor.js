@@ -36,7 +36,7 @@ function Editor(prop){
             setSaved(true)
             if(prop.newPost) {
                 let blank_essay = EditorState.createEmpty()
-                prop.savefile('', '', blank_essay, [''], false) ///////////////////////
+                prop.savefile('Untitled story', '', blank_essay, [''], false) ///////////////////////
             }
             else prop.savefile(prop.curPostInfo.title, prop.curPostInfo.introduction, editorState, prop.curPostInfo.tags, !prop.curPostInfo.is_sketch) ///////////////////////
         }, 1500)
