@@ -97,8 +97,9 @@ function EditorCore(prop){
         e.stopPropagation();
         onChange(RichUtils.toggleBlockType(editorState, e.target.title))
     }
-    const onChange = (editorState) => {
-        setEditorState(editorState)
+    const onChange = (newEditorState) => {
+        if( editorState.getCurrentContent() !== newEditorState.getCurrentContent() ) prop.setAllowToSave(true)
+        setEditorState(newEditorState)
     }
 
     // editor placeholder

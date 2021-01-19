@@ -59,7 +59,20 @@ function PersonalPage(props){
 	const editEssay = ( post_info ) => {
 		console.log("Post Info Post InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost Info")
 		console.log("Post Info: ", post_info)
-		props.setCurPostInfo(post_info)
+		if(!post_info.is_sketch){
+			props.setIsPublished(true)
+			props.setNewPost(true)
+			console.log("related_uuid: ", post_info.related_uuid)
+			if(post_info.related_uuid === ""){
+				props.setCurPostInfo(post_info)
+			}
+			else{
+				props.setCurUuid(post_info.related_uuid)
+			}
+		}
+		else{
+			props.setCurPostInfo(post_info)
+		}
 	}
 
 	useEffect(
@@ -97,7 +110,7 @@ function PersonalPage(props){
 				setDraft_0_date(data.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
 				setDraft_0_like(data.multi_post.multiposts[0].posts[0].great_num);
 				if(data.multi_post.multiposts[0].posts.length >= 2) {
-					setDraft_1(data.multi_post.multiposts[1])
+					setDraft_1(data.multi_post.multiposts[0].posts[1])
 					setDraft_1_id(data.multi_post.multiposts[0].posts[1].uuid);
 					setDraft_1_title(data.multi_post.multiposts[0].posts[1].title);
 					setDraft_1_author(data.multi_post.multiposts[0].posts[1].name);
@@ -133,7 +146,7 @@ function PersonalPage(props){
 							<Link to={"/post/" + `${public_0_id}`}><button className="PPStoryTitle">{public_0_title}</button></Link>
 							<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 								<Link to="/editor">
-									<button id="PPIconButton" onClick={ () => {editEssay(public_0)} }>
+									<button id="PPIconButton" onClick={ () => {console.log("#1");editEssay(public_0)} }>
 										<AiFillEdit />
 									</button>
 								</Link>
@@ -166,7 +179,7 @@ function PersonalPage(props){
 								<Link to={"/post/" + `${public_0_id}`}><button className="PPStoryTitle">{public_0_title}</button></Link>
 								<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 									<Link to="/editor">
-										<button id="PPIconButton" onClick={ () => {editEssay(public_0)} }>
+										<button id="PPIconButton" onClick={ () => {console.log("#2");editEssay(public_0)} }>
 											<AiFillEdit />
 										</button>
 									</Link>
@@ -194,7 +207,7 @@ function PersonalPage(props){
 								<Link to={"/post/" + `${public_1_id}`}><button className="PPStoryTitle">{public_1_title}</button></Link>
 								<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 									<Link to="/editor">
-										<button id="PPIconButton" onClick={ () => {editEssay(public_1)} }>
+										<button id="PPIconButton" onClick={ () => {console.log("#3");editEssay(public_1)} }>
 											<AiFillEdit />
 										</button>
 									</Link>
@@ -236,7 +249,7 @@ function PersonalPage(props){
 							<Link to={"/post/" + `${draft_0_id}`}><button className="PPStoryTitle">{draft_0_title}</button></Link>
 							<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 								<Link to="/editor">
-									<button id="PPIconButton" onClick={ () => {editEssay(draft_0)} }>
+									<button id="PPIconButton" onClick={ () => {console.log("#4");editEssay(draft_0)} }>
 										<AiFillEdit />
 									</button>
 								</Link>
@@ -269,7 +282,7 @@ function PersonalPage(props){
 								<Link to={"/post/" + `${draft_0_id}`}><button className="PPStoryTitle">{draft_0_title}</button></Link>
 								<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 									<Link to="/editor">
-										<button id="PPIconButton" onClick={ () => {editEssay(draft_0)} }>
+										<button id="PPIconButton" onClick={ () => {console.log("#5");editEssay(draft_0)} }>
 											<AiFillEdit />
 										</button>
 									</Link>
@@ -297,7 +310,7 @@ function PersonalPage(props){
 								<Link to={"/post/" + `${draft_1_id}`}><button className="PPStoryTitle">{draft_1_title}</button></Link>
 								<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 									<Link to="/editor">
-										<button id="PPIconButton" onClick={ () => {editEssay(draft_1)} }>
+										<button id="PPIconButton" onClick={ () => {console.log("#6");editEssay(draft_1)} }>
 											<AiFillEdit />
 										</button>
 									</Link>
