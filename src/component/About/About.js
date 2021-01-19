@@ -1,9 +1,9 @@
-import './App.css';
-import React from 'react';
+import './About.css';
+import React, { useEffect, useRef, useState } from 'react'
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
 
-function App() {
+function About(props) {
 	return (
 		<div className="AboutMain">
 			<div id="topandbottom">Hi</div>
@@ -34,13 +34,13 @@ function App() {
 				Contact Us
 				<hr id='abouthr' />
 				<div className="Emails">
-					<h2>
+					<h2 id="authorEmail">
 						B06901070@ntu.edu.tw
 					</h2>
-					<h2>
+					<h2 id="authorEmail">
 						B06901071@ntu.edu.tw
 					</h2>
-					<h2>
+					<h2 id="authorEmail">
 						B06901074@ntu.edu.tw
 					</h2>
 				</div>
@@ -50,4 +50,4 @@ function App() {
 	);
 }
 
-export default App;
+export default About;

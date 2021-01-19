@@ -18,6 +18,7 @@ import TopicPostsEnum from './component/TopicPostsEnum/TopicPostsEnum'
 import PersonalPage from './component/PersonalPage/PersonalPage'
 import Article from './component/Article/Article'
 import { PublishCheck, Editor} from './component/Editor/Editor'
+import About from './component/About/About'
 
 function App() {
 	// about user
@@ -211,6 +212,8 @@ function App() {
 					<Route path="/personalpage/:type/:topic" component={TopicPostsEnum} 
 					/>
 					<Route path="/personalpage/:who" component={PersonalPage} 
+					/>
+					<Route path="/about" component={About} 
 					/>
 				</Switch>
 			</div>
