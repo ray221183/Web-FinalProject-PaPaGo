@@ -10,7 +10,7 @@ import {AiFillDelete} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
 
 function PersonalPage(props){
-	let { who } = props.match.params;		// who is the account of someone
+	let { who } = props.match.params;		// "who" is the account of someone
 	console.log('who = ' + who);
 
 	const [public_0_id, setPublic_0_id] = useState('');
