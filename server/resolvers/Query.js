@@ -351,7 +351,7 @@ const Query = {
 			last_record.sort(function(a,b){
 				return b.great_num - a.great_num
 			})
-			if(last_record.length >= 20){
+			if((last_record.length >= 20) && (args.data.search_type !== "get pair")){
 				last_record = last_record.slice(0,20)
 			}
 			final_result.push({posts:last_record})
@@ -384,6 +384,14 @@ const Query = {
 			let related_post = await Post.find({"is_sketch":false,
 											$and: filter_list
 									})
+			var index;
+			for(var i=0; i<related_post.length; ++i){
+				if(related_post[i].uuid === args.data.uuid){
+					index = i
+					break
+				}
+			}
+			related_post = related_post.slice(0,index).concat(related_post.slice(index+1))
 			if(related_post.length >= 3){
 				related_post = related_post.slice(0,3)
 			}
@@ -392,10 +400,15 @@ const Query = {
 				list.push(related_post[i].uuid)
 			}
 			if(related_post.length < 3){
+				let count = 3 - related_post.length
 				let temp = await Post.find({"is_sketch":false})
 				for(var i=0; i<temp.length; ++i){
-					if(!list.includes(temp[0].uuid)){
-						related_post.push(temp[0])
+					if(!list.includes(temp[i].uuid) && (temp[i].uuid !== args.data.uuid)){
+						related_post.push(temp[i])
+						count = count-1
+						if(count === 0){
+							break
+						}
 					}
 				}
 			}
@@ -418,6 +431,9 @@ const Query = {
 				let num = list.length
 				last_record[j]['great_num'] = num
 			} 
+			last_record.sort(function(a,b){
+				return b.great_num - a.great_num
+			})
 			final_result.push({posts:last_record})
 		}
 		return {
