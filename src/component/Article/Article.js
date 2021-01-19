@@ -9,6 +9,8 @@ import Editor from '@draft-js-plugins/editor';
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
 
+import RelatedStory from "./RelatedStory";
+
 function Article(props) {
 	let { id } = props.match.params;
 	console.log('id = ' + id);
@@ -51,9 +53,9 @@ function Article(props) {
 			setTrend_0_date(data.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
 			setTrend_0_like(data.multi_post.multiposts[0].posts[0].great_num);
 
-			setRelated_0(data.multi_post.multiposts[1].posts[1]);
-			setRelated_1(data.multi_post.multiposts[1].posts[2]);
-			setRelated_2(data.multi_post.multiposts[1].posts[3]);
+			setRelated_0(data.multi_post.multiposts[1].posts[0]);
+			setRelated_1(data.multi_post.multiposts[1].posts[1]);
+			setRelated_2(data.multi_post.multiposts[1].posts[2]);
 		}
 	}, [data])
 
@@ -93,60 +95,9 @@ function Article(props) {
 				<h3 id="MoreStories">More Interesting Stories</h3>
 				<hr id='hr' />
 				<div className="RelatedStories">
-					<div className="RelatedStory">
-						<div className="RelatedStoryImage">An image</div>
-						<div className="RelatedStoryAuthor">
-							<Link to={"/post/"}>
-								<button className="RelatedStoryTitle">{related_0.title}<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>{related_0.name}</span>
-								</button>
-							</Link>
-						</div>
-						<div className="RelatedStoryDateAndTag">
-							<div className="RelatedStoryDate">{related_0.date.split(' ')[0]}</div>
-							<div>
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
-									<FaThumbsUp />
-									<span id="RelatedStoryLike">{related_0.great_num} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-					<div className="RelatedStory">
-						<div className="RelatedStoryImage">An image</div>
-						<div className="RelatedStoryAuthor">
-							<Link to={"/post/"}>
-								<button className="RelatedStoryTitle">{related_1.title}<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>{related_1.name}</span>
-								</button>
-							</Link>
-						</div>
-						<div className="RelatedStoryDateAndTag">
-							<div className="RelatedStoryDate">{related_1.date.split(' ')[0]}</div>
-							<div>
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
-									<FaThumbsUp />
-									<span id="RelatedStoryLike">{related_1.great_num} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-					<div className="RelatedStory">
-						<div className="RelatedStoryImage">An image</div>
-						<div className="RelatedStoryAuthor">
-							<Link to={"/post/"}>
-								<button className="RelatedStoryTitle">{related_2.title}<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>{related_2.name}</span>
-								</button>
-							</Link>
-						</div>
-						<div className="RelatedStoryDateAndTag">
-							<div className="RelatedStoryDate">{related_2.date.split(' ')[0]}</div>
-							<div>
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
-									<FaThumbsUp />
-									<span id="RelatedStoryLike">{related_2.great_num} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
+					<RelatedStory related_post={related_0} />
+					<RelatedStory related_post={related_1} />
+					<RelatedStory related_post={related_2} />
 				</div>
 			</div>
 		)
@@ -187,7 +138,7 @@ function Article(props) {
 				<h3 id="MoreStories">More Interesting Stories</h3>
 				<hr id='hr' />
 				<div className="RelatedStories">
-					<div className="RelatedStory">
+					<div className="RelatedStory">	{/*class RelatedStory defined in RelatedStory.css*/}
 					</div>
 					<div className="RelatedStory">
 					</div>
@@ -197,153 +148,6 @@ function Article(props) {
 			</div>
 		)
 	}
-
-	return (
-		<div className="Article">
-			{/* <h1 id="title">{trend_0_title}</h1> */}
-			{/* <div className="ArticleImage">
-				A image about this story.
-			</div> */}
-			<div className="editor-part" name = "editor-part">
-				<div className="article-content">
-					<Editor
-						editorState={editorState}
-						// plugins={plugins}
-						readOnly={true}
-					/>
-				</div>
-			</div>
-			<div className="ArticleBottom">
-				<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
-					<button id='LikePost'>
-						<FaThumbsUp />
-						<span id="likeNum">{trend_0_like} Like</span>
-					</button>
-				</IconContext.Provider>
-			</div>
-			<div className="Author">
-				<div id='WrittenBy'>
-					Written By
-				</div>
-				<div id='author'>
-					An image about the author
-					<button id="AuthorButton">{trend_0_author}</button>
-				</div>
-			</div>
-			<h3 id="MoreStories">More Interesting Stories</h3>
-			<hr id='hr' />
-			<div className="RelatedStories">
-				<div className="RelatedStory">
-					<div className="RelatedStoryImage">An image</div>
-					<div className="RelatedStoryAuthor">
-						<Link to={"/post/"}>
-							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
-							</button>
-						</Link>
-					</div>
-					<div className="RelatedStoryDateAndTag">
-						<div className="RelatedStoryDate">2021/12/21</div>
-						<div>
-							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
-								<FaThumbsUp />
-								<span id="RelatedStoryLike">2189982 Like</span>
-							</IconContext.Provider>
-						</div>
-					</div>
-				</div>
-				<div className="RelatedStory">
-					<div className="RelatedStoryImage">An image</div>
-					<div className="RelatedStoryAuthor">
-						<Link to={"/post/"}>
-							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
-							</button>
-						</Link>
-					</div>
-					<div className="RelatedStoryDateAndTag">
-						<div className="RelatedStoryDate">2021/12/21</div>
-						<div>
-							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
-								<FaThumbsUp />
-								<span id="RelatedStoryLike">2189982 Like</span>
-							</IconContext.Provider>
-						</div>
-					</div>
-				</div>
-				<div className="RelatedStory">
-					<div className="RelatedStoryImage">An image</div>
-					<div className="RelatedStoryAuthor">
-						<Link to={"/post/"}>
-							<button className="RelatedStoryTitle">Related Story Title Related Story Title Related Story Title Related Story Title Related Story Title<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '5px'}}>by</span><span style={{border:'0px solid green', fontSize:'20px', marginLeft: '5px' }}>Related Story Author Name</span>
-							</button>
-						</Link>
-					</div>
-					<div className="RelatedStoryDateAndTag">
-						<div className="RelatedStoryDate">2021/12/21</div>
-						<div>
-							<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px', border: '0px solid green' } }}>
-								<FaThumbsUp />
-								<span id="RelatedStoryLike">2189982 Like</span>
-							</IconContext.Provider>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-	/*
-	return (
-		<div className="Article">
-			<h1 id="title">Hard Written</h1>
-			<div className="ArticleImage">
-				A image about this story.
-			</div>
-			<p className="Paragraph">
-				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
-				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
-				The first paragraph.The first paragraph.The first paragraph.The first paragraph.The first paragraph.
-			</p>
-			<p className="Paragraph">
-				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
-				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
-				The second paragraph.The second paragraph.The second paragraph.The second paragraph.The second paragraph.
-			</p>
-			<p className="Paragraph">
-				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
-				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
-				The third paragraph.The third paragraph.The third paragraph.The third paragraph.The third paragraph.
-			</p>
-			<div className="ArticleBottom">
-				<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
-					<button id='LikePost'>
-						<FaThumbsUp />
-						<span id="likeNum">Hard Written Like</span>
-					</button>
-				</IconContext.Provider>
-			</div>
-			<div className="Author">
-				<div id='WrittenBy'>
-					Written By
-				</div>
-				<div id='author'>
-					An image about the author
-					<button id="AuthorButton">Hard Written</button>
-				</div>
-			</div>
-			<h3 id="MoreStories">More Interesting Stories</h3>
-			<hr id='hr' />
-			<div className="RelatedStories">
-				<div className="Story">
-					<h3>A related story</h3>
-				</div>
-				<div className="Story">
-					<h3>A related story</h3>
-				</div>
-				<div className="Story">
-					<h3>A related story</h3>
-				</div>
-			</div>
-		</div>
-	);*/
 }
 
 export default Article;

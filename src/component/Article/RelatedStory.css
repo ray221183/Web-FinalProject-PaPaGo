@@ -1,0 +1,91 @@
+.RelatedStory {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 380px;
+	height: 450px;
+	border: 2px solid pink;
+}
+.RelatedStoryImage {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 380px;
+	height: 200px;
+	border: 2px solid red;
+}
+.RelatedStoryAuthor {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 375px;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	/*border: 2px solid black;*/
+}
+.RelatedStoryTitle {
+	background-color: white;
+	text-align: left;
+	font-size: 25px;
+	color: black;
+	border: 0px solid blue;
+	margin: 0px;
+}
+.RelatedStoryTitle:hover {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
+}
+.RelatedStoryTitle:active {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
+}
+.RelatedStoryTitle:visited {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
+}
+.RelatedStoryTitle:focus {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+	outline: none;
+}
+.RelatedStoryDateAndTag {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	/*border: 2px solid red;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+.RelatedStoryDate {
+	background-color: white;
+	/*border: 2px solid brown;*/
+	color: black;
+	font-size: 15px;
+	padding: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+#RelatedStoryLike {
+	margin-left: 5px;
+	font-size: 15px;
+}
