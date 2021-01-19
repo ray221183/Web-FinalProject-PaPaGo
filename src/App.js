@@ -16,6 +16,7 @@ import LogPage from './component/LogPage/LogPage'
 import PostsEnum from './component/PostsEnum/PostsEnum'
 import TopicPostsEnum from './component/TopicPostsEnum/TopicPostsEnum'
 import PersonalPage from './component/PersonalPage/PersonalPage'
+import Article from './component/Article/Article'
 import { PublishCheck, Editor} from './component/Editor/Editor'
 
 function App() {
@@ -189,6 +190,8 @@ function App() {
 							setLoginLogup={setLoginLogup} 
 							setPicHeight={setPicHeight}/>)} 
 					/>
+					<Route exact path="/post/:id" component={Article}
+					/>
 					<Route path="/postsenum/:type/:topic" component={TopicPostsEnum} 
 					/>
 					<Route path="/postsenum/:type" component={PostsEnum} 
@@ -205,8 +208,7 @@ function App() {
 							/>
 						)}
 					/>
-					<Route path="/personalpage" render={() => (
-						<PersonalPage />)} 
+					<Route path="/personalpage/:who" component={PersonalPage} 
 					/>
 				</Switch>
 			</div>

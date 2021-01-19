@@ -79,7 +79,7 @@ function TopBanner(prop){
 										{prop.username[0]}
 									</span>
 								</div>
-								<Link id="account-link" to="/personalpage" style={{ textDecoration: 'none' }} onClick={() => {expandMenu()}}>
+								<Link id="account-link" to={"/personalpage/" + `${prop.account}`} style={{ textDecoration: 'none' }} onClick={() => {expandMenu()}}>
 									<div className="a">
 										<span id="username">{prop.username[1]} {prop.username[0]}</span>
 										<span id="account">{prop.account}</span>

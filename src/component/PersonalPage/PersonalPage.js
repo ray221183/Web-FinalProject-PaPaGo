@@ -1,14 +1,42 @@
 import './PersonalPage.css'
 import React, { useEffect, useRef, useState } from 'react'
+import { MULTIPOST_QUERY } from '../../graphql'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import { Link } from "react-router-dom";
+
 import {FaThumbsUp} from 'react-icons/fa';
 import {AiFillEdit} from 'react-icons/ai';
 import {AiFillDelete} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
-import {
-	Link
-  } from "react-router-dom";
 
-function PersonalPage(prop){
+function PersonalPage(props){
+	let { who } = props.match.params;
+	console.log('who = ' + who);
+
+	const [trend_0_title, setTrend_0_title] = useState('');
+	const [trend_0_author, setTrend_0_author] = useState('');
+	const [trend_0_intro, setTrend_0_intro] = useState('');
+	const [trend_0_date, setTrend_0_date] = useState('');
+	const [trend_0_like, setTrend_0_like] = useState(0);
+
+	const [trend_1_title, setTrend_1_title] = useState('');
+	const [trend_1_author, setTrend_1_author] = useState('');
+	const [trend_1_intro, setTrend_1_intro] = useState('');
+	const [trend_1_date, setTrend_1_date] = useState('');
+	const [trend_1_like, setTrend_1_like] = useState(0);
+
+	const [trend_2_title, setTrend_2_title] = useState('');
+	const [trend_2_author, setTrend_2_author] = useState('');
+	const [trend_2_intro, setTrend_2_intro] = useState('');
+	const [trend_2_date, setTrend_2_date] = useState('');
+	const [trend_2_like, setTrend_2_like] = useState(0);
+
+	const [trend_3_title, setTrend_3_title] = useState('');
+	const [trend_3_author, setTrend_3_author] = useState('');
+	const [trend_3_intro, setTrend_3_intro] = useState('');
+	const [trend_3_date, setTrend_3_date] = useState('');
+	const [trend_3_like, setTrend_3_like] = useState(0);
+
 	return(
 		<section className = "PersonalPage">
 			<div className="Published">
