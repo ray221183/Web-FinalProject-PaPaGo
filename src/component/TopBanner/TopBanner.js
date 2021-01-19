@@ -52,13 +52,13 @@ function TopBanner(prop){
 	}
 	const handleKeyDown = (e) => {
         if(e.keyCode === 13){
-			prop.searchPost(keyWord, false, true, '', '', 'client')
+			prop.searchPost([keyWord], false, true, '', '', '')
         }
     }
 	const expandSearch = () => {
 		if(keyWord !== ''){
 			setSearch(true)
-			prop.searchPost(keyWord, false, true, '', '', 'client')
+			prop.searchPost([keyWord], false, true, '', '', '')
 		}
 		else setSearch(!Search)
 	}
@@ -79,7 +79,7 @@ function TopBanner(prop){
 										{prop.username[0]}
 									</span>
 								</div>
-								<Link id="account-link" to="/personalpage" style={{ textDecoration: 'none' }} onClick={() => {expandMenu()}}>
+								<Link id="account-link" to={"/personalpage/" + `${prop.account}`} style={{ textDecoration: 'none' }} onClick={() => {expandMenu()}}>
 									<div className="a">
 										<span id="username">{prop.username[1]} {prop.username[0]}</span>
 										<span id="account">{prop.account}</span>

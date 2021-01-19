@@ -152,6 +152,7 @@ const Query = {
 		}
 	},
 	async multi_post(parent, args, { db }, info){
+		console.log("args: ", args)
 		let final_result = []
 		let have_sketch = args.data.get_sketch
 		let have_non_sketch = args.data.get_non_sketch
@@ -355,6 +356,7 @@ const Query = {
 			}
 			final_result.push({posts:last_record})
 		}
+		console.log("final_result: ", final_result)
 		return {
 			multiposts:final_result
 		}

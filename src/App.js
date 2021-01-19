@@ -5,7 +5,7 @@ import {
 	Route,
   } from "react-router-dom";
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
-import { POST_QUERY, ADD_POST, UPDATE_POST } from './graphql'
+import { MULTIPOST_QUERY, ADD_POST, UPDATE_POST } from './graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 
 
@@ -16,47 +16,54 @@ import LogPage from './component/LogPage/LogPage'
 import PostsEnum from './component/PostsEnum/PostsEnum'
 import TopicPostsEnum from './component/TopicPostsEnum/TopicPostsEnum'
 import PersonalPage from './component/PersonalPage/PersonalPage'
+import Article from './component/Article/Article'
 import { PublishCheck, Editor} from './component/Editor/Editor'
 
 function App() {
+	// about user
 	const [loginLogup, setLoginLogup] = useState(0); // 0: normal page | 1: log in | 2: log up
 	const [loginState, setLoginState] = useState(false);
 	const [username, setUsername] = useState(['', '']); // [first name, last name]
 	const [account, setAccount] = useState('');
 
+	// topbanner animation element
 	const scrollYTop = useRef();
 	const [picHeight, setPicHeight] = useState(0);
 	const [topBannerHeight, setTopBannerHeight] = useState(0);
 	const [scrollToTop, setScrollToTop] = useState(true);
 
-	const [editorState, setEditorState] = useState( ()=>EditorState.createEmpty() );
+	// current essay information
+	const [editorState, setEditorState] = useState(()=>EditorState.createEmpty());
 	const [prePublishScale, setPrePublishScale] = useState(0);
 	const [newPost, setNewPost] = useState(true);
-	const [postInfo, setPostInfo] = useState([]);
+	const [curPostInfo, setCurPostInfo] = useState([]);
 
+	// search detail // must change all at the same time !!!!!!!!!!!!!!!!
 	const [writer, setWriter] = useState('');
 	const [specialSearch, setSpecialSearch] = useState('');
 	const [searchType, setSearchType] = useState([true, true]); // [get_sketch, get_non_sketch]
-	const [tags, setTags] = useState('');
+	const [tags, setTags] = useState([]);
 	const [curUuid, setCurUuid] = useState('');
 
-	const {data: posts, refetch: rePost, loading, error} = useQuery(
-		POST_QUERY, 
+	console.log("search way: ", writer, ":", specialSearch, ":", searchType, ":", tags, ":", curUuid)
+
+	// apollo
+	const {data: posts, refetch: rePosts, loading, error} = useQuery(
+		MULTIPOST_QUERY, 
 		{
 			variables: {
-				writer: '1',
-				search_type: '1',
-				get_sketch: true,
-				get_non_sketch: true,
-				keyword: '1',
-				uuid: '1'
+				writer: writer,
+				search_type: specialSearch,
+				get_sketch: searchType[0],
+				get_non_sketch: searchType[1],
+				keyword: [...tags],
+				uuid: curUuid
 			}
 		});
-	console.log("error", error)
-	console.log(posts)
+	console.log("search post: ", posts)
 	const [addPost] = useMutation(ADD_POST);
 	const [updatePost] = useMutation(UPDATE_POST)
-
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	const scrollTop = () => {
 		scrollYTop.current.scrollTo(0, 0)
 	}
@@ -73,14 +80,9 @@ function App() {
 		setSearchType([get_sketch, get_non_sketch])
 		setTags(keyword)
 		setCurUuid(uuid)
-		console.log("search")
 	}
-
-	const resetEditorState = () => {
-		setEditorState(()=>EditorState.createEmpty())
-	}
-
-	const savefile = async (editorState, tags, published) => {
+	const savefile = async (title, introduction, editorState, tags, published) => {
+		console.log(title, introduction, editorState, tags, published)
         const contentState = editorState.getCurrentContent()
 		const jsonRawData = JSON.stringify(convertToRaw(contentState))
 		let tagList = ( tags.length>0 ) ? tags.map((item)=>{ return item[0] }) : ['']
@@ -89,36 +91,36 @@ function App() {
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate + ' ' + saveTime
 		let a = [1,2]
-		console.log(jsonRawData, '    data type: ', typeof jsonRawData)
-		console.log(account, '    data type: ', typeof account)
-		console.log(tagList, '    data type: ', typeof tagList)
-		console.log(dateTime, '    data type: ', typeof dateTime)
-		console.log(!published, '    data type: ', typeof !published)
-		console.log(newPost)
+		console.log('title: ', title)
+		console.log('introduction: ', introduction)
+		console.log('content: ', jsonRawData)
+		console.log('writer: ', account)
+		console.log('tagList: ', tagList)
+		console.log('date: ', dateTime)
+		console.log('is sketch: ', !published)
+		console.log('new post: ', newPost)
 		if(newPost){
 			console.log("add post")
 			let postId = await addPost({
 				variables: {
-					title: '',
+					title: title,
 					introduction: '',
 					content: jsonRawData,
 					writer: account,
 					tags: [''],
 					date: dateTime,
-					is_sketch: !published,
+					is_sketch: true,
 					related_uuid: ''
 				}
 			})
-			console.log(postId.data.addPost)
-			setCurUuid(postId.data.addPost)
+			searchPost([''], true, true, postId.data.addPost, '', '')
 		}
 		else{
 			console.log("update post")
-			console.log(posts)
 			updatePost({
 				variables: {
-					title: 'title',
-					introduction: 'introduction',
+					title: title,
+					introduction: introduction,
 					uuid: curUuid,
 					content: jsonRawData,
 					tags: tagList,
@@ -129,14 +131,23 @@ function App() {
 		}
 		setNewPost(false)
 	}
-
+	/////////////////////////////////////////////////////////////////////////////////////////////
+	useEffect(() => {
+		console.log(posts)
+		if( typeof posts !== "undefined" ){
+			if( posts.multi_post.multiposts.length !== 0){
+				console.log("set current post: ", posts.multi_post.multiposts[0].posts[0])
+				setCurPostInfo(posts.multi_post.multiposts[0].posts[0])
+			}
+		}
+	}, [posts])
 	useEffect(
 		() => {
-			rePost()
+			console.log("refetch")
+			rePosts()
 		}
 	, [writer, specialSearch, searchType, tags, curUuid])
-	
-	
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	return(
     	<div className = "body" ref={scrollYTop} onScroll = {() => {scrolling()}}>
 			<div className = "TopElement">
@@ -150,10 +161,11 @@ function App() {
 				<Switch>
 					<Route path="/editor" render={() => (
 							<PublishCheck 
-								editorState={editorState}
 								prePublishScale={prePublishScale}
 								setPrePublishScale={setPrePublishScale}
 								savefile={savefile}
+								curPostInfo={curPostInfo}
+								editorState={editorState}
 							/>
 						)}
 					/>
@@ -178,22 +190,27 @@ function App() {
 							setLoginLogup={setLoginLogup} 
 							setPicHeight={setPicHeight}/>)} 
 					/>
+					<Route exact path="/post/:id" component={Article}
+					/>
 					<Route path="/postsenum/:type/:topic" component={TopicPostsEnum} 
 					/>
 					<Route path="/postsenum/:type" component={PostsEnum} 
 					/>
 					<Route path="/editor" render={() => (
-							<Editor 
-								editorState={editorState}
-								setEditorState={setEditorState}
+							<Editor
+								newPost={newPost}
 								setPrePublishScale={setPrePublishScale}
 								savefile={savefile}
-								resetEditorState={resetEditorState}
+								curPostInfo={curPostInfo}
+								editorState={editorState}
+								setEditorState={setEditorState}
+								setCurPostInfo={setCurPostInfo}
 							/>
 						)}
 					/>
-					<Route path="/personalpage" render={() => (
-						<PersonalPage />)} 
+					<Route path="/personalpage/:type/:topic" component={TopicPostsEnum} 
+					/>
+					<Route path="/personalpage/:who" component={PersonalPage} 
 					/>
 				</Switch>
 			</div>

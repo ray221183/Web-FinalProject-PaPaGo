@@ -1,13 +1,14 @@
 import './PEStory.css'
 import React from "react";
+import { Link } from "react-router-dom";
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
 
 export default ({ post }) => {
     return (
-        <div className="PEStories">
+        <div className="PEStories" key={post.uuid}>
 			<div className="PEAuthor">
-				<button className="PEStoryTitle">{post.title}</button>
+				<Link to={"/post/" + `${post.uuid}`}><button className="PEStoryTitle">{post.title}</button></Link>
 				<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
 				<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{post.name}</h3>
 			</div>

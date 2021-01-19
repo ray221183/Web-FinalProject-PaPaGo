@@ -1279,6 +1279,13 @@
     immutable "~3.8.2"
     prop-types "^15.5.8"
 
+"@draft-js-plugins/image@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/image/-/image-4.0.0.tgz#4066e843343fd4bed3c86f740e8fc232e83c163b"
+  integrity sha512-bzcn0Rj0ceVAmFBtVsqg4CQ7Wo5Of7BV+K+fw8g4XC6L8j1g98mj0tjKvSLVS54Pr5OILKG7Wpkho0X5mDCcyA==
+  dependencies:
+    clsx "^1.0.4"
+
 "@draft-js-plugins/inline-toolbar@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@draft-js-plugins/inline-toolbar/-/inline-toolbar-4.0.0.tgz#12a5febff98adaa2ef940c1f4a88e4ccaf289721"
