@@ -147,11 +147,11 @@ function EditorCore(prop){
             <div className="import-img"></div>
             <div className="eidtor-content-part" onClick={() => {focus()}}>
                 <Editor
-                editorState={editorState}
-                onChange={onChange}
-                placeholder={placeholder}
-                plugins={plugins}
-                ref={element}
+                    editorState={editorState}
+                    onChange={onChange}
+                    placeholder={placeholder}
+                    plugins={plugins}
+                    ref={element}
                 />
                 <div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
                     <div className="side-bar-icon" id={sideAddIcon}></div>
