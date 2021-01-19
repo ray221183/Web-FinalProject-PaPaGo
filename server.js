@@ -1,19 +1,21 @@
 //import { graphqlExpress } from 'apollo-server-express';
-const {graphqlExpress} = require('apollo-server-express')
-const { loadSchemaSync } = require('@graphql-tools/load');
 const express = require('express');
-const path = require('path');
-const port = process.env.PORT || 80;
-const app = express();
-const bodyParser = require('body-parser')
-const myGraphQLSchema = loadSchemaSync('server/schema.graphql')// ... define or import your schema here!
+const bodyParser = require('body-parser');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const { makeExecutableSchema } = require('graphql-tools');
+const {importSchema} = require('graphql-import')
+const schema = importSchema('./server/schema.graphql')// ... define or import your schema here!
 
-
+port = 80
 
 // bodyParser is needed just for POST.
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema }));
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// The GraphQL endpoint
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+
+// GraphiQL, a visual editor for queries
+app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
+// Start the server
+app.listen(80, () => {
+  console.log('Go to http://localhost:3000/graphiql to run queries!');
 });
-app.listen(port);
-console.log("apollo start")
