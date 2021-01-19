@@ -17,7 +17,8 @@ import PostsEnum from './component/PostsEnum/PostsEnum'
 import TopicPostsEnum from './component/TopicPostsEnum/TopicPostsEnum'
 import PersonalPage from './component/PersonalPage/PersonalPage'
 import Article from './component/Article/Article'
-import { PublishCheck, Editor} from './component/Editor/Editor'
+import PublishCheck from './component/Editor/PublishCheck'
+import Editor from './component/Editor/Editor'
 import About from './component/About/About'
 
 function App() {
@@ -34,9 +35,10 @@ function App() {
 	const [scrollToTop, setScrollToTop] = useState(true);
 
 	// current essay information
+	const [isPublished, setIsPublished] = useState(false);
 	const [editorState, setEditorState] = useState(()=>EditorState.createEmpty());
 	const [prePublishScale, setPrePublishScale] = useState(0);
-	const [newPost, setNewPost] = useState(true);
+	const [newPost, setNewPost] = useState(false);
 	const [curPostInfo, setCurPostInfo] = useState([]);
 
 	// search detail // must change all at the same time !!!!!!!!!!!!!!!!
@@ -46,7 +48,7 @@ function App() {
 	const [tags, setTags] = useState([]);
 	const [curUuid, setCurUuid] = useState('');
 
-	console.log("search way: ", writer, ":", specialSearch, ":", searchType, ":", tags, ":", curUuid)
+	// console.log("search way: ", writer, ":", specialSearch, ":", searchType, ":", tags, ":", curUuid)
 
 	// apollo
 	const {data: posts, refetch: rePosts, loading, error} = useQuery(
@@ -136,7 +138,7 @@ function App() {
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
 	useEffect(() => {
-		console.log(posts)
+		console.log("posts", posts)
 		if( typeof posts !== "undefined" ){
 			if( posts.multi_post.multiposts.length !== 0){
 				console.log("set current post: ", posts.multi_post.multiposts[0].posts[0])
@@ -208,6 +210,9 @@ function App() {
 								editorState={editorState}
 								setEditorState={setEditorState}
 								setCurPostInfo={setCurPostInfo}
+								setNewPost={setNewPost}
+								isPublished={isPublished}
+								setIsPublished={setIsPublished}
 							/>
 						)}
 					/>
@@ -216,7 +221,11 @@ function App() {
 					<Route path="/personalpage/:who" render={(props) => (
 							<PersonalPage 
 								who={props.match.params.who} 
+								
 								setCurPostInfo={setCurPostInfo}
+								setNewPost={setNewPost}
+								setIsPublished={setIsPublished}
+								setCurUuid={setCurUuid}
 							/>
 						)}
 					/>
