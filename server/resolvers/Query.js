@@ -269,12 +269,10 @@ const Query = {
 		for(var i=0; i<key_record.length;++i){
 			let result = []
 			if(args.data.uuid !== ""){
-				console.log("uuid!!!!!!!",args.data.uuid)
 				let temp = await Post.find({"uuid":args.data.uuid}, (err, res) => {
 					if(err) console.log(err)
 					console.log("res", res)
 				})
-				console.log("result!!!!!!!!!",temp)
 				result = temp
 			}
 			else{
@@ -357,6 +355,70 @@ const Query = {
 			if(last_record.length >= 20){
 				last_record = last_record.slice(0,20)
 			}
+			final_result.push({posts:last_record})
+		}
+		if(args.data.search_type === "related post"){
+			let temp = await Post.find({"uuid":args.data.uuid})
+			let temp_tags = temp[0].tags
+			let filter_list = []
+			let last_record = []
+			for(var j=0; j<temp_tags.length;++j){
+				let sub_filter = []
+				sub_filter.push({
+					"content":{"$regex":temp_tags[j]}
+				})
+				sub_filter.push({
+					"name":{"$regex":temp_tags[j]}
+				})
+				sub_filter.push({
+					"title":{"$regex":temp_tags[j]}
+				})
+				sub_filter.push({
+					"introduction":{"$regex":temp_tags[j]}
+				})
+				sub_filter.push({
+					"tags":{"$elemMatch":  { "$eq":temp_tags[j] } }
+				})
+				sub_filter = {$or:sub_filter}
+				filter_list.push(sub_filter)
+			}
+			let related_post = await Post.find({"is_sketch":false,
+											$and: filter_list
+									})
+			if(related_post.length >= 3){
+				related_post = related_post.slice(0,3)
+			}
+			let list = []
+			for(var i=0; i<related_post.length;++i){
+				list.push(related_post[i].uuid)
+			}
+			if(related_post.length < 3){
+				let temp = await Post.find({"is_sketch":false})
+				for(var i=0; i<temp.length; ++i){
+					if(!list.includes(temp[0].uuid)){
+						related_post.push(temp[0])
+					}
+				}
+			}
+			for(var j=0; j<related_post.length; ++j){
+				last_record.push({
+					introduction: related_post[j].introduction,
+					title:related_post[j].title,
+					content: related_post[j].content,
+					writer:  related_post[j].writer,
+					name: related_post[j].name,
+					date:    related_post[j].date,
+					tags:    related_post[j].tags,
+					is_sketch: related_post[j].is_sketch,
+					uuid:    related_post[j].uuid,
+					related_uuid:related_post[j].related_uuid
+				})
+			}
+			for(var j=0; j<last_record.length;++j){
+				let list = await Great.find({"uuid":last_record[j].uuid})
+				let num = list.length
+				last_record[j]['great_num'] = num
+			} 
 			final_result.push({posts:last_record})
 		}
 		return {
