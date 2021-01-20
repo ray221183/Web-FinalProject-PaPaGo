@@ -99,7 +99,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js OneDay_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)
@@ -128,7 +128,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js TwoDay_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)
@@ -157,7 +157,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js HotView_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)
@@ -186,7 +186,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js Food_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)
