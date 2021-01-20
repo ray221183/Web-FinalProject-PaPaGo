@@ -5,7 +5,7 @@ const { ApolloServer } = require('apollo-server-express');
 const express = require('express')
 const Query = require('./server/resolvers/Query')
 const Mutation = require('./server/resolvers/Mutation')
-PORT = process.env.PORT || 80
+const PORT = process.env.PORT || 80
 const app = express()
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json());
