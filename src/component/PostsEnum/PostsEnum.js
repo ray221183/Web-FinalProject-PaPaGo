@@ -46,7 +46,7 @@ function PostsEnum(props) {
 	useEffect(() => {
 		//console.log('data = ', data)
 		if(typeof(data) !== 'undefined'){
-			console.log('data = ', data.multi_post.multiposts)
+			console.log('In PostsEnum useEffect, data = ', data.multi_post.multiposts)
 			setMultiposts(data.multi_post.multiposts);
 			if(data.multi_post.multiposts[0].posts.length >= 1) {
 				setOneDay0(data.multi_post.multiposts[0].posts[0]);

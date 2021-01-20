@@ -31,6 +31,13 @@ function PersonalPage(props){
 			uuid: ''
 	}});
 	const [deletePost] = useMutation(DELETE_POST);
+	const deleteP = async (id) => {
+		await deletePost({
+			variables: {
+				uuid: id
+		}})
+		refetch()
+	}
 	const editEssay = ( post_info ) => {
 		console.log("Post Info Post InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost Info")
 		console.log("Post Info: ", post_info)
@@ -60,14 +67,6 @@ function PersonalPage(props){
 		}
 	}, [data])
 
-	const deleteP = async (id) => {
-		await deletePost({
-			variables: {
-				uuid: id
-		}})
-		refetch()
-	}
-
 	const Public_map = () => {
 		if(typeof data !== 'undefined') {
 			if(data.multi_post.multiposts[1].posts.length == 1 && public_0 !== null) {
@@ -89,6 +88,12 @@ function PersonalPage(props){
 					<div className="PPStories"></div>
 				)
 			}
+		}
+		else {
+			console.log('In PersonalPage.js, data is undefined');
+			return(
+				<div className="PPStories"></div>
+			)
 		}
 	}
 	const Draft_map = () => {
@@ -113,6 +118,12 @@ function PersonalPage(props){
 					<div className="PPStories"></div>
 				)
 			}
+		}
+		else {
+			console.log('In PersonalPage.js, data is undefined');
+			return(
+				<div className="PPStories"></div>
+			)
 		}
 	}
 

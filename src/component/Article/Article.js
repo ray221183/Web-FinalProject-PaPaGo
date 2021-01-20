@@ -44,6 +44,18 @@ function Article(props) {
 			uuid: id
 	}});
 	const [clickLike] = useMutation(UPDATE_GREAT);
+	const handleClickLike = async (id, account, userLike) => {
+		console.log('userLike = ', userLike);
+		await clickLike({
+			variables: {
+				uuid: id,
+				account: account,
+				is_push: userLike
+		}})
+		console.log('In handleClickLike');
+		refetch_p();
+		refetch_like();
+	}
 
 	useEffect(
 		()=>{
@@ -69,13 +81,49 @@ function Article(props) {
 			console.log('In Article.js, data_like = ', data_like.greatOfpost.users);
 			console.log('account in data_like.greatOfpost.users = ', data_like.greatOfpost.users.includes(account));
 			if (data_like.greatOfpost.users.includes(account)) {
-
+				setUserLike(true);
 			}
 			else {
-
+				setUserLike(false);
 			}
 		}
-	}, [data_p, data_like])
+	}, [data_p, data_like, userLike])
+
+	const LikeStyle = () => {
+		if (typeof data_p !== 'undefined' && account !== '') {
+			if (userLike === true) {
+				return(
+					<IconContext.Provider value={{ size: '20px', style:{ fill: 'red' } }}>
+						<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
+							<FaThumbsUp />
+							<span id="likeNum">{trend_0_like} Like</span>
+						</button>
+					</IconContext.Provider>
+				)
+			}
+			else {
+				return(
+					<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
+						<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
+							<FaThumbsUp />
+							<span id="likeNum">{trend_0_like} Like</span>
+						</button>
+					</IconContext.Provider>
+				)
+			}
+		}
+		else {
+			console.log('In LikeStyle, data_p is undefined or account is empty');
+			return(
+				<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
+					<button id='LikePost'>
+						<FaThumbsUp />
+						<span id="likeNum">{trend_0_like} Like</span>
+					</button>
+				</IconContext.Provider>
+			)
+		}
+	}
 
 	if(typeof data_p !== 'undefined' && related_0 !== null && related_1 !== null && related_2 !== null) {
 		return(
@@ -94,12 +142,7 @@ function Article(props) {
 					</div>
 				</div>
 				<div className="ArticleBottom">
-					<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
-						<button id='LikePost'>
-							<FaThumbsUp />
-							<span id="likeNum">{trend_0_like} Like</span>
-						</button>
-					</IconContext.Provider>
+					<LikeStyle />
 				</div>
 				<div className="Author">
 					<div id='WrittenBy'>
@@ -137,12 +180,7 @@ function Article(props) {
 					</div>
 				</div>
 				<div className="ArticleBottom">
-					<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
-						<button id='LikePost'>
-							<FaThumbsUp />
-							<span id="likeNum">{trend_0_like} Like</span>
-						</button>
-					</IconContext.Provider>
+					<LikeStyle />
 				</div>
 				<div className="Author">
 					<div id='WrittenBy'>
