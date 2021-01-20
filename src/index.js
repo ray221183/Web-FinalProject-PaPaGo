@@ -18,12 +18,12 @@ import {
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'https://papagoisme.herokuapp.com:80/'
+  uri: 'http://papagoisme.herokuapp.com:8080/'
 })
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  uri: `wss://papagoisme.herokuapp.com:80/`,
+  uri: `ws://localhost:4000/`,
   options: { reconnect: true }
 })
 
@@ -38,9 +38,11 @@ const link = split(
       definition.operation === 'subscription'
     )
   },
-  wsLink,
+  httpLink,
   httpLink
 )
+
+// const link = httpLink
 
 const client = new ApolloClient({
   link,
