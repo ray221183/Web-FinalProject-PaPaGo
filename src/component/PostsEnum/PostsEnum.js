@@ -34,7 +34,7 @@ function PostsEnum(props) {
 			search_type: '',
 			get_sketch: false,
 			get_non_sketch: true,
-			keyword: [type + ' #一日遊', type + ' #二日遊', type + ' trending', type + ' 美食', 'trending', ''],
+			keyword: [type + ' ＃一日遊', type + ' ＃二日遊', type + ' trending', type + ' 美食', 'trending', ''],
 			uuid: ''
 	}});
 

@@ -21,9 +21,6 @@ export default ({ post, editEssay, deleteP, isPublic }) => {
 				</div>
 				<p className="PPStoryIntro">{post.introduction}</p>
 				<div className="PPDateAndTag">
-					<div className="PPTag">#宜蘭</div>
-					<div className="PPTag">#礁溪</div>
-					<div className="PPTag">#二日遊二日遊二日遊二日遊二日遊</div>
 					<div className="PPDate">{post.date.split(' ')[0]}</div>
 					<div>
 						<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '10px', marginBottom: '4px' } }}>
@@ -51,9 +48,6 @@ export default ({ post, editEssay, deleteP, isPublic }) => {
 				</div>
 				<p className="PPStoryIntro">{post.introduction}</p>
 				<div className="PPDateAndTag">
-					<div className="PPTag">#宜蘭</div>
-					<div className="PPTag">#礁溪</div>
-					<div className="PPTag">#二日遊二日遊二日遊二日遊二日遊</div>
 					<div className="PPDate">{post.date.split(' ')[0]}</div>
 					<div>
 						<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '10px', marginBottom: '4px' } }}>
