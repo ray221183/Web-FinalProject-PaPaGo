@@ -195,7 +195,12 @@ function App() {
 							setLoginLogup={setLoginLogup} 
 							setPicHeight={setPicHeight}/>)} 
 					/>
-					<Route exact path="/post/:id" component={Article}
+					<Route exact path="/post/:id" render={(props) => (
+							<Article 
+								id={props.match.params.id}
+								account={account}
+							/>
+						)}
 					/>
 					<Route path="/postsenum/:type/:topic" component={TopicPostsEnum} 
 					/>
