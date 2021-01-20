@@ -101,7 +101,7 @@ function Article(props) {
 			if (userLike === true) {
 				return(
 					<div style={{border: '0px solid green'}}>
-						<IconContext.Provider value={{ size: '20px', style:{ fill: 'red' } }}>
+						<IconContext.Provider value={{ size: '25px', style:{ fill: 'red', border: '0px solid black', margin: '4px' } }}>
 							<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
 								<FaThumbsUp />
 								<span id="likeNum">{trend_0_like} Like</span>
@@ -113,7 +113,7 @@ function Article(props) {
 			else {
 				return(
 					<div style={{border: '0px solid green'}}>
-						<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
+						<IconContext.Provider value={{ size: '25px', style:{ fill: 'black', border: '0px solid black', margin: '4px' } }}>
 							<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
 								<FaThumbsUp />
 								<span id="likeNum">{trend_0_like} Like</span>
