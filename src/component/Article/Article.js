@@ -45,14 +45,13 @@ function Article(props) {
 	}});
 	const [clickLike] = useMutation(UPDATE_GREAT);
 	const handleClickLike = async (id, account, userLike) => {
-		console.log('userLike = ', userLike);
 		await clickLike({
 			variables: {
 				uuid: id,
 				account: account,
-				is_push: userLike
+				is_push: !userLike
 		}})
-		console.log('In handleClickLike');
+		//console.log('In handleClickLike');
 		refetch_p();
 		refetch_like();
 	}
@@ -78,9 +77,17 @@ function Article(props) {
 			setRelated_2(data_p.multi_post.multiposts[1].posts[2]);
 		}
 		if(typeof data_like !== 'undefined'){
-			console.log('In Article.js, data_like = ', data_like.greatOfpost.users);
-			console.log('account in data_like.greatOfpost.users = ', data_like.greatOfpost.users.includes(account));
-			if (data_like.greatOfpost.users.includes(account)) {
+			let flag = false;
+			//console.log('In Article.js, data_like = ', data_like.greatOfpost.users);
+			//console.log('account = ', account);
+			//console.log('account in data_like.greatOfpost.users = ', data_like.greatOfpost.users.includes(account));
+			for (var i = 0; i < data_like.greatOfpost.users.length; i++) {
+				if (data_like.greatOfpost.users[i].account === account) {
+					flag = true;
+				}
+			}
+			//console.log('flag = ', flag);
+			if (flag) {
 				setUserLike(true);
 			}
 			else {
