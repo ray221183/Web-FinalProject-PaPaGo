@@ -1,4 +1,4 @@
-import uuidv4 from 'uuid/v4'
+const uuidv4 = require('uuid/v4')
 const User= require('../models/user')
 const Post= require('../models/post')
 const Great= require('../models/great')

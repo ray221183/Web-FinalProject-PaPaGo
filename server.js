@@ -1,14 +1,20 @@
 //const { loadFile } = require('graphql-import-files')
-import { USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY,
-ADD_USER, ADD_POST, DELETE_POST, UPDATE_POST, UPDATE_GREAT} from './src/graphql/index.js'
-import {importSchema} from'graphql-import'
-import {ApolloServer, gql } from 'apollo-server-express';
-import express from 'express'
+const{ USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY,
+ADD_USER, ADD_POST, DELETE_POST, UPDATE_POST, UPDATE_GREAT} = require('./src/graphql/index.js')
+const {importSchema} = require('graphql-import')
+const {ApolloServer, gql } =require('apollo-server-express');
+const express = require('express')
+const GMR = require('graphql-merge-resolvers')
+const Query = require('./server/resolvers/Query.js')
+const Mutation = require('./server/resolvers/Mutation.js')
 const app = express()
 console.log("qaq")
-const typeDefs = importSchema('./server/schema.graphql')
+const typeDefs= GMR.merge([USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY,
+ADD_USER, ADD_POST, DELETE_POST, UPDATE_POST, UPDATE_GREAT
+]);
+const resolvers = GMR.merge([Query,Mutation])
+
+const server = new ApolloServer({ typeDefs, resolvers});
 console.log("qaq2")
-const server = new ApolloServer({ typeDefs, resolvers:{ USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY,
-ADD_USER, ADD_POST, DELETE_POST, UPDATE_POST, UPDATE_GREAT} });
 server.applyMiddleware({ app });
 app.listen({ port: 80})
