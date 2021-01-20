@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost'
+const { gql } = require('apollo-boost')
 
 const USER_QUERY = gql`
   query user(
@@ -129,4 +129,4 @@ query multi_post(
   }
 }
 `
-export {USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY}
+module.exports = {USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY}

@@ -1,6 +1,6 @@
-import { gql } from 'apollo-boost'
+const { gql } =require('apollo-boost')
 
-export const POSTS_SUBSCRIPTION = gql`
+const POSTS_SUBSCRIPTION = gql`
   subscription {
     post {
       mutation
@@ -15,3 +15,5 @@ export const POSTS_SUBSCRIPTION = gql`
     }
   }
 `
+
+module.exports = {POSTS_SUBSCRIPTION}

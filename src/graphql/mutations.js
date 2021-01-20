@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost'
+const {gql} =require('apollo-boost')
 
 const ADD_USER = gql`
   mutation addUser(
@@ -110,4 +110,4 @@ mutation updateGreat(
 
 
 
-export {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST, UPDATE_GREAT}
+module.exports =  {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST, UPDATE_GREAT}
