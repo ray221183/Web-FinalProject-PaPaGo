@@ -260,6 +260,11 @@ function PostsEnum(props) {
 	/*const tags = data.tags.map((tag) => (
 		return <div className="PETag">{tag}</div>;
 	))*/
+	if(loading === true) {
+		return(
+			<div style={{fontSize: '100px', marginTop: '60px', textAlign: 'center'}}>Loading...</div>
+		)
+	}
     if (cities.includes(type)) {
     	return (
 			<div className="PostsEnum">

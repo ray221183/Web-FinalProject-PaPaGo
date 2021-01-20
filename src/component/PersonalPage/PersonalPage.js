@@ -127,6 +127,12 @@ function PersonalPage(props){
 		}
 	}
 
+	if(loading === true) {
+		//console.log('loading = ', loading);
+		return(
+			<div style={{fontSize: '100px', marginTop: '60px', textAlign: 'center'}}>Loading...</div>
+		)
+	}
 	if(typeof data !== 'undefined') {
 		return(
 			<section className = "PersonalPage">

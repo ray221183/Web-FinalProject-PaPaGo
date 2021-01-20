@@ -58,7 +58,7 @@ function TopBanner(prop){
 			setKeyWord('')
 			setSearch(false)
 			prop.searchPost([keyWord], false, true, '', '', '')
-			// history.push(`/postsenum/${keyWord}/all`)
+			history.push(`/postsenum/${keyWord}/all`);
         }
     }
 	const expandSearch = () => {
@@ -66,7 +66,7 @@ function TopBanner(prop){
 			setSearch(false)
 			setKeyWord('')
 			prop.searchPost([keyWord], false, true, '', '', '')
-			// history.push(`/postsenum/${keyWord}/all`)
+			history.push(`/postsenum/${keyWord}/all`);
 		}
 		else{
 			setSearch(!Search)

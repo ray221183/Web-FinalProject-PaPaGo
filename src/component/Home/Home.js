@@ -75,7 +75,7 @@ function Home(prop){
 		setCity(name);
 	}
 	
-	const { data: data_t, refetch: refetch_t } = useQuery(MULTIPOST_QUERY, 
+	const { loading: loading_t, data: data_t, refetch: refetch_t } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			search_type: '',
@@ -84,7 +84,7 @@ function Home(prop){
 			keyword: ['trending'],
 			uuid: ''
 	}});
-	const { data: data_r, refetch: refetch_r } = useQuery(MULTIPOST_QUERY, 
+	const { loading: loading_r, data: data_r, refetch: refetch_r } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			search_type: '',
@@ -726,6 +726,22 @@ function Home(prop){
 		}
 	}
 
+	if(loading_t === true || loading_r === true) {
+		console.log('loading_p = ', loading_t);
+		console.log('loading_r = ', loading_r);
+		return(
+			<section className = "Home">
+				<div className = "Introduction">
+					<div title="introduction content">
+						<span id="content-part">PaPaPaPaPa</span>
+						<button id="get-start-part" onClick={() => prop.setLoginLogup(2)}>Start Your Trip</button>
+					</div>
+				</div>
+				<div className = "Home-main-picture" ref={pic}>
+				</div>
+			</section>
+		)
+	}
 	if((typeof data_t !== 'undefined') && (typeof data_r !== 'undefined')){
 		return(
 			<section className = "Home">

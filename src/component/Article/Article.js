@@ -132,7 +132,15 @@ function Article(props) {
 		}
 	}
 
+	if (loading_p === true || loading_like === true) {
+		console.log('loading_p = ', loading_p);
+		console.log('loading_like = ', loading_like);
+		return(
+			<div style={{fontSize: '100px', marginTop: '60px', textAlign: 'center'}}>Loading...</div>
+		)
+	}
 	if(typeof data_p !== 'undefined' && related_0 !== null && related_1 !== null && related_2 !== null) {
+		//console.log('loading_p = ', loading_p);
 		return(
 			<div className="Article">
 				{/* <h1 id="title">{trend_0_title}</h1> */}
