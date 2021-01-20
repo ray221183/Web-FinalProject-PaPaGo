@@ -122,6 +122,9 @@
 	align-items: center;
 	margin-bottom: 10px;
 }
+
+
+/*
 .HomeStories {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -130,7 +133,7 @@
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	/*border: 2px solid red;*/
+	border: 0px solid red;
 	width: 680px;
 	height: 200px;
 }
@@ -142,7 +145,7 @@
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
-	/*border: 2px solid blue;*/
+	border: 0px solid blue;
 	width: 680px;
 }
 .HomeStoryTitle {
@@ -180,7 +183,7 @@
 	box-sizing: border-box;
 	text-align: left;
 	font-size: 15px;
-	/*border: 2px solid black;*/
+	border: 2px solid black;
 	margin: 0px;
 	width: 680px;
 	height: 70px;
@@ -189,7 +192,7 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	/*border: 2px solid green;*/
+	border: 0px solid green;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
@@ -198,7 +201,7 @@
 }
 .HomeTag {
 	background-color: black;
-	/*border: 2px solid brown;*/
+	border: 0px solid brown;
 	color: white;
 	font-size: 15px;
 	padding: 5px;
@@ -208,7 +211,7 @@
 }
 .HomeDate {
 	background-color: white;
-	/*border: 2px solid brown;*/
+	border: 0px solid brown;
 	color: black;
 	font-size: 15px;
 	padding: 2px;
@@ -218,7 +221,9 @@
 #homeLike {
 	margin-left: 5px;
 	font-size: 15px;
-}
+}*/
+
+
 .HomeReadmore {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
