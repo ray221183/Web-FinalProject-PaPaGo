@@ -4,7 +4,6 @@
   "engines": {
     "node": "14.x"
   },
-  "homepage":"https://papagoisme.herokuapp.com/",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
