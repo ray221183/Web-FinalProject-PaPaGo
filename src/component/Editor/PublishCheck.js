@@ -9,6 +9,7 @@ function PublishCheck(prop){
     const [curTag, setCurTag] = useState('');
     const [tags, setTags] = useState([]);
     const [tagId, setTagId] = useState(0);
+    const [initialized, setInitialized] = useState(false);
 
     const elementParent = useRef();
     const elementChild = useRef();
@@ -63,18 +64,23 @@ function PublishCheck(prop){
     }
     // initialize editor information
     useEffect(() => {
-        if( prop.curPostInfo.length !== 0 ){
-            if( typeof prop.curPostInfo[0] !== "undefined" ){
-                console.log("set post : ", prop.curPostInfo)
-                if(prop.newPost){
-                    setTitle('')
-                    setIntroduction('')
-                    setTags([''])
-                }
-                else{
+        console.log("initialize publish check information", prop.curPostInfo)
+        if(!initialized){
+            console.log("set post : ", prop.curPostInfo)
+            if(prop.newPost && !prop.isPublished){
+                console.log("set new post")
+                setTitle('')
+                setIntroduction('')
+                setTags([''])
+                setInitialized(true)
+            }
+            else{
+                if(prop.curPostInfo !== null){
+                    console.log("set exist post : ", prop.curPostInfo)
                     setTitle(prop.curPostInfo.title)
                     setIntroduction(prop.curPostInfo.introduction)
                     setTags(prop.curPostInfo.tags)
+                    setInitialized(true)
                 }
             }
         }

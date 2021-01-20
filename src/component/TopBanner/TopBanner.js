@@ -57,7 +57,7 @@ function TopBanner(prop){
         if(e.keyCode === 13){
 			setKeyWord('')
 			setSearch(false)
-			prop.searchPost([keyWord], false, true, '', '', '')
+			prop.searchPost([keyWord], false, true, '', '', '',true)
 			// history.push(`/postsenum/${keyWord}/all`)
         }
     }
@@ -65,7 +65,7 @@ function TopBanner(prop){
 		if(keyWord !== ''){
 			setSearch(false)
 			setKeyWord('')
-			prop.searchPost([keyWord], false, true, '', '', '')
+			prop.searchPost([keyWord], false, true, '', '', '',true)
 			// history.push(`/postsenum/${keyWord}/all`)
 		}
 		else{

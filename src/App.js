@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import {
 	Switch,
 	Route,
+	useLocation
   } from "react-router-dom";
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { MULTIPOST_QUERY, ADD_POST, UPDATE_POST } from './graphql'
@@ -20,6 +21,7 @@ import Article from './component/Article/Article'
 import PublishCheck from './component/Editor/PublishCheck'
 import Editor from './component/Editor/Editor'
 import About from './component/About/About'
+import { async } from 'q';
 
 function App() {
 	// about user
@@ -39,17 +41,17 @@ function App() {
 	const [editorState, setEditorState] = useState(()=>EditorState.createEmpty());
 	const [prePublishScale, setPrePublishScale] = useState(0);
 	const [newPost, setNewPost] = useState(false);
-	const [curPostInfo, setCurPostInfo] = useState([]);
+	const [curPostInfo, setCurPostInfo] = useState(null);
 
 	// search detail // must change all at the same time !!!!!!!!!!!!!!!!
 	const [writer, setWriter] = useState('');
 	const [specialSearch, setSpecialSearch] = useState('');
 	const [searchType, setSearchType] = useState([true, true]); // [get_sketch, get_non_sketch]
 	const [tags, setTags] = useState([]);
+	const [searchUuid, setSearchUuid] = useState('');
 	const [curUuid, setCurUuid] = useState('');
-
-	// console.log("search way: ", writer, ":", specialSearch, ":", searchType, ":", tags, ":", curUuid)
-
+	// others
+	console.log("search way: ", writer, ":", specialSearch, ":", searchType, ":", tags, ":", searchUuid)
 	// apollo
 	const {data: posts, refetch: rePosts, loading, error} = useQuery(
 		MULTIPOST_QUERY, 
@@ -60,7 +62,7 @@ function App() {
 				get_sketch: searchType[0],
 				get_non_sketch: searchType[1],
 				keyword: [...tags],
-				uuid: curUuid
+				uuid: searchUuid
 			}
 		});
 	console.log("search post: ", posts)
@@ -78,23 +80,32 @@ function App() {
 		if( yPosition <= 3) setScrollToTop(true)
 		else setScrollToTop(false)
 	}
-	const searchPost = (keyword, get_sketch, get_non_sketch, uuid, writer, specialSearch) => {
+	const searchPost = (keyword, get_sketch, get_non_sketch, uuid, writer, specialSearch, changeUuid) => {
 		console.log(keyword, get_sketch, get_non_sketch, uuid, writer, specialSearch)
 		setWriter(writer)
 		setSpecialSearch(specialSearch)
 		setSearchType([get_sketch, get_non_sketch])
 		setTags(keyword)
-		setCurUuid(uuid)
+		setSearchUuid(uuid)
+		if(changeUuid) setCurUuid(uuid)
 	}
+	console.log('new post: ', newPost)
 	const savefile = async (title, introduction, editorState, tags, published) => {
-		console.log(title, introduction, editorState, tags, published)
+		console.log("=================================================")
+		console.log('title: ', title)
+		console.log('introduction: ', introduction)
+		console.log('content: ', editorState)
+		console.log('tags: ', tags, tags.length, tags[tags.length-1])
+		console.log('published: ', published)
+		console.log("*************************************************")
         const contentState = editorState.getCurrentContent()
 		const jsonRawData = JSON.stringify(convertToRaw(contentState))
-		let tagList = ( tags.length>0 ) ? tags.map((item)=>{ return item[0] }) : ['']
+		let tagList = ( tags.length>0 ) ? tags.map((item)=>{ return (item==='') ? '' : '＃'+item[0] }) : ['']
 		let time = new Date()
 		let saveDate = time.getFullYear() + '/' + (time.getMonth() + 1) + '/' + time.getDate()
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate + ' ' + saveTime
+		let related_uuid = (isPublished) ? curPostInfo.uuid : ''
 		let a = [1,2]
 		console.log('title: ', title)
 		console.log('introduction: ', introduction)
@@ -103,7 +114,10 @@ function App() {
 		console.log('tagList: ', tagList)
 		console.log('date: ', dateTime)
 		console.log('is sketch: ', !published)
+		console.log("isPublished", isPublished)
+		console.log("related_uuid: ", related_uuid)
 		console.log('new post: ', newPost)
+		console.log("=================================================")
 		if(newPost){
 			console.log("add post")
 			let postId = await addPost({
@@ -115,13 +129,20 @@ function App() {
 					tags: [''],
 					date: dateTime,
 					is_sketch: true,
-					related_uuid: ''
+					related_uuid: related_uuid
 				}
 			})
-			searchPost([''], true, true, postId.data.addPost, '', '')
+			searchPost([''], true, true, postId.data.addPost, '', '', true)
 		}
 		else{
 			console.log("update post")
+			console.log('title: ', title)
+			console.log('introduction: ', introduction)
+			console.log('uuid: ', curUuid)
+			console.log('content: ', jsonRawData)
+			console.log('tagList: ', tagList)
+			console.log('date: ', dateTime)
+			console.log('is sketch: ', !published)
 			updatePost({
 				variables: {
 					title: title,
@@ -141,15 +162,22 @@ function App() {
 		console.log("posts", posts)
 		if( typeof posts !== "undefined" ){
 			if( posts.multi_post.multiposts.length !== 0){
-				console.log("set current post: ", posts.multi_post.multiposts[0].posts[0])
-				setCurPostInfo(posts.multi_post.multiposts[0].posts[0])
+				if( posts.multi_post.multiposts[0].posts.length !== 0 ){
+					console.log("/////////////////////////////////////////////////////////////////////////////////////////////")
+					console.log("set current post: ", posts.multi_post.multiposts[0].posts[0])
+					console.log("/////////////////////////////////////////////////////////////////////////////////////////////")
+					setCurPostInfo(posts.multi_post.multiposts[0].posts[0])
+					console.log("washwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwash")
+					searchPost([''], false, false, '', '', '', false)
+				}
 			}
 		}
 	}, [posts])
 	useEffect(
-		() => {
+		async () => {
 			console.log("refetch")
-			rePosts()
+			await rePosts()
+			console.log("refetch data: ", posts)
 		}
 	, [writer, specialSearch, searchType, tags, curUuid])
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -213,6 +241,8 @@ function App() {
 								setNewPost={setNewPost}
 								isPublished={isPublished}
 								setIsPublished={setIsPublished}
+								setCurPostInfo={setCurPostInfo}
+								rePosts={rePosts}
 							/>
 						)}
 					/>
@@ -221,11 +251,13 @@ function App() {
 					<Route path="/personalpage/:who" render={(props) => (
 							<PersonalPage 
 								who={props.match.params.who} 
-								
+
 								setCurPostInfo={setCurPostInfo}
 								setNewPost={setNewPost}
 								setIsPublished={setIsPublished}
-								setCurUuid={setCurUuid}
+								rePosts={rePosts}
+								posts={posts}
+								searchPost={searchPost}
 							/>
 						)}
 					/>

@@ -2,7 +2,7 @@ import './PersonalPage.css'
 import React, { useEffect, useRef, useState } from 'react'
 import { MULTIPOST_QUERY, DELETE_POST } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import {FaThumbsUp} from 'react-icons/fa';
 import {AiFillEdit} from 'react-icons/ai';
@@ -31,10 +31,26 @@ function PersonalPage(props){
 			uuid: ''
 	}});
 	const [deletePost] = useMutation(DELETE_POST);
-	const editEssay = ( post_info ) => {
+
+	const curHistory = useHistory();
+	const editEssay = async ( post_info ) => {
 		console.log("Post Info Post InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost Info")
 		console.log("Post Info: ", post_info)
-		props.setCurPostInfo(post_info)
+		if(!post_info.is_sketch){
+			props.setIsPublished(true)
+			console.log("related_uuid: ", post_info.related_uuid)
+			if(post_info.related_uuid === ""){
+				props.setNewPost(true)
+				props.setCurPostInfo(post_info)
+			}
+			else{
+				props.searchPost([''], true, true, post_info.related_uuid, '', '',true)
+			}
+		}
+		else{
+			props.setCurPostInfo(post_info)
+		}
+		curHistory.push("/editor")
 	}
 
 	useEffect(

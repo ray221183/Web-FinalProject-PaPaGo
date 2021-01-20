@@ -436,6 +436,7 @@ const Query = {
 			})
 			final_result.push({posts:last_record})
 		}
+		console.log("final result: ", final_result)
 		return {
 			multiposts:final_result
 		}

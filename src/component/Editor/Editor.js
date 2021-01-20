@@ -7,6 +7,7 @@ import './Editor.css'
 function Editor(prop){
     const editorState = prop.editorState
     const setEditorState = prop.setEditorState
+    const [initialized, setInitialized] = useState(false);
     
     const [allowToSave, setAllowToSave] = useState(false);
     const [saved, setSaved] = useState(0); // 0: not saved | 1: saving | 2: saved
@@ -29,57 +30,65 @@ function Editor(prop){
     }
     // autosave
     useEffect(() => {
-        if(allowToSave) setSaved(1)
-        else setSaved(0)
-        const timer = setTimeout(() => {
-            if(allowToSave){
-                setSaved(2)
-                if(prop.newPost) {
-                    console.log("new post")
-                    // let empty_essay = EditorState.createEmpty()
-                    prop.savefile('Untitled story', '', editorState, [''], false) ///////////////////////
-                }
-                else{
-                    console.log("not new post")
-                    let title = ''
-                    console.log("first block", editorState.getCurrentContent().getFirstBlock())
-                    if(prop.curPostInfo.is_sketch){
+        let timer = null
+        console.log("save0", prop.curPostInfo !== null, prop.newPost)
+        if(prop.curPostInfo !== null || prop.newPost){
+            console.log("save1")
+            if(allowToSave) setSaved(1)
+            else setSaved(0)
+            timer = setTimeout(() => {
+                if(allowToSave){
+                    console.log("save2")
+                    setSaved(2)
+                    if(prop.newPost) {
+                        console.log("new post")
+                        prop.savefile('Untitled story', '', editorState, [], false) ///////////////////////
                     }
                     else{
-                        title = prop.curPostInfo.title
+                        console.log("not new post")
+                        let title = ''
+                        console.log("first block text", editorState.getCurrentContent().getFirstBlock().text)
+                        if(prop.curPostInfo.is_sketch){
+                        }
+                        else{
+                            title = prop.curPostInfo.title
+                        }
+                        prop.savefile(editorState.getCurrentContent().getFirstBlock().text, prop.curPostInfo.introduction, editorState, prop.curPostInfo.tags, !prop.curPostInfo.is_sketch) ///////////////////////
                     }
-                    prop.savefile(title, prop.curPostInfo.introduction, editorState, prop.curPostInfo.tags, !prop.curPostInfo.is_sketch) ///////////////////////
                 }
-            }
-        }, 1500)
-        return () => clearTimeout(timer)
+            }, 1500)
+        }
+        return () => {
+            if(timer!==null) clearTimeout(timer)
+        }
     }, [editorState.getCurrentContent()])
 
     // initialize editor information
     useEffect(() => {
         console.log("initialize editor information", prop.curPostInfo)
-        if( typeof prop.curPostInfo !== "undefined" ){
+        if(!initialized){
             console.log("set post : ", prop.curPostInfo)
             if(prop.newPost && !prop.isPublished){
                 console.log("set new post")
                 setEditorState(()=>EditorState.createEmpty())
-                // setTitle('')
+                setInitialized(true)
             }
             else{
-                console.log("set exist post : ", prop.curPostInfo)
-                console.log("set exist post content : ", prop.curPostInfo.content)
-                setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(prop.curPostInfo.content))))
-                // setTitle(prop.curPostInfo.title)
+                if(prop.curPostInfo !== null){
+                    console.log("set exist post : ", prop.curPostInfo)
+                    setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(prop.curPostInfo.content))))
+                    setInitialized(true)
+                }
             }
         }
-    }, [])
+    }, [prop.curPostInfo])
 
     // editor reset
     useEffect(() => {
         return () => {
             console.log("reset")
             prop.setNewPost(false)
-            prop.setCurPostInfo([])
+            prop.setCurPostInfo(null)
             prop.setIsPublished(false)
         }
     }, [])
