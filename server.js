@@ -1,16 +1,28 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import { graphqlExpress } from 'apollo-server-express';
-const myGraphQLSchema = loadSchema('server/schema.graphql',{  // load from a single schema file
-    loaders: [
-        new GraphQLFileLoader()
-    ]
-})// ... define or import your schema here!
-const PORT = 80;
+//const { loadFile } = require('graphql-import-files')
+const { readFileSync } = require('fs');
+const path = require('path');
+//const {importSchema} = require('graphql-import')
+const { ApolloServer } = require('apollo-server-express');
+const express = require('express')
+//const GMR = require('graphql-merge-resolvers')
+//const { mergeTypeDefs } = require('@graphql-tools/merge');
+const Query = require('./server/resolvers/Query')
+const Mutation = require('./server/resolvers/Mutation')
+//const { makeExecutableSchema } = require('graphql-tools');
+PORT = 80
+//const Mutation = require('./server/resolvers/Mutation.js')
+const app = express()
+const server = new ApolloServer({ typeDefs:readFileSync('./server/schema.graphql','utf-8'), resolvers:{
+	Query,
+	Mutation
+} });
 
-const app = express();
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
-// bodyParser is needed just for POST.
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema: myGraphQLSchema }));
-console.log("apollo start")
-app.listen(PORT);
+
+server.applyMiddleware({ app });
+app.listen({ port: PORT }, () =>
+  console.log("ready")
+);

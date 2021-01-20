@@ -1,5 +1,3 @@
-import { string } from 'yargs'
-
 const User = require('../models/user')
 const Post = require('../models/post')
 const Great = require('../models/great')
@@ -513,4 +511,4 @@ const Query = {
 }
 
 
-export { Query as default }
+module.exports = Query
