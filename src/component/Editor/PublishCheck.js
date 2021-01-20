@@ -1,8 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
+import {
+	useLocation
+  } from "react-router-dom";
 import './Publish.css'
 
 
 function PublishCheck(prop){
+    const curLocation = useLocation();
     const editorState = prop.editorState
     const [title, setTitle] = useState('');
     const [introduction, setIntroduction] = useState('');
@@ -24,7 +28,7 @@ function PublishCheck(prop){
     }
     const handleKeyDown = (e) => {
         if(e.keyCode === 13){
-            let tagsTemp = [...tags, [curTag, tagId]]
+            let tagsTemp = [...tags, ["＃" + curTag, tagId]]
             setTagId(tagId + 1)
             setTags(tagsTemp)
             setCurTag('')
@@ -64,27 +68,42 @@ function PublishCheck(prop){
     }
     // initialize editor information
     useEffect(() => {
-        console.log("initialize publish check information", prop.curPostInfo)
-        if(!initialized){
+        console.log("initialize publish information", prop.curPostInfo)
+        console.log(initialized)
+        if(true){
             console.log("set post : ", prop.curPostInfo)
             if(prop.newPost && !prop.isPublished){
                 console.log("set new post")
                 setTitle('')
                 setIntroduction('')
                 setTags([''])
-                setInitialized(true)
             }
             else{
                 if(prop.curPostInfo !== null){
                     console.log("set exist post : ", prop.curPostInfo)
                     setTitle(prop.curPostInfo.title)
                     setIntroduction(prop.curPostInfo.introduction)
-                    setTags(prop.curPostInfo.tags)
-                    setInitialized(true)
+                    let tagsList = prop.curPostInfo.tags.filter((item) => {return item !== ''})
+                    tagsList =  ( tagsList.length !== 0 ) ? prop.curPostInfo.tags.map((item, idx) => {
+                        return [item, idx]
+                    }) : []
+                    console.log(tagsList)
+                    setTags(tagsList)
+                    setTagId(tagsList.length)
                 }
             }
         }
     }, [prop.curPostInfo])
+
+    //change title
+    useEffect(() => {
+        console.log("to set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set title")
+        if(!prop.isPublished){
+            console.log("set title", editorState.getCurrentContent().getFirstBlock().text)
+            let curTitle = (editorState.getCurrentContent().getFirstBlock().text === '') ? 'Untitled story' : editorState.getCurrentContent().getFirstBlock().text
+            setTitle(curTitle)
+        }
+    }, [editorState.getCurrentContent().getFirstBlock().text])
     
     useEffect(() => {
         elementParent.current.addEventListener('click', (e) => {
