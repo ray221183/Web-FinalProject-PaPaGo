@@ -3,6 +3,7 @@ import { string } from 'yargs'
 const User = require('../models/user')
 const Post = require('../models/post')
 const Great = require('../models/great')
+const Image = require('../models/img')
 
 
 const Query = {
@@ -354,6 +355,11 @@ const Query = {
 			if((last_record.length >= 20) && (args.data.search_type !== "get pair")){
 				last_record = last_record.slice(0,20)
 			}
+			for(var j=0; j<last_record.length; ++j){
+				let temp = await Image.find({"uuid":last_record[i].uuid})
+				temp = temp[0]
+				last_record[j]['image'] = temp.image
+			}
 			final_result.push({posts:last_record})
 		}
 		if(args.data.search_type === "related post"){
@@ -434,6 +440,11 @@ const Query = {
 			last_record.sort(function(a,b){
 				return b.great_num - a.great_num
 			})
+			for(var j=0; j<last_record.length; ++j){
+				let temp = await Image.find({"uuid":last_record[i].uuid})
+				temp = temp[0]
+				last_record[j]['image'] = temp.image
+			}
 			final_result.push({posts:last_record})
 		}
 		console.log("final result: ", final_result)
@@ -481,6 +492,12 @@ const Query = {
 		}
 		return {
 			posts:record
+		}
+	},
+	async image(parent, args, { db }, info) {
+		let result = await Image.find({"uuid":args.data.uuid})
+		if(result.length === 1){
+			return result[0]
 		}
 	}
 }

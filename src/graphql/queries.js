@@ -71,7 +71,7 @@ query greatOfpost(
 }
 `
 const GREATOFUSER_QUERY = gql`
-query greatOfpost(
+query greatOfuser(
   $account: String!
 ) {
   greatOfuser(
@@ -124,9 +124,27 @@ query multi_post(
         great_num
         is_sketch
         related_uuid 
+        image
       }
     }
   }
 }
 `
-export {USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY}
+
+const IMAGE_QUERY = gql`
+query image(
+  $uuid: String
+  $image:String
+) {
+  image(
+    data: {
+      uuid:$uuid
+      image:$image
+    }
+  ) {
+    uuid
+    image
+    }
+  }
+`
+export {USER_QUERY, POST_QUERY, GREATOFPOST_QUERY, GREATOFUSER_QUERY, MULTIPOST_QUERY, IMAGE_QUERY}

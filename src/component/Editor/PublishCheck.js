@@ -30,7 +30,7 @@ function PublishCheck(prop){
     }
     const handleKeyDown = (e) => {
         if(e.keyCode === 13){
-            if(tags.length<8){
+            if(tags.length<8 && curTag!== ''){
                 let tagsTemp = [...tags, ["＃" + curTag, tagId]]
                 setTagId(tagId + 1)
                 setTags(tagsTemp)

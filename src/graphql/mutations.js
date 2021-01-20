@@ -108,6 +108,20 @@ mutation updateGreat(
   }
 `
 
+const UPLOAD_IMAGE = gql`
+mutation uploadImage(
+	$uuid:String
+	$image:String
+  ) {
+	uploadImage(
+	  data: {
+		uuid:$uuid
+		image:$image
+	  }
+	) 
+  }
+`
 
 
-export {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST, UPDATE_GREAT}
+
+export {ADD_USER, ADD_POST,DELETE_POST, UPDATE_POST, UPDATE_GREAT,UPLOAD_IMAGE}

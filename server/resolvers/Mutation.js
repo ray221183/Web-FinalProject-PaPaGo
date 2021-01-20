@@ -2,6 +2,7 @@ import uuidv4 from 'uuid/v4'
 const User= require('../models/user')
 const Post= require('../models/post')
 const Great= require('../models/great')
+const Image = require('../models/img')
 const Mutation = {
 	async addUser(parent, args, {db}, info){
 		let result = await User.find({"account":args.data.account})
@@ -48,6 +49,7 @@ const Mutation = {
 			})
 		}
 		await Post.deleteMany({"uuid": args.data.uuid})
+		await Image.deleteMany({"uuid":args.data.uuid})
 		return "delete complete"
 	},
 	async updatePost(parent, args, {db}, info){
@@ -121,6 +123,22 @@ const Mutation = {
 		else{
 			await Great.deleteMany({"uuid":args.data.uuid,"account":args.data.account})
 			return "delete complete"
+		}
+	},
+	async uploadImage(parent, args, {db}, info){
+		let temp = new Image(args.data)
+		let result = await Image.find({"uuid":args.data.uuid})
+		if(result.length >= 1){
+			await Image.updateOne({"uuid":args.data.uuid},{
+				$set:{
+					"image":args.data.image
+				}
+			})
+			return "change image"
+		}
+		else{
+			await temp.save()
+			return "upload first image"
 		}
 	}
 }
