@@ -1,13 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { EditorState , convertFromRaw } from 'draft-js'
 import EditorCore from './EditorCore'
+import {
+	useLocation
+  } from "react-router-dom";
 import './Editor.css'
 
-
 function Editor(prop){
+    const curLocation = useLocation();
     const editorState = prop.editorState
     const setEditorState = prop.setEditorState
     const [initialized, setInitialized] = useState(false);
+    const [tags, setTags] = useState();
     
     const [allowToSave, setAllowToSave] = useState(false);
     const [saved, setSaved] = useState(0); // 0: not saved | 1: saving | 2: saved
@@ -40,20 +44,29 @@ function Editor(prop){
                 if(allowToSave){
                     console.log("save2")
                     setSaved(2)
-                    if(prop.newPost) {
-                        console.log("new post")
-                        prop.savefile('Untitled story', '', editorState, [], false) ///////////////////////
+                    let title = ''
+                    title = (editorState.getCurrentContent().getFirstBlock().text === '') ? 'Untitled story' : editorState.getCurrentContent().getFirstBlock().text
+                    if(prop.newPost && !prop.isPublished) {
+                        console.log("new post 11")
+                        prop.savefile(title, '', editorState, [], false) ///////////////////////
                     }
                     else{
-                        console.log("not new post")
+                        console.log("not new post 22")
                         let title = ''
+                        let introduction = prop.curPostInfo.introduction
+                        let publish = !prop.curPostInfo.is_sketch
+                        let tagsList = prop.curPostInfo.tags.filter((item) => {return item !== ''})
+                        tagsList =  ( tagsList.length !== 0 ) ? prop.curPostInfo.tags.map((item, idx) => {
+                            return [item, idx]
+                        }) : []
                         console.log("first block text", editorState.getCurrentContent().getFirstBlock().text)
-                        if(prop.curPostInfo.is_sketch){
+                        if(prop.isPublished){
+                            title = editorState.getCurrentContent().getFirstBlock().text
                         }
                         else{
-                            title = prop.curPostInfo.title
+                            title = (editorState.getCurrentContent().getFirstBlock().text === '') ? 'Untitled story' : editorState.getCurrentContent().getFirstBlock().text
                         }
-                        prop.savefile(editorState.getCurrentContent().getFirstBlock().text, prop.curPostInfo.introduction, editorState, prop.curPostInfo.tags, !prop.curPostInfo.is_sketch) ///////////////////////
+                        prop.savefile(title, introduction, editorState, tagsList, publish) ///////////////////////
                     }
                 }
             }, 1500)
@@ -66,33 +79,42 @@ function Editor(prop){
     // initialize editor information
     useEffect(() => {
         console.log("initialize editor information", prop.curPostInfo)
-        if(!initialized){
+        console.log(initialized)
+        if(true){
             console.log("set post : ", prop.curPostInfo)
             if(prop.newPost && !prop.isPublished){
                 console.log("set new post")
                 setEditorState(()=>EditorState.createEmpty())
-                setInitialized(true)
+                // setInitialized(true)
+                // console.log("111washwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwash")
+                // prop.searchPost([''], false, false, '', '', '', false)
             }
             else{
                 if(prop.curPostInfo !== null){
                     console.log("set exist post : ", prop.curPostInfo)
                     setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(prop.curPostInfo.content))))
-                    setInitialized(true)
+                    // setInitialized(true)
+                    // console.log("222washwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwash")
+                    // prop.searchPost([''], false, false, '', '', '', false)
                 }
             }
         }
     }, [prop.curPostInfo])
 
-    // editor reset
-    useEffect(() => {
-        return () => {
-            console.log("reset")
-            prop.setNewPost(false)
-            prop.setCurPostInfo(null)
-            prop.setIsPublished(false)
-        }
-    }, [])
-
+    // // editor reset
+    // useEffect(() => {
+    //     return () => {
+    //         console.log("reset editor")
+    //         // prop.rePosts()
+    //         // console.log("reposts")
+    //         prop.setNewPost(false)
+    //         prop.setCurPostInfo(null)
+    //         prop.setIsPublished(false)
+    //         prop.setPrePublishScale(0)
+    //         prop.setCurUuid('')
+    //         prop.setRelatedUuid('')
+    //     }
+    // }, [])
     return(
         <section className = {`Editor ${editorColor}`} style={editorBackgroundStyle}>
             <div className="editor-part" name = "editor-part">

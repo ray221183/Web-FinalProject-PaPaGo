@@ -48,12 +48,16 @@ function PersonalPage(props){
 			if(post_info.related_uuid === ""){
 				props.setNewPost(true)
 				props.setCurPostInfo(post_info)
+				// props.setCurUuid(post_info.related_uuid)
 			}
 			else{
 				props.searchPost([''], true, true, post_info.related_uuid, '', '',true)
 			}
+			// props.setCurUuid()
+			props.setRelatedUuid(post_info.uuid)
 		}
 		else{
+			props.setRelatedUuid('')
 			props.setCurPostInfo(post_info)
 		}
 		curHistory.push("/editor")

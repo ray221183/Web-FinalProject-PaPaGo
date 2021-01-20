@@ -159,9 +159,9 @@ const Query = {
 		let key_word_list = args.data.keyword
 		let key_record = []
 		let trending_detect = []
-		console.log(key_word_list.length)
+		// console.log(key_word_list.length)
 		if((args.data.search_type === 'get pair') && (args.data.writer !== "")){
-			console.log("search type")
+			// console.log("search type")
 			let sketch_temp = await Post.find({
 				"writer":args.data.writer,"is_sketch":true
 			})
@@ -190,19 +190,19 @@ const Query = {
 			}
 		}
 		for(var j=0;j<key_word_list.length;++j){
-			console.log(key_record.length)
+			// console.log(key_record.length)
 			let key_words = key_word_list[j].split(" ")
 			if(key_words.includes('trending')){
 				let index = key_words.indexOf('trending')
-				console.log(key_words)
-				console.log("index",index)
+				// console.log(key_words)
+				// console.log("index",index)
 				key_words = key_words.slice(0,index).concat(key_words.slice(index+1))
-				console.log(key_words)
+				// console.log(key_words)
 				trending_detect.push(true)
 				if(key_words.length === 0){
 					key_words.push("")
 				}
-				console.log(key_words)
+				// console.log(key_words)
 			}
 			else{
 				trending_detect.push(false)
@@ -266,13 +266,13 @@ const Query = {
 			tag_filter_function = {$and:tag_filter_function}
 			key_record.push([title_filter_function,introduction_filter_function,content_filter_function,tag_filter_function,name_filter_function])*/			
 		}
-		console.log(key_record)
+		// console.log(key_record)
 		for(var i=0; i<key_record.length;++i){
 			let result = []
 			if(args.data.uuid !== ""){
 				let temp = await Post.find({"uuid":args.data.uuid}, (err, res) => {
 					if(err) console.log(err)
-					console.log("res", res)
+					// console.log("res", res)
 				})
 				result = temp
 			}
@@ -326,7 +326,7 @@ const Query = {
 					}
 				}
 			}
-			console.log(result)
+			// console.log(result)
 			let last_record = []
 			for(var j=0; j<result.length; ++j){
 				last_record.push({
@@ -347,7 +347,7 @@ const Query = {
 				let num = list.length
 				last_record[j]['great_num'] = num
 			} 
-			console.log(last_record)
+			// console.log(last_record)
 			last_record.sort(function(a,b){
 				return b.great_num - a.great_num
 			})
@@ -437,6 +437,9 @@ const Query = {
 			final_result.push({posts:last_record})
 		}
 		console.log("final result: ", final_result)
+		for(var i=0; i<final_result.length; ++i){
+			console.log(final_result[i].posts)
+		}
 		return {
 			multiposts:final_result
 		}

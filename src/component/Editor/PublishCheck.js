@@ -8,6 +8,7 @@ import {
 
 
 function PublishCheck(prop){
+    const curLocation = useLocation();
     const editorState = prop.editorState
     const [title, setTitle] = useState('');
     const [introduction, setIntroduction] = useState('');
@@ -29,7 +30,7 @@ function PublishCheck(prop){
     }
     const handleKeyDown = (e) => {
         if(e.keyCode === 13){
-            let tagsTemp = [...tags, [curTag, tagId]]
+            let tagsTemp = [...tags, ["＃" + curTag, tagId]]
             setTagId(tagId + 1)
             setTags(tagsTemp)
             setCurTag('')
@@ -69,27 +70,42 @@ function PublishCheck(prop){
     }
     // initialize editor information
     useEffect(() => {
-        console.log("initialize publish check information", prop.curPostInfo)
-        if(!initialized){
+        console.log("initialize publish information", prop.curPostInfo)
+        console.log(initialized)
+        if(true){
             console.log("set post : ", prop.curPostInfo)
             if(prop.newPost && !prop.isPublished){
                 console.log("set new post")
                 setTitle('')
                 setIntroduction('')
                 setTags([''])
-                setInitialized(true)
             }
             else{
                 if(prop.curPostInfo !== null){
                     console.log("set exist post : ", prop.curPostInfo)
                     setTitle(prop.curPostInfo.title)
                     setIntroduction(prop.curPostInfo.introduction)
-                    setTags(prop.curPostInfo.tags)
-                    setInitialized(true)
+                    let tagsList = prop.curPostInfo.tags.filter((item) => {return item !== ''})
+                    tagsList =  ( tagsList.length !== 0 ) ? prop.curPostInfo.tags.map((item, idx) => {
+                        return [item, idx]
+                    }) : []
+                    console.log(tagsList)
+                    setTags(tagsList)
+                    setTagId(tagsList.length)
                 }
             }
         }
     }, [prop.curPostInfo])
+
+    //change title
+    useEffect(() => {
+        console.log("to set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set titleto set title")
+        if(!prop.isPublished){
+            console.log("set title", editorState.getCurrentContent().getFirstBlock().text)
+            let curTitle = (editorState.getCurrentContent().getFirstBlock().text === '') ? 'Untitled story' : editorState.getCurrentContent().getFirstBlock().text
+            setTitle(curTitle)
+        }
+    }, [editorState.getCurrentContent().getFirstBlock().text])
     
     useEffect(() => {
         elementParent.current.addEventListener('click', (e) => {
@@ -104,6 +120,23 @@ function PublishCheck(prop){
     const changeStep = (step) => {
         setStep(step)
     }
+
+    useEffect(() => {
+        return () => {
+            console.log("reset public check")
+            // prop.rePosts()
+            // console.log("reposts")
+            prop.setNewPost(false)
+            prop.setCurPostInfo(null)
+            prop.setIsPublished(false)
+            prop.setPrePublishScale(0)
+            prop.setCurUuid('')
+            prop.setRelatedUuid('')
+        }
+    }, [])
+
+
+    console.log("prop.curUuid", prop.curUuid)
 
     return(
         <div className="prepublish-part" style={scale} ref={elementParent}>
@@ -142,7 +175,10 @@ function PublishCheck(prop){
                         {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : "輸入關鍵字，幫助讀者搜尋到你的文章"}
                     </span>
                     <Link to={"/post/" + `${prop.curUuid}`}>
-                        <span className="publish-button" onClick={() => prop.savefile(title, introduction, editorState, tags, true)}>
+                        <span className="publish-button" onClick={() => {
+                            console.log(prop.curUuid)
+                            prop.savefile(title, introduction, editorState, tags, true)
+                        }}>
                             Publish
                         </span>
                     </Link>

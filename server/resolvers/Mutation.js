@@ -16,6 +16,7 @@ const Mutation = {
 		}
 	},
 	async addPost(parent, args, {db}, info){
+		console.log("add post args.data", args.data)
 		var temp_data = args.data
 		temp_data['uuid'] = uuidv4()
 		let writers = await User.find({"account":args.data.writer})
