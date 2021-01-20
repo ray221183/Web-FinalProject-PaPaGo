@@ -1,15 +1,14 @@
 .TPEStories {
-	/*border: 2px solid red;*/
+	border: 0px solid red;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 800px;
-	height: 160px;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	margin-bottom: 30px;
+	margin-bottom: 60px;
 }
 .TPEAuthor {
 	-webkit-box-sizing: border-box;
