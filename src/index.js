@@ -18,7 +18,7 @@ import {
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'https://papagoisme.herokuapp.com:80/'
+  uri: 'http://papagoisme.herokuapp.com:80/'
 })
 
 // Create a WebSocket link:
