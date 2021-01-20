@@ -1,5 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
 import './Publish.css'
+import React, { useEffect, useRef, useState } from 'react'
+import {
+    Link,
+    useLocation,
+    useHistory
+  } from "react-router-dom";
 
 
 function PublishCheck(prop){
@@ -130,9 +135,11 @@ function PublishCheck(prop){
                     <span className="explain">
                         {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : "輸入關鍵字，幫助讀者搜尋到你的文章"}
                     </span>
-                    <span className="publish-button" onClick={() => prop.savefile(title, introduction, editorState, tags, true)}>
-                        Publish
-                    </span>
+                    <Link to={"/post/" + `${prop.curUuid}`}>
+                        <span className="publish-button" onClick={() => prop.savefile(title, introduction, editorState, tags, true)}>
+                            Publish
+                        </span>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -171,6 +171,7 @@ function App() {
 								savefile={savefile}
 								curPostInfo={curPostInfo}
 								editorState={editorState}
+								curUuid={curUuid}
 							/>
 						)}
 					/>

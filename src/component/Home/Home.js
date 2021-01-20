@@ -13,6 +13,8 @@ import {IconContext} from 'react-icons';
 function Home(prop){
 	const pic = useRef();
 	const [city, setCity] = useState('');
+
+	const [trend_0, setTrend_0] = useState(null);
 	const [trend_0_id, setTrend_0_id] = useState('');
 	const [trend_0_title, setTrend_0_title] = useState('');
 	const [trend_0_author, setTrend_0_author] = useState('');
@@ -20,6 +22,7 @@ function Home(prop){
 	const [trend_0_date, setTrend_0_date] = useState('');
 	const [trend_0_like, setTrend_0_like] = useState(0);
 
+	const [trend_1, setTrend_1] = useState(null);
 	const [trend_1_id, setTrend_1_id] = useState('');
 	const [trend_1_title, setTrend_1_title] = useState('');
 	const [trend_1_author, setTrend_1_author] = useState('');
@@ -27,6 +30,7 @@ function Home(prop){
 	const [trend_1_date, setTrend_1_date] = useState('');
 	const [trend_1_like, setTrend_1_like] = useState(0);
 
+	const [trend_2, setTrend_2] = useState(null);
 	const [trend_2_id, setTrend_2_id] = useState('');
 	const [trend_2_title, setTrend_2_title] = useState('');
 	const [trend_2_author, setTrend_2_author] = useState('');
@@ -34,6 +38,7 @@ function Home(prop){
 	const [trend_2_date, setTrend_2_date] = useState('');
 	const [trend_2_like, setTrend_2_like] = useState(0);
 
+	const [trend_3, setTrend_3] = useState(null);
 	const [trend_3_id, setTrend_3_id] = useState('');
 	const [trend_3_title, setTrend_3_title] = useState('');
 	const [trend_3_author, setTrend_3_author] = useState('');
@@ -41,6 +46,7 @@ function Home(prop){
 	const [trend_3_date, setTrend_3_date] = useState('');
 	const [trend_3_like, setTrend_3_like] = useState(0);
 
+	const [recommend_0, setRecommend_0] = useState(null);
 	const [recommend_0_id, setRecommend_0_id] = useState('');
 	const [recommend_0_title, setRecommend_0_title] = useState('');
 	const [recommend_0_author, setRecommend_0_author] = useState('');
@@ -48,6 +54,7 @@ function Home(prop){
 	const [recommend_0_date, setRecommend_0_date] = useState('');
 	const [recommend_0_like, setRecommend_0_like] = useState(0);
 
+	const [recommend_1, setRecommend_1] = useState(null);
 	const [recommend_1_id, setRecommend_1_id] = useState('');
 	const [recommend_1_title, setRecommend_1_title] = useState('');
 	const [recommend_1_author, setRecommend_1_author] = useState('');
@@ -55,6 +62,7 @@ function Home(prop){
 	const [recommend_1_date, setRecommend_1_date] = useState('');
 	const [recommend_1_like, setRecommend_1_like] = useState(0);
 
+	const [recommend_2, setRecommend_2] = useState(null);
 	const [recommend_2_id, setRecommend_2_id] = useState('');
 	const [recommend_2_title, setRecommend_2_title] = useState('');
 	const [recommend_2_author, setRecommend_2_author] = useState('');
@@ -62,6 +70,7 @@ function Home(prop){
 	const [recommend_2_date, setRecommend_2_date] = useState('');
 	const [recommend_2_like, setRecommend_2_like] = useState(0);
 	
+	const [recommend_3, setRecommend_3] = useState(null);
 	const [recommend_3_id, setRecommend_3_id] = useState('');
 	const [recommend_3_title, setRecommend_3_title] = useState('');
 	const [recommend_3_author, setRecommend_3_author] = useState('');
