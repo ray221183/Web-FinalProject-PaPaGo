@@ -357,8 +357,13 @@ const Query = {
 			}
 			for(var j=0; j<last_record.length; ++j){
 				let temp = await Image.find({"uuid":last_record[i].uuid})
-				temp = temp[0]
-				last_record[j]['image'] = temp.image
+				if(temp.length !== 0){
+					temp = temp[0]
+					last_record[j]['image'] = temp.image
+				}
+				else{
+					last_record[j]['image'] = ""
+				}
 			}
 			final_result.push({posts:last_record})
 		}
@@ -442,8 +447,13 @@ const Query = {
 			})
 			for(var j=0; j<last_record.length; ++j){
 				let temp = await Image.find({"uuid":last_record[i].uuid})
-				temp = temp[0]
-				last_record[j]['image'] = temp.image
+				if(temp.length !== 0){
+					temp = temp[0]
+					last_record[j]['image'] = temp.image
+				}
+				else{
+					last_record[j]['image'] = ""
+				}
 			}
 			final_result.push({posts:last_record})
 		}
