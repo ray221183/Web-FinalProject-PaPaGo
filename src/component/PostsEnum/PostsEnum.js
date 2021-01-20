@@ -5,6 +5,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from "react-router-dom";
 
 import {FaThumbsUp} from 'react-icons/fa';
+import {AiFillFire} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
 
 import PEStory from "./PEStory";
@@ -205,7 +206,10 @@ function PostsEnum(props) {
 							return(
 								<div className="PostsEnum">
 									<div className="Topic">
-										Trending
+										<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
+											<AiFillFire />
+										</IconContext.Provider>
+										激推文章
 									</div>
 									<hr id='PEhr' />
 									{
@@ -238,7 +242,10 @@ function PostsEnum(props) {
 							return(
 								<div className="PostsEnum">
 									<div className="Topic">
-										Recommended
+										<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
+											<AiFillFire />
+										</IconContext.Provider>
+										小編精選
 									</div>
 									<hr id='PEhr' />
 									{

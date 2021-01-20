@@ -382,7 +382,7 @@ function Home(prop){
 						<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
 							<AiFillFire />
 						</IconContext.Provider>
-						Trending on PaPaGo
+						激推文章
 					</div>
 					<hr id='homehr' />
 					<Trend_map />
@@ -391,7 +391,7 @@ function Home(prop){
 						<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
 							<AiFillFire />
 						</IconContext.Provider>
-						Recommended
+						小編精選
 					</div>
 					<hr id='homehr' />
 					<Recommend_map />
@@ -434,7 +434,7 @@ function Home(prop){
 						<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
 							<AiFillFire />
 						</IconContext.Provider>
-						Trending on PaPaGo
+						激推文章
 					</div>
 					<hr id='homehr' />
 					<div className='TrendingStories'>
@@ -443,7 +443,7 @@ function Home(prop){
 						<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
 							<AiFillFire />
 						</IconContext.Provider>
-						Recommended
+						小編精選
 					</div>
 					<hr id='homehr' />
 					<div className='TrendingStories'>
