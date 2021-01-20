@@ -4,6 +4,7 @@ import Editor from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
 import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
 import createImagePlugin from '@draft-js-plugins/image';
+import createVideoPlugin from '@draft-js-plugins/video';
 import './EditorCore.css';
 import './SideBar.css';
 import './InlineBar.css';
@@ -30,10 +31,6 @@ import {
 } from '@draft-js-plugins/buttons';
 import { themeSideBlockAdd, themeSideBlockStyle, themeInlineTextStyle } from './ThemeStyle';
 
-const sideToolbarPluginAddLight = createSideToolbarPlugin({ theme: themeSideBlockAdd(true) });
-const { SideToolbar: SideToolbarAddLight } = sideToolbarPluginAddLight;
-const sideToolbarPluginAddDark = createSideToolbarPlugin({ theme: themeSideBlockAdd(false) });
-const { SideToolbar: SideToolbarAddDark } = sideToolbarPluginAddDark;
 
 
 const inlineBarTextStyle = createInlineToolbarPlugin({ theme: themeInlineTextStyle });
@@ -42,18 +39,69 @@ const { InlineToolbar: InlineBarTextStyle } = inlineBarTextStyle;
 console.log("createImagePlugin", createImagePlugin)
 
 const imagePlugin = createImagePlugin();
+
+const videoPlugin = createVideoPlugin();
+const { types } = videoPlugin;
 console.log("imagePlugin", imagePlugin)
 console.log("Editor", Editor)
 
-const plugins = [sideToolbarPluginAddLight, sideToolbarPluginAddDark, inlineBarTextStyle, imagePlugin];
+const plugins = [inlineBarTextStyle, imagePlugin, videoPlugin];
+
+// const initialState = {
+// 	entityMap: {
+// 	  0: {
+// 		type: 'IMAGE',
+// 		mutability: 'IMMUTABLE',
+// 		data: {
+// 		  src: './sketch4.jpg',
+// 		},
+// 	  },
+// 	},
+// 	blocks: [
+// 	  {
+// 		key: '9gm3s',
+// 		text:
+// 		  'You can have images in your text field. This is a very rudimentary example, but you can enhance the image plugin with resizing, focus or alignment plugins.',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'ov7r',
+// 		text: ' ',
+// 		type: 'atomic',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [
+// 		  {
+// 			offset: 0,
+// 			length: 1,
+// 			key: 0,
+// 		  },
+// 		],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'e23a8',
+// 		text: 'See advanced examples further down …',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	],
+//   };
 
 const initialState = {
 	entityMap: {
 	  0: {
-		type: 'IMAGE',
+		type: types.VIDEOTYPE,
 		mutability: 'IMMUTABLE',
 		data: {
-		  src: '/sketch4.jpg',
+		  src: 'https://www.youtube.com/watch?v=iEPTlhBmwRg',
 		},
 	  },
 	},
@@ -61,7 +109,7 @@ const initialState = {
 	  {
 		key: '9gm3s',
 		text:
-		  'You can have images in your text field. This is a very rudimentary example, but you can enhance the image plugin with resizing, focus or alignment plugins.',
+		  'You can have video in your text field. This is a very rudimentary example, but you can enhance the video plugin with resizing, focus or alignment plugins.',
 		type: 'unstyled',
 		depth: 0,
 		inlineStyleRanges: [],

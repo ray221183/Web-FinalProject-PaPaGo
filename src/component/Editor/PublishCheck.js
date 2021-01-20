@@ -23,7 +23,7 @@ function PublishCheck(prop){
         transform: `scale(${prop.prePublishScale})`
     }
 
-    const [step, setStep] = useState(0); // 0: 簡介 | 1: 關鍵字
+    const [step, setStep] = useState(0); // 0: 簡介 | 1: 關鍵字 | 2:圖片
 
     const changeScale = (e) => {
         prop.setPrePublishScale(0)
@@ -119,6 +119,7 @@ function PublishCheck(prop){
 
     const aboutClass = (step == 0) ? "click choose-bar" : "choose-bar"
     const tagClass = (step == 1) ? "click choose-bar" : "choose-bar"
+    const picClass = (step == 2) ? "click choose-bar" : "choose-bar"
     const changeStep = (step) => {
         setStep(step)
     }
@@ -137,6 +138,29 @@ function PublishCheck(prop){
         }
     }, [])
 
+    const [imgSrc, setImgSrc] = useState('');
+
+    const readURL = (input) => {
+        console.log(1, input)
+        if (input.target.files && input.target.files[0]) {
+            console.log(2)
+            var reader = new FileReader();
+          
+            reader.onload = function(e) {
+                console.log(3)
+                console.log("e.target.result", e.target.result)
+                setImgSrc(String(e.target.result));
+            }
+            console.log(4)
+            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
+            console.log("img src", imgSrc)
+        }
+        console.log(5)
+    }
+    const img = {
+        backgroundImage: `url('${imgSrc}')`
+    }
+
 
     console.log("prop.curUuid", prop.curUuid)
 
@@ -146,6 +170,9 @@ function PublishCheck(prop){
                 <div className="top-banner">
                     <div className={aboutClass} id="about" onClick={() => changeStep(0)}>
                         關於
+                    </div>
+                    <div className={picClass} id="picture" onClick={() => changeStep(2)}>
+                        圖片
                     </div>
                     <div className={tagClass} id="tag" onClick={() => changeStep(1)}>
                         關鍵字
@@ -163,6 +190,7 @@ function PublishCheck(prop){
                                 <textarea placeholder="請輸入最多100字的簡介" value={introduction} onChange={changeIntroduction} maxLength="100"></textarea>
                             </div>
                         </div> :
+                        (step == 1) ?
                         <div className="content-part">
                             <div className="tag-fill">
                                 <input placeholder="請輸入最多8組的關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
@@ -171,12 +199,18 @@ function PublishCheck(prop){
                             <div className="tag-list">
                                 <DisplayTags />
                             </div>
+                        </div> :
+                        <div className="content-part">
+                            <div className="picture-fill">
+                                <input type="file" onChange={(e) => readURL(e)}/>
+                            </div>
+                            <div className="picture-show" style={img}></div>
                         </div>
                     }
                 </React.Fragment>
                 <div className="footer">
                     <span className="explain">
-                        {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : "輸入關鍵字，幫助讀者搜尋到你的文章"}
+                        {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : (step == 1) ? "輸入關鍵字，幫助讀者搜尋到你的文章" : "放上漂亮的封面照，吸引讀者目光喔"}
                     </span>
                     <Link to={"/post/" + `${prop.curUuid}`}>
                         <span className="publish-button" onClick={() => {
