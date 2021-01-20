@@ -1,7 +1,5 @@
 import './About.css';
-import React, { useEffect, useRef, useState } from 'react'
-import {FaThumbsUp} from 'react-icons/fa';
-import {IconContext} from 'react-icons';
+import React from 'react'
 
 function About(props) {
 	return (

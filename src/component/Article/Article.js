@@ -1,8 +1,8 @@
 import './Article.css';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MULTIPOST_QUERY, GREATOFPOST_QUERY, UPDATE_GREAT } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { EditorState , convertFromRaw } from 'draft-js'
 import Editor from '@draft-js-plugins/editor';
 
@@ -30,7 +30,7 @@ function Article(props) {
 
 	const [userLike, setUserLike] = useState(false);
 
-	const { loading: loading_p, error: error_p, data: data_p, refetch: refetch_p } = useQuery(MULTIPOST_QUERY, 
+	const { loading: loading_p, data: data_p, refetch: refetch_p } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			search_type: 'related post',
@@ -39,7 +39,7 @@ function Article(props) {
 			keyword: [''],
 			uuid: id
 	}});
-	const { loading: loading_like, error: error_like, data: data_like, refetch: refetch_like } = useQuery(GREATOFPOST_QUERY, 
+	const { loading: loading_like, data: data_like, refetch: refetch_like } = useQuery(GREATOFPOST_QUERY, 
 		{variables: { 
 			uuid: id
 	}});
@@ -100,34 +100,38 @@ function Article(props) {
 		if (typeof data_p !== 'undefined' && account !== '') {
 			if (userLike === true) {
 				return(
-					<IconContext.Provider value={{ size: '20px', style:{ fill: 'red' } }}>
-						<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
-							<FaThumbsUp />
-							<span id="likeNum">{trend_0_like} Like</span>
-						</button>
-					</IconContext.Provider>
+					<div style={{border: '0px solid green'}}>
+						<IconContext.Provider value={{ size: '20px', style:{ fill: 'red' } }}>
+							<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
+								<FaThumbsUp />
+								<span id="likeNum">{trend_0_like} Like</span>
+							</button>
+						</IconContext.Provider>
+					</div>
 				)
 			}
 			else {
 				return(
-					<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
-						<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
-							<FaThumbsUp />
-							<span id="likeNum">{trend_0_like} Like</span>
-						</button>
-					</IconContext.Provider>
+					<div style={{border: '0px solid green'}}>
+						<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
+							<button id='LikePost' onClick={() => handleClickLike(id, account, userLike)}>
+								<FaThumbsUp />
+								<span id="likeNum">{trend_0_like} Like</span>
+							</button>
+						</IconContext.Provider>
+					</div>
 				)
 			}
 		}
 		else {
 			console.log('In LikeStyle, data_p is undefined or account is empty');
 			return(
-				<IconContext.Provider value={{ size: '20px', style:{ fill: 'black' } }}>
-					<button id='LikePost'>
+				<div style={{border: '0px solid green'}}>
+					<IconContext.Provider value={{ size: '25px', style:{ fill: 'black', border: '0px solid black', margin: '4px' } }}>
 						<FaThumbsUp />
 						<span id="likeNum">{trend_0_like} Like</span>
-					</button>
-				</IconContext.Provider>
+					</IconContext.Provider>
+				</div>
 			)
 		}
 	}
@@ -158,6 +162,7 @@ function Article(props) {
 				</div>
 				<div className="ArticleBottom">
 					<LikeStyle />
+					<div id="articleDate">{trend_0_date}</div>
 				</div>
 				<div className="Author">
 					<div id='WrittenBy'>
@@ -196,6 +201,7 @@ function Article(props) {
 				</div>
 				<div className="ArticleBottom">
 					<LikeStyle />
+					<div id="articleDate">{trend_0_date}</div>
 				</div>
 				<div className="Author">
 					<div id='WrittenBy'>

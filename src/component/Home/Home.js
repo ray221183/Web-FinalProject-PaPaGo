@@ -60,7 +60,7 @@ function Home(prop){
 
 	useEffect(() => {
 		if(typeof data_t !== 'undefined') {
-			console.log('data_t = ', data_t.multi_post.multiposts[0].posts)
+			console.log('data_t = ', data_t.multi_post.multiposts[0].posts[0].tags)
 			if(data_t.multi_post.multiposts[0].posts.length >= 1) {
 				setTrend_0(data_t.multi_post.multiposts[0].posts[0]);
 				if(data_t.multi_post.multiposts[0].posts.length >= 2) {

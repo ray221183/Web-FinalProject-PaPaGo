@@ -17,7 +17,7 @@ export default ({ post }) => {
 			</div>
 			<p className="PEStoryIntro">{post.introduction}</p>
 			<div className="PEDateAndTag">
-				<div className="PEDate">{post.date}</div>
+				<div className="PEDate">{post.date.split(' ')[0]}</div>
 				<div>
 					<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 						<FaThumbsUp />

@@ -17,7 +17,7 @@ export default ({ post }) => {
 			</div>
 			<p className="HomeStoryIntro">{post.introduction}</p>
 			<div className="HomeDateAndTag">
-				<div className="HomeDate">{post.date}</div>
+				<div className="HomeDate">{post.date.split(' ')[0]}</div>
 				<div className="HomeLike">
 					<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 						<FaThumbsUp />
