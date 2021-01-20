@@ -126,18 +126,24 @@ const Mutation = {
 		}
 	},
 	async uploadImage(parent, args, {db}, info){
+		console.log("uploadImage", args)
 		let temp = new Image(args.data)
 		let result = await Image.find({"uuid":args.data.uuid})
+		console.log("uploadImage1")
 		if(result.length >= 1){
+			console.log("uploadImage2_1")
 			await Image.updateOne({"uuid":args.data.uuid},{
 				$set:{
 					"image":args.data.image
 				}
 			})
+			console.log("uploadImage2_2")
 			return "change image"
 		}
 		else{
+			console.log("uploadImage3_1")
 			await temp.save()
+			console.log("uploadImage3_2")
 			return "upload first image"
 		}
 	}

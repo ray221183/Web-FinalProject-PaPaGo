@@ -32,7 +32,8 @@
     "socket.io-client": "^3.0.3",
     "subscriptions-transport-ws": "^0.9.16",
     "web-vitals": "^0.2.4",
-    "websocket": "^1.0.32"
+    "websocket": "^1.0.32",
+    "axios": "^0.21.0"
   },
   "scripts": {
     "start": "react-scripts start",
