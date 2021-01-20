@@ -356,7 +356,7 @@ const Query = {
 				last_record = last_record.slice(0,20)
 			}
 			for(var j=0; j<last_record.length; ++j){
-				let temp = await Image.find({"uuid":last_record[i].uuid})
+				let temp = await Image.find({"uuid":last_record[j].uuid})
 				if(temp.length !== 0){
 					temp = temp[0]
 					last_record[j]['image'] = temp.image
@@ -446,7 +446,7 @@ const Query = {
 				return b.great_num - a.great_num
 			})
 			for(var j=0; j<last_record.length; ++j){
-				let temp = await Image.find({"uuid":last_record[i].uuid})
+				let temp = await Image.find({"uuid":last_record[j].uuid})
 				if(temp.length !== 0){
 					temp = temp[0]
 					last_record[j]['image'] = temp.image
