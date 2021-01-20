@@ -6,7 +6,7 @@ import Mutation from './resolvers/Mutation'
 // import User from './resolvers/User'
 // import Post from './resolvers/Post'
 // import Comment from './resolvers/Comment'
-require('dotenv').config()
+require('dotenv-defaults').config()
 const mongoose = require('mongoose')
 if (!process.env.MONGO_URL) {
   console.error('Missing MONGO_URL!!!')
