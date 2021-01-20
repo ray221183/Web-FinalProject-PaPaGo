@@ -62,11 +62,12 @@ function TopicPostsEnum(props) {
 		}
 	}, [data_c, data_p])
 
-	const deleteP = (id) => {
-		deletePost({
+	const deleteP = async (id) => {
+		await deletePost({
 			variables: {
 				uuid: id
 		}})
+		refetch_p();
 	}
 
 

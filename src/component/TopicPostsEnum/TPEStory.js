@@ -8,13 +8,15 @@ import {AiFillDelete} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
 
 export default ({ post, deleteP }) => { /////////////////////////////////
+	const scale = (false) ? "disable" : ""
+
     return (
         <div className="TPEStories" key={post.uuid}>
 			<div className="TPEAuthor">
 				<Link to={"/post/" + `${post.uuid}`}><button className="TPEStoryTitle">{post.title}</button></Link>
 				<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
 					<Link to={"/editor"}>
-						<button id="TPEIconButton">  {/*//////////////////////////////*/}
+						<button id="TPEIconButton" className={scale}>  {/*//////////////////////////////*/}
 							<AiFillEdit />
 						</button>
 					</Link>

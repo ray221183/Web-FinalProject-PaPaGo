@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import {
 	Switch,
 	Route,
-	useLocation
+	useLocation,
+	useHistory
   } from "react-router-dom";
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { MULTIPOST_QUERY, ADD_POST, UPDATE_POST } from './graphql'
@@ -55,6 +56,7 @@ function App() {
 	// console.log("search way: ", writer, ":", specialSearch, ":", searchType, ":", tags, ":", searchUuid)
 	console.log("CurPostInfo", curPostInfo)
 	const curLocation = useLocation();
+	const curHistory = useHistory();
 	// apollo
 	const {data: posts, refetch: rePosts, loading, error} = useQuery(
 		MULTIPOST_QUERY, 
@@ -196,6 +198,9 @@ function App() {
 			rePosts()
 		}
 	}, [curLocation.pathname])
+	useEffect(()=>{
+		curHistory.push('/')
+	}, [])
 	// useEffect(
 	// 	async () => {
 	// 		console.log("refetch")
