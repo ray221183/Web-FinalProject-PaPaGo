@@ -2,7 +2,7 @@ import './TopicPostsEnum.css'
 import React, { useEffect, useRef, useState } from 'react'
 import { MULTIPOST_QUERY, DELETE_POST } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
@@ -12,8 +12,13 @@ import TPEStory from "./TPEStory";
 
 // PostsEnum & PersonalPage both lead to here
 function TopicPostsEnum(props) {
-	let type = props.match.params.type;		// type could be a city name or someone's account
-	let topic = props.match.params.topic;	// topic could be an element in the topics below or a string for indicating posted articles
+	const curLocation = useLocation();
+	console.log(curLocation)
+	let split_result = curLocation.pathname.split('/')
+	console.log(split_result)
+
+	let type = split_result[split_result.length-2];		// type could be a city name or someone's account
+	let topic = split_result[split_result.length-1];	// topic could be an element in the topics below or a string for indicating posted articles
 	console.log('In topicpostsenum, type = ', type);
 	console.log('In topicpostsenum, topic = ', topic);
 	const cities = ["台北", "桃園", "新竹", "台中", "高雄", "台南", "宜蘭", "台東", "花蓮", "澎湖", "綠島", "嘉義"];
@@ -43,13 +48,6 @@ function TopicPostsEnum(props) {
 	}});
 	const [deletePost] = useMutation(DELETE_POST);
 
-	const deleteP = async (id) => {
-		await deletePost({
-			variables: {
-				uuid: id
-		}})
-		refetch_p();
-	}
 	useEffect(
 		()=>{
 			refetch_c()
@@ -68,6 +66,15 @@ function TopicPostsEnum(props) {
 			setMultiposts_p(data_p.multi_post.multiposts);
 		}
 	}, [data_c, data_p])
+
+	const deleteP = async (id) => {
+		await deletePost({
+			variables: {
+				uuid: id
+		}})
+		refetch_p();
+	}
+
 
 	const OneDay_map = () => {
 		let front_0 = [];
@@ -238,6 +245,7 @@ function TopicPostsEnum(props) {
 			posted = [multiposts_p[1]];
 		}
 		//let recommend = [multiposts[5]];
+		console.log("props.setIsPublished", props.setIsPublished)
 		return (
 			<React.Fragment>
 				{
@@ -252,7 +260,20 @@ function TopicPostsEnum(props) {
 									{
 										posts.posts.map( (post) => {
 												return(
-													<TPEStory post={post} deleteP={deleteP} />
+													<TPEStory 
+														post={post} 
+														deleteP={deleteP} 
+														
+														setCurPostInfo={props.setCurPostInfo}
+														setNewPost={props.setNewPost}
+														setIsPublished={props.setIsPublished}
+														rePosts={props.rePosts}
+														posts={props.posts}
+														searchPost={props.searchPost}
+														setRelatedUuid={props.setRelatedUuid}
+														setCurUuid={props.setCurUuid}
+														setSearchUuid={props.setSearchUuid}
+													/>
 												)
 											}
 										)
@@ -271,6 +292,7 @@ function TopicPostsEnum(props) {
 			draft = [multiposts_p[0]];
 		}
 		//let recommend = [multiposts[5]];
+		console.log("props.setIsPublished", props.setIsPublished)
 		return (
 			<React.Fragment>
 				{
@@ -285,7 +307,19 @@ function TopicPostsEnum(props) {
 									{
 										posts.posts.map( (post) => {
 												return(
-													<TPEStory post={post} deleteP={deleteP} />
+													<TPEStory 
+														post={post} 
+														deleteP={deleteP} 
+														setCurPostInfo={props.setCurPostInfo}
+														setNewPost={props.setNewPost}
+														setIsPublished={props.setIsPublished}
+														rePosts={props.rePosts}
+														posts={props.posts}
+														searchPost={props.searchPost}
+														setRelatedUuid={props.setRelatedUuid}
+														setCurUuid={props.setCurUuid}
+														setSearchUuid={props.setSearchUuid}
+													/>
 												)
 											}
 										)

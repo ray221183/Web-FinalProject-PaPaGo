@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import {
 	Switch,
 	Route,
-	useLocation
+	useLocation,
+	useHistory
   } from "react-router-dom";
 import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { MULTIPOST_QUERY, ADD_POST, UPDATE_POST } from './graphql'
@@ -22,6 +23,7 @@ import PublishCheck from './component/Editor/PublishCheck'
 import Editor from './component/Editor/Editor'
 import About from './component/About/About'
 import { async } from 'q';
+import TPEStory from './component/TopicPostsEnum/TPEStory';
 
 function App() {
 	// about user
@@ -55,6 +57,7 @@ function App() {
 	// console.log("search way: ", writer, ":", specialSearch, ":", searchType, ":", tags, ":", searchUuid)
 	console.log("CurPostInfo", curPostInfo)
 	const curLocation = useLocation();
+	const curHistory = useHistory();
 	// apollo
 	const {data: posts, refetch: rePosts, loading, error} = useQuery(
 		MULTIPOST_QUERY, 
@@ -196,6 +199,9 @@ function App() {
 			rePosts()
 		}
 	}, [curLocation.pathname])
+	useEffect(()=>{
+		curHistory.push('/')
+	}, [])
 	// useEffect(
 	// 	async () => {
 	// 		console.log("refetch")
@@ -260,7 +266,7 @@ function App() {
 							/>
 						)}
 					/>
-					<Route path="/postsenum/:type/:topic" component={TopicPostsEnum} 
+					<Route path="/postsenum/:type/:topic" component={TopicPostsEnum}
 					/>
 					<Route path="/postsenum/:type" component={PostsEnum} 
 					/>
@@ -282,7 +288,19 @@ function App() {
 							/>
 						)}
 					/>
-					<Route path="/personalpage/:type/:topic" component={TopicPostsEnum} 
+					<Route path="/personalpage/:type/:topic" render={(props) => (
+							<TopicPostsEnum
+								setCurPostInfo={setCurPostInfo}
+								setNewPost={setNewPost}
+								setIsPublished={setIsPublished}
+								rePosts={rePosts}
+								posts={posts}
+								searchPost={searchPost}
+								setRelatedUuid={setRelatedUuid}
+								setCurUuid={setCurUuid}
+								setSearchUuid={setSearchUuid}
+							/>	
+						)}
 					/>
 					<Route path="/personalpage/:who" render={(props) => (
 							<PersonalPage 
@@ -297,6 +315,7 @@ function App() {
 								searchPost={searchPost}
 								setRelatedUuid={setRelatedUuid}
 								setCurUuid={setCurUuid}
+								setSearchUuid={setSearchUuid}
 							/>
 						)}
 					/>
