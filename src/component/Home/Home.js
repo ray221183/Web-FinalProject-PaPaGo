@@ -201,9 +201,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_0_id}`}><button className="HomeStoryTitle">{trend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_0_author}</h3>
+									<Link to={"/post/" + `${trend_0_id}`}>
+										<button className="HomeStoryTitle">{trend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -234,9 +237,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_0_id}`}><button className="HomeStoryTitle">{trend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_0_author}</h3>
+									<Link to={"/post/" + `${trend_0_id}`}>
+										<button className="HomeStoryTitle">{trend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -251,9 +257,12 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_1_id}`}><button className="HomeStoryTitle">{trend_1_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_1_author}</h3>
+									<Link to={"/post/" + `${trend_1_id}`}>
+										<button className="HomeStoryTitle">{trend_1_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_1_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_1_intro}</p>
 								<div className="HomeDateAndTag">
@@ -282,9 +291,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_0_id}`}><button className="HomeStoryTitle">{trend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_0_author}</h3>
+									<Link to={"/post/" + `${trend_0_id}`}>
+										<button className="HomeStoryTitle">{trend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -299,9 +311,12 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_1_id}`}><button className="HomeStoryTitle">{trend_1_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_1_author}</h3>
+									<Link to={"/post/" + `${trend_1_id}`}>
+										<button className="HomeStoryTitle">{trend_1_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_1_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_1_intro}</p>
 								<div className="HomeDateAndTag">
@@ -318,9 +333,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_2_id}`}><button className="HomeStoryTitle">{trend_2_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_2_author}</h3>
+									<Link to={"/post/" + `${trend_2_id}`}>
+										<button className="HomeStoryTitle">{trend_2_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_2_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_2_intro}</p>
 								<div className="HomeDateAndTag">
@@ -345,9 +363,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_0_id}`}><button className="HomeStoryTitle">{trend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_0_author}</h3>
+									<Link to={"/post/" + `${trend_0_id}`}>
+										<button className="HomeStoryTitle">{trend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -362,9 +383,12 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_1_id}`}><button className="HomeStoryTitle">{trend_1_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_1_author}</h3>
+									<Link to={"/post/" + `${trend_1_id}`}>
+										<button className="HomeStoryTitle">{trend_1_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_1_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_1_intro}</p>
 								<div className="HomeDateAndTag">
@@ -381,9 +405,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_2_id}`}><button className="HomeStoryTitle">{trend_2_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_2_author}</h3>
+									<Link to={"/post/" + `${trend_2_id}`}>
+										<button className="HomeStoryTitle">{trend_2_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_2_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_2_intro}</p>
 								<div className="HomeDateAndTag">
@@ -398,9 +425,12 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${trend_3_id}`}><button className="HomeStoryTitle">{trend_3_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_3_author}</h3>
+									<Link to={"/post/" + `${trend_3_id}`}>
+										<button className="HomeStoryTitle">{trend_3_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{trend_3_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{trend_3_intro}</p>
 								<div className="HomeDateAndTag">
@@ -445,9 +475,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_0_id}`}><button className="HomeStoryTitle">{recommend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_0_author}</h3>
+									<Link to={"/post/" + `${recommend_0_id}`}>
+										<button className="HomeStoryTitle">{recommend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -478,9 +511,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_0_id}`}><button className="HomeStoryTitle">{recommend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_0_author}</h3>
+									<Link to={"/post/" + `${recommend_0_id}`}>
+										<button className="HomeStoryTitle">{recommend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -495,9 +531,12 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_1_id}`}><button className="HomeStoryTitle">{recommend_1_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_1_author}</h3>
+									<Link to={"/post/" + `${recommend_1_id}`}>
+										<button className="HomeStoryTitle">{recommend_1_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_1_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_1_intro}</p>
 								<div className="HomeDateAndTag">
@@ -526,9 +565,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_0_id}`}><button className="HomeStoryTitle">{recommend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_0_author}</h3>
+									<Link to={"/post/" + `${recommend_0_id}`}>
+										<button className="HomeStoryTitle">{recommend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -543,9 +585,12 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_1_id}`}><button className="HomeStoryTitle">{recommend_1_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_1_author}</h3>
+									<Link to={"/post/" + `${recommend_1_id}`}>
+										<button className="HomeStoryTitle">{recommend_1_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_1_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_1_intro}</p>
 								<div className="HomeDateAndTag">
@@ -562,9 +607,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_2_id}`}><button className="HomeStoryTitle">{recommend_2_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_2_author}</h3>
+									<Link to={"/post/" + `${recommend_2_id}`}>
+										<button className="HomeStoryTitle">{recommend_2_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_2_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_2_intro}</p>
 								<div className="HomeDateAndTag">
@@ -589,9 +637,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_0_id}`}><button className="HomeStoryTitle">{recommend_0_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_0_author}</h3>
+									<Link to={"/post/" + `${recommend_0_id}`}>
+										<button className="HomeStoryTitle">{recommend_0_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_0_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_0_intro}</p>
 								<div className="HomeDateAndTag">
@@ -606,9 +657,12 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_1_id}`}><button className="HomeStoryTitle">{recommend_1_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_1_author}</h3>
+									<Link to={"/post/" + `${recommend_1_id}`}>
+										<button className="HomeStoryTitle">{recommend_1_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_1_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_1_intro}</p>
 								<div className="HomeDateAndTag">
@@ -625,9 +679,12 @@ function Home(prop){
 						<div className='TrendingStories'>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_2_id}`}><button className="HomeStoryTitle">{recommend_2_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_2_author}</h3>
+									<Link to={"/post/" + `${recommend_2_id}`}>
+										<button className="HomeStoryTitle">{recommend_2_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_2_author}</span>
+										</button>
+									</Link>
 								</div>
 								<p className="HomeStoryIntro">{recommend_2_intro}</p>
 								<div className="HomeDateAndTag">
@@ -642,9 +699,14 @@ function Home(prop){
 							</div>
 							<div className="HomeStories">
 								<div className="HomeAuthor">
-									<Link to={"/post/" + `${recommend_3_id}`}><button className="HomeStoryTitle">{recommend_3_title}</button></Link>
-									<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-									<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_3_author}</h3>
+									<div className="HomeAuthor">
+									<Link to={"/post/" + `${recommend_3_id}`}>
+										<button className="HomeStoryTitle">{recommend_3_title}
+											<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+											<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{recommend_3_author}</span>
+										</button>
+									</Link>
+								</div>
 								</div>
 								<p className="HomeStoryIntro">{recommend_3_intro}</p>
 								<div className="HomeDateAndTag">

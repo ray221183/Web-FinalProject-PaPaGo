@@ -8,9 +8,12 @@ export default ({ post }) => {
     return (
         <div className="PEStories" key={post.uuid}>
 			<div className="PEAuthor">
-				<Link to={"/post/" + `${post.uuid}`}><button className="PEStoryTitle">{post.title}</button></Link>
-				<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-				<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{post.name}</h3>
+				<Link to={"/post/" + `${post.uuid}`}>
+					<button className="PEStoryTitle">{post.title}
+						<span style={{border:'0px solid black', fontSize: '15px', marginLeft: '10px'}}>by</span>
+						<span style={{border:'0px solid green', fontSize:'20px', marginLeft: '10px', position:'relative', bottom: '3px'}}>{post.name}</span>
+					</button>
+				</Link>
 			</div>
 			<p className="PEStoryIntro">{post.introduction}</p>
 			<div className="PEDateAndTag">

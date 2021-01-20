@@ -11,12 +11,21 @@ import PEStory from "./PEStory";
 
 function PostsEnum(props) {
 	let { type } = props.match.params;
-	console.log('type = ' + type);
 	const cities = ["台北", "桃園", "新竹", "台中", "高雄", "台南", "宜蘭", "台東", "花蓮", "澎湖", "綠島", "嘉義"];
-	console.log(cities.includes(type));
+	//console.log('type = ' + type);
+	//console.log(cities.includes(type));
 
 	const [multiposts, setMultiposts] = useState([]);
-	const topics = ['一日遊', '二日遊', '熱門景點', '最夯美食']
+
+	const [oneday0, setOneDay0] = useState(null);
+	const [oneday1, setOneDay1] = useState(null);
+	const [twoday0, setTwoDay0] = useState(null);
+	const [twoday1, setTwoDay1] = useState(null);
+	const [hotview0, setHotView0] = useState(null);
+	const [hotview1, setHotView1] = useState(null);
+	const [food0, setFood0] = useState(null);
+	const [food1, setFood1] = useState(null);
+
 
 	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
@@ -37,43 +46,150 @@ function PostsEnum(props) {
 	useEffect(() => {
 		//console.log('data = ', data)
 		if(typeof(data) !== 'undefined'){
-			console.log('data = ', data.multi_post.multiposts[1].posts)
+			console.log('data = ', data.multi_post.multiposts)
 			setMultiposts(data.multi_post.multiposts);
+			if(data.multi_post.multiposts[0].posts.length >= 1) {
+				setOneDay0(data.multi_post.multiposts[0].posts[0]);
+				if(data.multi_post.multiposts[0].posts.length >= 2) {
+					setOneDay1(data.multi_post.multiposts[0].posts[1]);
+				}
+			}
+			if(data.multi_post.multiposts[1].posts.length >= 1) {
+				setTwoDay0(data.multi_post.multiposts[1].posts[0]);
+				if(data.multi_post.multiposts[1].posts.length >= 2) {
+					setTwoDay1(data.multi_post.multiposts[1].posts[1]);
+				}
+			}
+			if(data.multi_post.multiposts[2].posts.length >= 1) {
+				setHotView0(data.multi_post.multiposts[2].posts[0]);
+				if(data.multi_post.multiposts[2].posts.length >= 2) {
+					setHotView1(data.multi_post.multiposts[2].posts[1]);
+				}
+			}
+			if(data.multi_post.multiposts[3].posts.length >= 1) {
+				setFood0(data.multi_post.multiposts[3].posts[0]);
+				if(data.multi_post.multiposts[3].posts.length >= 2) {
+					setFood1(data.multi_post.multiposts[3].posts[1]);
+				}
+			}
 		}
 	}, [data])
 
-	const Front_4_map = () => {
-		let front_4 = [];
-		if (multiposts.length !== 0) {
-			front_4 = [multiposts[0], multiposts[1], multiposts[2], multiposts[3]]
+	const OneDay_map = () => {
+		if(typeof data !== 'undefined') {
+			if(data.multi_post.multiposts[0].posts.length == 1 && oneday0 !== null) {
+				return(
+					<PEStory post={oneday0} />
+				)
+			}
+			else if(data.multi_post.multiposts[0].posts.length >= 1 && oneday0 !== null && oneday1 !== null) {
+				return(
+					<React.Fragment>
+						<PEStory post={oneday0} />
+						<PEStory post={oneday1} />
+					</React.Fragment>
+				)
+			}
+			else {
+				console.log('In PostsEnum.js, data = ', data.multi_post.multiposts[0].posts.length);
+				return(
+					<div className="PEStories"></div>
+				)
+			}
 		}
-		//let front_4 = [multiposts[0], multiposts[1], multiposts[2], multiposts[3]];
-		return (
-			<React.Fragment>
-				{
-					front_4.map( (posts, idx) => {
-							return(
-								<div className="PostsEnum">
-									<div className="Topic">
-										{topics[idx]}
-									</div>
-									<hr id='PEhr' />
-									{
-										posts.posts.map( (post) => {
-												return(
-													<PEStory post={post} />
-												)
-											}
-										)
-									}
-									<Link to={"/postsenum/" + `${type}` + "/" + `${topics[idx]}`}><button className="PEReadmore">Read more...</button></Link>
-								</div>
-							)
-						}
-					)
-				}
-			</React.Fragment>
-		)
+		else {
+			console.log('In PostsEnum.js, data is undefined');
+			return(
+				<div className="PEStories"></div>
+			)
+		}
+	}
+	const TwoDay_map = () => {
+		if(typeof data !== 'undefined') {
+			if(data.multi_post.multiposts[1].posts.length == 1 && twoday0 !== null) {
+				return(
+					<PEStory post={twoday0} />
+				)
+			}
+			else if(data.multi_post.multiposts[1].posts.length >= 1 && twoday0 !== null && twoday1 !== null) {
+				return(
+					<React.Fragment>
+						<PEStory post={twoday0} />
+						<PEStory post={twoday1} />
+					</React.Fragment>
+				)
+			}
+			else {
+				console.log('In PostsEnum.js, data = ', data.multi_post.multiposts[1].posts.length);
+				return(
+					<div className="PEStories"></div>
+				)
+			}
+		}
+		else {
+			console.log('In PostsEnum.js, data is undefined');
+			return(
+				<div className="PEStories"></div>
+			)
+		}
+	}
+	const HotView_map = () => {
+		if(typeof data !== 'undefined') {
+			if(data.multi_post.multiposts[2].posts.length == 1 && hotview0 !== null) {
+				return(
+					<PEStory post={hotview0} />
+				)
+			}
+			else if(data.multi_post.multiposts[2].posts.length >= 1 && hotview0 !== null && hotview1 !== null) {
+				return(
+					<React.Fragment>
+						<PEStory post={hotview0} />
+						<PEStory post={hotview1} />
+					</React.Fragment>
+				)
+			}
+			else {
+				console.log('In PostsEnum.js, data = ', data.multi_post.multiposts[2].posts.length);
+				return(
+					<div className="PEStories"></div>
+				)
+			}
+		}
+		else {
+			console.log('In PostsEnum.js, data is undefined');
+			return(
+				<div className="PEStories"></div>
+			)
+		}
+	}
+	const Food_map = () => {
+		if(typeof data !== 'undefined') {
+			if(data.multi_post.multiposts[3].posts.length == 1 && food0 !== null) {
+				return(
+					<PEStory post={food0} />
+				)
+			}
+			else if(data.multi_post.multiposts[3].posts.length >= 1 && food0 !== null && food1 !== null) {
+				return(
+					<React.Fragment>
+						<PEStory post={food0} />
+						<PEStory post={food1} />
+					</React.Fragment>
+				)
+			}
+			else {
+				console.log('In PostsEnum.js, data = ', data.multi_post.multiposts[3].posts.length);
+				return(
+					<div className="PEStories"></div>
+				)
+			}
+		}
+		else {
+			console.log('In PostsEnum.js, data is undefined');
+			return(
+				<div className="PEStories"></div>
+			)
+		}
 	}
 	const Trend_map = () => {
 		let trend = [];
@@ -146,7 +262,32 @@ function PostsEnum(props) {
 	))*/
     if (cities.includes(type)) {
     	return (
-			<Front_4_map />
+			<div className="PostsEnum">
+				<div className="Topic">
+					一日遊
+				</div>
+				<hr id='PEhr' />
+				<OneDay_map />
+				<Link to={"/postsenum/" + `${type}` + "/一日遊"}><button className="PEReadmore">Read more...</button></Link>
+				<div className="Topic">
+					二日遊
+				</div>
+				<hr id='PEhr' />
+				<TwoDay_map />
+				<Link to={"/postsenum/" + `${type}` + "/二日遊"}><button className="PEReadmore">Read more...</button></Link>
+				<div className="Topic">
+					熱門景點
+				</div>
+				<hr id='PEhr' />
+				<HotView_map />
+				<Link to={"/postsenum/" + `${type}` + "/熱門景點"}><button className="PEReadmore">Read more...</button></Link>
+				<div className="Topic">
+					最夯美食
+				</div>
+				<hr id='PEhr' />
+				<Food_map />
+				<Link to={"/postsenum/" + `${type}` + "/最夯美食"}><button className="PEReadmore">Read more...</button></Link>
+			</div>
 		)
     }
     else if(type === 'trending') {
