@@ -13,11 +13,9 @@ export default ({ post, editEssay, deleteP }) => {
 			<div className="PPStoryTitle">
 				<Link to={"/post/" + `${post.uuid}`}><button className="PPStoryTitle">{post.title}</button></Link>
 				<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
-					<Link to="/editor">
-						<button id="PPIconButton" onClick={ () => {editEssay(post)} }>
-							<AiFillEdit />
-						</button>
-					</Link>
+					<button id="PPIconButton" onClick={ () => {editEssay(post)} }>
+						<AiFillEdit />
+					</button>
 					<button id="PPIconButton" onClick={() => deleteP(post.uuid)}>
 						<AiFillDelete />
 					</button>		

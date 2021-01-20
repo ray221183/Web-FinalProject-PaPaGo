@@ -1,12 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { EditorState , convertFromRaw } from 'draft-js'
 import EditorCore from './EditorCore'
+import {
+	useLocation
+  } from "react-router-dom";
 import './Editor.css'
 
-
 function Editor(prop){
+    const curLocation = useLocation();
     const editorState = prop.editorState
     const setEditorState = prop.setEditorState
+    const [initialized, setInitialized] = useState(false);
+    const [tags, setTags] = useState();
     
     const [allowToSave, setAllowToSave] = useState(false);
     const [saved, setSaved] = useState(0); // 0: not saved | 1: saving | 2: saved
@@ -29,61 +34,87 @@ function Editor(prop){
     }
     // autosave
     useEffect(() => {
-        if(allowToSave) setSaved(1)
-        else setSaved(0)
-        const timer = setTimeout(() => {
-            if(allowToSave){
-                setSaved(2)
-                if(prop.newPost) {
-                    console.log("new post")
-                    // let empty_essay = EditorState.createEmpty()
-                    prop.savefile('Untitled story', '', editorState, [''], false) ///////////////////////
-                }
-                else{
-                    console.log("not new post")
+        let timer = null
+        console.log("save0", prop.curPostInfo !== null, prop.newPost)
+        if(prop.curPostInfo !== null || prop.newPost){
+            console.log("save1")
+            if(allowToSave) setSaved(1)
+            else setSaved(0)
+            timer = setTimeout(() => {
+                if(allowToSave){
+                    console.log("save2")
+                    setSaved(2)
                     let title = ''
-                    console.log("first block", editorState.getCurrentContent().getFirstBlock())
-                    if(prop.curPostInfo.is_sketch){
+                    title = (editorState.getCurrentContent().getFirstBlock().text === '') ? 'Untitled story' : editorState.getCurrentContent().getFirstBlock().text
+                    if(prop.newPost && !prop.isPublished) {
+                        console.log("new post 11")
+                        prop.savefile(title, '', editorState, [], false) ///////////////////////
                     }
                     else{
-                        title = prop.curPostInfo.title
+                        console.log("not new post 22")
+                        let title = ''
+                        let introduction = prop.curPostInfo.introduction
+                        let publish = !prop.curPostInfo.is_sketch
+                        let tagsList = prop.curPostInfo.tags.filter((item) => {return item !== ''})
+                        tagsList =  ( tagsList.length !== 0 ) ? prop.curPostInfo.tags.map((item, idx) => {
+                            return [item, idx]
+                        }) : []
+                        console.log("first block text", editorState.getCurrentContent().getFirstBlock().text)
+                        if(prop.isPublished){
+                            title = editorState.getCurrentContent().getFirstBlock().text
+                        }
+                        else{
+                            title = (editorState.getCurrentContent().getFirstBlock().text === '') ? 'Untitled story' : editorState.getCurrentContent().getFirstBlock().text
+                        }
+                        prop.savefile(title, introduction, editorState, tagsList, publish) ///////////////////////
                     }
-                    prop.savefile(title, prop.curPostInfo.introduction, editorState, prop.curPostInfo.tags, !prop.curPostInfo.is_sketch) ///////////////////////
                 }
-            }
-        }, 1500)
-        return () => clearTimeout(timer)
+            }, 1500)
+        }
+        return () => {
+            if(timer!==null) clearTimeout(timer)
+        }
     }, [editorState.getCurrentContent()])
 
     // initialize editor information
     useEffect(() => {
         console.log("initialize editor information", prop.curPostInfo)
-        if( typeof prop.curPostInfo !== "undefined" ){
+        console.log(initialized)
+        if(true){
             console.log("set post : ", prop.curPostInfo)
             if(prop.newPost && !prop.isPublished){
                 console.log("set new post")
                 setEditorState(()=>EditorState.createEmpty())
-                // setTitle('')
+                // setInitialized(true)
+                // console.log("111washwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwash")
+                // prop.searchPost([''], false, false, '', '', '', false)
             }
             else{
-                console.log("set exist post : ", prop.curPostInfo)
-                console.log("set exist post content : ", prop.curPostInfo.content)
-                setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(prop.curPostInfo.content))))
-                // setTitle(prop.curPostInfo.title)
+                if(prop.curPostInfo !== null){
+                    console.log("set exist post : ", prop.curPostInfo)
+                    setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(prop.curPostInfo.content))))
+                    // setInitialized(true)
+                    // console.log("222washwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwashwash")
+                    // prop.searchPost([''], false, false, '', '', '', false)
+                }
             }
         }
-    }, [])
+    }, [prop.curPostInfo])
 
-    // editor reset
-    useEffect(() => {
-        return () => {
-            console.log("reset")
-            prop.setNewPost(false)
-            prop.setCurPostInfo([])
-            prop.setIsPublished(false)
-        }
-    }, [])
-
+    // // editor reset
+    // useEffect(() => {
+    //     return () => {
+    //         console.log("reset editor")
+    //         // prop.rePosts()
+    //         // console.log("reposts")
+    //         prop.setNewPost(false)
+    //         prop.setCurPostInfo(null)
+    //         prop.setIsPublished(false)
+    //         prop.setPrePublishScale(0)
+    //         prop.setCurUuid('')
+    //         prop.setRelatedUuid('')
+    //     }
+    // }, [])
     return(
         <section className = {`Editor ${editorColor}`} style={editorBackgroundStyle}>
             <div className="editor-part" name = "editor-part">

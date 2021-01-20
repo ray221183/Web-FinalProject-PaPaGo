@@ -2,7 +2,7 @@ import './PersonalPage.css'
 import React, { useEffect, useRef, useState } from 'react'
 import { MULTIPOST_QUERY, DELETE_POST } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import {FaThumbsUp} from 'react-icons/fa';
 import {AiFillEdit} from 'react-icons/ai';
@@ -38,10 +38,30 @@ function PersonalPage(props){
 		}})
 		refetch()
 	}
+	const curHistory = useHistory();
 	const editEssay = ( post_info ) => {
 		console.log("Post Info Post InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost Info")
 		console.log("Post Info: ", post_info)
-		props.setCurPostInfo(post_info)
+		if(!post_info.is_sketch){
+			props.setIsPublished(true)
+			console.log("related_uuid: ", post_info.related_uuid)
+			if(post_info.related_uuid === ""){
+				props.setNewPost(true)
+				props.setCurPostInfo(post_info)
+				// props.setCurUuid(post_info.related_uuid)
+			}
+			else{
+				props.searchPost([''], true, true, post_info.related_uuid, '', '',true)
+			}
+			// props.setCurUuid()
+			props.setRelatedUuid(post_info.uuid)
+		}
+		else{
+			props.setRelatedUuid('')
+			props.setCurPostInfo(post_info)
+			props.setCurUuid(post_info.uuid)
+		}
+		curHistory.push("/editor")
 	}
 
 	useEffect(
@@ -79,7 +99,7 @@ function PersonalPage(props){
 					<React.Fragment>
 						<PersonalPageStory post={public_0} editEssay={editEssay} deleteP={deleteP}/>
 						<PersonalPageStory post={public_1} editEssay={editEssay} deleteP={deleteP}/>
-					</React.Fragment>
+					</React.Fragment> 
 				)
 			}
 			else {
