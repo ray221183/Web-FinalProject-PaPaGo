@@ -216,9 +216,9 @@ const Query = {
 			let filter_list = []
 			for(var i=0; i<key_words.length;++i){
 				let sub_filter = []
-				sub_filter.push({
+				/*sub_filter.push({
 					"content":{"$regex":key_words[i]}
-				})
+				})*/
 				sub_filter.push({
 					"name":{"$regex":key_words[i]}
 				})
@@ -374,9 +374,9 @@ const Query = {
 			let last_record = []
 			for(var j=0; j<temp_tags.length;++j){
 				let sub_filter = []
-				sub_filter.push({
+				/*sub_filter.push({
 					"content":{"$regex":temp_tags[j]}
-				})
+				})*/
 				sub_filter.push({
 					"name":{"$regex":temp_tags[j]}
 				})
