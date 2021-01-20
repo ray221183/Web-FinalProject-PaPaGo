@@ -34,7 +34,7 @@ function PostsEnum(props) {
 			search_type: '',
 			get_sketch: false,
 			get_non_sketch: true,
-			keyword: [type + ' #一日遊', type + ' #二日遊', type + ' trending', type + ' 美食', 'trending', ''],
+			keyword: [type + ' ＃一日遊', type + ' ＃二日遊', type + ' trending', type + ' 美食', 'trending', ''],
 			uuid: ''
 	}});
 
@@ -99,7 +99,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js OneDay_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)
@@ -128,7 +128,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js TwoDay_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)
@@ -157,7 +157,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js HotView_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)
@@ -186,7 +186,7 @@ function PostsEnum(props) {
 			}
 		}
 		else {
-			console.log('In PostsEnum.js, data is undefined');
+			console.log('In PostsEnum.js Food_map(), data is undefined');
 			return(
 				<div className="PEStories"></div>
 			)

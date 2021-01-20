@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
 
+import Tags from '../Tags/Tags';
+
 export default ({ post }) => {
     return (
         <div className="HomeStories">
@@ -17,6 +19,7 @@ export default ({ post }) => {
 			</div>
 			<p className="HomeStoryIntro">{post.introduction}</p>
 			<div className="HomeDateAndTag">
+				<Tags tags={post.tags} />
 				<div className="HomeDate">{post.date.split(' ')[0]}</div>
 				<div className="HomeLike">
 					<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>

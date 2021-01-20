@@ -34,7 +34,7 @@ function TopicPostsEnum(props) {
 			search_type: '',
 			get_sketch: false,
 			get_non_sketch: true,
-			keyword: [type + ' #一日遊', type + ' #二日遊', type + ' trending', type + ' 美食', type],
+			keyword: [type + ' ＃一日遊', type + ' ＃二日遊', type + ' trending', type + ' 美食', type],
 			uuid: ''
 	}});
 	const { loading: loading_p, error: error_p, data: data_p, refetch: refetch_p } = useQuery(MULTIPOST_QUERY, 
