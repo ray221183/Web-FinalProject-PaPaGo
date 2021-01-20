@@ -92,14 +92,14 @@ function PersonalPage(props){
 		if(typeof data !== 'undefined') {
 			if(data.multi_post.multiposts[1].posts.length == 1 && public_0 !== null) {
 				return(
-					<PersonalPageStory post={public_0} editEssay={editEssay} deleteP={deleteP}/>
+					<PersonalPageStory post={public_0} editEssay={editEssay} deleteP={deleteP} isPublic={true} />
 				)
 			}
 			else if(data.multi_post.multiposts[1].posts.length >= 2 && public_0 !== null && public_1 !== null) {
 				return(
 					<React.Fragment>
-						<PersonalPageStory post={public_0} editEssay={editEssay} deleteP={deleteP}/>
-						<PersonalPageStory post={public_1} editEssay={editEssay} deleteP={deleteP}/>
+						<PersonalPageStory post={public_0} editEssay={editEssay} deleteP={deleteP} isPublic={true} />
+						<PersonalPageStory post={public_1} editEssay={editEssay} deleteP={deleteP} isPublic={true} />
 					</React.Fragment> 
 				)
 			}
@@ -121,15 +121,15 @@ function PersonalPage(props){
 		if(typeof data !== 'undefined') {
 			if(data.multi_post.multiposts[0].posts.length == 1 && draft_0 !== null) {
 				return(
-					<PersonalPageStory post={draft_0} editEssay={editEssay} deleteP={deleteP}/>
+					<PersonalPageStory post={draft_0} editEssay={editEssay} deleteP={deleteP} isPublic={false} />
 				)
 			}
 			else if(data.multi_post.multiposts[0].posts.length >= 2 && draft_0 !== null && draft_1 !== null) {
 				console.log('draft_map here, length >= 2');
 				return(
 					<React.Fragment>
-						<PersonalPageStory post={draft_0} editEssay={editEssay} deleteP={deleteP}/>
-						<PersonalPageStory post={draft_1} editEssay={editEssay} deleteP={deleteP}/>
+						<PersonalPageStory post={draft_0} editEssay={editEssay} deleteP={deleteP} isPublic={false} />
+						<PersonalPageStory post={draft_1} editEssay={editEssay} deleteP={deleteP} isPublic={false} />
 					</React.Fragment>
 				)
 			}
