@@ -60,6 +60,7 @@ function PersonalPage(props){
 			props.setRelatedUuid('')
 			props.setCurPostInfo(post_info)
 			props.setCurUuid(post_info.uuid)
+			props.setSearchUuid(post_info.uuid)
 		}
 		curHistory.push("/editor")
 	}

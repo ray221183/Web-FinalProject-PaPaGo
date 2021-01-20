@@ -30,10 +30,12 @@ function PublishCheck(prop){
     }
     const handleKeyDown = (e) => {
         if(e.keyCode === 13){
-            let tagsTemp = [...tags, ["＃" + curTag, tagId]]
-            setTagId(tagId + 1)
-            setTags(tagsTemp)
-            setCurTag('')
+            if(tags.length<8){
+                let tagsTemp = [...tags, ["＃" + curTag, tagId]]
+                setTagId(tagId + 1)
+                setTags(tagsTemp)
+                setCurTag('')
+            }
         }
     }
     const changeTitle = (e) => {
@@ -154,7 +156,8 @@ function PublishCheck(prop){
                         (step == 0) ? 
                         <div className="content-part">
                             <div className="topic-fill">
-                                <input placeholder="請輸入標題" value={title} onChange={changeTitle}/>
+                                {/* <input placeholder="請輸入標題" value={title} onChange={changeTitle}/> */}
+                                <textarea placeholder="請輸入最多50字的標題" value={title} onChange={changeTitle} maxLength="50"></textarea>
                             </div>
                             <div className="introduction-fill">
                                 <textarea placeholder="請輸入最多100字的簡介" value={introduction} onChange={changeIntroduction} maxLength="100"></textarea>
@@ -162,7 +165,8 @@ function PublishCheck(prop){
                         </div> :
                         <div className="content-part">
                             <div className="tag-fill">
-                                <input placeholder="請輸入關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
+                                <input placeholder="請輸入最多8組的關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
+                                {/* <textarea placeholder="請輸入最多8組且每組字數10字內的關鍵字" value={(clear) ? '' : curTag} onKeyDown={handleKeyDown} onChange={changeInputTag} maxLength="10"></textarea> */}
                             </div>
                             <div className="tag-list">
                                 <DisplayTags />
