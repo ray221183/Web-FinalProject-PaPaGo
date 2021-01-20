@@ -12,7 +12,8 @@ app.use(bodyParser.json());
 const server = new ApolloServer({ typeDefs:readFileSync('./server/schema.graphql','utf-8'), resolvers:{
 	Query,
 	Mutation
-} });
+	},
+	context:({req, res})=>({req,res}) });
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

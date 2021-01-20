@@ -18,12 +18,12 @@ import {
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'http://papagoisme.herokuapp.com:8080/'
+  uri: 'https://papagoisme.herokuapp.com:80/'
 })
 
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000/`,
+  uri: `ws://papagoisme.herokuapp.com:80/`,
   options: { reconnect: true }
 })
 
@@ -38,7 +38,7 @@ const link = split(
       definition.operation === 'subscription'
     )
   },
-  httpLink,
+  wsLink,
   httpLink
 )
 
