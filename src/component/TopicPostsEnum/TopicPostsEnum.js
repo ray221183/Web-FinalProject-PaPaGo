@@ -43,6 +43,13 @@ function TopicPostsEnum(props) {
 	}});
 	const [deletePost] = useMutation(DELETE_POST);
 
+	const deleteP = async (id) => {
+		await deletePost({
+			variables: {
+				uuid: id
+		}})
+		refetch_p();
+	}
 	useEffect(
 		()=>{
 			refetch_c()
@@ -61,14 +68,6 @@ function TopicPostsEnum(props) {
 			setMultiposts_p(data_p.multi_post.multiposts);
 		}
 	}, [data_c, data_p])
-
-	const deleteP = (id) => {
-		deletePost({
-			variables: {
-				uuid: id
-		}})
-	}
-
 
 	const OneDay_map = () => {
 		let front_0 = [];
