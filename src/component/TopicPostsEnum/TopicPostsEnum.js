@@ -29,7 +29,7 @@ function TopicPostsEnum(props) {
 			search_type: '',
 			get_sketch: false,
 			get_non_sketch: true,
-			keyword: [type + ' #一日遊', type + ' #二日遊', type + ' trending', type + ' 美食'],
+			keyword: [type + ' #一日遊', type + ' #二日遊', type + ' trending', type + ' 美食', type],
 			uuid: ''
 	}});
 	const { loading: loading_p, error: error_p, data: data_p, refetch: refetch_p } = useQuery(MULTIPOST_QUERY, 
@@ -200,6 +200,39 @@ function TopicPostsEnum(props) {
 			</React.Fragment>
 		)
 	}
+	const Searchbar_map = () => {
+		let search = [];
+		if (multiposts_c.length !== 0) {
+			search = [multiposts_c[4]];
+		}
+		//let recommend = [multiposts[5]];
+		return (
+			<React.Fragment>
+				{
+					search.map( (posts, idx) => {
+						console.log('posts type', typeof(posts), posts);
+							return(
+								<div className="PostsEnum">
+									<div className="Topic">
+										{type}
+									</div>
+									<hr id='PEhr' />
+									{
+										posts.posts.map( (post) => {
+												return(
+													<PEStory post={post} />
+												)
+											}
+										)
+									}
+								</div>
+							)
+						}
+					)
+				}
+			</React.Fragment>
+		)
+	}
 	const Posted_map = () => {
 		let posted = [];
 		if (multiposts_p.length !== 0) {
@@ -269,6 +302,11 @@ function TopicPostsEnum(props) {
 	/*const tags = data.tags.map((tag) => (
 		return <div className="PETag">{tag}</div>;
 	))*/
+	if (loading_p === true || loading_c === true) {
+		return(
+			<div style={{fontSize: '100px', marginTop: '60px', textAlign: 'center'}}>Loading...</div>
+		)
+	}
     if (topic === '一日遊') {
     	return (
 			<OneDay_map />
@@ -289,6 +327,11 @@ function TopicPostsEnum(props) {
     		<Food_map />
     	)
     }
+    else if(topic === 'all') {
+    	return (
+    		<Searchbar_map />
+    	)
+    }
     else if(topic === 'posted') {
     	return (
     		<Posted_map />
@@ -300,7 +343,7 @@ function TopicPostsEnum(props) {
     	)
     }
     else {
-    	alert('error in PostsEnum.js');
+    	alert('error in TopicPostsEnum.js');
     	return
     }
 }

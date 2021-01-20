@@ -57,16 +57,16 @@ function TopBanner(prop){
         if(e.keyCode === 13){
 			setKeyWord('')
 			setSearch(false)
-			prop.searchPost([keyWord], false, true, '', '', '',true)
-			// history.push(`/postsenum/${keyWord}/all`)
+			prop.searchPost([keyWord], false, true, '', '', '')
+			history.push(`/postsenum/${keyWord}/all`);
         }
     }
 	const expandSearch = () => {
 		if(keyWord !== ''){
 			setSearch(false)
 			setKeyWord('')
-			prop.searchPost([keyWord], false, true, '', '', '',true)
-			// history.push(`/postsenum/${keyWord}/all`)
+			prop.searchPost([keyWord], false, true, '', '', '')
+			history.push(`/postsenum/${keyWord}/all`);
 		}
 		else{
 			setSearch(!Search)

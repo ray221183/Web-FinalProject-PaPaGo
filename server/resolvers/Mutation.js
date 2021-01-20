@@ -106,6 +106,8 @@ const Mutation = {
 
 	},
 	async updateGreat(parent, args, {db}, info) {
+		console.log('In updateGreat');
+		console.log('args.data.is_push = ', args.data.is_push);
 		if(args.data.is_push){
 			let record = {
 				uuid:args.data.uuid,
