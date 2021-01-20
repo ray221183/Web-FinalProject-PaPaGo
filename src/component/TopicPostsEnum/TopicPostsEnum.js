@@ -263,6 +263,7 @@ function TopicPostsEnum(props) {
 													<TPEStory 
 														post={post} 
 														deleteP={deleteP} 
+														allowEdit={false}
 														
 														setCurPostInfo={props.setCurPostInfo}
 														setNewPost={props.setNewPost}
@@ -308,6 +309,8 @@ function TopicPostsEnum(props) {
 										posts.posts.map( (post) => {
 												return(
 													<TPEStory 
+														allowEdit={true}
+
 														post={post} 
 														deleteP={deleteP} 
 														setCurPostInfo={props.setCurPostInfo}

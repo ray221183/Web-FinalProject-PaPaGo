@@ -10,7 +10,7 @@ import {IconContext} from 'react-icons';
 export default (props) => { /////////////////////////////////
 	const post = props.post;
 	const deleteP = props.deleteP;
-	const scale = (false) ? "disable" : ""
+	const scale = (props.allowEdit) ? "" : "disable"
 	const curHistory = useHistory();
 	const editEssay = ( post_info ) => {
 		console.log("Post Info Post InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost InfoPost Info")
