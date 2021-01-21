@@ -13,7 +13,8 @@ const server = new ApolloServer({ typeDefs:readFileSync('./server/schema.graphql
 	Query,
 	Mutation
 	},
-	context:({req, res})=>({req,res}) });
+  context:({req, res})=>({req,res}) 
+});
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

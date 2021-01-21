@@ -18,13 +18,13 @@ import {
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'http://localhost:4000/'
+  uri: 'https://papagoisme.herokuapp.com:4000/'
 })
 const httpLink_2 = new HttpLink({
-  uri: 'http://localhost:4000/'
+  uri: 'https://papagoisme.herokuapp.com:4000/'
 })
 // Create a WebSocket link:
-const wsLink = new WebSocketLink({
+/*const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/`,
   options: { reconnect: true }
 })
@@ -43,11 +43,11 @@ const link = split(
   wsLink,
   httpLink
 )
-
+*/
 // const link = httpLink
 
 const client = new ApolloClient({
-  link,
+  link:httpLink,
   cache: new InMemoryCache().restore({})
 })
 
