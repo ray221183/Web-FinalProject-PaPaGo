@@ -1,0 +1,189 @@
+.side-tool-bar-add{
+	transition: 0.3s;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* border: 1px solid black; */
+	position: absolute;
+}
+.side-tool-bar-block{
+	transition: 0.3s;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* border: 1px solid black; */
+	position: absolute;
+}
+
+
+
+.roll-down-region{
+	height: 270px;
+	width: 50px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	/* border: 1px solid blue; */
+	overflow: hidden;
+}
+.side-bar-icon{
+	height: 30px;
+	width: 30px;
+	background-position: center;
+	background-repeat:no-repeat;
+	/* border: 1px solid black; */
+}
+.side-bar-icon:hover{
+	cursor: pointer;
+}
+#addtype-icon-light{
+	background-image: url('../../picture/others/add_button.png');
+}
+#addtype-icon-dark{
+	background-image: url('../../picture/others/add_button_dark.png');
+}
+#blocktype-icon-light{
+	background-image: url('../../picture/others/block_style.png');
+}
+#blocktype-icon-dark{
+	background-image: url('../../picture/others/block_style_dark.png');
+}
+.side-bar{
+	padding-top: 20px;
+	padding-bottom: 3px;
+	/* border: 1px solid rgb(216, 23, 23); */
+	height: 290px;
+	width: 42px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: 0.2s;
+	background-size: contain;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	border: 1px solid rgba(255, 0, 0, 0);
+}
+.side-bar-add{
+	padding-top: 20px;
+	padding-bottom: 3px;
+	/* border: 1px solid rgb(216, 23, 23); */
+	height: 120px;
+	width: 42px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	transition: 0.2s;
+	background-size: contain;
+	background-position-x: center;
+	background-repeat: no-repeat;
+	/* border: 1px solid rgb(230, 21, 21); */
+}
+#side-bar-addtype-light{
+	background-image: url('../../picture/others/add_list_bar_light.png');
+}
+#side-bar-addtype-dark{
+	background-image: url('../../picture/others/add_list_bar_dark.png');
+}
+#side-bar-blocktype-light{
+	background-image: url('../../picture/others/block_list_bar_light.png');
+}
+#side-bar-blocktype-dark{
+	background-image: url('../../picture/others/block_list_bar_dark.png');
+}
+.blocktype-button{
+	height: 38px;
+	width: 38px;
+	background-position: center;
+	background-repeat:no-repeat;
+}
+.side-light:hover{
+	cursor: pointer;
+	background-color: rgba(209, 209, 209, 0.733);
+}
+.side-dark:hover{
+	cursor: pointer;
+	background-color: rgba(0, 0, 0, 0.781);
+}
+
+#add-image-light{
+	background-image: url('../../picture/others/add_image_light.png');
+}
+#add-image-dark{
+	background-image: url('../../picture/others/add_image_dark.png');
+}
+#add-video-light{
+	background-image: url('../../picture/others/add_video_light.png');
+}
+#add-video-dark{
+	background-image: url('../../picture/others/add_video_dark.png');
+}
+
+
+#header-one-light{
+	background-image: url('../../picture/others/H1_light.png');
+}
+#header-two-light{
+	background-image: url('../../picture/others/H2_light.png');
+}
+#header-three-light{
+	background-image: url('../../picture/others/H3_light.png');
+}
+#unordered-list-light{
+	background-image: url('../../picture/others/unorder_list_light.png');
+}
+#ordered-list-light{
+	background-image: url('../../picture/others/order_list_light.png');
+}
+#blockquote-light{
+	background-image: url('../../picture/others/quote_light.png');
+}
+#header-one-dark{
+	background-image: url('../../picture/others/H1_dark.png');
+}
+#header-two-dark{
+	background-image: url('../../picture/others/H2_dark.png');
+}
+#header-three-dark{
+	background-image: url('../../picture/others/H3_dark.png');
+}
+#unordered-list-dark{
+	background-image: url('../../picture/others/unorder_list_dark.png');
+}
+#ordered-list-dark{
+	background-image: url('../../picture/others/order_list_dark.png');
+}
+#blockquote-dark{
+	background-image: url('../../picture/others/quote_dark.png');
+}
+
+#add-image-input{
+	transform: scale(0);
+}
+#video-input{
+	/* z-index: 2; */
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	margin-bottom: 0px;
+	height: 25px;
+	width: 10px;
+	/* border: 1px solid red; */
+}
+#video-input input{
+	padding-left: 10px;
+    height: 35px;
+    width: 600px;
+    border: none; /* <-- This thing here */
+    border:solid 1px #ccc;
+    font-size: 18px;
+    outline: none;
+	border-radius: 5px;
+	color: rgb(0, 0, 0);
+}
+#video-input-div{
+	position: relative;
+	/* border: 1px solid red; */
+}
+/* #editor-content{
+	z-index: 1;
+} */

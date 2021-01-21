@@ -1,0 +1,198 @@
+.Home {
+	position: relative;
+	text-align: center;
+	box-shadow: 0vh 0vh 0.3vh 0vh rgb(0, 0, 0);
+}
+.Introduction{
+	position: absolute;
+	height: 60vh;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.01);
+	color: rgba(255, 255, 255, 1);
+}
+.Introduction div{
+	margin: 45vh 0vw 0vh 60vw;
+	width: 30vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid black;
+	transform: scale(0);
+}
+#content-part{
+	text-align: center;
+	font-size: 3em;
+	font-weight: 500;
+}
+#get-start-part{
+	padding: 2px 5px 2px 5px;
+	font-size: 1.5em;;
+	background-color: rgba(158, 62, 126, 0.445);
+	border: 0.5px solid rgb(255, 255, 255);
+	border-radius: 0.8vh;
+	box-shadow: 0vh 0vh 0vh 0vh rgb(0, 0, 0);
+	outline: none;
+}
+#get-start-part:hover{
+	cursor: pointer;
+}
+.Home-main-picture{
+	content: url('../../picture/mainPicture/sketch4_resize.jpg');
+	height: 60vh;
+	width: 100%;
+	margin: 0vh 0vh 3vh 0vh;
+	box-shadow: 0vh -0.3vh 1vh 0vh rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.13);
+}
+.MainContent {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.CitiesList {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 1400px;
+	height: 120px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 50px;
+	/* border: 2px solid red; */
+}
+#top-search{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 1400px;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 5px;
+	/* border: 2px solid rgb(204, 116, 116); */
+}
+#down-search{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 1400px;
+	height: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-bottom: 5px;
+	/* border: 2px solid rgb(21, 194, 107); */
+}
+.button {
+	background-color: black;
+	color:white;
+	font-size: 17px;
+	align-items: center;
+	justify-content: center;
+	padding:10px;
+	border-color: gray;
+	border-width: 2px;
+	border-radius: 20%;
+	width: 170px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+.button:hover {
+	border-color: transparent !important;
+	background-color: gray;
+}
+.button:focus {
+	background-color: white;
+	color: black;
+}
+.google-map{
+	width: 50%;
+	/* border: 1px solid black; */
+}
+
+.Trending {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	width: 1400px;
+	height: 50px;
+	font-size: 30px;
+	text-align: left;
+	margin-top: 20px;
+	border: 0px solid green;
+}
+
+.place-button{
+	background-image: linear-gradient(90deg, rgb(255, 184, 184), rgb(245, 161, 161), rgb(243, 155, 155), rgb(245, 161, 161), rgb(255, 184, 184));
+	border: none;
+	outline: none;
+	height: 45px;
+	width: 100px;
+	text-align: center;
+	line-height: 45px;
+	border-radius: 10px;
+}
+.place-button:hover{
+	background-image: linear-gradient(90deg, rgb(243, 155, 155), rgb(243, 155, 155));
+}
+#homehr {
+	color: black;
+	background-color: black;
+	height: 1px;
+	width: 1400px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+.TrendingStories {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 1400px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-bottom: 20px;
+	border: 0px solid green;
+}
+
+.HomeReadmore {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: white;
+	font-size: 15px;
+	color: #A9A9A9;
+	padding: 5px;
+	border: 0px solid blue;
+	position: relative;
+	right: -650px;
+	margin-bottom: 20px;
+}
+.HomeReadmore:hover {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	background-color: white;
+}
+.title-1{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	color: black;
+	width: 1400px;
+	height: 50px;
+	font-size: 30px;
+	text-align: left;
+	margin-top: 20px;
+}

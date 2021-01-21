@@ -1,0 +1,122 @@
+.TPEStories {
+	border: 0px solid red;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 800px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin-bottom: 60px;
+}
+.TPEStoriesWithImage {
+	padding-right: 20px;
+	border: 0px solid blue;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+.TPEAuthor {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	border: 0px solid red;
+	width: 100%;
+}
+.TPEStoryTitle {
+	background-color: white;
+	text-align: left;
+	font-size: 30px;
+	color: black;
+	border: 0px solid black;
+	align-self: flex-start;
+	margin: 0px;
+	width: 100%;
+}
+.TPEStoryTitle:hover {
+	background-color: white;
+}
+.TPEStoryIntro {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	text-align: left;
+	font-size: 15px;
+	border: 0px solid black;
+	margin: 0px;
+	width: 100%;
+	height: 50px;
+	word-wrap: break-word;
+}
+.TPEDateAndTag {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	/*border: 2px solid green;*/
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	width: 100%;
+}
+.TPETag {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: black;
+	/*border: 2px solid brown;*/
+	color: white;
+	font-size: 15px;
+	padding: 5px;
+	border-radius: 10%;
+	margin-right: 10px;
+	margin-bottom: 0px;
+}
+.TPEDate {
+	background-color: white;
+	/*border: 2px solid brown;*/
+	color: black;
+	font-size: 15px;
+	padding: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+#TPELike {
+	margin-left: 5px;
+	font-size: 15px;
+}
+#TPEIconButton {
+	background-color: white;
+	border: 0px solid blue;
+	margin: 0px;
+	outline: none;
+}
+#TPEIconButton:hover {
+	background-color: white;
+	outline: none;
+}
+#TPEIconButton:active {
+	background-color: white;
+	outline: none;
+}
+#TPEIconButton:visited {
+	background-color: white;
+	outline: none;
+}
+#TPEIconButton:focus {
+	background-color: white;
+	outline: none;
+}
+.disable{
+	transform: scale(0);
+}

@@ -1,0 +1,164 @@
+type Query {
+	user(data: UserInput!): UserOutput!
+	post(data: findPostInput!): postOutput!
+	multi_post(data: findMultiPostInput!): MultiPostOutput!
+	greatOfpost(data: findGreatInput!): findGreatOutput!
+	greatOfuser(data: greatOfuserInput!): GreatOfuserOutput!
+	image(data: imageInput): ImageOutput
+}
+
+type Mutation {
+	addUser(data: registerInput!): String!
+	addPost(data: postInput!):String!
+	deletePost(data: uuidInput!):String!
+	updatePost(data: updatePostInput!): updatePostOutput!
+	updateGreat(data: updateGreatInput!): String!
+	uploadImage(data: uploadInput): String
+}
+
+input uploadInput{
+	uuid: String!
+	image: String!
+}
+
+input imageInput{
+	uuid: String
+}
+
+input registerInput{
+	first_name: String!
+	last_name: String!
+	name: String!
+	account: String!
+	password: String!
+}
+input UserInput {
+	account: String!
+	password: String!
+}
+input uuidInput {
+	uuid: String!
+}
+
+input findMultiPostInput {
+	writer: String!
+	search_type: String!
+	get_sketch: Boolean!
+	get_non_sketch: Boolean!
+	keyword:    [String]!
+	uuid:       String
+}
+input findPostInput {
+	writer: String!
+	search_type: String!
+	get_sketch: Boolean!
+	get_non_sketch: Boolean!
+	keyword:    String!
+	uuid:       String
+}
+
+input findGreatInput {
+	uuid: String!
+}
+
+input postInput{
+	title:        String!
+	introduction: String!
+	content:      String!
+	writer:       String!
+	tags:         [String]!
+	date:         String!
+	is_sketch:    Boolean!
+	related_uuid: String   
+}
+
+input greatOfuserInput{
+	account: String!
+}
+
+input updatePostInput{
+	uuid:    String!
+	title:   String!
+	introduction: String!
+	content: String!
+	tags:    [String]!
+	date:    String!
+	is_sketch: Boolean!
+}
+
+input updateGreatInput{
+	uuid: String!
+	account: String!
+	is_push: Boolean!
+}
+
+type post{
+	title:      String!
+	introduction: String!
+	content:    String!
+	tags:       [String]!
+	name:       String!
+	date:       String!
+	writer:     String!
+	is_sketch:  Boolean!
+	uuid:       String!
+	great_num:  Int!
+	related_uuid: String!
+	image:  String
+}
+
+
+type GreatOfuserOutput {
+	posts: [post]!
+}
+
+type updatePostOutput{
+	title:      String!
+	introduction: String!
+	content:    String!
+	tags:       [String]!
+	name:       String!
+	date:       String!
+	writer:     String!
+	is_sketch:  Boolean!
+	uuid:       String!
+	related_uuid: String!
+}
+
+type user_name {
+	account: String!
+	name: String!
+}
+type postOutput{
+	posts: [post]!
+}
+
+type findGreatOutput {
+	users: [user_name]!
+}
+
+type MultiPostOutput {
+	multiposts: [postOutput]!
+}
+
+type UserOutput {
+	first_name: String!
+	last_name: String!
+	name: String!
+	account: String!
+	password: String!
+	valid: Boolean!
+}
+
+type ImageOutput {
+	uuid: String
+	image: String
+}
+
+enum MutationType {
+	CREATED
+	UPDATED
+	DELETED
+	ADD
+}
+
