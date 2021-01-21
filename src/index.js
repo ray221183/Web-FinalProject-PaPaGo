@@ -26,7 +26,7 @@ const httpLink = new HttpLink({
 // depending on what kind of operation is being sent
 
 const client = new ApolloClient({
-  httpLink,
+  link:httpLink,
   cache: new InMemoryCache().restore({})
 })
 
