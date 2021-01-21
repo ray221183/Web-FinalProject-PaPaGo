@@ -13,7 +13,7 @@ if (!process.env.MONGO_URL) {
   process.exit(1)
 }
 
-mongoose.connect('mongodb+srv://PaPaGo:papago123456@cluster0.4ksx8.mongodb.net/cluster0?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
