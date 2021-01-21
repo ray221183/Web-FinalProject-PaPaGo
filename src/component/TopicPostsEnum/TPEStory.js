@@ -71,7 +71,7 @@ export default (props) => { /////////////////////////////////
 	}
 	else {
 		return (
-			<div style={{ border: '2px solid green', width: '800px', marginBottom: '60px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+			<div style={{ border: '0px solid green', width: '800px', marginBottom: '60px', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' }}>
 		        <div className="TPEStoriesWithImage" key={post.uuid}>
 					<div className="TPEAuthor">
 						<Link to={"/post/" + `${post.uuid}`}><button className="TPEStoryTitle">{post.title}</button></Link>
@@ -97,7 +97,7 @@ export default (props) => { /////////////////////////////////
 						</div>
 					</div>
 				</div>
-				<img src={post.image}  style={{width: '200px', height: '100%', border:'2px solid red'}} />
+				<img src={post.image}  style={{width: '200px', height: '100%', border:'0px solid red'}} />
 			</div>
 	    );
 	}

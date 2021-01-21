@@ -11,7 +11,7 @@
 	margin-bottom: 60px;
 }
 .TPEStoriesWithImage {
-	border: 2px solid blue;
+	border: 0px solid blue;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -30,16 +30,17 @@
 	justify-content: flex-start;
 	align-items: center;
 	/*border: 2px solid blue;*/
-	width: 800px;
+	width: 100%;
 }
 .TPEStoryTitle {
 	background-color: white;
 	text-align: left;
 	font-size: 30px;
 	color: black;
-	border: 0px solid blue;
+	border: 0px solid black;
 	align-self: flex-start;
 	margin: 0px;
+	width: 100%;
 }
 .TPEStoryTitle:hover {
 	background-color: white;
