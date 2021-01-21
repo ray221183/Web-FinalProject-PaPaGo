@@ -22,15 +22,17 @@ Github link:
 ##使用與參考之框架/模組/原始碼:
 
 frontend:
-react.js
+ react.js
  antd
  draft.js
  axios
+ material-UI
+ react-icons
 
 backend:
-mongoose
-graphql
-websocket
+ mongoose
+ graphql
+ websocket
 
 ##專題心得：
 心得：期末project讓我將整學期學到的前端、後端、資料庫的東西都發揮出來，也從實作project中了解到要架設一個全端網站有多麼不容易。最後要截止的這幾天都睡得很少，花很多時間在實作功能、debug，但在過程中，學到很多新的知識與技能，而且用自己的雙手實現一項project是一件令人相當有成就感的事。
