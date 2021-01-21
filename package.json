@@ -17,6 +17,7 @@
     "apollo-boost": "^0.4.9",
     "apollo-link-ws": "^1.0.20",
     "apollo-server-express": "^2.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "draft-js": "^0.11.7",
     "graphql-yoga": "^1.17.4",
@@ -32,8 +33,7 @@
     "socket.io-client": "^3.0.3",
     "subscriptions-transport-ws": "^0.9.16",
     "web-vitals": "^0.2.4",
-    "websocket": "^1.0.32",
-    "axios": "^0.21.0"
+    "websocket": "^1.0.32"
   },
   "scripts": {
     "start": "node server.js",
