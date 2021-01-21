@@ -10,6 +10,17 @@
 	align-items: center;
 	margin-bottom: 60px;
 }
+.TPEStoriesWithImage {
+	border: 2px solid blue;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	width: 600px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
 .TPEAuthor {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;

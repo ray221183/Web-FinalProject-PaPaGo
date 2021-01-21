@@ -148,12 +148,87 @@ function Article(props) {
 	}
 	if(typeof data_p !== 'undefined' && related_0 !== null && related_1 !== null && related_2 !== null) {
 		//console.log('loading_p = ', loading_p);
-		return(
+		if (trend_0_img === '') {
+			return(
+				<div className="Article">
+					{/* <h1 id="title">{trend_0_title}</h1> */}
+					{/* <div className="ArticleImage">
+						A image about this story.
+					</div> */}
+					<div className="editor-part" name = "editor-part">
+						<div className="article-content">
+							<Editor
+								editorState={editorState}
+								// plugins={plugins}
+								readOnly={true}
+							/>
+						</div>
+					</div>
+					<div className="ArticleBottom">
+						<LikeStyle />
+						<div id="articleDate">{trend_0_date}</div>
+					</div>
+					<div className="Author">
+						<div id='WrittenBy'>
+							Written By
+						</div>
+						<div id='author'>
+							<button id="AuthorButton">{trend_0_author}</button>
+						</div>
+					</div>
+					<h3 id="MoreStories">More Interesting Stories</h3>
+					<hr id='hr' />
+					<div className="RelatedStories">
+						<RelatedStory related_post={related_0} />
+						<RelatedStory related_post={related_1} />
+						<RelatedStory related_post={related_2} />
+					</div>
+				</div>
+			)
+		}
+		else {
+			return(
+				<div className="Article">
+					{/* <h1 id="title">{trend_0_title}</h1> */}
+					{/* <div className="ArticleImage">
+						A image about this story.
+					</div> */}
+					<div className="editor-part" name = "editor-part">
+						<div className="article-content">
+							<Editor
+								editorState={editorState}
+								// plugins={plugins}
+								readOnly={true}
+							/>
+						</div>
+					</div>
+					<div>
+						<img id="articleImg" src={trend_0_img} />
+					</div>
+					<div className="ArticleBottom">
+						<LikeStyle />
+						<div id="articleDate">{trend_0_date}</div>
+					</div>
+					<div className="Author">
+						<div id='WrittenBy'>
+							Written By
+						</div>
+						<div id='author'>
+							<button id="AuthorButton">{trend_0_author}</button>
+						</div>
+					</div>
+					<h3 id="MoreStories">More Interesting Stories</h3>
+					<hr id='hr' />
+					<div className="RelatedStories">
+						<RelatedStory related_post={related_0} />
+						<RelatedStory related_post={related_1} />
+						<RelatedStory related_post={related_2} />
+					</div>
+				</div>
+			)
+		}
+		/*return(
 			<div className="Article">
-				{/* <h1 id="title">{trend_0_title}</h1> */}
-				{/* <div className="ArticleImage">
-					A image about this story.
-				</div> */}
 				<div className="editor-part" name = "editor-part">
 					<div className="article-content">
 						<Editor
@@ -164,7 +239,7 @@ function Article(props) {
 					</div>
 				</div>
 				<div>
-					<img src={trend_0_img} />
+					<img id="articleImg" src={trend_0_img} />
 				</div>
 				<div className="ArticleBottom">
 					<LikeStyle />
@@ -175,7 +250,6 @@ function Article(props) {
 						Written By
 					</div>
 					<div id='author'>
-						An image about the author
 						<button id="AuthorButton">{trend_0_author}</button>
 					</div>
 				</div>
@@ -187,7 +261,7 @@ function Article(props) {
 					<RelatedStory related_post={related_2} />
 				</div>
 			</div>
-		)
+		)*/
 	}
 	else {
 		return(
