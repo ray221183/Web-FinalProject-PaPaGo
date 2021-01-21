@@ -110,8 +110,8 @@ mutation updateGreat(
 
 const UPLOAD_IMAGE = gql`
 mutation uploadImage(
-	$uuid:String
-	$image:String
+	$uuid:String!
+	$image:String!
   ) {
 	uploadImage(
 	  data: {

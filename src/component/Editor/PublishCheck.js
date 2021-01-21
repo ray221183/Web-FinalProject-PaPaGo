@@ -5,10 +5,15 @@ import {
     useLocation,
     useHistory
   } from "react-router-dom";
+import axios from 'axios';
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import {UPLOAD_IMAGE} from '../../graphql'
 
+const client_id = '0b3c0a380f27041';
 
 function PublishCheck(prop){
     const curLocation = useLocation();
+    const curHistory = useHistory();
     const editorState = prop.editorState
     const [title, setTitle] = useState('');
     const [introduction, setIntroduction] = useState('');
@@ -16,6 +21,7 @@ function PublishCheck(prop){
     const [tags, setTags] = useState([]);
     const [tagId, setTagId] = useState(0);
     const [initialized, setInitialized] = useState(false);
+    const [addPic] = useMutation(UPLOAD_IMAGE)
 
     const elementParent = useRef();
     const elementChild = useRef();
@@ -124,6 +130,63 @@ function PublishCheck(prop){
         setStep(step)
     }
 
+    const [imgSrc, setImgSrc] = useState('');
+    const [pageImg, setPageImg] = useState(null);
+
+    const readURL = (input) => {
+        console.log(1, input)
+        if (input.target.files && input.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
+            reader.onload = function(e) {
+                console.log("e.target.result", e.target.result)
+                setImgSrc(String(e.target.result));
+            }
+            setPageImg(input.target.files[0])
+            console.log(4)
+        }
+        console.log(5)
+    }
+    const pageImgSrc = {backgroundImage: `url('${imgSrc}')`}
+
+    const toPublish = async () => {
+        prop.savefile(title, introduction, editorState, tags, true)
+        if(pageImg !== null){
+            const data = new FormData()
+            const config = {headers: { Authorization: `Client-ID ${client_id}` }}
+            let res = await axios.post('https://api.imgur.com/3/image', data, config).catch((err) => {
+                console.log(err)
+            })
+            if(typeof res !== "undefined"){
+                const imgUrl = res.data.data.link
+                console.log("1")
+                console.log("uuid", prop.curUuid)
+                console.log("image", imgUrl)
+                await addPic({
+                    variables: {
+                        uuid: prop.curUuid,
+	                    image: imgUrl
+                    }
+                })
+            }
+            else{
+                console.log("2")
+                console.log("uuid", prop.curUuid, typeof prop.curUuid)
+                console.log("image", imgSrc, typeof imgSrc)
+                await addPic({
+                    variables: {
+                        uuid: prop.curUuid,
+	                    image: imgSrc
+                    }
+                })
+            }
+            curHistory.push("/post/" + `${prop.curUuid}`)
+        }
+        else{
+            curHistory.push("/post/" + `${prop.curUuid}`)
+        }
+    }
+
     useEffect(() => {
         return () => {
             console.log("reset public check")
@@ -137,32 +200,6 @@ function PublishCheck(prop){
             prop.setRelatedUuid('')
         }
     }, [])
-
-    const [imgSrc, setImgSrc] = useState('');
-
-    const readURL = (input) => {
-        console.log(1, input)
-        if (input.target.files && input.target.files[0]) {
-            console.log(2)
-            var reader = new FileReader();
-          
-            reader.onload = function(e) {
-                console.log(3)
-                console.log("e.target.result", e.target.result)
-                setImgSrc(String(e.target.result));
-            }
-            console.log(4)
-            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
-            console.log("img src", imgSrc)
-        }
-        console.log(5)
-    }
-    const img = {
-        backgroundImage: `url('${imgSrc}')`
-    }
-
-
-    console.log("prop.curUuid", prop.curUuid)
 
     return(
         <div className="prepublish-part" style={scale} ref={elementParent}>
@@ -204,7 +241,8 @@ function PublishCheck(prop){
                             <div className="picture-fill">
                                 <input type="file" onChange={(e) => readURL(e)}/>
                             </div>
-                            <div className="picture-show" style={img}></div>
+                            <div className="picture-show" style={pageImgSrc}>
+                            </div>
                         </div>
                     }
                 </React.Fragment>
@@ -212,14 +250,9 @@ function PublishCheck(prop){
                     <span className="explain">
                         {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : (step == 1) ? "輸入關鍵字，幫助讀者搜尋到你的文章" : "放上漂亮的封面照，吸引讀者目光喔"}
                     </span>
-                    <Link to={"/post/" + `${prop.curUuid}`}>
-                        <span className="publish-button" onClick={() => {
-                            console.log(prop.curUuid)
-                            prop.savefile(title, introduction, editorState, tags, true)
-                        }}>
-                            Publish
-                        </span>
-                    </Link>
+                    <span className="publish-button" onClick={() => {toPublish()}}>
+                        Publish
+                    </span>
                 </div>
             </div>
         </div>

@@ -6,7 +6,7 @@ const ImgSchema = new Schema({
         type: String,
         required: [true, "uuid field is required."]
     },
-    img: {
+    image: {
         type: String,
         required: [true, "img field is required."]
     }
