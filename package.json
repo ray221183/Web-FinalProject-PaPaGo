@@ -18,16 +18,8 @@
     "apollo-link-ws": "^1.0.20",
     "apollo-server-express": "^2.19.2",
     "bootstrap": "^4.5.0",
-    "dotenv-defaults": "^2.0.1",
     "draft-js": "^0.11.7",
-    "express": "^4.17.1",
-    "fs": "^0.0.1-security",
-    "graphql-merge-resolvers": "^1.1.16",
     "graphql-yoga": "^1.17.4",
-    "mongodb": "^3.6.3",
-    "mongoose": "^5.10.15",
-    "nodemon": "^2.0.6",
-    "path": "^0.12.7",
     "react": "^17.0.1",
     "react-apollo": "^3.1.5",
     "react-dom": "^17.0.1",
@@ -37,20 +29,18 @@
     "react-scroll": "^1.8.1",
     "reactstrap": "^8.4.1",
     "rebass": "^4.0.7",
-    "socket.io": "^3.0.3",
     "socket.io-client": "^3.0.3",
     "subscriptions-transport-ws": "^0.9.16",
     "web-vitals": "^0.2.4",
     "websocket": "^1.0.32",
-    "ws": "^7.4.0"
+    "axios": "^0.21.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "nodemon",
-    "tt": "react-scripts start"
+    "server": "nodemon"
   },
   "eslintConfig": {
     "extends": [
@@ -77,6 +67,13 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.6",
     "@babel/plugin-transform-arrow-functions": "^7.8.3",
-    "@babel/preset-env": "^7.12.1"
+    "@babel/preset-env": "^7.12.1",
+    "dotenv-defaults": "^2.0.1",
+    "express": "^4.17.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.10.15",
+    "nodemon": "^2.0.6",
+    "socket.io": "^3.0.3",
+    "ws": "^7.4.0"
   }
 }
