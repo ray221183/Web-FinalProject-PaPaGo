@@ -1312,7 +1312,7 @@
     immutable "~3.8.2"
     prop-types "^15.5.8"
 
-"@draft-js-plugins/image@2.0.1":
+"@draft-js-plugins/image@^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@draft-js-plugins/image/-/image-4.0.0.tgz#4066e843343fd4bed3c86f740e8fc232e83c163b"
   integrity sha512-bzcn0Rj0ceVAmFBtVsqg4CQ7Wo5Of7BV+K+fw8g4XC6L8j1g98mj0tjKvSLVS54Pr5OILKG7Wpkho0X5mDCcyA==
@@ -1340,6 +1340,13 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@draft-js-plugins/utils/-/utils-4.0.0.tgz#978f0da0e97c8ffc7b7151033a9d2582735867c1"
   integrity sha512-PPzXns3xmEyTu66ZXEvfGi5uYhKaS5VynQ3S5BBokfjV0uTRLQEf2DN5jLl9QFPfrQXRQCgcqcSR4YppbkOh/g==
+
+"@draft-js-plugins/video@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/video/-/video-4.0.0.tgz#5812bf4bdba1a2590c5c306adf7fe918d42044e5"
+  integrity sha512-TWoDs/0Wm/JMIq1hbfzNLZUgaCQkLUsWLFJp34hEzWIEmk+r2Bny5Zi6fXNI/d/KpXzA6/zTsZraqapuBSFnWg==
+  dependencies:
+    prop-types "^15.5.8"
 
 "@emotion/cache@^10.0.27":
   version "10.0.29"
@@ -3673,6 +3680,13 @@ axe-core@^4.0.2:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.1.1.tgz#70a7855888e287f7add66002211a423937063eaf"
   integrity sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ==
+
+axios@^0.21.0:
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.1.tgz#22563481962f4d6bde9a76d516ef0e5d3c09b2b8"
+  integrity sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA==
+  dependencies:
+    follow-redirects "^1.10.0"
 
 axobject-query@^2.2.0:
   version "2.2.0"
@@ -6569,7 +6583,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.10.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.13.1.tgz#5f69b813376cee4fd0474a3aba835df04ab763b7"
   integrity sha512-SSG5xmZh1mkPGyKzjZP8zLjltIfpW32Y5QpdNJyjcfGxK3qo3NDDkZOZSFiGn1A6SclQxY9GzEwAHQ3dmYRWpg==

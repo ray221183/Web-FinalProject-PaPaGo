@@ -192,3 +192,23 @@
 .delete-tag:hover{
     cursor: pointer;
 }
+.picture-fill{
+    padding-left: 10px;
+    height: 40px;
+    width: 90%;
+    border: none; /* <-- This thing here */
+    /* border:solid 1px #ccc; */
+    font-size: 1.2em;
+    outline: none;
+    color: rgb(116, 116, 116);
+    overflow: hidden;
+    /* border-radius: 0.7vh 0.7vh 0.7vh 0.7vh; */
+}
+.picture-show{
+    height: 75%;
+    width: 80%;
+    /* border: 1px solid red; */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

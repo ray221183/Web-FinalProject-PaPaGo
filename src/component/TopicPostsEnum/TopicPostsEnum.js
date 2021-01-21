@@ -1,11 +1,8 @@
 import './TopicPostsEnum.css'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MULTIPOST_QUERY, DELETE_POST } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
-import { Link, useLocation } from "react-router-dom";
-
-import {FaThumbsUp} from 'react-icons/fa';
-import {IconContext} from 'react-icons';
+import { useLocation } from "react-router-dom";
 
 import PEStory from "../PostsEnum/PEStory";
 import TPEStory from "./TPEStory";
@@ -21,23 +18,23 @@ function TopicPostsEnum(props) {
 	let topic = split_result[split_result.length-1];	// topic could be an element in the topics below or a string for indicating posted articles
 	console.log('In topicpostsenum, type = ', type);
 	console.log('In topicpostsenum, topic = ', topic);
-	const cities = ["台北", "桃園", "新竹", "台中", "高雄", "台南", "宜蘭", "台東", "花蓮", "澎湖", "綠島", "嘉義"];
+	//const cities = ["台北", "桃園", "新竹", "台中", "高雄", "台南", "宜蘭", "台東", "花蓮", "澎湖", "綠島", "嘉義"];
 	//console.log(cities.includes(type));
 
 	const [multiposts_c, setMultiposts_c] = useState([]);
 	const [multiposts_p, setMultiposts_p] = useState([]);
-	const topics = ['一日遊', '二日遊', '熱門景點', '最夯美食']
+	//const topics = ['一日遊', '二日遊', '熱門景點', '最夯美食']
 
-	const { loading: loading_c, error: error_c, data: data_c, refetch: refetch_c } = useQuery(MULTIPOST_QUERY, 
+	const { loading: loading_c, data: data_c, refetch: refetch_c } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			search_type: '',
 			get_sketch: false,
 			get_non_sketch: true,
-			keyword: [type + ' #一日遊', type + ' #二日遊', type + ' trending', type + ' 美食', type],
+			keyword: [type + ' ＃一日遊', type + ' ＃二日遊', type + ' trending', type + ' 美食', type],
 			uuid: ''
 	}});
-	const { loading: loading_p, error: error_p, data: data_p, refetch: refetch_p } = useQuery(MULTIPOST_QUERY, 
+	const { loading: loading_p, data: data_p, refetch: refetch_p } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: type,
 			search_type: 'get pair',
@@ -48,12 +45,10 @@ function TopicPostsEnum(props) {
 	}});
 	const [deletePost] = useMutation(DELETE_POST);
 
-	useEffect(
-		()=>{
-			refetch_c()
-			refetch_p()
-		}, []
-	)
+	useEffect(() => {
+		refetch_c()
+		refetch_p()
+	}, [refetch_c, refetch_p])
 
 	useEffect(() => {
 		//console.log('data = ', data)

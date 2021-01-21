@@ -5,10 +5,15 @@ import {
     useLocation,
     useHistory
   } from "react-router-dom";
+import axios from 'axios';
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import {UPLOAD_IMAGE} from '../../graphql'
 
+const client_id = '0b3c0a380f27041';
 
 function PublishCheck(prop){
-    const curLocation = useLocation();
+    //const curLocation = useLocation();
+    const curHistory = useHistory();
     const editorState = prop.editorState
     const [title, setTitle] = useState('');
     const [introduction, setIntroduction] = useState('');
@@ -16,6 +21,7 @@ function PublishCheck(prop){
     const [tags, setTags] = useState([]);
     const [tagId, setTagId] = useState(0);
     const [initialized, setInitialized] = useState(false);
+    const [addPic] = useMutation(UPLOAD_IMAGE)
 
     const elementParent = useRef();
     const elementChild = useRef();
@@ -23,7 +29,7 @@ function PublishCheck(prop){
         transform: `scale(${prop.prePublishScale})`
     }
 
-    const [step, setStep] = useState(0); // 0: 簡介 | 1: 關鍵字
+    const [step, setStep] = useState(0); // 0: 簡介 | 1: 關鍵字 | 2:圖片
 
     const changeScale = (e) => {
         prop.setPrePublishScale(0)
@@ -117,10 +123,68 @@ function PublishCheck(prop){
         })
     }, [])
 
-    const aboutClass = (step == 0) ? "click choose-bar" : "choose-bar"
-    const tagClass = (step == 1) ? "click choose-bar" : "choose-bar"
+    const aboutClass = (step === 0) ? "click choose-bar" : "choose-bar"
+    const tagClass = (step === 1) ? "click choose-bar" : "choose-bar"
+    const picClass = (step === 2) ? "click choose-bar" : "choose-bar"
     const changeStep = (step) => {
         setStep(step)
+    }
+
+    const [imgSrc, setImgSrc] = useState('');
+    const [pageImg, setPageImg] = useState(null);
+
+    const readURL = (input) => {
+        console.log(1, input)
+        if (input.target.files && input.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
+            reader.onload = function(e) {
+                console.log("e.target.result", e.target.result)
+                setImgSrc(String(e.target.result));
+            }
+            setPageImg(input.target.files[0])
+            console.log(4)
+        }
+        console.log(5)
+    }
+    const pageImgSrc = {backgroundImage: `url('${imgSrc}')`}
+
+    const toPublish = async () => {
+        prop.savefile(title, introduction, editorState, tags, true)
+        if(pageImg !== null){
+            const data = new FormData()
+            const config = {headers: { Authorization: `Client-ID ${client_id}` }}
+            let res = await axios.post('https://api.imgur.com/3/image', data, config).catch((err) => {
+                console.log(err)
+            })
+            if(typeof res !== "undefined"){
+                const imgUrl = res.data.data.link
+                console.log("1")
+                console.log("uuid", prop.curUuid)
+                console.log("image", imgUrl)
+                await addPic({
+                    variables: {
+                        uuid: prop.curUuid,
+	                    image: imgUrl
+                    }
+                })
+            }
+            else{
+                console.log("2")
+                console.log("uuid", prop.curUuid, typeof prop.curUuid)
+                console.log("image", imgSrc, typeof imgSrc)
+                await addPic({
+                    variables: {
+                        uuid: prop.curUuid,
+	                    image: imgSrc
+                    }
+                })
+            }
+            curHistory.push("/post/" + `${prop.curUuid}`)
+        }
+        else{
+            curHistory.push("/post/" + `${prop.curUuid}`)
+        }
     }
 
     useEffect(() => {
@@ -137,9 +201,6 @@ function PublishCheck(prop){
         }
     }, [])
 
-
-    console.log("prop.curUuid", prop.curUuid)
-
     return(
         <div className="prepublish-part" style={scale} ref={elementParent}>
             <div className="interface-part" ref={elementChild}>
@@ -147,13 +208,16 @@ function PublishCheck(prop){
                     <div className={aboutClass} id="about" onClick={() => changeStep(0)}>
                         關於
                     </div>
+                    <div className={picClass} id="picture" onClick={() => changeStep(2)}>
+                        圖片
+                    </div>
                     <div className={tagClass} id="tag" onClick={() => changeStep(1)}>
                         關鍵字
                     </div>
                 </div>
                 <React.Fragment>
                     {
-                        (step == 0) ? 
+                        (step === 0) ? 
                         <div className="content-part">
                             <div className="topic-fill">
                                 {/* <input placeholder="請輸入標題" value={title} onChange={changeTitle}/> */}
@@ -163,6 +227,7 @@ function PublishCheck(prop){
                                 <textarea placeholder="請輸入最多100字的簡介" value={introduction} onChange={changeIntroduction} maxLength="100"></textarea>
                             </div>
                         </div> :
+                        (step === 1) ?
                         <div className="content-part">
                             <div className="tag-fill">
                                 <input placeholder="請輸入最多8組的關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
@@ -171,21 +236,23 @@ function PublishCheck(prop){
                             <div className="tag-list">
                                 <DisplayTags />
                             </div>
+                        </div> :
+                        <div className="content-part">
+                            <div className="picture-fill">
+                                <input type="file" onChange={(e) => readURL(e)}/>
+                            </div>
+                            <div className="picture-show" style={pageImgSrc}>
+                            </div>
                         </div>
                     }
                 </React.Fragment>
                 <div className="footer">
                     <span className="explain">
-                        {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : "輸入關鍵字，幫助讀者搜尋到你的文章"}
+                        {(step === 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : (step == 1) ? "輸入關鍵字，幫助讀者搜尋到你的文章" : "放上漂亮的封面照，吸引讀者目光喔"}
                     </span>
-                    <Link to={"/post/" + `${prop.curUuid}`}>
-                        <span className="publish-button" onClick={() => {
-                            console.log(prop.curUuid)
-                            prop.savefile(title, introduction, editorState, tags, true)
-                        }}>
-                            Publish
-                        </span>
-                    </Link>
+                    <span className="publish-button" onClick={() => {toPublish()}}>
+                        Publish
+                    </span>
                 </div>
             </div>
         </div>

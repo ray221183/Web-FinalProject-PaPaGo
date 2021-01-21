@@ -1,11 +1,10 @@
 import './Home.css'
 import React, { useEffect, useRef, useState } from 'react'
 import { MULTIPOST_QUERY } from '../../graphql'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import { Link } from "react-router-dom";
 
 import { Button } from '@material-ui/core';
-import {FaThumbsUp} from 'react-icons/fa';
 import {AiFillFire} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
 
@@ -93,7 +92,7 @@ function Home(prop){
 
 	const Trend_map = () => {
 		if(typeof data_t !== 'undefined') {
-			if(data_t.multi_post.multiposts[0].posts.length == 0) {
+			if(data_t.multi_post.multiposts[0].posts.length === 0) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>
@@ -111,7 +110,7 @@ function Home(prop){
 					</React.Fragment>
 				)
 			}
-			else if(data_t.multi_post.multiposts[0].posts.length == 1 && trend_0 !== null) {
+			else if(data_t.multi_post.multiposts[0].posts.length === 1 && trend_0 !== null) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>
@@ -128,7 +127,7 @@ function Home(prop){
 					</React.Fragment>
 				)
 			}
-			else if(data_t.multi_post.multiposts[0].posts.length == 2 && trend_0 !== null && trend_1 !== null) {
+			else if(data_t.multi_post.multiposts[0].posts.length === 2 && trend_0 !== null && trend_1 !== null) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>
@@ -144,7 +143,7 @@ function Home(prop){
 					</React.Fragment>
 				)
 			}
-			else if(data_t.multi_post.multiposts[0].posts.length == 3 && trend_0 !== null && trend_1 !== null && trend_2 !== null) {
+			else if(data_t.multi_post.multiposts[0].posts.length === 3 && trend_0 !== null && trend_1 !== null && trend_2 !== null) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>
@@ -213,7 +212,7 @@ function Home(prop){
 	}
 	const Recommend_map = () => {
 		if(typeof data_r !== 'undefined') {
-			if(data_r.multi_post.multiposts[0].posts.length == 0) {
+			if(data_r.multi_post.multiposts[0].posts.length === 0) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>
@@ -231,7 +230,7 @@ function Home(prop){
 					</React.Fragment>
 				)
 			}
-			else if(data_r.multi_post.multiposts[0].posts.length == 1 && recommend_0 !== null) {
+			else if(data_r.multi_post.multiposts[0].posts.length === 1 && recommend_0 !== null) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>
@@ -248,7 +247,7 @@ function Home(prop){
 					</React.Fragment>
 				)
 			}
-			else if(data_r.multi_post.multiposts[0].posts.length == 2 && recommend_0 !== null && recommend_1 !== null) {
+			else if(data_r.multi_post.multiposts[0].posts.length === 2 && recommend_0 !== null && recommend_1 !== null) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>
@@ -264,7 +263,7 @@ function Home(prop){
 					</React.Fragment>
 				)
 			}
-			else if(data_r.multi_post.multiposts[0].posts.length == 3 && recommend_0 !== null && recommend_1 !== null && recommend_2 !== null) {
+			else if(data_r.multi_post.multiposts[0].posts.length === 3 && recommend_0 !== null && recommend_1 !== null && recommend_2 !== null) {
 				return(
 					<React.Fragment>
 						<div className='TrendingStories'>

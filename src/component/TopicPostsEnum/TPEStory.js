@@ -43,16 +43,6 @@ export default (props) => { /////////////////////////////////
         <div className="TPEStories" key={post.uuid}>
 			<div className="TPEAuthor">
 				<Link to={"/post/" + `${post.uuid}`}><button className="TPEStoryTitle">{post.title}</button></Link>
-				<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
-					<Link to={"/editor"}>
-						<button id="TPEIconButton" className={scale} onClick={() => editEssay(post)}>  {/*//////////////////////////////*/}
-							<AiFillEdit />
-						</button>
-					</Link>
-					<button id="TPEIconButton" onClick={() => deleteP(post.uuid)}>
-						<AiFillDelete />
-					</button>		
-				</IconContext.Provider>
 			</div>
 			<p className="TPEStoryIntro">{post.introduction}</p>
 			<div className="TPEDateAndTag">
@@ -61,6 +51,16 @@ export default (props) => { /////////////////////////////////
 					<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
 						<FaThumbsUp />
 						<span id="TPELike">{post.great_num} Like</span>
+					</IconContext.Provider>
+					<IconContext.Provider value={{ size: '20px', style:{ fill: 'gray', marginLeft: '10px', marginBottom: '4px' } }}>
+						<Link to={"/editor"}>
+							<button id="TPEIconButton" className={scale} onClick={() => editEssay(post)}>  {/*//////////////////////////////*/}
+								<AiFillEdit />
+							</button>
+						</Link>
+						<button id="TPEIconButton" onClick={() => deleteP(post.uuid)}>
+							<AiFillDelete />
+						</button>		
 					</IconContext.Provider>
 				</div>
 			</div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { EditorState , convertFromRaw } from 'draft-js'
 import EditorCore from './EditorCore'
 import {
@@ -7,11 +7,11 @@ import {
 import './Editor.css'
 
 function Editor(prop){
-    const curLocation = useLocation();
+    //const curLocation = useLocation();
     const editorState = prop.editorState
     const setEditorState = prop.setEditorState
     const [initialized, setInitialized] = useState(false);
-    const [tags, setTags] = useState();
+    //const [tags, setTags] = useState();
     
     const [allowToSave, setAllowToSave] = useState(false);
     const [saved, setSaved] = useState(0); // 0: not saved | 1: saving | 2: saved
@@ -126,7 +126,7 @@ function Editor(prop){
                     </div>
                     <div className="publish">
                         <span id="save-state" style={saveColorStyle}>
-                            { (saved == 0) ? '' : (saved == 2) ?  'saved' : 'saving...' }
+                            { (saved === 0) ? '' : (saved === 2) ?  'saved' : 'saving...' }
                         </span>
                         <span id="publish-button" onClick={changeScale}>
                             Publish

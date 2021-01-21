@@ -1,39 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { EditorState, AtomicBlockUtils, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
+import { EditorState, AtomicBlockUtils, RichUtils } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
-import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
 import createImagePlugin from '@draft-js-plugins/image';
+import createVideoPlugin from '@draft-js-plugins/video';
 import './EditorCore.css';
 import './SideBar.css';
 import './InlineBar.css';
 import {
-	createBlockStyleButton,
-	createInlineStyleButton,
 	ItalicButton,
 	BoldButton ,
-	SupButton, //?
-	SubButton, //?
-	CodeButton ,
-	UnderlineButton ,
-	HeadlineOneButton,
-	HeadlineTwoButton,
-	HeadlineThreeButton,
-	UnorderedListButton,
-	OrderedListButton,
-	BlockquoteButton,
-	CodeBlockButton ,
-	AlignBlockDefaultButton,
-	AlignBlockCenterButton,
-	AlignBlockLeftButton,
-	AlignBlockRightButton,
+	UnderlineButton
 } from '@draft-js-plugins/buttons';
-import { themeSideBlockAdd, themeSideBlockStyle, themeInlineTextStyle } from './ThemeStyle';
+import { themeInlineTextStyle } from './ThemeStyle';
 
-const sideToolbarPluginAddLight = createSideToolbarPlugin({ theme: themeSideBlockAdd(true) });
-const { SideToolbar: SideToolbarAddLight } = sideToolbarPluginAddLight;
-const sideToolbarPluginAddDark = createSideToolbarPlugin({ theme: themeSideBlockAdd(false) });
-const { SideToolbar: SideToolbarAddDark } = sideToolbarPluginAddDark;
 
 
 const inlineBarTextStyle = createInlineToolbarPlugin({ theme: themeInlineTextStyle });
@@ -42,63 +22,114 @@ const { InlineToolbar: InlineBarTextStyle } = inlineBarTextStyle;
 console.log("createImagePlugin", createImagePlugin)
 
 const imagePlugin = createImagePlugin();
+
+const videoPlugin = createVideoPlugin();
+//const { types } = videoPlugin;
 console.log("imagePlugin", imagePlugin)
 console.log("Editor", Editor)
 
-const plugins = [sideToolbarPluginAddLight, sideToolbarPluginAddDark, inlineBarTextStyle, imagePlugin];
+const plugins = [inlineBarTextStyle, imagePlugin, videoPlugin];
 
-const initialState = {
-	entityMap: {
-	  0: {
-		type: 'IMAGE',
-		mutability: 'IMMUTABLE',
-		data: {
-		  src: '/sketch4.jpg',
-		},
-	  },
-	},
-	blocks: [
-	  {
-		key: '9gm3s',
-		text:
-		  'You can have images in your text field. This is a very rudimentary example, but you can enhance the image plugin with resizing, focus or alignment plugins.',
-		type: 'unstyled',
-		depth: 0,
-		inlineStyleRanges: [],
-		entityRanges: [],
-		data: {},
-	  },
-	  {
-		key: 'ov7r',
-		text: ' ',
-		type: 'atomic',
-		depth: 0,
-		inlineStyleRanges: [],
-		entityRanges: [
-		  {
-			offset: 0,
-			length: 1,
-			key: 0,
-		  },
-		],
-		data: {},
-	  },
-	  {
-		key: 'e23a8',
-		text: 'See advanced examples further down …',
-		type: 'unstyled',
-		depth: 0,
-		inlineStyleRanges: [],
-		entityRanges: [],
-		data: {},
-	  },
-	],
-  };
+// const initialState = {
+// 	entityMap: {
+// 	  0: {
+// 		type: 'IMAGE',
+// 		mutability: 'IMMUTABLE',
+// 		data: {
+// 		  src: './sketch4.jpg',
+// 		},
+// 	  },
+// 	},
+// 	blocks: [
+// 	  {
+// 		key: '9gm3s',
+// 		text:
+// 		  'You can have images in your text field. This is a very rudimentary example, but you can enhance the image plugin with resizing, focus or alignment plugins.',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'ov7r',
+// 		text: ' ',
+// 		type: 'atomic',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [
+// 		  {
+// 			offset: 0,
+// 			length: 1,
+// 			key: 0,
+// 		  },
+// 		],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'e23a8',
+// 		text: 'See advanced examples further down …',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	],
+//   };
+
+// const initialState = {
+// 	entityMap: {
+// 	  0: {
+// 		type: types.VIDEOTYPE,
+// 		mutability: 'IMMUTABLE',
+// 		data: {
+// 		  src: 'https://www.youtube.com/watch?v=iEPTlhBmwRg',
+// 		},
+// 	  },
+// 	},
+// 	blocks: [
+// 	  {
+// 		key: '9gm3s',
+// 		text:
+// 		  'You can have video in your text field. This is a very rudimentary example, but you can enhance the video plugin with resizing, focus or alignment plugins.',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'ov7r',
+// 		text: ' ',
+// 		type: 'atomic',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [
+// 		  {
+// 			offset: 0,
+// 			length: 1,
+// 			key: 0,
+// 		  },
+// 		],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'e23a8',
+// 		text: 'See advanced examples further down …',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	],
+//   };
 
 function EditorCore(prop){
 	//draft-js editor
 	// const editorState = prop.editorState;
-	const editorState = EditorState.createWithContent(convertFromRaw(initialState))
+	const editorState = prop.editorState //EditorState.createWithContent(convertFromRaw(initialState))
 	const setEditorState = prop.setEditorState;
 	const element = useRef();
 	const [placeholder, setPlaceholder] = useState( "Tell your story" )
@@ -210,10 +241,15 @@ function EditorCore(prop){
 		}
 	}
 
-	// const base64 = 'aValidBase64String';
-	// const newEditorState = this.insertImage(this.state.editorState, base64);
-	// this.setState({ editorState: newEditorState });
-	// console.log(editorState.getCurrentContent())
+	const [aa, setaa] = useState('https://images.freeimages.com/images/large-previews/1dc/sky-1374686.jpg')
+	const ss = (e) => {
+		setaa(e.target.value)
+	}
+	const addImage = () => {
+		console.log(aa)
+		imagePlugin.addImage(editorState, aa)
+	}
+	
 	return(
 		<div>
 			<input type="file" onChange={(e) => readURL(e)}/>
@@ -226,6 +262,8 @@ function EditorCore(prop){
 					plugins={plugins}
 					ref={element}
 				/>
+				<input type="text" value={aa} onChange={ss}/>
+				<button onClick={addImage}> kokokof</button>
 				<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
 					<div className="side-bar-icon" id={sideAddIcon}></div>
 					<div className="roll-down-region">

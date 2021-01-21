@@ -1,8 +1,5 @@
 import './Tags.css'
 import React from "react";
-import { Link } from "react-router-dom";
-import {FaThumbsUp} from 'react-icons/fa';
-import {IconContext} from 'react-icons';
 
 function Tags(props) {
 	let tags_show;

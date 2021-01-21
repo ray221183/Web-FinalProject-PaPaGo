@@ -1,14 +1,8 @@
 import './PersonalPage.css'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MULTIPOST_QUERY, DELETE_POST } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link, useHistory } from "react-router-dom";
-
-import {FaThumbsUp} from 'react-icons/fa';
-import {AiFillEdit} from 'react-icons/ai';
-import {AiFillDelete} from 'react-icons/ai';
-import {IconContext} from 'react-icons';
-import { async } from 'q';
 
 import PersonalPageStory from './PersonalPageStory'
 
@@ -21,7 +15,7 @@ function PersonalPage(props){
 	const [draft_0, setDraft_0] = useState(null);
 	const [draft_1, setDraft_1] = useState(null);
 
-	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
+	const { loading, data, refetch } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: who,
 			search_type: 'get pair',
@@ -90,7 +84,7 @@ function PersonalPage(props){
 
 	const Public_map = () => {
 		if(typeof data !== 'undefined') {
-			if(data.multi_post.multiposts[1].posts.length == 1 && public_0 !== null) {
+			if(data.multi_post.multiposts[1].posts.length === 1 && public_0 !== null) {
 				return(
 					<PersonalPageStory post={public_0} editEssay={editEssay} deleteP={deleteP} isPublic={true} />
 				)
@@ -119,7 +113,7 @@ function PersonalPage(props){
 	}
 	const Draft_map = () => {
 		if(typeof data !== 'undefined') {
-			if(data.multi_post.multiposts[0].posts.length == 1 && draft_0 !== null) {
+			if(data.multi_post.multiposts[0].posts.length === 1 && draft_0 !== null) {
 				return(
 					<PersonalPageStory post={draft_0} editEssay={editEssay} deleteP={deleteP} isPublic={false} />
 				)
