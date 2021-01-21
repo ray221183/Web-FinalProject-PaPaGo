@@ -18,12 +18,14 @@ import {
 
 // Create an http link:
 const httpLink = new HttpLink({
-  uri: 'https://papagoisme.herokuapp.com:80/'
+  uri: 'http://localhost:4000/'
 })
-
+const httpLink_2 = new HttpLink({
+  uri: 'http://localhost:4000/'
+})
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  uri: `wss://papagoisme.herokuapp.com:80/`,
+  uri: `ws://localhost:4000/`,
   options: { reconnect: true }
 })
 
