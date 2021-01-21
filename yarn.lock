@@ -1341,6 +1341,13 @@
   resolved "https://registry.yarnpkg.com/@draft-js-plugins/utils/-/utils-4.0.0.tgz#978f0da0e97c8ffc7b7151033a9d2582735867c1"
   integrity sha512-PPzXns3xmEyTu66ZXEvfGi5uYhKaS5VynQ3S5BBokfjV0uTRLQEf2DN5jLl9QFPfrQXRQCgcqcSR4YppbkOh/g==
 
+"@draft-js-plugins/video@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@draft-js-plugins/video/-/video-4.0.0.tgz#5812bf4bdba1a2590c5c306adf7fe918d42044e5"
+  integrity sha512-TWoDs/0Wm/JMIq1hbfzNLZUgaCQkLUsWLFJp34hEzWIEmk+r2Bny5Zi6fXNI/d/KpXzA6/zTsZraqapuBSFnWg==
+  dependencies:
+    prop-types "^15.5.8"
+
 "@emotion/cache@^10.0.27":
   version "10.0.29"
   resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-10.0.29.tgz#87e7e64f412c060102d589fe7c6dc042e6f9d1e0"
