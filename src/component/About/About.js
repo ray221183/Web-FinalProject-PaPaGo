@@ -4,7 +4,7 @@ import React from 'react'
 function About(props) {
 	return (
 		<div className="AboutMain">
-			<div id="topandbottom">Hi</div>
+			<div id="topandbottom">PaPaGo</div>
 			<div className="AboutIntro">
 				About This Website
 				<hr id='abouthr' />
