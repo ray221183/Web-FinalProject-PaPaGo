@@ -10,14 +10,15 @@ import TPEStory from "./TPEStory";
 // PostsEnum & PersonalPage both lead to here
 function TopicPostsEnum(props) {
 	const curLocation = useLocation();
-	console.log(curLocation)
+	//console.log(curLocation)
 	let split_result = curLocation.pathname.split('/')
-	console.log(split_result)
+	//console.log(split_result)
+	const [lockDelete, setLockDelete] = useState(false); 
 
 	let type = split_result[split_result.length-2];		// type could be a city name or someone's account
 	let topic = split_result[split_result.length-1];	// topic could be an element in the topics below or a string for indicating posted articles
-	console.log('In topicpostsenum, type = ', type);
-	console.log('In topicpostsenum, topic = ', topic);
+	//console.log('In topicpostsenum, type = ', type);
+	//console.log('In topicpostsenum, topic = ', topic);
 	//const cities = ["台北", "桃園", "新竹", "台中", "高雄", "台南", "宜蘭", "台東", "花蓮", "澎湖", "綠島", "嘉義"];
 	//console.log(cities.includes(type));
 
@@ -63,11 +64,18 @@ function TopicPostsEnum(props) {
 	}, [data_c, data_p])
 
 	const deleteP = async (id) => {
-		await deletePost({
-			variables: {
-				uuid: id
-		}})
-		refetch_p();
+		if(!lockDelete){
+			setLockDelete(true)
+			await deletePost({
+				variables: {
+					uuid: id
+			}}).then((res)=>{
+				console.log("finish")
+			})
+			console.log("unlock")
+			setLockDelete(false)
+			refetch_p();
+		}
 	}
 
 

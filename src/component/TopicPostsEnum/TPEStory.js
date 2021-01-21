@@ -1,5 +1,5 @@
 import './TPEStory.css'
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from "react-router-dom";
 
 import {FaThumbsUp} from 'react-icons/fa';
@@ -9,7 +9,7 @@ import {IconContext} from 'react-icons';
 
 export default (props) => { /////////////////////////////////
 	const post = props.post;
-	console.log('In TPEStory, post = ', post);
+	//console.log('In TPEStory, post = ', post);
 	const deleteP = props.deleteP;
 	const scale = (props.allowEdit) ? "" : "disable"
 	const curHistory = useHistory();
