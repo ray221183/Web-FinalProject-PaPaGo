@@ -75,7 +75,7 @@
 	justify-content: space-around;
 	align-items: center;
 	margin-bottom: 5px;
-	border: 2px solid rgb(204, 116, 116);
+	/* border: 2px solid rgb(204, 116, 116); */
 }
 #down-search{
 	-webkit-box-sizing: border-box;
@@ -88,7 +88,7 @@
 	justify-content: space-around;
 	align-items: center;
 	margin-bottom: 5px;
-	border: 2px solid rgb(21, 194, 107);
+	/* border: 2px solid rgb(21, 194, 107); */
 }
 .button {
 	background-color: black;
