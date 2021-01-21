@@ -42,6 +42,7 @@ function EditorCore(prop){
 	//tool bar style
 	const [videoUrl, setVedioUrl] = useState('');
 	const [showVideo, setShowVideo] = useState(false);
+	const [imgUrl, setImgUrl] = useState('');
 	const [sideAddOver, setSideAddOver] = useState(false);
 	const [sideBlockOver, setSideBlockOver] = useState(false);
 	const sideHover = (prop.background) ? "side-light" : "side-dark"
@@ -241,7 +242,7 @@ function EditorCore(prop){
 				</InlineBarTextStyle>
 			</div>
 			<div>
-				<input id="add-image-input" type="file" ref={addImageRef} onChange={(e) => readURL(e)}/>
+				<input id="add-image-input" value={imgUrl} type="file" ref={addImageRef} onChange={(e) => readURL(e)}/>
 			</div>
 		</div>
 	);
