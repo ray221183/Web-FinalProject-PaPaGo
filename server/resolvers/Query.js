@@ -1,5 +1,3 @@
-import { string } from 'yargs'
-
 const User = require('../models/user')
 const Post = require('../models/post')
 const Great = require('../models/great')
@@ -182,6 +180,26 @@ const Query = {
 				})
 				great_num = great_num.length
 				non_sketch_temp[i]['great_num'] = great_num
+			}
+			for(var j=0; j<sketch_temp.length; ++j){
+				let temp = await Image.find({"uuid":sketch_temp[j].uuid})
+				if(temp.length !== 0){
+					temp = temp[0]
+					sketch_temp[j]['image'] = temp.image
+				}
+				else{
+					sketch_temp[j]['image'] = ""
+				}
+			}
+			for(var j=0; j<non_sketch_temp.length; ++j){
+				let temp = await Image.find({"uuid":non_sketch_temp[j].uuid})
+				if(temp.length !== 0){
+					temp = temp[0]
+					non_sketch_temp[j]['image'] = temp.image
+				}
+				else{
+					non_sketch_temp[j]['image'] = ""
+				}
 			}
 			let sketch_obj = {posts:sketch_temp}
 			let non_sketch_obj = {posts:non_sketch_temp}
@@ -513,4 +531,4 @@ const Query = {
 }
 
 
-export { Query as default }
+module.exports = Query

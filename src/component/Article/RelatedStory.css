@@ -3,8 +3,7 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	width: 380px;
-	height: 420px;
-	border: 2px solid pink;
+	border: 0px solid pink;
 }
 .RelatedStoryImage {
 	-webkit-box-sizing: border-box;
@@ -13,6 +12,10 @@
 	width: 380px;
 	height: 200px;
 	border: 2px solid red;
+}
+#relatedStoryImg {
+	width: 380px; /* you can use % */
+    height: 200px;
 }
 .RelatedStoryAuthor {
 	-webkit-box-sizing: border-box;
