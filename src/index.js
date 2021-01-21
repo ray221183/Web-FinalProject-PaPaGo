@@ -15,7 +15,7 @@ import * as serviceWorker from './serviceWorker'
 import {
 	BrowserRouter as Router,
   } from "react-router-dom";
-
+console.log("hi")
 // Create an http link:
 const httpLink = new HttpLink({
   uri: 'https://papagoisme.herokuapp.com:4000/'
