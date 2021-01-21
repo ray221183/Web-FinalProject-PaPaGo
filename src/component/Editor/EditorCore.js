@@ -1,35 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { EditorState, AtomicBlockUtils, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
+import { EditorState, AtomicBlockUtils, RichUtils } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
-import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
 import createImagePlugin from '@draft-js-plugins/image';
 import createVideoPlugin from '@draft-js-plugins/video';
 import './EditorCore.css';
 import './SideBar.css';
 import './InlineBar.css';
 import {
-	createBlockStyleButton,
-	createInlineStyleButton,
 	ItalicButton,
 	BoldButton ,
-	SupButton, //?
-	SubButton, //?
-	CodeButton ,
-	UnderlineButton ,
-	HeadlineOneButton,
-	HeadlineTwoButton,
-	HeadlineThreeButton,
-	UnorderedListButton,
-	OrderedListButton,
-	BlockquoteButton,
-	CodeBlockButton ,
-	AlignBlockDefaultButton,
-	AlignBlockCenterButton,
-	AlignBlockLeftButton,
-	AlignBlockRightButton,
+	UnderlineButton
 } from '@draft-js-plugins/buttons';
-import { themeSideBlockAdd, themeSideBlockStyle, themeInlineTextStyle } from './ThemeStyle';
+import { themeInlineTextStyle } from './ThemeStyle';
 
 
 
@@ -41,7 +24,6 @@ console.log("createImagePlugin", createImagePlugin)
 const imagePlugin = createImagePlugin();
 
 const videoPlugin = createVideoPlugin();
-
 console.log("imagePlugin", imagePlugin)
 console.log("Editor", Editor)
 
@@ -58,6 +40,8 @@ function EditorCore(prop){
 	const addImageRef = useRef();
 
 	//tool bar style
+	const [videoUrl, setVedioUrl] = useState('');
+	const [showVideo, setShowVideo] = useState(false);
 	const [sideAddOver, setSideAddOver] = useState(false);
 	const [sideBlockOver, setSideBlockOver] = useState(false);
 	const sideHover = (prop.background) ? "side-light" : "side-dark"
@@ -72,6 +56,8 @@ function EditorCore(prop){
 	const orderedList = (prop.background) ? "ordered-list-light" : "ordered-list-dark"
 	const blockQuote = (prop.background) ? "blockquote-light" : "blockquote-dark"
 	const addImage = (prop.background) ? "add-image-light" : "add-image-dark"
+	const addVideo = (prop.background) ? "add-video-light" : "add-video-dark"
+
 	const focusStyle = {
 		opacity:  (selection.getHasFocus()) ? "1" : "0"
 	}
@@ -82,6 +68,9 @@ function EditorCore(prop){
 	const sideBlockMovement = {
 		transform: (sideBlockOver) ? "translateY(0)" : "translateY(-100%)",
 		opacity: (sideBlockOver) ? "1" : "0",
+	}
+	const videoStyle = {
+		transform: (showVideo) ? "scale(1)" : "scale(0)",
 	}
 
 	//side tool bar -- add
@@ -100,6 +89,8 @@ function EditorCore(prop){
 	const focus = () => {
 		console.log('focus')
 		element.current.focus();
+		setVedioUrl('')
+		setShowVideo(false)
 	}
 	const toggleBlockType = (e) => {
 		e.preventDefault();
@@ -137,25 +128,6 @@ function EditorCore(prop){
 		return () => {clearInterval(interval)}
 	}, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
-
-	const _extends = () => {
-		_extends = Object.assign || function (target) {
-		  for (var i = 1; i < arguments.length; i++) {
-			var source = arguments[i];
-	  
-			for (var key in source) {
-			  if (Object.prototype.hasOwnProperty.call(source, key)) {
-				target[key] = source[key];
-			  }
-			}
-		  }
-	  
-		  return target;
-		};
-	  
-		return _extends.apply(this, arguments);
-	  }
-
 	const insertImage = (editorState, base64) => {
 		console.log("insert image")
 		var urlType = 'IMAGE';
@@ -192,30 +164,58 @@ function EditorCore(prop){
 		addImageRef.current.click()
 	}
 
+	const changeVideoUrl = (e) => {
+		setVedioUrl(e.target.value)
+	}
+	const handleKeyDown = (e) => {
+        if(e.keyCode === 13 && videoUrl !== ''){
+			var contentState = editorState.getCurrentContent();
+			var contentStateWithEntity = contentState.createEntity(
+				'draft-js-video-plugin-video', 
+				'IMMUTABLE', 
+				{ src: videoUrl }
+			);
+			var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+			setEditorState(AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' '))
+			setVedioUrl('')
+			setShowVideo(false)
+        }
+    }
+	const clickAddVideo = (e) => {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowVideo(true)
+	}
+	const prevent = (e) => {
+		e.preventDefault()
+		e.stopPropagation()
+	}
+
 	return(
 		<div>
 			<div className="eidtor-content-part" onClick={() => {focus()}}>
 				<Editor
+					id="editor-content"
 					editorState={editorState}
 					onChange={onChange}
 					placeholder={placeholder}
 					plugins={plugins}
 					ref={element}
 				/>
-				<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
-					<div className="side-bar-icon" id={sideAddIcon}></div>
-					<div className="roll-down-region">
-						<div className="side-bar" id={sideAddBar} style={sideAddMovement}>
-							<div className={`blocktype-button ${sideHover}`} id={addImage} title="addImage" onMouseDown={clickAddImage}></div>
-							<div className={`blocktype-button ${sideHover}`} id={headerTwo} title="header-two" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={headerThree} title="header-three" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={unorderedList} title="unordered-list-item" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={orderedList} title="ordered-list-item" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={blockQuote} title="blockquote" onMouseDown={toggleBlockType}></div>
+				<div id="video-input-div" ></div>
+					<div id="video-input" style={videoStyle} >
+						<input placeholder="請輸入影片的網址" onClick={(e) => prevent(e)} value={videoUrl} onChange={changeVideoUrl} onKeyDown={handleKeyDown}/>
+					</div>
+					<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
+						<div className="side-bar-icon" id={sideAddIcon}></div>
+						<div className="roll-down-region">
+							<div className="side-bar-add" id={sideAddBar} style={sideAddMovement}>
+								<div className={`blocktype-button ${sideHover}`} id={addImage} title="addImage" onMouseDown={clickAddImage}></div>
+								<div className={`blocktype-button ${sideHover}`} id={addVideo} title="header-two" onClick={(e) => clickAddVideo(e)}></div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
+					<div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
 					<div className="side-bar-icon" id={sideBlockIcon}></div>
 					<div className="roll-down-region">
 						<div className="side-bar" id={sideBlockBar} style={sideBlockMovement}>

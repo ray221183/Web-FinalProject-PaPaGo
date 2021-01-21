@@ -23,6 +23,7 @@ function Article(props) {
 	const [trend_0_intro, setTrend_0_intro] = useState('');
 	const [trend_0_date, setTrend_0_date] = useState('');
 	const [trend_0_like, setTrend_0_like] = useState(0);
+	const [trend_0_img, setTrend_0_img] = useState('');
 
 	const [related_0, setRelated_0] = useState(null);
 	const [related_1, setRelated_1] = useState(null);
@@ -63,14 +64,16 @@ function Article(props) {
 		}, []
 	)
 	useEffect(() => {
+		console.log('In Article.js useEffect()');
 		if(typeof data_p !== 'undefined'){
-			console.log('In Article.js, data_p = ', data_p.multi_post.multiposts);
+			console.log('In Article.js, data_p = ', data_p.multi_post.multiposts[0].posts[0].image);
 			setTrend_0_title(data_p.multi_post.multiposts[0].posts[0].title);
 			setTrend_0_author(data_p.multi_post.multiposts[0].posts[0].name);
 			setTrend_0_intro(data_p.multi_post.multiposts[0].posts[0].introduction);
 			setEditorState(()=>EditorState.createWithContent(convertFromRaw(JSON.parse(data_p.multi_post.multiposts[0].posts[0].content))));
 			setTrend_0_date(data_p.multi_post.multiposts[0].posts[0].date.split(' ')[0]);
 			setTrend_0_like(data_p.multi_post.multiposts[0].posts[0].great_num);
+			setTrend_0_img(data_p.multi_post.multiposts[0].posts[0].image);
 
 			setRelated_0(data_p.multi_post.multiposts[1].posts[0]);
 			setRelated_1(data_p.multi_post.multiposts[1].posts[1]);
@@ -159,6 +162,9 @@ function Article(props) {
 							readOnly={true}
 						/>
 					</div>
+				</div>
+				<div>
+					<img src={trend_0_img} />
 				</div>
 				<div className="ArticleBottom">
 					<LikeStyle />

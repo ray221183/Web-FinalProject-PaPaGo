@@ -107,7 +107,12 @@ function TopBanner(prop){
 								<Link 
 									to={{ pathname: (curLocation.pathname !== "/" && curLocation.pathname !== "/postsenum") ? "/" : curLocation.pathname }} 
 									style={{width: "100%"}}>
-									<button onClick={() => {expandMenu(); prop.setLoginState(false)}}>登出</button>
+									<button onClick={() => {
+											expandMenu()
+											prop.setLoginState(false)
+											prop.setUsername('')
+											prop.setAccount('')
+										}}>登出</button>
 								</Link>
 							</div>
 						</div>

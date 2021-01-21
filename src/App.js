@@ -114,56 +114,56 @@ function App() {
 		let saveTime = time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds()
 		let dateTime = saveDate + ' ' + saveTime
 		let a = [1,2]
-		console.log('title: ', title)
-		console.log('introduction: ', introduction)
-		console.log('content: ', jsonRawData)
-		console.log('writer: ', account)
-		console.log('tagList: ', tagList)
-		console.log('date: ', dateTime)
-		console.log('is sketch: : ', !published)
-		console.log("isPublished: ", isPublished)
-		console.log("curUuid: ", curUuid)
-		console.log("related_uuid: ", relatedUuid)
-		console.log('new post: ', newPost)
-		console.log("=================================================")
-		if(newPost){
-			console.log("add post")
-			let postId = await addPost({
-				variables: {
-					title: title,
-					introduction: introduction,
-					content: jsonRawData,
-					writer: account,
-					tags: (isPublished) ? (( tags.length>0 ) ? tags.map((item)=>{ return (item==='') ? '' : item[0] }) : ['']) : [''],
-					date: dateTime,
-					is_sketch: true,
-					related_uuid: (isPublished) ? relatedUuid : ''
-				}
-			})
-			console.log("new post id: ", postId.data.addPost)
-			searchPost([''], true, true, postId.data.addPost, '', '', true)
-		}
-		else{
-			console.log("update post")
-			// console.log('title: ', title)
-			// console.log('introduction: ', introduction)
-			// console.log('uuid: ', curUuid)
-			// console.log('content: ', jsonRawData)
-			// console.log('tagList: ', tagList)
-			// console.log('date: ', dateTime)
-			// console.log('is sketch: ', !published)
-			updatePost({
-				variables: {
-					title: title,
-					introduction: introduction,
-					uuid: curUuid,
-					content: jsonRawData,
-					tags: tagList,
-					date: dateTime,
-					is_sketch: !published,
-				}
-			})
-		}
+		// console.log('title: ', title)
+		// console.log('introduction: ', introduction)
+		// console.log('content: ', jsonRawData)
+		// console.log('writer: ', account)
+		// console.log('tagList: ', tagList)
+		// console.log('date: ', dateTime)
+		// console.log('is sketch: : ', !published)
+		// console.log("isPublished: ", isPublished)
+		// console.log("curUuid: ", curUuid)
+		// console.log("related_uuid: ", relatedUuid)
+		// console.log('new post: ', newPost)
+		// console.log("=================================================")
+		// if(newPost){
+		// 	console.log("add post")
+		// 	let postId = await addPost({
+		// 		variables: {
+		// 			title: title,
+		// 			introduction: introduction,
+		// 			content: jsonRawData,
+		// 			writer: account,
+		// 			tags: (isPublished) ? (( tags.length>0 ) ? tags.map((item)=>{ return (item==='') ? '' : item[0] }) : ['']) : [''],
+		// 			date: dateTime,
+		// 			is_sketch: true,
+		// 			related_uuid: (isPublished) ? relatedUuid : ''
+		// 		}
+		// 	})
+		// 	console.log("new post id: ", postId.data.addPost)
+		// 	searchPost([''], true, true, postId.data.addPost, '', '', true)
+		// }
+		// else{
+		// 	console.log("update post")
+		// 	// console.log('title: ', title)
+		// 	// console.log('introduction: ', introduction)
+		// 	// console.log('uuid: ', curUuid)
+		// 	// console.log('content: ', jsonRawData)
+		// 	// console.log('tagList: ', tagList)
+		// 	// console.log('date: ', dateTime)
+		// 	// console.log('is sketch: ', !published)
+		// 	updatePost({
+		// 		variables: {
+		// 			title: title,
+		// 			introduction: introduction,
+		// 			uuid: curUuid,
+		// 			content: jsonRawData,
+		// 			tags: tagList,
+		// 			date: dateTime,
+		// 			is_sketch: !published,
+		// 		}
+		// 	})
+		// }
 		setNewPost(false)
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////
@@ -252,6 +252,8 @@ function App() {
 					account={account}
 					setNewPost={setNewPost}
 					searchPost={searchPost}
+					setUsername={setUsername}
+					setAccount={setAccount}
 				/>
 			</div>
 			<div className="section">

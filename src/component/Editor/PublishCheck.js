@@ -12,7 +12,7 @@ import {UPLOAD_IMAGE} from '../../graphql'
 const client_id = '6e44dcf658378f5';
 
 function PublishCheck(prop){
-    const curLocation = useLocation();
+    //const curLocation = useLocation();
     const curHistory = useHistory();
     const editorState = prop.editorState
     const [title, setTitle] = useState('');
@@ -123,9 +123,9 @@ function PublishCheck(prop){
         })
     }, [])
 
-    const aboutClass = (step == 0) ? "click choose-bar" : "choose-bar"
-    const tagClass = (step == 1) ? "click choose-bar" : "choose-bar"
-    const picClass = (step == 2) ? "click choose-bar" : "choose-bar"
+    const aboutClass = (step === 0) ? "click choose-bar" : "choose-bar"
+    const tagClass = (step === 1) ? "click choose-bar" : "choose-bar"
+    const picClass = (step === 2) ? "click choose-bar" : "choose-bar"
     const changeStep = (step) => {
         setStep(step)
     }
@@ -217,7 +217,7 @@ function PublishCheck(prop){
                 </div>
                 <React.Fragment>
                     {
-                        (step == 0) ? 
+                        (step === 0) ? 
                         <div className="content-part">
                             <div className="topic-fill">
                                 {/* <input placeholder="請輸入標題" value={title} onChange={changeTitle}/> */}
@@ -227,7 +227,7 @@ function PublishCheck(prop){
                                 <textarea placeholder="請輸入最多100字的簡介" value={introduction} onChange={changeIntroduction} maxLength="100"></textarea>
                             </div>
                         </div> :
-                        (step == 1) ?
+                        (step === 1) ?
                         <div className="content-part">
                             <div className="tag-fill">
                                 <input placeholder="請輸入最多8組的關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
@@ -248,7 +248,7 @@ function PublishCheck(prop){
                 </React.Fragment>
                 <div className="footer">
                     <span className="explain">
-                        {(step == 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : (step == 1) ? "輸入關鍵字，幫助讀者搜尋到你的文章" : "放上漂亮的封面照，吸引讀者目光喔"}
+                        {(step === 0) ? "標題與簡介會在讀者瀏覽時顯示，不會影響文章內文" : (step == 1) ? "輸入關鍵字，幫助讀者搜尋到你的文章" : "放上漂亮的封面照，吸引讀者目光喔"}
                     </span>
                     <span className="publish-button" onClick={() => {toPublish()}}>
                         Publish
