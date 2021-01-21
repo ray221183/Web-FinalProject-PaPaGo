@@ -95,58 +95,58 @@ const plugins = [inlineBarTextStyle, imagePlugin, videoPlugin];
 // 	],
 //   };
 
-const initialState = {
-	entityMap: {
-	  0: {
-		type: types.VIDEOTYPE,
-		mutability: 'IMMUTABLE',
-		data: {
-		  src: 'https://www.youtube.com/watch?v=iEPTlhBmwRg',
-		},
-	  },
-	},
-	blocks: [
-	  {
-		key: '9gm3s',
-		text:
-		  'You can have video in your text field. This is a very rudimentary example, but you can enhance the video plugin with resizing, focus or alignment plugins.',
-		type: 'unstyled',
-		depth: 0,
-		inlineStyleRanges: [],
-		entityRanges: [],
-		data: {},
-	  },
-	  {
-		key: 'ov7r',
-		text: ' ',
-		type: 'atomic',
-		depth: 0,
-		inlineStyleRanges: [],
-		entityRanges: [
-		  {
-			offset: 0,
-			length: 1,
-			key: 0,
-		  },
-		],
-		data: {},
-	  },
-	  {
-		key: 'e23a8',
-		text: 'See advanced examples further down …',
-		type: 'unstyled',
-		depth: 0,
-		inlineStyleRanges: [],
-		entityRanges: [],
-		data: {},
-	  },
-	],
-  };
+// const initialState = {
+// 	entityMap: {
+// 	  0: {
+// 		type: types.VIDEOTYPE,
+// 		mutability: 'IMMUTABLE',
+// 		data: {
+// 		  src: 'https://www.youtube.com/watch?v=iEPTlhBmwRg',
+// 		},
+// 	  },
+// 	},
+// 	blocks: [
+// 	  {
+// 		key: '9gm3s',
+// 		text:
+// 		  'You can have video in your text field. This is a very rudimentary example, but you can enhance the video plugin with resizing, focus or alignment plugins.',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'ov7r',
+// 		text: ' ',
+// 		type: 'atomic',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [
+// 		  {
+// 			offset: 0,
+// 			length: 1,
+// 			key: 0,
+// 		  },
+// 		],
+// 		data: {},
+// 	  },
+// 	  {
+// 		key: 'e23a8',
+// 		text: 'See advanced examples further down …',
+// 		type: 'unstyled',
+// 		depth: 0,
+// 		inlineStyleRanges: [],
+// 		entityRanges: [],
+// 		data: {},
+// 	  },
+// 	],
+//   };
 
 function EditorCore(prop){
 	//draft-js editor
 	// const editorState = prop.editorState;
-	const editorState = EditorState.createWithContent(convertFromRaw(initialState))
+	const editorState = prop.editorState //EditorState.createWithContent(convertFromRaw(initialState))
 	const setEditorState = prop.setEditorState;
 	const element = useRef();
 	const [placeholder, setPlaceholder] = useState( "Tell your story" )
@@ -258,10 +258,15 @@ function EditorCore(prop){
 		}
 	}
 
-	// const base64 = 'aValidBase64String';
-	// const newEditorState = this.insertImage(this.state.editorState, base64);
-	// this.setState({ editorState: newEditorState });
-	// console.log(editorState.getCurrentContent())
+	const [aa, setaa] = useState('https://images.freeimages.com/images/large-previews/1dc/sky-1374686.jpg')
+	const ss = (e) => {
+		setaa(e.target.value)
+	}
+	const addImage = () => {
+		console.log(aa)
+		imagePlugin.addImage(editorState, aa)
+	}
+	
 	return(
 		<div>
 			<input type="file" onChange={(e) => readURL(e)}/>
@@ -274,6 +279,8 @@ function EditorCore(prop){
 					plugins={plugins}
 					ref={element}
 				/>
+				<input type="text" value={aa} onChange={ss}/>
+				<button onClick={addImage}> kokokof</button>
 				<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
 					<div className="side-bar-icon" id={sideAddIcon}></div>
 					<div className="roll-down-region">
