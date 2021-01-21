@@ -63,6 +63,7 @@ function Article(props) {
 		}, []
 	)
 	useEffect(() => {
+		console.log('In Article.js useEffect()');
 		if(typeof data_p !== 'undefined'){
 			console.log('In Article.js, data_p = ', data_p.multi_post.multiposts);
 			setTrend_0_title(data_p.multi_post.multiposts[0].posts[0].title);

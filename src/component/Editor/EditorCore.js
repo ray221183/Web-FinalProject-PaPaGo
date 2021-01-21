@@ -1,35 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { EditorState, AtomicBlockUtils, RichUtils, convertToRaw, convertFromRaw } from 'draft-js';
+import { EditorState, AtomicBlockUtils, RichUtils } from 'draft-js';
 import Editor from '@draft-js-plugins/editor';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
-import createSideToolbarPlugin from '@draft-js-plugins/side-toolbar';
 import createImagePlugin from '@draft-js-plugins/image';
 import createVideoPlugin from '@draft-js-plugins/video';
 import './EditorCore.css';
 import './SideBar.css';
 import './InlineBar.css';
 import {
-	createBlockStyleButton,
-	createInlineStyleButton,
 	ItalicButton,
 	BoldButton ,
-	SupButton, //?
-	SubButton, //?
-	CodeButton ,
-	UnderlineButton ,
-	HeadlineOneButton,
-	HeadlineTwoButton,
-	HeadlineThreeButton,
-	UnorderedListButton,
-	OrderedListButton,
-	BlockquoteButton,
-	CodeBlockButton ,
-	AlignBlockDefaultButton,
-	AlignBlockCenterButton,
-	AlignBlockLeftButton,
-	AlignBlockRightButton,
+	UnderlineButton
 } from '@draft-js-plugins/buttons';
-import { themeSideBlockAdd, themeSideBlockStyle, themeInlineTextStyle } from './ThemeStyle';
+import { themeInlineTextStyle } from './ThemeStyle';
 
 
 
@@ -41,7 +24,7 @@ console.log("createImagePlugin", createImagePlugin)
 const imagePlugin = createImagePlugin();
 
 const videoPlugin = createVideoPlugin();
-const { types } = videoPlugin;
+//const { types } = videoPlugin;
 console.log("imagePlugin", imagePlugin)
 console.log("Editor", Editor)
 

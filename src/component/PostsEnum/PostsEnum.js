@@ -1,10 +1,9 @@
 import './PostsEnum.css'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { MULTIPOST_QUERY } from '../../graphql'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import { Link } from "react-router-dom";
 
-import {FaThumbsUp} from 'react-icons/fa';
 import {AiFillFire} from 'react-icons/ai';
 import {IconContext} from 'react-icons';
 
@@ -28,7 +27,7 @@ function PostsEnum(props) {
 	const [food1, setFood1] = useState(null);
 
 
-	const { loading, error, data, refetch } = useQuery(MULTIPOST_QUERY, 
+	const { loading, data, refetch } = useQuery(MULTIPOST_QUERY, 
 		{variables: { 
 			writer: '',
 			search_type: '',
@@ -45,7 +44,7 @@ function PostsEnum(props) {
 	)
 
 	useEffect(() => {
-		//console.log('data = ', data)
+		console.log('data = ', data)
 		if(typeof(data) !== 'undefined'){
 			console.log('In PostsEnum useEffect, data = ', data.multi_post.multiposts)
 			setMultiposts(data.multi_post.multiposts);
@@ -78,7 +77,7 @@ function PostsEnum(props) {
 
 	const OneDay_map = () => {
 		if(typeof data !== 'undefined') {
-			if(data.multi_post.multiposts[0].posts.length == 1 && oneday0 !== null) {
+			if(data.multi_post.multiposts[0].posts.length === 1 && oneday0 !== null) {
 				return(
 					<PEStory post={oneday0} />
 				)
@@ -92,7 +91,7 @@ function PostsEnum(props) {
 				)
 			}
 			else {
-				console.log('In PostsEnum.js, data = ', data.multi_post.multiposts[0].posts.length);
+				console.log('In PostsEnum.js, data = ', data.multi_post.multiposts[0]);
 				return(
 					<div className="PEStories"></div>
 				)
@@ -107,7 +106,7 @@ function PostsEnum(props) {
 	}
 	const TwoDay_map = () => {
 		if(typeof data !== 'undefined') {
-			if(data.multi_post.multiposts[1].posts.length == 1 && twoday0 !== null) {
+			if(data.multi_post.multiposts[1].posts.length === 1 && twoday0 !== null) {
 				return(
 					<PEStory post={twoday0} />
 				)
@@ -136,7 +135,8 @@ function PostsEnum(props) {
 	}
 	const HotView_map = () => {
 		if(typeof data !== 'undefined') {
-			if(data.multi_post.multiposts[2].posts.length == 1 && hotview0 !== null) {
+			if(data.multi_post.multiposts[2].posts.length === 1 && hotview0 !== null) {
+				console.log('In PostsEnum.js, data = ', data.multi_post.multiposts[2]);
 				return(
 					<PEStory post={hotview0} />
 				)
@@ -165,7 +165,7 @@ function PostsEnum(props) {
 	}
 	const Food_map = () => {
 		if(typeof data !== 'undefined') {
-			if(data.multi_post.multiposts[3].posts.length == 1 && food0 !== null) {
+			if(data.multi_post.multiposts[3].posts.length === 1 && food0 !== null) {
 				return(
 					<PEStory post={food0} />
 				)
