@@ -100,8 +100,11 @@ function TopBanner(prop){
 								<Link to="/editor" style={{width: "100%"}}>
 									<button onClick={() => {expandMenu(); prop.setNewPost(true)}}>分享故事</button>
 								</Link>
-								<button onClick={() => {expandMenu()}}>文章管理</button>
-								<button onClick={() => {expandMenu()}}>出版文章</button>
+								<button onClick={() => {
+									expandMenu()
+									history.push(`/personalpage/${prop.account}`)
+								}}>文章管理</button>
+								{/* <button onClick={() => {expandMenu()}}>出版文章</button> */}
 							</div>
 							<div className="c">
 								<Link 
