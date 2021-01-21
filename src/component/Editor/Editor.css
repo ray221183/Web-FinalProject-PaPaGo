@@ -34,5 +34,8 @@
 	height: 30px;
 	width: 30px;
 	border-radius: 15px;
-	background-color: rgb(197, 197, 197);
+	/* background-color: rgb(207, 207, 207); */
+}
+#light:hover{
+	cursor: pointer;
 }

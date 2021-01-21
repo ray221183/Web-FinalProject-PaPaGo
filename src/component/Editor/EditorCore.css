@@ -7,6 +7,14 @@ H2{
 H3{
 	font-size: 1.5em;
 }
+figure{
+	/* border: 1px solid red; */
+}
+figure img{
+	max-width: 100%;
+	max-height: 500px;
+}
+
 .eidtor-content-part{
 	/* height: 10vh; */
 	margin-top: 20px;

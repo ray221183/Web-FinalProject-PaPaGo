@@ -359,24 +359,34 @@ function Home(prop){
 				<div className = "Home-main-picture" ref={pic}>
 				</div>
 				<div className="MainContent">
-					<h1>你想去什麼地方</h1>
+					<div className="title-1">
+						<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
+							<AiFillFire />
+						</IconContext.Provider>
+						你想去什麼地方
+					</div>
+					<hr id='homehr' />
 					<div className="CitiesList">
-						<Link to="/postsenum/台北"><Button variant="outlined" size="large" name="taipei" onClick={clickCity}>台北</Button></Link>
-						<Link to="/postsenum/桃園"><Button variant="outlined" size="large" name="taoyuang" onClick={clickCity}>桃園</Button></Link>
-						<Link to="/postsenum/新竹"><Button variant="outlined" size="large" name="hsinchu" onClick={clickCity}>新竹</Button></Link>
-						<Link to="/postsenum/台中"><Button variant="outlined" size="large" name="taichung" onClick={clickCity}>台中</Button></Link>
-						<Link to="/postsenum/高雄"><Button variant="outlined" size="large" name="kaohsiung" onClick={clickCity}>高雄</Button></Link>
-						<Link to="/postsenum/台南"><Button variant="outlined" size="large" name="tainan" onClick={clickCity}>台南</Button></Link>
-						<Link to="/postsenum/宜蘭"><Button variant="outlined" size="large" name="yilang" onClick={clickCity}>宜蘭</Button></Link>
-						<Link to="/postsenum/台東"><Button variant="outlined" size="large" name="taitung" onClick={clickCity}>台東</Button></Link>
-						<Link to="/postsenum/花蓮"><Button variant="outlined" size="large" name="hualien" onClick={clickCity}>花蓮</Button></Link>
-						<Link to="/postsenum/澎湖"><Button variant="outlined" size="large" name="penghu" onClick={clickCity}>澎湖</Button></Link>
-						<Link to="/postsenum/綠島"><Button variant="outlined" size="large" name="green island" onClick={clickCity}>綠島</Button></Link>
-						<Link to="/postsenum/嘉義"><Button variant="outlined" size="large" name="chiayi" onClick={clickCity}>嘉義</Button></Link>
+						<div id="top-search">
+							<Link className="place-button" to="/postsenum/台北"><Button size="large" name="taipei" onClick={clickCity}>台北</Button></Link>
+							<Link className="place-button" to="/postsenum/桃園"><Button size="large" name="taoyuang" onClick={clickCity}>桃園</Button></Link>
+							<Link className="place-button" to="/postsenum/新竹"><Button size="large" name="hsinchu" onClick={clickCity}>新竹</Button></Link>
+							<Link className="place-button" to="/postsenum/台中"><Button size="large" name="taichung" onClick={clickCity}>台中</Button></Link>
+							<Link className="place-button" to="/postsenum/高雄"><Button size="large" name="kaohsiung" onClick={clickCity}>高雄</Button></Link>
+							<Link className="place-button" to="/postsenum/台南"><Button size="large" name="tainan" onClick={clickCity}>台南</Button></Link>
+						</div>
+						<div id="down-search">
+							<Link className="place-button" to="/postsenum/宜蘭"><Button size="large" name="yilang" onClick={clickCity}>宜蘭</Button></Link>
+							<Link className="place-button" to="/postsenum/台東"><Button size="large" name="taitung" onClick={clickCity}>台東</Button></Link>
+							<Link className="place-button" to="/postsenum/花蓮"><Button size="large" name="hualien" onClick={clickCity}>花蓮</Button></Link>
+							<Link className="place-button" to="/postsenum/澎湖"><Button size="large" name="penghu" onClick={clickCity}>澎湖</Button></Link>
+							<Link className="place-button" to="/postsenum/綠島"><Button size="large" name="green island" onClick={clickCity}>綠島</Button></Link>
+							<Link className="place-button" to="/postsenum/嘉義"><Button size="large" name="chiayi" onClick={clickCity}>嘉義</Button></Link>
+						</div>
 					</div>
-					<div className = "google-map">
+					{/* <div className = "google-map">
 						<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
-					</div>
+					</div> */}
 					<div className="Trending">
 						<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
 							<AiFillFire />
@@ -411,24 +421,35 @@ function Home(prop){
 				<div className = "Home-main-picture" ref={pic}>
 				</div>
 				<div className="MainContent">
-					<h1>你想去什麼地方</h1>
+				<div className="title-1">
+					<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
+						<AiFillFire />
+					</IconContext.Provider>
+					你想去什麼地方
+				</div>
+				<hr id='homehr' />
+				
 					<div className="CitiesList">
-						<Link to="/postsenum/台北"><Button variant="outlined" size="large" name="taipei" onClick={clickCity}>台北</Button></Link>
-						<Link to="/postsenum/桃園"><Button variant="outlined" size="large" name="taoyuang" onClick={clickCity}>桃園</Button></Link>
-						<Link to="/postsenum/新竹"><Button variant="outlined" size="large" name="hsinchu" onClick={clickCity}>新竹</Button></Link>
-						<Link to="/postsenum/台中"><Button variant="outlined" size="large" name="taichung" onClick={clickCity}>台中</Button></Link>
-						<Link to="/postsenum/高雄"><Button variant="outlined" size="large" name="kaohsiung" onClick={clickCity}>高雄</Button></Link>
-						<Link to="/postsenum/台南"><Button variant="outlined" size="large" name="tainan" onClick={clickCity}>台南</Button></Link>
-						<Link to="/postsenum/宜蘭"><Button variant="outlined" size="large" name="yilang" onClick={clickCity}>宜蘭</Button></Link>
-						<Link to="/postsenum/台東"><Button variant="outlined" size="large" name="taitung" onClick={clickCity}>台東</Button></Link>
-						<Link to="/postsenum/花蓮"><Button variant="outlined" size="large" name="hualien" onClick={clickCity}>花蓮</Button></Link>
-						<Link to="/postsenum/澎湖"><Button variant="outlined" size="large" name="penghu" onClick={clickCity}>澎湖</Button></Link>
-						<Link to="/postsenum/綠島"><Button variant="outlined" size="large" name="green island" onClick={clickCity}>綠島</Button></Link>
-						<Link to="/postsenum/嘉義"><Button variant="outlined" size="large" name="chiayi" onClick={clickCity}>嘉義</Button></Link>
+						<div id="top-search">
+							<Link className="place-button" to="/postsenum/台北"><Button size="large" name="taipei" onClick={clickCity}>台北</Button></Link>
+							<Link className="place-button" to="/postsenum/桃園"><Button size="large" name="taoyuang" onClick={clickCity}>桃園</Button></Link>
+							<Link className="place-button" to="/postsenum/新竹"><Button size="large" name="hsinchu" onClick={clickCity}>新竹</Button></Link>
+							<Link className="place-button" to="/postsenum/台中"><Button size="large" name="taichung" onClick={clickCity}>台中</Button></Link>
+							<Link className="place-button" to="/postsenum/高雄"><Button size="large" name="kaohsiung" onClick={clickCity}>高雄</Button></Link>
+							<Link className="place-button" to="/postsenum/台南"><Button size="large" name="tainan" onClick={clickCity}>台南</Button></Link>
+						</div>
+						<div id="down-search">
+							<Link className="place-button" to="/postsenum/宜蘭"><Button size="large" name="yilang" onClick={clickCity}>宜蘭</Button></Link>
+							<Link className="place-button" to="/postsenum/台東"><Button size="large" name="taitung" onClick={clickCity}>台東</Button></Link>
+							<Link className="place-button" to="/postsenum/花蓮"><Button size="large" name="hualien" onClick={clickCity}>花蓮</Button></Link>
+							<Link className="place-button" to="/postsenum/澎湖"><Button size="large" name="penghu" onClick={clickCity}>澎湖</Button></Link>
+							<Link className="place-button" to="/postsenum/綠島"><Button size="large" name="green island" onClick={clickCity}>綠島</Button></Link>
+							<Link className="place-button" to="/postsenum/嘉義"><Button size="large" name="chiayi" onClick={clickCity}>嘉義</Button></Link>
+						</div>
 					</div>
-					<div className = "google-map">
+					{/* <div className = "google-map">
 						<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
-					</div>
+					</div> */}
 					<div className="Trending">
 						<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
 							<AiFillFire />
@@ -451,200 +472,6 @@ function Home(prop){
 			</section>
 		)
 	}
-	/*
-	return(
-		<section className = "Home">
-			<div className = "Introduction">
-				<div title="introduction content">
-					<span id="content-part">PaPaPaPaPa</span>
-					<button id="get-start-part" onClick={() => prop.setLoginLogup(2)}>Start Your Trip</button>
-				</div>
-			</div>
-			<div className = "Home-main-picture" ref={pic}>
-			</div>
-			<div className="MainContent">
-				<h1>你想去什麼地方</h1>
-				<div className="CitiesList">
-					<Link to="/postsenum/台北"><Button variant="outlined" size="large" name="taipei" onClick={clickCity}>台北</Button></Link>
-					<Link to="/postsenum/桃園"><Button variant="outlined" size="large" name="taoyuang" onClick={clickCity}>桃園</Button></Link>
-					<Link to="/postsenum/新竹"><Button variant="outlined" size="large" name="hsinchu" onClick={clickCity}>新竹</Button></Link>
-					<Link to="/postsenum/台中"><Button variant="outlined" size="large" name="taichung" onClick={clickCity}>台中</Button></Link>
-					<Link to="/postsenum/高雄"><Button variant="outlined" size="large" name="kaohsiung" onClick={clickCity}>高雄</Button></Link>
-					<Link to="/postsenum/台南"><Button variant="outlined" size="large" name="tainan" onClick={clickCity}>台南</Button></Link>
-					<Link to="/postsenum/宜蘭"><Button variant="outlined" size="large" name="yilang" onClick={clickCity}>宜蘭</Button></Link>
-					<Link to="/postsenum/台東"><Button variant="outlined" size="large" name="taitung" onClick={clickCity}>台東</Button></Link>
-					<Link to="/postsenum/花蓮"><Button variant="outlined" size="large" name="hualien" onClick={clickCity}>花蓮</Button></Link>
-					<Link to="/postsenum/澎湖"><Button variant="outlined" size="large" name="penghu" onClick={clickCity}>澎湖</Button></Link>
-					<Link to="/postsenum/綠島"><Button variant="outlined" size="large" name="green island" onClick={clickCity}>綠島</Button></Link>
-					<Link to="/postsenum/嘉義"><Button variant="outlined" size="large" name="chiayi" onClick={clickCity}>嘉義</Button></Link>
-				</div>
-				<div className = "google-map">
-					<iframe src="https://www.google.com/maps/d/embed?mid=1TGX6Qn2n5dsTALZGXVHs3crFe-iZkwZp" width="100%" height="400px"></iframe>
-				</div>
-				<div className="Trending">
-					<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
-						<AiFillFire />
-					</IconContext.Provider>
-					Trending on PaPaGo
-				</div>
-				<hr id='homehr' />
-				<div className='TrendingStories'>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${trend_0_id}`}><button className="HomeStoryTitle">{trend_0_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_0_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{trend_0_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{trend_0_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{trend_0_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${trend_1_id}`}><button className="HomeStoryTitle">{trend_1_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_1_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{trend_1_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{trend_1_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{trend_1_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className='TrendingStories'>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${trend_2_id}`}><button className="HomeStoryTitle">{trend_2_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_2_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{trend_2_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{trend_2_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{trend_2_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${trend_3_id}`}><button className="HomeStoryTitle">{trend_3_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{trend_3_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{trend_3_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{trend_3_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{trend_3_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-				</div>
-				<Link to="/postsenum/trending"><button className="HomeReadmore">Find more...</button></Link>
-
-				<div className="Trending">
-					<IconContext.Provider value={{ size: '35px', style:{ fill: 'red' } }}>
-						<AiFillFire />
-					</IconContext.Provider>
-					Recommended
-				</div>
-				<hr id='homehr' />
-				<div className='TrendingStories'>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${recommend_0_id}`}><button className="HomeStoryTitle">{recommend_0_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_0_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{recommend_0_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{recommend_0_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{recommend_0_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${recommend_1_id}`}><button className="HomeStoryTitle">{recommend_1_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_1_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{recommend_1_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{recommend_1_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{recommend_1_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div className='TrendingStories'>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${recommend_2_id}`}><button className="HomeStoryTitle">{recommend_2_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_2_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{recommend_2_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{recommend_2_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{recommend_2_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-					<div className="HomeStories">
-						<div className="HomeAuthor">
-							<Link to={"/post/" + `${recommend_3_id}`}><button className="HomeStoryTitle">{recommend_3_title}</button></Link>
-							<span style={{marginLeft: '5px', marginRight: '5px', marginTop: '8px', border:'0px solid black'}}>by</span>
-							<h3 style={{ marginTop: '10px',border:'0px solid green', fontSize:'20px' }}>{recommend_3_author}</h3>
-						</div>
-						<p className="HomeStoryIntro">{recommend_3_intro}</p>
-						<div className="HomeDateAndTag">
-							<div className="HomeDate">{recommend_3_date}</div>
-							<div className="HomeLike">
-								<IconContext.Provider value={{ size: '16px', style:{ fill: 'black', marginLeft: '5px', marginBottom: '4px' } }}>
-									<FaThumbsUp />
-									<span id="homeLike">{recommend_3_like} Like</span>
-								</IconContext.Provider>
-							</div>
-						</div>
-					</div>
-				</div>
-				<Link to="/postsenum/recommended"><button className="HomeReadmore">Find more...</button></Link>
-			</div>
-		</section>
-	)*/
 }
 
 export default Home;

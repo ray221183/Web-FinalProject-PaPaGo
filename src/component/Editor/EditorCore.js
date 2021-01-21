@@ -24,118 +24,24 @@ console.log("createImagePlugin", createImagePlugin)
 const imagePlugin = createImagePlugin();
 
 const videoPlugin = createVideoPlugin();
-//const { types } = videoPlugin;
 console.log("imagePlugin", imagePlugin)
 console.log("Editor", Editor)
 
 const plugins = [inlineBarTextStyle, imagePlugin, videoPlugin];
 
-// const initialState = {
-// 	entityMap: {
-// 	  0: {
-// 		type: 'IMAGE',
-// 		mutability: 'IMMUTABLE',
-// 		data: {
-// 		  src: './sketch4.jpg',
-// 		},
-// 	  },
-// 	},
-// 	blocks: [
-// 	  {
-// 		key: '9gm3s',
-// 		text:
-// 		  'You can have images in your text field. This is a very rudimentary example, but you can enhance the image plugin with resizing, focus or alignment plugins.',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'ov7r',
-// 		text: ' ',
-// 		type: 'atomic',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [
-// 		  {
-// 			offset: 0,
-// 			length: 1,
-// 			key: 0,
-// 		  },
-// 		],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'e23a8',
-// 		text: 'See advanced examples further down …',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	],
-//   };
-
-// const initialState = {
-// 	entityMap: {
-// 	  0: {
-// 		type: types.VIDEOTYPE,
-// 		mutability: 'IMMUTABLE',
-// 		data: {
-// 		  src: 'https://www.youtube.com/watch?v=iEPTlhBmwRg',
-// 		},
-// 	  },
-// 	},
-// 	blocks: [
-// 	  {
-// 		key: '9gm3s',
-// 		text:
-// 		  'You can have video in your text field. This is a very rudimentary example, but you can enhance the video plugin with resizing, focus or alignment plugins.',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'ov7r',
-// 		text: ' ',
-// 		type: 'atomic',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [
-// 		  {
-// 			offset: 0,
-// 			length: 1,
-// 			key: 0,
-// 		  },
-// 		],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'e23a8',
-// 		text: 'See advanced examples further down …',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	],
-//   };
-
 function EditorCore(prop){
 	//draft-js editor
 	// const editorState = prop.editorState;
-	const editorState = prop.editorState //EditorState.createWithContent(convertFromRaw(initialState))
+	const editorState = prop.editorState; //EditorState.createWithContent(convertFromRaw(initialState))
 	const setEditorState = prop.setEditorState;
 	const element = useRef();
 	const [placeholder, setPlaceholder] = useState( "Tell your story" )
 	var selection = editorState.getSelection();
+	const addImageRef = useRef();
 
 	//tool bar style
+	const [videoUrl, setVedioUrl] = useState('');
+	const [showVideo, setShowVideo] = useState(false);
 	const [sideAddOver, setSideAddOver] = useState(false);
 	const [sideBlockOver, setSideBlockOver] = useState(false);
 	const sideHover = (prop.background) ? "side-light" : "side-dark"
@@ -149,6 +55,9 @@ function EditorCore(prop){
 	const unorderedList = (prop.background) ? "unordered-list-light" : "unordered-list-dark"
 	const orderedList = (prop.background) ? "ordered-list-light" : "ordered-list-dark"
 	const blockQuote = (prop.background) ? "blockquote-light" : "blockquote-dark"
+	const addImage = (prop.background) ? "add-image-light" : "add-image-dark"
+	const addVideo = (prop.background) ? "add-video-light" : "add-video-dark"
+
 	const focusStyle = {
 		opacity:  (selection.getHasFocus()) ? "1" : "0"
 	}
@@ -159,6 +68,9 @@ function EditorCore(prop){
 	const sideBlockMovement = {
 		transform: (sideBlockOver) ? "translateY(0)" : "translateY(-100%)",
 		opacity: (sideBlockOver) ? "1" : "0",
+	}
+	const videoStyle = {
+		transform: (showVideo) ? "scale(1)" : "scale(0)",
 	}
 
 	//side tool bar -- add
@@ -177,6 +89,8 @@ function EditorCore(prop){
 	const focus = () => {
 		console.log('focus')
 		element.current.focus();
+		setVedioUrl('')
+		setShowVideo(false)
 	}
 	const toggleBlockType = (e) => {
 		e.preventDefault();
@@ -214,70 +128,94 @@ function EditorCore(prop){
 		return () => {clearInterval(interval)}
 	}, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
-
 	const insertImage = (editorState, base64) => {
-		const contentState = editorState.getCurrentContent();
-		const contentStateWithEntity = contentState.createEntity(
-		  	'image',
-		  	'IMMUTABLE',
-		  	{ src: base64 },
+		console.log("insert image")
+		var urlType = 'IMAGE';
+		var contentState = editorState.getCurrentContent();
+		var contentStateWithEntity = contentState.createEntity(
+			urlType,
+			'IMMUTABLE', 
+			{ src: `${base64}`}
 		);
-		const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-		const newEditorState = EditorState.set(
-		  	editorState,
-		  	{ currentContent: contentStateWithEntity },
-		);
-		return AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ')
+		var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+		var newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+		console.log("newEditorState.getCurrentContent().getSelectionAfter()", newEditorState.getCurrentContent().getSelectionAfter())
+		onChange(EditorState.forceSelection(newEditorState, newEditorState.getCurrentContent().getSelectionAfter()))
 	};
-	const readURL = (e) => {
-		console.log(e.target)
-		if (e.target.files && e.target.files[0]) {
-			var reader = new FileReader();
-			let base64 = reader.readAsDataURL(e.target.files[0]); // convert to base64 string
-			console.log('to onload', base64)
-			const newEditorState =  insertImage(editorState, base64)
-			console.log("newEditorState", newEditorState)
-			setEditorState(newEditorState)
-		}
-	}
 
-	const [aa, setaa] = useState('https://images.freeimages.com/images/large-previews/1dc/sky-1374686.jpg')
-	const ss = (e) => {
-		setaa(e.target.value)
-	}
-	const addImage = () => {
-		console.log(aa)
-		imagePlugin.addImage(editorState, aa)
+	const readURL = (input) => {
+        console.log(1, input)
+        if (input.target.files && input.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
+            reader.onload = function(e) {
+                console.log("e.target.result", e.target.result)
+				let base64 = String(e.target.result)
+				insertImage(editorState, base64)
+			}
+        }
+        console.log(5)
 	}
 	
+	
+
+	const clickAddImage = () => {
+		console.log("click")
+		addImageRef.current.click()
+	}
+
+	const changeVideoUrl = (e) => {
+		setVedioUrl(e.target.value)
+	}
+	const handleKeyDown = (e) => {
+        if(e.keyCode === 13 && videoUrl !== ''){
+			var contentState = editorState.getCurrentContent();
+			var contentStateWithEntity = contentState.createEntity(
+				'draft-js-video-plugin-video', 
+				'IMMUTABLE', 
+				{ src: videoUrl }
+			);
+			var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+			setEditorState(AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' '))
+			setVedioUrl('')
+			setShowVideo(false)
+        }
+    }
+	const clickAddVideo = (e) => {
+		e.preventDefault()
+		e.stopPropagation()
+		setShowVideo(true)
+	}
+	const prevent = (e) => {
+		e.preventDefault()
+		e.stopPropagation()
+	}
+
 	return(
 		<div>
-			<input type="file" onChange={(e) => readURL(e)}/>
-			<div className="import-img"></div>
 			<div className="eidtor-content-part" onClick={() => {focus()}}>
 				<Editor
+					id="editor-content"
 					editorState={editorState}
 					onChange={onChange}
 					placeholder={placeholder}
 					plugins={plugins}
 					ref={element}
 				/>
-				<input type="text" value={aa} onChange={ss}/>
-				<button onClick={addImage}> kokokof</button>
-				<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
-					<div className="side-bar-icon" id={sideAddIcon}></div>
-					<div className="roll-down-region">
-						<div className="side-bar" id={sideAddBar} style={sideAddMovement}>
-							<div className={`blocktype-button ${sideHover}`} id={headerOne} title="header-one" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={headerTwo} title="header-two" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={headerThree} title="header-three" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={unorderedList} title="unordered-list-item" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={orderedList} title="ordered-list-item" onMouseDown={toggleBlockType}></div>
-							<div className={`blocktype-button ${sideHover}`} id={blockQuote} title="blockquote" onMouseDown={toggleBlockType}></div>
+				<div id="video-input-div" ></div>
+					<div id="video-input" style={videoStyle} >
+						<input placeholder="請輸入影片的網址" onClick={(e) => prevent(e)} value={videoUrl} onChange={changeVideoUrl} onKeyDown={handleKeyDown}/>
+					</div>
+					<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
+						<div className="side-bar-icon" id={sideAddIcon}></div>
+						<div className="roll-down-region">
+							<div className="side-bar-add" id={sideAddBar} style={sideAddMovement}>
+								<div className={`blocktype-button ${sideHover}`} id={addImage} title="addImage" onMouseDown={clickAddImage}></div>
+								<div className={`blocktype-button ${sideHover}`} id={addVideo} title="header-two" onClick={(e) => clickAddVideo(e)}></div>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
+					<div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
 					<div className="side-bar-icon" id={sideBlockIcon}></div>
 					<div className="roll-down-region">
 						<div className="side-bar" id={sideBlockBar} style={sideBlockMovement}>
@@ -301,6 +239,9 @@ function EditorCore(prop){
 						)
 					}
 				</InlineBarTextStyle>
+			</div>
+			<div>
+				<input id="add-image-input" type="file" ref={addImageRef} onChange={(e) => readURL(e)}/>
 			</div>
 		</div>
 	);

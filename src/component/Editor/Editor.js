@@ -32,6 +32,9 @@ function Editor(prop){
     const saveColorStyle = {
         color: (background) ? 'rgb(172, 172, 172)' : 'rgb(255, 255, 255)'
     }
+    const lightStyle = {
+        backgroundColor: (background) ? 'rgb(207, 207, 207)' : 'rgb(121, 121, 121)'
+    }
     // autosave
     useEffect(() => {
         let timer = null
@@ -120,9 +123,7 @@ function Editor(prop){
             <div className="editor-part" name = "editor-part">
                 <div className="top-part" style={borderBottomStyle}>
                     <div className="editor-tools">
-                        <div id="light" onClick={changeBackground}>
-                            
-                        </div>
+                        <div id="light" onClick={changeBackground} style={lightStyle}></div>
                     </div>
                     <div className="publish">
                         <span id="save-state" style={saveColorStyle}>

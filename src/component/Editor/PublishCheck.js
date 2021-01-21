@@ -9,7 +9,7 @@ import axios from 'axios';
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import {UPLOAD_IMAGE} from '../../graphql'
 
-const client_id = '0b3c0a380f27041';
+const client_id = '6e44dcf658378f5';
 
 function PublishCheck(prop){
     //const curLocation = useLocation();
@@ -176,7 +176,7 @@ function PublishCheck(prop){
                 await addPic({
                     variables: {
                         uuid: prop.curUuid,
-	                    image: imgSrc
+	                    image: imgSrc //"https://static.wikia.nocookie.net/disney/images/d/d4/Mickey_Mouse.png/revision/latest?cb=20180703032033&path-prefix=zh"//"https://images.freeimages.com/images/large-previews/1dc/sky-1374686.jpg"
                     }
                 })
             }
