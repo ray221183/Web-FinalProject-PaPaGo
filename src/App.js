@@ -199,9 +199,11 @@ function App() {
 			rePosts()
 		}
 	}, [curLocation.pathname])
-	useEffect(()=>{
-		curHistory.push('/')
-	}, [])
+	// useEffect(()=>{
+	// 	curHistory.push('/')
+	// }, [])
+
+
 	// useEffect(
 	// 	async () => {
 	// 		console.log("refetch")

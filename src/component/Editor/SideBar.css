@@ -90,6 +90,10 @@
 	background-color: rgba(0, 0, 0, 0.781);
 }
 
+#add-image-light{
+	background-image: url('../../picture/others/add_image_light.png');
+}
+
 #header-one-light{
 	background-image: url('../../picture/others/H1_light.png');
 }
@@ -125,4 +129,8 @@
 }
 #blockquote-dark{
 	background-image: url('../../picture/others/quote_dark.png');
+}
+
+#add-image-input{
+	transform: scale(0);
 }

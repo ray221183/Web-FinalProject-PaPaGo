@@ -41,116 +41,21 @@ console.log("createImagePlugin", createImagePlugin)
 const imagePlugin = createImagePlugin();
 
 const videoPlugin = createVideoPlugin();
-const { types } = videoPlugin;
+
 console.log("imagePlugin", imagePlugin)
 console.log("Editor", Editor)
 
 const plugins = [inlineBarTextStyle, imagePlugin, videoPlugin];
 
-// const initialState = {
-// 	entityMap: {
-// 	  0: {
-// 		type: 'IMAGE',
-// 		mutability: 'IMMUTABLE',
-// 		data: {
-// 		  src: './sketch4.jpg',
-// 		},
-// 	  },
-// 	},
-// 	blocks: [
-// 	  {
-// 		key: '9gm3s',
-// 		text:
-// 		  'You can have images in your text field. This is a very rudimentary example, but you can enhance the image plugin with resizing, focus or alignment plugins.',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'ov7r',
-// 		text: ' ',
-// 		type: 'atomic',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [
-// 		  {
-// 			offset: 0,
-// 			length: 1,
-// 			key: 0,
-// 		  },
-// 		],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'e23a8',
-// 		text: 'See advanced examples further down …',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	],
-//   };
-
-// const initialState = {
-// 	entityMap: {
-// 	  0: {
-// 		type: types.VIDEOTYPE,
-// 		mutability: 'IMMUTABLE',
-// 		data: {
-// 		  src: 'https://www.youtube.com/watch?v=iEPTlhBmwRg',
-// 		},
-// 	  },
-// 	},
-// 	blocks: [
-// 	  {
-// 		key: '9gm3s',
-// 		text:
-// 		  'You can have video in your text field. This is a very rudimentary example, but you can enhance the video plugin with resizing, focus or alignment plugins.',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'ov7r',
-// 		text: ' ',
-// 		type: 'atomic',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [
-// 		  {
-// 			offset: 0,
-// 			length: 1,
-// 			key: 0,
-// 		  },
-// 		],
-// 		data: {},
-// 	  },
-// 	  {
-// 		key: 'e23a8',
-// 		text: 'See advanced examples further down …',
-// 		type: 'unstyled',
-// 		depth: 0,
-// 		inlineStyleRanges: [],
-// 		entityRanges: [],
-// 		data: {},
-// 	  },
-// 	],
-//   };
-
 function EditorCore(prop){
 	//draft-js editor
 	// const editorState = prop.editorState;
-	const editorState = prop.editorState //EditorState.createWithContent(convertFromRaw(initialState))
+	const editorState = prop.editorState; //EditorState.createWithContent(convertFromRaw(initialState))
 	const setEditorState = prop.setEditorState;
 	const element = useRef();
 	const [placeholder, setPlaceholder] = useState( "Tell your story" )
 	var selection = editorState.getSelection();
+	const addImageRef = useRef();
 
 	//tool bar style
 	const [sideAddOver, setSideAddOver] = useState(false);
@@ -166,6 +71,7 @@ function EditorCore(prop){
 	const unorderedList = (prop.background) ? "unordered-list-light" : "unordered-list-dark"
 	const orderedList = (prop.background) ? "ordered-list-light" : "ordered-list-dark"
 	const blockQuote = (prop.background) ? "blockquote-light" : "blockquote-dark"
+	const addImage = (prop.background) ? "add-image-light" : "add-image-dark"
 	const focusStyle = {
 		opacity:  (selection.getHasFocus()) ? "1" : "0"
 	}
@@ -232,45 +138,62 @@ function EditorCore(prop){
 	}, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
 
-	const insertImage = (editorState, base64) => {
-		const contentState = editorState.getCurrentContent();
-		const contentStateWithEntity = contentState.createEntity(
-		  	'image',
-		  	'IMMUTABLE',
-		  	{ src: base64 },
-		);
-		const entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-		const newEditorState = EditorState.set(
-		  	editorState,
-		  	{ currentContent: contentStateWithEntity },
-		);
-		return AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ')
-	};
-	const readURL = (e) => {
-		console.log(e.target)
-		if (e.target.files && e.target.files[0]) {
-			var reader = new FileReader();
-			let base64 = reader.readAsDataURL(e.target.files[0]); // convert to base64 string
-			console.log('to onload', base64)
-			const newEditorState =  insertImage(editorState, base64)
-			console.log("newEditorState", newEditorState)
-			setEditorState(newEditorState)
-		}
-	}
+	const _extends = () => {
+		_extends = Object.assign || function (target) {
+		  for (var i = 1; i < arguments.length; i++) {
+			var source = arguments[i];
+	  
+			for (var key in source) {
+			  if (Object.prototype.hasOwnProperty.call(source, key)) {
+				target[key] = source[key];
+			  }
+			}
+		  }
+	  
+		  return target;
+		};
+	  
+		return _extends.apply(this, arguments);
+	  }
 
-	const [aa, setaa] = useState('https://images.freeimages.com/images/large-previews/1dc/sky-1374686.jpg')
-	const ss = (e) => {
-		setaa(e.target.value)
-	}
-	const addImage = () => {
-		console.log(aa)
-		imagePlugin.addImage(editorState, aa)
+	const insertImage = (editorState, base64) => {
+		console.log("insert image")
+		var urlType = 'IMAGE';
+		var contentState = editorState.getCurrentContent();
+		var contentStateWithEntity = contentState.createEntity(
+			urlType,
+			'IMMUTABLE', 
+			{ src: `${base64}`}
+		);
+		var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+		var newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+		console.log("newEditorState.getCurrentContent().getSelectionAfter()", newEditorState.getCurrentContent().getSelectionAfter())
+		onChange(EditorState.forceSelection(newEditorState, newEditorState.getCurrentContent().getSelectionAfter()))
+	};
+
+	const readURL = (input) => {
+        console.log(1, input)
+        if (input.target.files && input.target.files[0]) {
+            var reader = new FileReader();
+            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
+            reader.onload = function(e) {
+                console.log("e.target.result", e.target.result)
+				let base64 = String(e.target.result)
+				insertImage(editorState, base64)
+			}
+        }
+        console.log(5)
 	}
 	
+	
+
+	const clickAddImage = () => {
+		console.log("click")
+		addImageRef.current.click()
+	}
+
 	return(
 		<div>
-			<input type="file" onChange={(e) => readURL(e)}/>
-			<div className="import-img"></div>
 			<div className="eidtor-content-part" onClick={() => {focus()}}>
 				<Editor
 					editorState={editorState}
@@ -279,13 +202,11 @@ function EditorCore(prop){
 					plugins={plugins}
 					ref={element}
 				/>
-				<input type="text" value={aa} onChange={ss}/>
-				<button onClick={addImage}> kokokof</button>
 				<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
 					<div className="side-bar-icon" id={sideAddIcon}></div>
 					<div className="roll-down-region">
 						<div className="side-bar" id={sideAddBar} style={sideAddMovement}>
-							<div className={`blocktype-button ${sideHover}`} id={headerOne} title="header-one" onMouseDown={toggleBlockType}></div>
+							<div className={`blocktype-button ${sideHover}`} id={addImage} title="addImage" onMouseDown={clickAddImage}></div>
 							<div className={`blocktype-button ${sideHover}`} id={headerTwo} title="header-two" onMouseDown={toggleBlockType}></div>
 							<div className={`blocktype-button ${sideHover}`} id={headerThree} title="header-three" onMouseDown={toggleBlockType}></div>
 							<div className={`blocktype-button ${sideHover}`} id={unorderedList} title="unordered-list-item" onMouseDown={toggleBlockType}></div>
@@ -318,6 +239,9 @@ function EditorCore(prop){
 						)
 					}
 				</InlineBarTextStyle>
+			</div>
+			<div>
+				<input id="add-image-input" type="file" ref={addImageRef} onChange={(e) => readURL(e)}/>
 			</div>
 		</div>
 	);
