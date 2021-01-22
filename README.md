@@ -15,9 +15,10 @@ Demo影片連結： https://youtu.be/oxeRuyBGx0g
 > 1. react.js
 > 2. antd
 > 3. draft.js
-> 4. axios
-> 5. material-UI
-> 6. react-icons
+> 4. draft-js-plugins
+> 5. axios
+> 6. material-UI
+> 7. react-icons
 - #### backend
 >  1. mongoose
 >  2. graphql
