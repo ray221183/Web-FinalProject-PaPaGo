@@ -3,13 +3,18 @@ import React, { useEffect, useState } from 'react'
 import { MULTIPOST_QUERY, GREATOFPOST_QUERY, UPDATE_GREAT } from '../../graphql'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { Link } from "react-router-dom";
-import { EditorState , convertFromRaw } from 'draft-js'
-import Editor from '@draft-js-plugins/editor';
-
 import {FaThumbsUp} from 'react-icons/fa';
 import {IconContext} from 'react-icons';
-
 import RelatedStory from "./RelatedStory";
+
+import { EditorState , convertFromRaw } from 'draft-js'
+import createImagePlugin from '@draft-js-plugins/image';
+import createVideoPlugin from '@draft-js-plugins/video';
+import Editor from '@draft-js-plugins/editor';
+
+const imagePlugin = createImagePlugin();
+const videoPlugin = createVideoPlugin();
+const plugins = [imagePlugin, videoPlugin];
 
 function Article(props) {
 	let id = props.id;
@@ -151,15 +156,11 @@ function Article(props) {
 		if (trend_0_img === '') {
 			return(
 				<div className="Article">
-					{/* <h1 id="title">{trend_0_title}</h1> */}
-					{/* <div className="ArticleImage">
-						A image about this story.
-					</div> */}
 					<div className="editor-part" name = "editor-part">
 						<div className="article-content">
 							<Editor
 								editorState={editorState}
-								// plugins={plugins}
+								plugins={plugins}
 								readOnly={true}
 							/>
 						</div>
@@ -189,22 +190,18 @@ function Article(props) {
 		else {
 			return(
 				<div className="Article">
-					{/* <h1 id="title">{trend_0_title}</h1> */}
-					{/* <div className="ArticleImage">
-						A image about this story.
-					</div> */}
 					<div className="editor-part" name = "editor-part">
 						<div className="article-content">
 							<Editor
 								editorState={editorState}
-								// plugins={plugins}
+								plugins={plugins}
 								readOnly={true}
 							/>
 						</div>
 					</div>
-					<div>
+					{/* <div>
 						<img id="articleImg" src={trend_0_img} />
-					</div>
+					</div> */}
 					<div className="ArticleBottom">
 						<LikeStyle />
 						<div id="articleDate">{trend_0_date}</div>
@@ -227,54 +224,15 @@ function Article(props) {
 				</div>
 			)
 		}
-		/*return(
-			<div className="Article">
-				<div className="editor-part" name = "editor-part">
-					<div className="article-content">
-						<Editor
-							editorState={editorState}
-							// plugins={plugins}
-							readOnly={true}
-						/>
-					</div>
-				</div>
-				<div>
-					<img id="articleImg" src={trend_0_img} />
-				</div>
-				<div className="ArticleBottom">
-					<LikeStyle />
-					<div id="articleDate">{trend_0_date}</div>
-				</div>
-				<div className="Author">
-					<div id='WrittenBy'>
-						Written By
-					</div>
-					<div id='author'>
-						<button id="AuthorButton">{trend_0_author}</button>
-					</div>
-				</div>
-				<h3 id="MoreStories">More Interesting Stories</h3>
-				<hr id='hr' />
-				<div className="RelatedStories">
-					<RelatedStory related_post={related_0} />
-					<RelatedStory related_post={related_1} />
-					<RelatedStory related_post={related_2} />
-				</div>
-			</div>
-		)*/
 	}
 	else {
 		return(
 			<div className="Article">
-				{/* <h1 id="title">{trend_0_title}</h1> */}
-				{/* <div className="ArticleImage">
-					A image about this story.
-				</div> */}
 				<div className="editor-part" name = "editor-part">
 					<div className="article-content">
 						<Editor
 							editorState={editorState}
-							// plugins={plugins}
+							plugins={plugins}
 							readOnly={true}
 						/>
 					</div>

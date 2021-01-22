@@ -22,11 +22,7 @@ const { InlineToolbar: InlineBarTextStyle } = inlineBarTextStyle;
 console.log("createImagePlugin", createImagePlugin)
 
 const imagePlugin = createImagePlugin();
-
 const videoPlugin = createVideoPlugin();
-console.log("imagePlugin", imagePlugin)
-console.log("Editor", Editor)
-
 const plugins = [inlineBarTextStyle, imagePlugin, videoPlugin];
 
 function EditorCore(prop){
