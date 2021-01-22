@@ -1,7 +1,7 @@
 # [109-1] Web Programming Final -- PaPaGo
-組別： Group 25
-作品： PaPaGo (A platform for sharing your travel stories)
-Deployed 連結： https://papagoisme.herokuapp.com/
+組別： Group 25  
+作品： PaPaGo (A platform for sharing your travel stories)  
+Deployed 連結： https://papagoisme.herokuapp.com/  
 Demo影片連結： https://youtu.be/oxeRuyBGx0g
 
 ## 這個服務在做什麼
