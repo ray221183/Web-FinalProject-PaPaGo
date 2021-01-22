@@ -23,7 +23,7 @@ Demo影片連結：https://youtu.be/oxeRuyBGx0g
 > 5. material-UI
 > 6. react-icons
 
-> - ####backend
+> - #### backend
 >  1. mongoose
 >  2. graphql
 >  3. websocket
