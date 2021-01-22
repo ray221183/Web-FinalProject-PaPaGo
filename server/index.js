@@ -28,6 +28,7 @@ db.once('open', () => {
 
 const pubsub = new PubSub()
 
+
 const server = new GraphQLServer({
   typeDefs: './server/schema.graphql',
   resolvers: {
@@ -41,6 +42,11 @@ const server = new GraphQLServer({
   }
 })
 
-server.start({ port: process.env.PORT | 4000 }, () => {
+const options = {
+  port: process.env.PORT | 4000,
+  bodyParserOptions: { limit: "10mb", type: "application/json" },
+};
+
+server.start(options, () => {
   console.log(`The server is up on port ${process.env.PORT | 4000}!`)
 })
