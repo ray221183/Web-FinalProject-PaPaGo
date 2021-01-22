@@ -11,14 +11,14 @@ Demo影片連結： https://youtu.be/oxeRuyBGx0g
 > 2. 伺服器端：儲存已發佈文章、草稿，以及搜尋功能。
 
 ## 使用與參考之框架/模組/原始碼
-> - #### frontend
+- #### frontend
 > 1. react.js
 > 2. antd
 > 3. draft.js
 > 4. axios
 > 5. material-UI
 > 6. react-icons
-> - #### backend
+- #### backend
 >  1. mongoose
 >  2. graphql
 >  3. websocket
