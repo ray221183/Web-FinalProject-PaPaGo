@@ -22,7 +22,6 @@ Demo影片連結：https://youtu.be/oxeRuyBGx0g
 > 4. axios
 > 5. material-UI
 > 6. react-icons
-
 > - #### backend
 >  1. mongoose
 >  2. graphql
