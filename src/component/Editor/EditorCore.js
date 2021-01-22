@@ -198,9 +198,11 @@ function EditorCore(prop){
 					plugins={plugins}
 					ref={element}
 				/>
-				<div id="video-input-div" ></div>
-					<div id="video-input" style={videoStyle} >
-						<input placeholder="請輸入影片的網址" onClick={(e) => prevent(e)} value={videoUrl} onChange={changeVideoUrl} onKeyDown={handleKeyDown}/>
+				<div>
+					<div id="video-input-div" >
+						<div id="video-input" style={videoStyle} >
+							<input placeholder="請輸入影片的網址" onClick={(e) => prevent(e)} value={videoUrl} onChange={changeVideoUrl} onKeyDown={handleKeyDown}/>
+						</div>
 					</div>
 					<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
 						<div className="side-bar-icon" id={sideAddIcon}></div>
@@ -211,7 +213,8 @@ function EditorCore(prop){
 							</div>
 						</div>
 					</div>
-					<div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
+				</div>
+				<div className="side-tool-bar-block" style={{...sideStyleStyle, ...focusStyle}} onMouseOver={() => setSideBlockOver(true)} onMouseOut={() => setSideBlockOver(false)}>
 					<div className="side-bar-icon" id={sideBlockIcon}></div>
 					<div className="roll-down-region">
 						<div className="side-bar" id={sideBlockBar} style={sideBlockMovement}>
