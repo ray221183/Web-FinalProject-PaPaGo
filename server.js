@@ -19,7 +19,7 @@ db.on('error', (error) => {
 
 
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
 const server = new ApolloServer({ typeDefs:readFileSync('./server/schema.graphql','utf-8'), resolvers:{
 	Query,
 	Mutation
@@ -30,8 +30,6 @@ const server = new ApolloServer({ typeDefs:readFileSync('./server/schema.graphql
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
-app.use(bodyParser.json({ limit: '10mb' });
 
 server.applyMiddleware({ app });
 
