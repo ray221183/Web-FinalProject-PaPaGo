@@ -36,11 +36,11 @@
     "axios": "^0.21.0"
   },
   "scripts": {
-    "start": "node server.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "server": "nodemon"
+    "start":"node server.js",
+    "build":"react-scripts build",
+    "test":"react-scripts test",
+    "eject":"react-scripts eject",
+    "server":"nodemon"
   },
   "eslintConfig": {
     "extends": [
