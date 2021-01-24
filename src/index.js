@@ -20,12 +20,12 @@ import {
 const httpLink = new HttpLink({
   //uri: 'http://localhost:4000/'
 })
-
+/*
 // Create a WebSocket link:
 const wsLink = new WebSocketLink({
-  //uri: `ws://localhost:4000/`,
+  uri: `ws://localhost:4000/`,
   options: { reconnect: true }
-})
+})*/
 
 // using the ability to split links, you can send data to each link
 // depending on what kind of operation is being sent
