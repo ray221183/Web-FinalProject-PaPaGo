@@ -248,39 +248,3 @@ function EditorCore(prop){
 
 
 export default EditorCore;
-
-
-// const [posts, setPosts] = useState([]);
-// const topics = ['一日遊', '二日遊']
-
-
-// useEffect(()=>{
-//     if( data.multi_post.multiposts.length !== 0 ){
-//         setPosts(data.multi_post.multiposts)
-//     }
-// }, [data])
-
-// const map_function = () => {
-//     return(
-//         <React.Fragment>
-//             {
-//                 posts.map( ( post, idx )=>{
-//                         return(
-//                             <React.Fragment>
-//                                 <div> {topics[idx]} </div>
-//                                 {
-//                                     post.map( ( items ) => {
-//                                             return(
-//                                                 <div> content </div>
-//                                             )
-//                                         }
-//                                     )
-//                                 }
-//                             </React.Fragment>
-//                         )
-//                     }
-//                 )
-//             }
-//         </React.Fragment>
-//     )
-// }
