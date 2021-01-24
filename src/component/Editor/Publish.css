@@ -146,6 +146,16 @@
     color: rgb(116, 116, 116);
     border-radius: 0.7vh 0.7vh 0.7vh 0.7vh;
 }
+.main-picture{
+    padding-left: 10px;
+    height: 35px;
+    width: 100%;
+    border: none; /* <-- This thing here */
+    border:solid 1px #ccc;
+    font-size: 18px;
+    outline: none;
+    border-radius: 5px;
+}
 .tag-fill{
     display: flex;
     flex-direction: row;

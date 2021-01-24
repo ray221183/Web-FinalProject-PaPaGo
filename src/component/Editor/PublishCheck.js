@@ -134,57 +134,54 @@ function PublishCheck(prop){
     const [pageImg, setPageImg] = useState(null);
 
     const readURL = (input) => {
-        console.log(1, input)
-        if (input.target.files && input.target.files[0]) {
-            var reader = new FileReader();
-            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
-            reader.onload = function(e) {
-                console.log("e.target.result", e.target.result)
-                setImgSrc(String(e.target.result));
-            }
-            setPageImg(input.target.files[0])
-            console.log(4)
-        }
-        console.log(5)
+        console.log("set")
+        setImgSrc(input.target.value)
     }
+    console.log("imgSrc", imgSrc)
     const pageImgSrc = {backgroundImage: `url('${imgSrc}')`}
 
     const toPublish = async () => {
         prop.savefile(title, introduction, editorState, tags, true)
-        if(pageImg !== null){
-            const data = new FormData()
-            const config = {headers: { Authorization: `Client-ID ${client_id}` }}
-            let res = await axios.post('https://api.imgur.com/3/image', data, config).catch((err) => {
-                console.log(err)
-            })
-            if(typeof res !== "undefined"){
-                const imgUrl = res.data.data.link
-                console.log("1")
-                console.log("uuid", prop.curUuid)
-                console.log("image", imgUrl)
-                await addPic({
-                    variables: {
-                        uuid: prop.curUuid,
-	                    image: imgUrl
-                    }
-                })
+        await addPic({
+            variables: {
+                uuid: prop.curUuid,
+                image: imgSrc
             }
-            else{
-                console.log("2")
-                console.log("uuid", prop.curUuid, typeof prop.curUuid)
-                console.log("image", imgSrc, typeof imgSrc)
-                await addPic({
-                    variables: {
-                        uuid: prop.curUuid,
-	                    image: imgSrc //"https://static.wikia.nocookie.net/disney/images/d/d4/Mickey_Mouse.png/revision/latest?cb=20180703032033&path-prefix=zh"//"https://images.freeimages.com/images/large-previews/1dc/sky-1374686.jpg"
-                    }
-                })
-            }
-            curHistory.push("/post/" + `${prop.curUuid}`)
-        }
-        else{
-            curHistory.push("/post/" + `${prop.curUuid}`)
-        }
+        })
+        curHistory.push("/post/" + `${prop.curUuid}`)
+        // if(pageImg !== null){
+        //     const data = new FormData()
+        //     const config = {headers: { Authorization: `Client-ID ${client_id}` }}
+        //     let res = await axios.post('https://api.imgur.com/3/image', data, config).catch((err) => {
+        //         console.log(err)
+        //     })
+        //     if(typeof res !== "undefined"){
+        //         const imgUrl = res.data.data.link
+        //         console.log("1")
+        //         console.log("uuid", prop.curUuid)
+        //         console.log("image", imgUrl)
+        //         await addPic({
+        //             variables: {
+        //                 uuid: prop.curUuid,
+	    //                 image: imgUrl
+        //             }
+        //         })
+        //     }
+        //     else{
+        //         console.log("2")
+        //         console.log("uuid", prop.curUuid, typeof prop.curUuid)
+        //         console.log("image", imgSrc, typeof imgSrc)
+        //         await addPic({
+        //             variables: {
+        //                 uuid: prop.curUuid,
+	    //                 image: imgSrc
+        //             }
+        //         })
+        //     }
+        // }
+        // else{
+        //     curHistory.push("/post/" + `${prop.curUuid}`)
+        // }
     }
 
     useEffect(() => {
@@ -231,7 +228,6 @@ function PublishCheck(prop){
                         <div className="content-part">
                             <div className="tag-fill">
                                 <input placeholder="請輸入最多8組的關鍵字" value={curTag} onKeyDown={handleKeyDown} onChange={changeInputTag}/>
-                                {/* <textarea placeholder="請輸入最多8組且每組字數10字內的關鍵字" value={(clear) ? '' : curTag} onKeyDown={handleKeyDown} onChange={changeInputTag} maxLength="10"></textarea> */}
                             </div>
                             <div className="tag-list">
                                 <DisplayTags />
@@ -239,10 +235,9 @@ function PublishCheck(prop){
                         </div> :
                         <div className="content-part">
                             <div className="picture-fill">
-                                <input type="file" onChange={(e) => readURL(e)}/>
+                                <input className="main-picture" placeholder="請輸入封面照的網址" onChange={(e) => readURL(e)}/>
                             </div>
-                            <div className="picture-show" style={pageImgSrc}>
-                            </div>
+                            <div className="picture-show" style={pageImgSrc}></div>
                         </div>
                     }
                 </React.Fragment>
