@@ -19,7 +19,7 @@ db.on('error', (error) => {
 
 
 app.use(express.static(path.join(__dirname, 'build')));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '200mb' }));
 const server = new ApolloServer({ typeDefs:readFileSync('./server/schema.graphql','utf-8'), resolvers:{
 	Query,
 	Mutation
@@ -31,11 +31,11 @@ app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-
 server.applyMiddleware({ app });
+
 db.once('open', () => {
   console.log('MongoDB connected!')
   app.listen({ port: PORT }, () =>
-  console.log("ready")
-);
+    console.log("ready")
+  );
 })
