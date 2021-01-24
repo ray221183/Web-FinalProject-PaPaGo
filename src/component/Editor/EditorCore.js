@@ -36,6 +36,7 @@ function EditorCore(prop){
 	const addImageRef = useRef();
 
 	//tool bar style
+	const [type, setType] = useState(0); // 0: video | 1: image 
 	const [videoUrl, setVedioUrl] = useState('');
 	const [showVideo, setShowVideo] = useState(false);
 	const [sideAddOver, setSideAddOver] = useState(false);
@@ -124,62 +125,80 @@ function EditorCore(prop){
 		return () => {clearInterval(interval)}
 	}, [document.querySelectorAll(`[data-offset-key="${selection.getStartKey()}-0-0"]`), curSelectBlock])
 
-	const insertImage = (editorState, base64) => {
-		console.log("insert image")
-		var urlType = 'IMAGE';
-		var contentState = editorState.getCurrentContent();
-		var contentStateWithEntity = contentState.createEntity(
-			urlType,
-			'IMMUTABLE', 
-			{ src: `${base64}`}
-		);
-		var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-		var newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
-		console.log("newEditorState.getCurrentContent().getSelectionAfter()", newEditorState.getCurrentContent().getSelectionAfter())
-		onChange(EditorState.forceSelection(newEditorState, newEditorState.getCurrentContent().getSelectionAfter()))
-	};
+	// const insertImage = (editorState, base64) => {
+	// 	console.log("insert image")
+	// 	var urlType = 'IMAGE';
+	// 	var contentState = editorState.getCurrentContent();
+	// 	var contentStateWithEntity = contentState.createEntity(
+	// 		urlType,
+	// 		'IMMUTABLE', 
+	// 		{ src: `${base64}`}
+	// 	);
+	// 	var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+	// 	var newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+	// 	console.log("newEditorState.getCurrentContent().getSelectionAfter()", newEditorState.getCurrentContent().getSelectionAfter())
+	// 	onChange(EditorState.forceSelection(newEditorState, newEditorState.getCurrentContent().getSelectionAfter()))
+	// };
 
-	const readURL = (input) => {
-        console.log(1, input)
-        if (input.target.files && input.target.files[0]) {
-            var reader = new FileReader();
-            reader.readAsDataURL(input.target.files[0]); // convert to base64 string
-            reader.onload = function(e) {
-                console.log("e.target.result", e.target.result)
-				let base64 = String(e.target.result)
-				insertImage(editorState, base64)
-			}
-        }
-        console.log(5)
-	}
-	
-	
+	// const readURL = (input) => {
+    //     console.log(1, input)
+    //     if (input.target.files && input.target.files[0]) {
+    //         var reader = new FileReader();
+    //         reader.readAsDataURL(input.target.files[0]); // convert to base64 string
+    //         reader.onload = function(e) {
+    //             console.log("e.target.result", e.target.result)
+	// 			let base64 = String(e.target.result)
+	// 			insertImage(editorState, base64)
+	// 		}
+    //     }
+    //     console.log(5)
+	// }
 
-	const clickAddImage = () => {
+	const clickAddImage = (e) => {
 		console.log("click")
-		addImageRef.current.click()
+		//addImageRef.current.click()
+		e.preventDefault()
+		e.stopPropagation()
+		setType(1)
+		setShowVideo(true)
 	}
 
 	const changeVideoUrl = (e) => {
 		setVedioUrl(e.target.value)
 	}
 	const handleKeyDown = (e) => {
-        if(e.keyCode === 13 && videoUrl !== ''){
-			var contentState = editorState.getCurrentContent();
-			var contentStateWithEntity = contentState.createEntity(
-				'draft-js-video-plugin-video', 
-				'IMMUTABLE', 
-				{ src: videoUrl }
-			);
-			var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-			setEditorState(AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' '))
-			setVedioUrl('')
-			setShowVideo(false)
-        }
+		if(e.keyCode === 13 && videoUrl !== ''){
+			if(type === 0){
+				var contentState = editorState.getCurrentContent();
+				var contentStateWithEntity = contentState.createEntity(
+					'draft-js-video-plugin-video', 
+					'IMMUTABLE', 
+					{ src: videoUrl }
+				);
+				var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+				setEditorState(AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' '))
+				setVedioUrl('')
+				setShowVideo(false)
+			}
+			else{
+				var contentState = editorState.getCurrentContent();
+				var contentStateWithEntity = contentState.createEntity(
+					'IMAGE',
+					'IMMUTABLE',
+					{ src: videoUrl }
+				);
+				var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+				var newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+				setEditorState(EditorState.forceSelection(newEditorState, newEditorState.getCurrentContent().getSelectionAfter()))
+				setVedioUrl('')
+				setShowVideo(false)
+			}
+		}
     }
 	const clickAddVideo = (e) => {
 		e.preventDefault()
 		e.stopPropagation()
+		setType(0)
 		setShowVideo(true)
 	}
 	const prevent = (e) => {
@@ -201,14 +220,14 @@ function EditorCore(prop){
 				<div>
 					<div id="video-input-div" >
 						<div id="video-input" style={videoStyle} >
-							<input placeholder="請輸入影片的網址" onClick={(e) => prevent(e)} value={videoUrl} onChange={changeVideoUrl} onKeyDown={handleKeyDown}/>
+							<input placeholder={`請輸入${(type===0)?"影片":"照片"}的網址`} onClick={(e) => prevent(e)} value={videoUrl} onChange={changeVideoUrl} onKeyDown={handleKeyDown}/>
 						</div>
 					</div>
 					<div className="side-tool-bar-add" style={{...sideAddStyle, ...focusStyle}} onMouseOver={() => setSideAddOver(true)} onMouseOut={() => setSideAddOver(false)}>
 						<div className="side-bar-icon" id={sideAddIcon}></div>
 						<div className="roll-down-region">
 							<div className="side-bar-add" id={sideAddBar} style={sideAddMovement}>
-								<div className={`blocktype-button ${sideHover}`} id={addImage} title="addImage" onMouseDown={clickAddImage}></div>
+								<div className={`blocktype-button ${sideHover}`} id={addImage} title="addImage" onClick={(e) => clickAddImage(e)}></div>
 								<div className={`blocktype-button ${sideHover}`} id={addVideo} title="header-two" onClick={(e) => clickAddVideo(e)}></div>
 							</div>
 						</div>
@@ -239,48 +258,12 @@ function EditorCore(prop){
 					}
 				</InlineBarTextStyle>
 			</div>
-			<div>
+			{/* <div>
 				<input id="add-image-input" type="file" ref={addImageRef} onChange={(e) => readURL(e)}/>
-			</div>
+			</div> */}
 		</div>
 	);
 }
 
 
 export default EditorCore;
-
-
-// const [posts, setPosts] = useState([]);
-// const topics = ['一日遊', '二日遊']
-
-
-// useEffect(()=>{
-//     if( data.multi_post.multiposts.length !== 0 ){
-//         setPosts(data.multi_post.multiposts)
-//     }
-// }, [data])
-
-// const map_function = () => {
-//     return(
-//         <React.Fragment>
-//             {
-//                 posts.map( ( post, idx )=>{
-//                         return(
-//                             <React.Fragment>
-//                                 <div> {topics[idx]} </div>
-//                                 {
-//                                     post.map( ( items ) => {
-//                                             return(
-//                                                 <div> content </div>
-//                                             )
-//                                         }
-//                                     )
-//                                 }
-//                             </React.Fragment>
-//                         )
-//                     }
-//                 )
-//             }
-//         </React.Fragment>
-//     )
-// }
