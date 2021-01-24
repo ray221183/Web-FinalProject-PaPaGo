@@ -44,7 +44,7 @@ const link = split(
 // const link = httpLink
 
 const client = new ApolloClient({
-  httpLink,
+  link:httpLink,
   cache: new InMemoryCache().restore({})
 })
 
