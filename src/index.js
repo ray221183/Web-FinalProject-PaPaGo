@@ -13,18 +13,20 @@ import { getMainDefinition } from 'apollo-utilities'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as serviceWorker from './serviceWorker'
 import {
-  BrowserRouter as Router,
+	BrowserRouter as Router,
   } from "react-router-dom";
-console.log("hi")
+
 // Create an http link:
 const httpLink = new HttpLink({
+  uri: 'http://localhost:4000/'
 })
+
 // Create a WebSocket link:
-/*
 const wsLink = new WebSocketLink({
   uri: `ws://localhost:4000/`,
   options: { reconnect: true }
 })
+
 // using the ability to split links, you can send data to each link
 // depending on what kind of operation is being sent
 const link = split(
@@ -39,11 +41,9 @@ const link = split(
   wsLink,
   httpLink
 )
-*/
-// const link = httpLink
 
 const client = new ApolloClient({
-  httpLink,
+  link,
   cache: new InMemoryCache().restore({})
 })
 
